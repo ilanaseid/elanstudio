@@ -1,0 +1,377 @@
+/* _forms.scss
+	form field and behavioral styling
+
+	* Form Structure
+  * Field Sizing
+  * Single Field Form Sizing
+  * Single Field - Large Form Sizing
+  * Horizontal muli-select (choices)
+	* Field Appearance
+	* Field States
+  * Validation States
+*/
+
+
+/* Form Structure
+------------------------------------------- */
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+form ol {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+form li {
+  list-style: none;
+  margin-bottom: 10px;
+
+  &.gapabove {
+    margin-top: 42px;
+  }
+}
+
+label,
+.label {
+  display: block;
+  margin-right: 6em; // leave room for error
+
+  &.accent {
+    color: $gold;
+  }
+}
+
+li.boolean label,
+li.choice label,
+li.radio label,
+[type=checkbox] + label,
+[type=radio] + label {
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 0; // no need for room for error
+}
+
+input[type="checkbox"] {
+  -webkit-appearance:none;
+  -moz-appearance: none;
+  height: 10px;
+  width: 10px;
+  cursor:pointer;
+  position:relative;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAYAAACprHcmAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAA2SURBVBiVYzx79uyBf//+HWAgAJiYmBwYTp8+3UBIIQMDA8Pp06cbmIhRCDd9VDG5ihlJiUEAcjsUI6uInQQAAAAASUVORK5CYII=) no-repeat;
+  border: none;
+}
+
+input[type="checkbox"]:checked {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAYAAACprHcmAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADTSURBVBiVlZGxSgNBEIa/Xe6MiPogtodprsntvUEqbXwK7eNL2AgR8QEsrl4YbJe18AksbG1tNPtbJWogCU41DB8z38+4nLOVUowd5b2fkFKa7QIBUkqzahvQtu3RXr1/JxZnAH4L60b1aI54N7MvgI2bu66/VtHJ4fHB6cp72YQQxj9gN0W69JU7H4bhYzmvAJqmqbXgIUzCM55bFe6Fu4oxvvy+5gFyzp9ypZcYqxART2bxZl1tpWFmb3KlFzz6yl0AWof/BDSzV2C6KbT7zwe/AdXWUhYeV1ngAAAAAElFTkSuQmCC) no-repeat;
+}
+
+// alternate formtastic output? add a wordbreak like space after
+label [type=checkbox],
+label [type=radio] {
+  margin-right: 0.5em;
+}
+
+.actions {
+  margin-top: 21px;
+}
+
+.product-messages,
+.form-messages {
+  margin-top: 14px; // TODO: is this needed???
+  margin-bottom: 10px;
+  //border-top: 2px $grey-light solid;
+  font-size: 16px;
+}
+
+.alert {
+  padding-bottom: 4px; // TODO: this is a guess
+  margin-bottom: 0;
+  //border-bottom: 2px $grey-light solid;
+  font-size: 12px;
+  font-style: italic;
+}
+.alert-error {
+  color: $red-error;
+}
+.alert-warning,
+.alert-success {
+  color: $gold;
+
+  a {
+    color: $gold;
+
+    &:hover,
+    &:active {
+      color: $gold-dark;
+    }
+  }
+}
+
+/* Field Sizing
+------------------------------------------- */
+
+input,
+textarea,
+select {
+  width: 100%;
+  border-radius: 0;
+}
+
+select {
+  min-width: 4em;
+}
+
+[type=text],
+[type=email],
+[type=phone],
+[type=url],
+textarea {
+  -webkit-appearance: none;
+}
+
+input {
+  height: 29px;
+  line-height: 28px;
+  padding: 0 8px;
+}
+
+[type=radio],
+[type=checkbox],
+[type=submit] {
+  height: auto;
+  width: auto;
+}
+
+@include placeholder(color, $grey-light);
+@include placeholder(opacity, 1);
+
+
+/* Single Field Form Sizing
+------------------------------------------- */
+.singlefield {
+  width: 100%;
+  max-width: 400px;
+
+  li {
+    width: 100%;
+
+    &:first-child {
+      float: left;
+      @include calc(width,'80% - 6px','80%');
+    }
+
+    &:last-child {
+      float: right;
+      width: 20%;
+    }
+  }
+
+  input[type=submit],
+  button,
+  .btn {
+    width: 100%;
+    min-width: 40px;
+  }
+}
+
+/* Single Field - Large Form Sizing
+------------------------------------------- */
+.singlefield-large {
+  width: 100%;
+  max-width: none;
+
+  li {
+    &:first-child {
+      @include calc(width,'100% - 50px','80%');
+    }
+
+    &:last-child {
+      @include calc(width,'50px','20%');
+    }
+  }
+
+  li:first-child input,
+  input[type=submit],
+  button,
+  .btn {
+    height: 75px;
+    line-height: 75px;
+    font-size: 40px;
+    background: transparent $border-default-svg repeat-x 50% 55px;
+    border: none;
+    // border-bottom: $border-default;
+    text-align: left;
+    padding: 0;
+
+    @media #{$query-notsmall} {
+      font-size: 50px;
+      background-position: 50% 60px;
+    }
+
+    &:active,
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  input[type=submit],
+  button,
+  .btn {
+    // width: auto;
+    // height: 75px;
+    // line-height: 50px;
+    // font-size: 50px;
+    // background: transparent;
+    // border: none;
+    // border-bottom: 3px #f1f1f1 solid;
+  }
+
+  button .icon_right {
+    display: block;
+    width: 100%;
+    height: 75px;
+    background-position: center center;
+    background-size: inherit;
+  }
+
+  @include placeholder("line-height", 75px);
+}
+
+/* Horizontal muli-select (choices)
+------------------------------------------- */
+
+.horizontalChoices {
+  ol {
+    margin: 0; // don't double up margins when nesting
+  }
+
+  li.choice {
+    display: inline-block;
+
+    &+.choice {
+      margin-left: 1em;
+    }
+  }
+
+}
+
+
+/* Field Appearance
+------------------------------------------- */
+input,
+textarea,
+select {
+  font-size: 14px;
+  color: #414042;
+  background: $grey-offwhite;
+  border: 1px $grey-offwhite solid;
+
+  &:active,
+  &:focus {
+    border-color: #414042;
+    outline: 0;
+  }
+
+  @media #{$query-small} {
+    font-size: 16px;
+  }
+}
+
+label,
+.label {
+  font-size: 11px;
+}
+
+
+
+/* Field States
+------------------------------------------- */
+
+input,
+textarea {
+  &.error { // this pattern used anywhere?
+    color: #ED1C24;
+    background: #fef4f8;
+  }
+}
+
+// li is the 'error', wraps the whole field
+.error {
+  input,
+  textarea,
+  select {
+    color: #ED1C24;
+    background: #fef4f8;
+  }
+}
+
+.inline-hints,
+.inline-errors {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 10px;
+  font-style: italic;
+  text-transform: lowercase;
+}
+
+li.input {
+  .inline-hints,
+  .inline-errors {
+    float: right;
+    margin-bottom: -21px;
+    padding: 1px 1px 0;
+  }
+  .inline-errors+.inline-hints {
+    visibility: hidden;
+  }
+}
+
+li.boolean,
+li.checkbox {
+  .inline-hints,
+  .inline-errors {
+    padding-left: 0.5em;
+    font-size: 14px;
+  }
+}
+
+.inline-hints {
+  color: $grey-light;
+}
+.inline-errors {
+  color: $red-error;
+}
+
+/* Validation States
+------------------------------------------- */
+.validatedOnce {
+  input,
+  textarea,
+  select {
+    &:invalid {
+      color: #ED1C24;
+      background: #fef4f8;
+    }
+  }
+}
+
+/* Wordcount PLugin Customization
+------------------------------------------- */
+.wc-hint {
+  @extend .inline-hints;
+}
+.wc-error {
+  @extend .inline-errors;
+}
+
+.lt-ie9 {
+  .wc-hint {
+    float: none !important;
+  }
+}

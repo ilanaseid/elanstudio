@@ -1,0 +1,21 @@
+<li id="item_<%= footnote.basename %>" class="footnote item hero row-fluid">
+  <div class="image">
+    <div class="item-image">
+      <% if footnote.assets_for_placement(:feature).any? %>
+        <%= link_to footnote_path(footnote.basename) do %>
+          <%= simple_picture_tag(footnote.assets_for_placement(:feature)[0], :large, :options => { :alt => "#{t('site.footnote_label')} #{footnote.footnote_number} — #{footnote.title}"}) %>
+        <% end %>
+      <% end %>
+    </div> <!-- /.item-image -->
+  </div>
+  <div class="item-content row-fluid">
+    <div class="item-header span3">
+      <div class="marker issue"><%= t('site.footnote_abbr') %> <%= footnote.footnote_number %></div>
+      <h3 class="title"><%= link_to footnote.title, footnote_path(footnote.basename) %></h3>
+    </div>
+    <div class="item-body offset1 span8">
+      <span class="label"><%= editorial_flags(footnote) %></span>
+      <p class="description"><%= footnote.short_description %></p>
+    </div>
+  </div> <!-- /.item-content -->
+</li>

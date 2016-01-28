@@ -1,0 +1,179 @@
+<%
+  # title =
+  nav_levels_open = 0;
+
+  # TODO: find more performant way to calculate this, or set in controllers
+  if (
+        is_active_link?(main_app.shop_index_path, /^\/shop(?!\/search).*|^\/selection\//) || is_active_link?(spree.account_path, /^(\/wishlist_items.*)|(\/orders.*)|(\/account.*)/) || is_active_link?(spree.account_path, /^(\/wishlist_items.*)|(\/orders.*)|(\/account.*)/) || is_active_link?(main_app.stories_path, /^\/vol|^\/stories|^\/footnote\//)
+      )
+    nav_levels_open = 1
+  end
+
+  if (
+        (@enable_nav_highlighting_for_product && @product && @product.primary_category != 'art') || is_active_link?(main_app.shop_category_path(:fashion)) || is_active_link?(main_app.shop_category_path(:home)) || is_active_link?(main_app.shop_category_path(:beauty)) || is_active_link?(main_app.stories_path, /^\/vol|^\/stories\/|^\/footnote\//)
+      )
+    nav_levels_open = 2
+  end
+%>
+
+<div id="navWrap" class="nav_levels_open-<%= nav_levels_open %> hovernav hovernav-nojs">
+  <%= render :partial=>"shared/branding" %>
+  <%= render :partial=>"shared/search_panel" %>
+
+
+
+  <nav>
+    <div class="mainnav mainnav-1">
+
+      <ul class="nav-header nav-header-1" data-panel-title="Top Menu">
+        <li class="navPanelTriggerWrap"><button class="btn btn-link a nav-panel-trigger">Menu</button></li>
+        <li class="sepWrap"><span class="sep a">/</span></li>
+        <li class="nav-sub-trigger <%= is_active_link?(main_app.shop_index_path, /^\/shop(?!\/search).*|^\/selection\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.shop'), main_app.shop_index_path, :active=>/^\/shop(?!\/search).*|^\/selection\//, :class=>'icon_downCaret-ia' %>
+          <ul class="nav-header nav-header-2 <%= is_active_link?(main_app.shop_index_path, /^\/shop(?!\/search).*|^\/selection\//) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="<%= t('site.nav.shop') %>">
+            <li class="nav-sub-trigger <%= is_active_nav_category?(:selections) ? 'nav-sub-current'.html_safe : '' %>"><%= nav_category_active_link_to t('site.nav.selections'), main_app.selections_path, :active=>/^\/shop\/selections|^\/selection\//, :class=>'icon_downCaret-ia' %>
+              <ul class="nav-header nav-header-3 <%= is_active_nav_category?(:selections) || is_active_link?('/selection/') ? 'nav-header-current'.html_safe : '' %>" data-panel-title="<%= t('site.nav.selections') %>">
+                <li><%= active_link_to              'View All Selections',  main_app.selections_path, :active=>/^\/shop\/selections/ %></li>
+                <%= render :partial=>"shared/selection_subnav" %>
+              </ul>
+            </li>
+            <li><%= nav_category_active_link_to t('site.nav.new'),          main_app.shop_new_path %></li>
+            <li class="nav-sub-trigger <%= is_active_nav_category?(:fashion) ? 'nav-sub-current'.html_safe : '' %>"><%= nav_category_active_link_to t('shop.category.fashion'), main_app.shop_category_path(:fashion), :class=>'icon_downCaret-ia' %>
+              <ul class="nav-header nav-header-3 <%= is_active_nav_category?(:fashion) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="Fashion">
+                <li><%= active_link_to              'View All Fashion', main_app.shop_category_path(:fashion), :active=>/^\/shop\/fashion\/?(\?.*)*$/ %></li>
+                <li><%= nav_category_active_link_to 'Tops',             main_app.shop_category_path(:fashion,:tops) %></li>
+                <li><%= nav_category_active_link_to 'Bottoms',          main_app.shop_category_path(:fashion,:bottoms) %></li>
+                <li><%= nav_category_active_link_to 'Dresses',          main_app.shop_category_path(:fashion,:dresses) %></li>
+                <li><%= nav_category_active_link_to 'Jackets',          main_app.shop_category_path(:fashion,:jackets) %></li>
+                <li><%= nav_category_active_link_to 'Outerwear',        main_app.shop_category_path(:fashion,:outerwear) %></li>
+                <li><%= nav_category_active_link_to 'Shoes',            main_app.shop_category_path(:fashion,:shoes) %></li>
+                <li><%= nav_category_active_link_to 'Bags',             main_app.shop_category_path(:fashion,:bags) %></li>
+                <li><%= nav_category_active_link_to 'Jewelry',          main_app.shop_category_path(:fashion,:jewelry) %></li>
+                <li><%= nav_category_active_link_to 'Accessories',      main_app.shop_category_path(:fashion,:accessories) %></li>
+                <li><%= nav_category_active_link_to 'Swim',             main_app.shop_category_path(:fashion,:swim) %></li>
+                <li><%= nav_category_active_link_to 'Lingerie',         main_app.shop_category_path(:fashion,:lingerie) %></li>
+              </ul></li>
+            <li class="nav-sub-trigger <%= is_active_nav_category?(:home) ? 'nav-sub-current'.html_safe : '' %>"><%= nav_category_active_link_to t('shop.category.home'), main_app.shop_category_path(:home), :class=>'icon_downCaret-ia' %>
+              <ul class="nav-header nav-header-3 <%= is_active_nav_category?(:home) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="<%= t('shop.category.home') %>">
+                <li><%= active_link_to              'View All Home',  main_app.shop_category_path(:home), :active=>/^\/shop\/home\/?(\?.*)*$/ %></li>
+                <li><%= nav_category_active_link_to 'Furniture',      main_app.shop_category_path(:home,:furniture) %></li>
+                <li><%= nav_category_active_link_to 'Lighting',       main_app.shop_category_path(:home,:lighting) %></li>
+                <li><%= nav_category_active_link_to 'Tableware',      main_app.shop_category_path(:home,:tableware) %></li>
+                <li><%= nav_category_active_link_to 'Textiles',       main_app.shop_category_path(:home,:textiles) %></li>
+                <li><%= nav_category_active_link_to 'Rugs',           main_app.shop_category_path(:home,:rugs) %></li>
+                <li><%= nav_category_active_link_to 'Art',            main_app.shop_category_path(:art), :active=>/^\/shop\/home\/?(\?.*)*$/ %></li>
+                <li><%= nav_category_active_link_to 'Accessories',    main_app.shop_category_path(:home,:accessories) %></li>
+                <li><%= nav_category_active_link_to 'Books',          main_app.shop_category_path(:home,:books) %></li>
+                <li><%= nav_category_active_link_to 'Cleaning',       main_app.shop_category_path(:home,:cleaning) %></li>
+                <li><%= nav_category_active_link_to 'Pet',            main_app.shop_category_path(:home,:pet) %></li>
+                <li><%= nav_category_active_link_to 'Garden',         main_app.shop_category_path(:home,:garden) %></li>
+              </ul></li>
+            <li class="nav-sub-trigger <%= is_active_nav_category?(:beauty) ? 'nav-sub-current'.html_safe : '' %>"><%= nav_category_active_link_to t('shop.category.beauty'), main_app.shop_category_path(:beauty), :class=>'icon_downCaret-ia' %>
+              <ul class="nav-header nav-header-3 <%= is_active_nav_category?(:beauty) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="<%= t('shop.category.beauty') %>">
+                <li><%= active_link_to              'View All Beauty',  main_app.shop_category_path(:beauty), :active=>/^\/shop\/beauty\/?(\?.*)*$/ %></li>
+                <li><%= nav_category_active_link_to 'Face',             main_app.shop_category_path(:beauty,:face) %></li>
+                <li><%= nav_category_active_link_to 'Bath & Body',      main_app.shop_category_path(:beauty,:bath_body) %></li>
+                <li><%= nav_category_active_link_to 'Hair',             main_app.shop_category_path(:beauty,:hair) %></li>
+                <li><%= nav_category_active_link_to 'Fragrance',        main_app.shop_category_path(:beauty,:fragrance) %></li>
+              </ul></li>
+             <li class="nav-sub-trigger <%= is_active_nav_tag?(:gifts) ? 'nav-sub-current'.html_safe : '' %>"><%= nav_category_active_link_to t('site.nav.gifts'), main_app.shop_tag_path(:gifts), :class=>'icon_downCaret-ia' %>
+                <ul class="nav-header nav-header-3 <%= is_active_nav_tag?(:gifts) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="Gifts">
+                <li><%= active_link_to              'View All Gifts', main_app.shop_tag_path(:gifts), :active=>/^\/shop\/tag\/gifts\/?(\?.*)*$/ %></li>
+                <li><%= nav_category_active_link_to 'Gift Sets',      main_app.shop_tag_path(:gifts,:gift_sets) %></li>
+                <li><%= nav_category_active_link_to 'For Her',        main_app.shop_tag_path(:gifts,:for_her) %></li>
+                <li><%= nav_category_active_link_to 'For Him',        main_app.shop_tag_path(:gifts,:for_him) %></li>
+                <li><%= nav_category_active_link_to 'For Home',       main_app.shop_tag_path(:gifts,:for_home) %></li>
+                <li><%= nav_category_active_link_to 'Under $100',     main_app.shop_tag_path(:gifts,:under_100) %></li>
+                </ul>
+            </li>
+            <li class="nav-sub-trigger <%= is_active_nav_tag?(:sale) ? 'nav-sub-current'.html_safe : '' %>"><%= nav_category_active_link_to t('site.nav.sale'), main_app.shop_tag_path(:sale), :class=>'icon_downCaret-ia accent' %>
+              <ul class="nav-header nav-header-3 <%= is_active_nav_tag?(:sale) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="Sale">
+                <li><%= active_link_to              'View All Sale', main_app.shop_tag_path(:sale), :active=>/^\/shop\/tag\/sale\/?(\?.*)*$/ %></li>
+                <li><%= nav_category_active_link_to 'Tops',             main_app.shop_sale_category_path(:fashion,:tops) %></li>
+                <li><%= nav_category_active_link_to 'Bottoms',          main_app.shop_sale_category_path(:fashion,:bottoms) %></li>
+                <li><%= nav_category_active_link_to 'Dresses',          main_app.shop_sale_category_path(:fashion,:dresses) %></li>
+                <li><%= nav_category_active_link_to 'Jackets',          main_app.shop_sale_category_path(:fashion,:jackets) %></li>
+                <li><%= nav_category_active_link_to 'Outerwear',        main_app.shop_sale_category_path(:fashion,:outerwear) %></li>
+                <li><%= nav_category_active_link_to 'Shoes',            main_app.shop_sale_category_path(:fashion,:shoes) %></li>
+                <li><%= nav_category_active_link_to 'Bags',             main_app.shop_sale_category_path(:fashion,:bags) %></li>
+                <li><%= nav_category_active_link_to 'Accessories',      main_app.shop_sale_category_path(:fashion,:accessories) %></li>
+              </ul>
+            </li>
+            <li><%= nav_category_active_link_to t('site.nav.brand_index'),  main_app.shop_designers_path %></li>
+          </li>
+          </ul></li>
+
+        <li class="nav-sub-trigger <%= is_active_link?(main_app.stories_path, /^\/the_apartments\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.apartments'), main_app.the_apartments_path, :class=>'icon_downCaret-ia', :active=>/^\/the_apartments\// %>
+          <ul class="nav-header nav-header-2 <%= is_active_link?(main_app.the_apartments_path, /^\/the_apartments\//) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="<%= t('site.nav.apartment') %>">
+            <li><%= active_link_to 'View All Apartments', main_app.the_apartments_path, :active => :exclusive %></li>
+            <li><%= active_link_to 'New York', '/the_apartments/quintessential_apartment', :active => :exclusive %></li>
+            <li><%= active_link_to 'Los Angeles', '/the_apartments/los_angeles', :active => :exclusive %></li>
+            <li><a href="#" data-brickwork-reveal-modal="appointment-widget-6">Book an Appointment</a></li>
+          </ul>
+        </li>
+        <li class="nav-sub-trigger <%= is_active_link?(main_app.stories_path, /^\/vol|^\/stories|^\/footnote\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.editorial'), main_app.stories_path, :class=>'icon_downCaret-ia', :active=>/^\/vol|^\/stories|^\/footnote\// %>
+          <ul class="nav-header nav-header-2 <%= is_active_link?(main_app.stories_path, /^\/vol|^\/stories|^\/footnote\//) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="<%= t('site.nav.editorial') %>">
+            <li><%= active_link_to 'View All Stories', main_app.stories_path, :active=>:exclusive %></li>
+            <li class="nav-sub-trigger"><%= active_link_to 'Anthology', main_app.anthology_path, :class=>'icon_downCaret-ia', :active=>/^\/vol|^\/stories\/|^\/footnote\// %>
+              <ul class="nav-header nav-header-3 <%= is_active_link?(main_app.stories_path, /^\/vol|^\/stories\/|^\/footnote\//) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="Anthology">
+                <li><%= active_link_to 'View Anthology', main_app.anthology_path %></li>
+                <% Volume.published.each do |volume,index| %>
+                  <li><%= active_link_to "#{t('site.volume_abbr_mixedcase')} #{volume.volume_number}", volume.friendly_path, :active=>in_volume?(volume.id) %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </div> <!-- /.mainnav-1 -->
+
+    <%# NOTE: WARNING: Some of the below items are repeated in shared/_pos_nav.html.erb %>
+    <div class="mainnav mainnav-2">
+      <ul class="nav-header nav-header-1" data-panel-title="Top Menu">
+        <% if current_site_messaging %>
+          <% if (current_site_messaging.content_block('description').try(:body)) %>
+            <li class="siteMessageItem"><button class="btn-link a accent" data-notification-id="site-messaging"><%= current_site_messaging.title %></button>
+              <ul class="nav-header nav-header-2" data-panel-title="<%= current_site_messaging.title %>">
+                <li id="site-messaging"><%= current_site_messaging.content_block('description').try(:body) %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="siteMessageItem"><span class="btn-link accent"><%= current_site_messaging.title %></span></li>
+          <% end %>
+        <% end %>
+        <li><%= active_link_to "#{t('actions.search')}".html_safe, main_app.shop_search_path, :title=>t('actions.search'), :class => 'header-search-trigger' %></li>
+        <% if current_spree_user %>
+          <li class="nav-sub-trigger <%= is_active_link?(spree.account_path, /^(\/wishlist_items.*)|(\/orders.*)|(\/account.*)/) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to current_spree_user.firstname, spree.account_path, :class=>'icon_downCaret-ia', :active=>/^(\/wishlist_items.*)|(\/orders.*)|(\/account.*)/ %>
+            <ul class="nav-header nav-header-2 <%= is_active_link?(spree.account_path, /^(\/wishlist_items.*)|(\/orders.*)|(\/account.*)/) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="<%= current_spree_user.firstname %>">
+              <li><%= active_link_to t('site.nav.account'), spree.account_path %></li>
+              <li><%= active_link_to t('site.nav.order_history'), main_app.order_history_path %></li>
+              <li><%= active_link_to t('site.nav.wishlist'), main_app.wishlist_items_path %></li>
+              <li><%= link_to t('site.nav.logout'), spree.logout_path %></li>
+            </ul></li>
+        <% else %>
+          <li><%= link_to t('site.nav.login'), spree.login_path, :class => "lb" %></li>
+        <% end %>
+
+        <li class="desktopNavItem"><%= active_link_to "#{t('site.nav.cart')} <span class=\"bag-count\">#{current_order_count}</span>".html_safe, spree.cart_path, :class =>"cart-panel-trigger" %></li>
+
+      </ul>
+    </div> <!-- /.mainnav-2 -->
+    <%# NOTE: WARNING: Some of the above items are repeated in shared/_pos_nav.html.erb %>
+  </nav>
+
+<script id="template-contextualNav" type="text/x-handlebars-template">
+  <div class="mainnav mainnav-1">
+    <ul class="nav-header nav-header-1" id="mainnav-1-target">
+      <li class="sepWrap"><span class="sep a">/</span></li>
+      <li class="titleWrap"><span class="title a"><%= content_for?(:nav_title) ? (yield :nav_title) : (yield :title) %></span></li>
+    </ul>
+  </div>
+  <div class="mainnav mainnav-2">
+    <ul class="nav-header nav-header-1" id="mainnav-2-target">
+    </ul>
+  </div>
+  <div class="panel-mask"></div>
+</script>
+</div> <!-- /#navWrap -->
+
+

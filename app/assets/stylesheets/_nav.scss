@@ -1,0 +1,320 @@
+/* _nav.scss
+  Styling for baseline, heirarcical site navigation
+
+* Nav Layout and Heirarchy
+* Nav Item Styles
+* #navWrap specifics
+* #contextualNav specifics
+
+*/
+
+
+/* Nav Layout and Heirarchy
+------------------------------------------- */
+
+// start with no-js aware structure
+#contextualNav,
+#navWrap {
+
+  // mainnav containers
+  .mainnav {
+    width: auto;
+    // padding-top: 46px;
+    border-bottom: none;
+    background-color: $white;
+  }
+  // special to top left nav
+  .mainnav-1 {
+    float: left;
+  }
+  // special to top right nav
+  .mainnav-2 {
+    float: right;
+
+    .nav-header {
+      text-align: right;
+    }
+  }
+
+
+  // nav in header layouts
+  .nav-header {
+    list-style: none;
+    height: $topnav-itemheight;
+    margin: 0;
+    padding: 0 12px;
+
+    li {
+      a {
+        padding: 0 0.5em;
+      }
+    }
+  }
+
+  // exclusive to top nav
+  .nav-header-1 {
+
+  }
+
+  // shared 2nd and 3rd level nav
+  .nav-header-2,
+  .nav-header-3 {
+    // display: none;
+    position: absolute;
+    top: auto;
+    bottom: #{$topnav-itemheight*-1};
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    background: $white;
+    border-top: $border-default;
+    border-bottom: $border-default;
+  }
+  .nav-header-2 {
+  }
+  .nav-header-3 {
+  }
+
+  // current page section & active/hover interactions
+  .nav-header-current {
+    // display: block;
+  }
+
+  &:hover {
+    .nav-header-current {
+      // display: none;
+    }
+  }
+
+  .nav-sub-trigger:hover {
+    >.nav-header {
+      // display: block;
+      // z-index: 4; // always above .prov-window
+    }
+  }
+
+  // this will be hijacked with JS
+  .nav-sub-trigger:hover {
+    &.siteMessageItem {
+      >.nav-header {
+        // display: none;
+      }
+    }
+  }
+}
+
+
+/* Nav Item Styles
+------------------------------------------- */
+#contextualNav,
+#navWrap {
+  .nav-header {
+    li, .li {
+      display: inline-block;
+      width: auto;
+      height: $topnav-itemheight;
+      margin: 0;
+      padding: 0;
+      font-size: 12px;
+      line-height: $topnav-itemheight;
+      overflow-x: hidden;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.siteMessageItem {
+        button {
+          font-style: italic;
+        }
+      }
+    }
+
+    a, .a, .sep {
+      display: inline-block;
+      width: auto;
+      height: $topnav-itemheight;
+      font-size: 12px;
+      line-height: $topnav-itemheight;
+      padding: 0;
+      text-decoration: none;
+    }
+
+    .sepWrap {
+      margin-left: -0.5em;
+      margin-right: 0.5em;
+    }
+
+    .sep {
+      color: $grey-light;
+    }
+
+    .active {
+      color: $grey-dark;
+      text-decoration: underline;
+    }
+
+    .accent {
+      &:hover,
+      &.active {
+        color: $gold-dark;
+      }
+    }
+
+    // nav panel trigger
+    .icon_mobileNavLeft {
+      padding-left: 20px;
+      background-position: 0 50%;
+    }
+
+    .bag-count {
+      color: $grey-dark;
+    }
+  }
+}
+
+/* Nav Item Interactions / Toggles
+------------------------------------------- */
+// shared default state
+.hovernav {
+  .nav-header {
+    display: none;
+
+    &.nav-header-1,
+    &.nav-header-current {
+      display: block;
+    }
+  }
+}
+
+// .no-js-nav interactions
+.hovernav-nojs {
+  &:hover {
+    .nav-header-current {
+      display: none;
+    }
+  }
+
+  .nav-sub-trigger:hover {
+    >.nav-header {
+      display: block !important;
+      z-index: 4; // always above .prov-window
+    }
+  }
+}
+
+// .js-nav interactions
+.hovernav-js {
+  &.hovered {
+    .nav-header-current {
+      display: none;
+    }
+  }
+
+  .nav-sub-trigger.hovered {
+    >.nav-header {
+      display: block;
+      z-index: 4; // always above .prov-window
+    }
+  }
+}
+
+/* #navWrap Specifics
+------------------------------------------- */
+#navWrap {
+  .nav-header {
+    border-bottom: $border-default;
+  }
+
+  .mainnav-1 {
+    .navPanelTriggerWrap,
+    .sepWrap {
+      display: none;
+    }
+  }
+}
+
+// just a little protection against uninitialized state
+.js {
+  #navWrap {
+    @media #{$query-smalltopnav} {
+      .mainnav-1,
+      .mainnav-2 {
+        padding-top: 30px; // 65 - itemheight
+      }
+
+      .mainnav-1 {
+        li {
+          display: none;
+        }
+        .navPanelTriggerWrap {
+          display: inline-block;
+        }
+      }
+
+      .mainnav-2 {
+        li {
+          display: none;
+        }
+        >.nav-header>li:last-child { // should be the bag trigger
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+/* #contextualNav specifics
+------------------------------------------- */
+#contextualNav {
+  .nav-header .nav-header {
+    border-top: $border-default;
+  }
+
+  .mainnav-1 {
+    .navPanelTriggerWrap,
+    .navPanelTriggerWrap+.sepWrap {
+      display: none;
+    }
+
+    .titleWrap {
+      max-width: 14em;
+      text-overflow: ellipsis;
+      // overflow-x: hidden;
+      @media only screen and (min-width: 1001px) {
+        max-width: 22em;
+      }
+      @media only screen and (min-width: 1201px) {
+        max-width: 30em;
+      }
+    }
+
+    .title {
+      color: $grey-dark;
+      display: inline !important;
+    }
+  }
+
+  @media #{$query-smalltopnav} {
+    .mainnav-1 {
+      li {
+        display: none;
+      }
+      .navPanelTriggerWrap, // menu link
+      .navPanelTriggerWrap+.sepWrap, // one separator
+      .titleWrap { // title
+        display: inline-block;
+      }
+    }
+
+    .mainnav-2 {
+      li {
+        display: none;
+      }
+
+      >.nav-header>li:last-child { // should be the bag trigger
+        display: inline-block;
+      }
+    }
+  }
+}

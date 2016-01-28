@@ -1,0 +1,97 @@
+<% content_for :title, t('site.nav.cart') %>
+
+<%= semantic_form_for @order, :url => update_cart_path, :html => {:id => 'update-cart'} do |order_form| %>
+
+<div class="row-fluid">
+  <div class="span8 offset2 account">
+    <h2><%= t('site.nav.cart') %></h2>
+  </div>
+  <div class="span4 account bagActionsTop">
+    <p class="note accent">* <a class="lb accent" href="/content/returns_policy">Free two-day shipping and returns</a></p>
+
+    <% if @order.line_items.any? %>
+      <div class="actions">
+        <%= button_tag :class => 'btn btn-em', :id => 'checkout-link2', :name => 'checkout' do %>
+          <%= Spree.t(:checkout) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+<% if @order.line_items.empty? %>
+
+  <div class="row-fluid">
+    <div class="span12 offset2">
+      <div data-hook="empty_cart">
+        <p><%= Spree.t(:your_cart_is_empty) %></p>
+        <p><%= link_to Spree.t(:continue_shopping), main_app.shop_index_path, :class => 'button continue' %></p>
+      </div>
+    </div> <!-- /.span12 -->
+  </div> <!-- /.row-fluid -->
+
+<% else %>
+
+  <div class="row-fluid">
+    <div class="span12 offset2">
+      <%= render :partial => 'form', :locals => { :order_form => order_form } %>
+      </div>
+
+    <div class="span4 offset10">
+      <%= render :partial => 'spree/checkout/summary', :locals => { :order => @order } %>
+    </div>
+
+    <!-- new row -->
+    <div class="span7 offset2">
+      <ul class="nav">
+        <li>
+          <%= button_tag :class => 'text', :id => 'update-button' do %>
+            <%= Spree.t(:update) %>
+          <% end %>
+        </li>
+        <li><%= link_to Spree.t(:continue_shopping), main_app.shop_index_path, :class => 'btn continue' %></li>
+      </ul>
+
+      <div class="credit-card-icons">
+        <div class="accepted-cards accent"><%= t('cart.accepted_cards') %></div>
+          <span class="icon_visa card-icon"></span>
+          <span class="icon_mastercard card-icon"></span>
+          <span class="icon_americanexpress card-icon"></span>
+          <span class="icon_dinersclub card-icon"></span>
+          <span class="icon_jcb card-icon"></span>
+          <span class="icon_discover card-icon"></span>
+      </div>
+    </div>
+
+    <div class="span4 offset1 bagActionsBottom">
+      <div class="actions">
+        <%= button_tag :class => 'btn btn-em', :id => 'checkout-link', :name => 'checkout' do %>
+          <%= Spree.t(:checkout) %>
+        <% end %>
+      </div>
+    </div>
+  </div> <!-- /.row-fluid -->
+
+  <% if @gifts && @gifts.any? %>
+    <div class="row-fluid">
+      <hr>
+      <div class="bridge2 itemGrid-header">
+        <h2 class="sectionhd"><%= t('headings.featured_in_cart') %></h2>
+        <h3 class="gridhd"><%= t('headings.gifts_in_cart') %></h3>
+      </div> <!-- /.itemGrid-header"-->
+      <div class="span16">
+        <div class="itemGrid itemGrid-4">
+          <div class="grid-sizer"></div>
+          <div class="gutter-sizer"></div>
+          <ul class="pl">
+            <%= render :partial => 'shop/product_grid_cart', :collection => @gifts, as: :product %>
+          </ul>
+        </div>
+      </div>
+    </div> <!-- /.row-fluid -->
+  <% end %>
+
+<% end %> <%# end of if %>
+<% end %> <%# end of form %>
+

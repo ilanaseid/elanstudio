@@ -1,0 +1,49 @@
+          <% context ||= nil %>
+          <% inventory_remaining = item.variant.default_location_count_on_hand %>
+          <% @cms_product=Product.where(:spree_product_id=>item.variant.product_id).first %>
+          <li class="<%= cycle('', 'alt') %> line-item hproduct">
+            <div class="item-image">
+              <%= link_to image_tag(@cms_product.default_image_url(:grid)), main_app.shop_product_path(@cms_product.basename) %>
+            </div> <!-- /.item-image -->
+
+            <div class="item-header">
+              <b><%= link_to @cms_product.brand.title, main_app.brand_path(@cms_product.brand.basename), :class=>'brand' %></b>
+              <h3 class="gamma fn"><%= link_to item.variant.name, main_app.shop_product_path(@cms_product.basename) %></h3>
+
+              <div class="form-messages">
+                <% if @cms_product.spree_product.shipping_category_id != 7 %>
+                  <p class="alert alert-warning fade in">*<%= t("shipping_category.id_#{@cms_product.spree_product.shipping_category_id}.product_short_label") %></p>
+                <% end %>
+                <% if @cms_product.final_sale %>
+                   <p class="alert alert-warning fade in">*<%= t("shipping_category.final_sale_label") %></p>
+                <% end %>
+                <% if inventory_remaining.between?(1,3) %>
+                  <p class="alert alert-warning fade in"><%= t('product.low_inventory_count', remaining: inventory_remaining.to_words) %>.</p>
+                <% end %>
+              </div>
+
+            </div> <!-- /.item-header -->
+            <dl class="item-description">
+              <% if context != 'address' %>
+              <dt><%= @cms_product.option_label_override || 'Size' %></dt>
+              <% if @cms_product.option_label_override %>
+                <dd><%= "#{@cms_product.option_label_override}: #{item.variant.option_values.first.presentation}" %></dd>
+              <% else %>
+                <dd><%= (item.variant.options_text.length > 0) ? item.variant.options_text : t('shop.size_not_applicable') %></dd>
+              <% end %>
+              
+
+              <dt>Quantity</dt>
+              <dd><%= item.quantity %></dd>
+              <% end %>
+
+              <dt>Total</dt>
+              <% if context == 'confirm' %>
+                <dd><%= item.display_amount %></dd>
+              <% else %>
+                <dd><%= item.line_item.display_amount %></dd>
+              <% end %>
+
+            </dl> <!-- /.item-description -->
+
+          </li>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js <%= fonts_loaded? ? 'fonts-loaded' : nil %>' lang='en'>
+<!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title><%= yield :title %><%= content_for?(:title) ? ' — ' : '' %><%= t('site.the_line') %></title>
+  <meta property="og:title" content="<%= yield :title %><%= content_for?(:title) ? ' — ' : '' %><%= t('site.the_line') %>" />
+
+  <%= render :partial=>"shared/metas" %>
+  <%= yield :additional_metas %>
+
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <style>
+    <%= yield :additional_css; %>
+  </style>
+
+<% if display_superuser_ui? %>
+  <%= stylesheet_link_tag "superuser", media: "all" %>
+<% end %>
+
+<% if Settings.webfonts_enabled %>
+  <script src="//fast.fonts.net/jsapi/f5585fae-4778-44a9-a5c5-23dc0188a27f.js"></script>
+<% end %>
+<% if Settings.optimizely_enabled && user_class != 'staff_retail'%>
+  <script src="//cdn.optimizely.com/js/<%= Settings.optimizely_project_id %>.js"></script>
+<% end %>
+
+  <%= javascript_include_tag "application_head" %>
+
+  <%= csrf_meta_tags %>
+
+  <%= render :partial=>"shared/analytics_top" %>
+
+  <%= auto_discovery_link_tag(:rss, main_app.stories_path(:format=>:xml), :title=>"#{t('site.nav.editorial')} — #{t('site.the_line')}") %>
+
+<script>
+/* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */
+window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var a=t.document.createElement("link"),r=t.document.getElementsByTagName("script")[0];a.rel="stylesheet",a.href=e[o&&n?0:o?1:2],a.media="only x",r.parentNode.insertBefore(a,r),setTimeout(function(){a.media="all"})},a=new t.Image;a.onerror=function(){o(!1)},a.onload=function(){o(1===a.width&&1===a.height)},a.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};
+
+grunticon(["<%= stylesheet_path 'icons.data.svg.css' %>", "<%= stylesheet_path 'icons.data.png.css' %>", "<%= stylesheet_path 'icons.fallback.css' %>"]);
+</script>
+
+<noscript><%= stylesheet_link_tag "icons.fallback.css", media: "all" %></noscript>
+
+</head>
+<body class="c_<%= params[:controller].sub('/', '_') %> a_<%= params[:action] %> <%= yield :additional_body_classes %> <%= 'has_superuser_ui' if display_superuser_ui? %> u_<%= user_class %>" id="body1">
+  <div id="bodyWrap">
+    <%= render 'shared/banners/gifts' %>
+    <div id="contextualNav" class="hide"></div><!-- /#contextualNav -->
+    <div id="viewWrap">
+      <div id="navPanelWrap" class="hide"></div> <!-- /#navPanelWrap -->
+
+
+      <div id="pageWrap">
+
+        <!-- <div id="navWrap"> -->
+        <%= render :partial=>"shared/nav" %>
+        <!-- </div> -->
+
+        <div class="main"> <!-- TODO: migrate this to 'main' element? -->
+          <%= yield %>
+        </div> <!-- /.main -->
+
+        <%= render :partial=>"shared/footer" %>
+      </div> <!-- /#pageWrap -->
+    </div> <!-- /#viewWrap -->
+    <div id="cartWrap" class="hide"></div> <!-- /#cartWrap -->
+  </div> <!-- /#bodyWrap -->
+
+  <% if params[:controller] == 'shop' %>
+    <%= render 'shared/grid_booking_widget' %>
+  <% end %>
+
+  <%# END VISIBLE CONTENT %>
+
+  <%= javascript_include_tag "application" %>
+
+<% if display_superuser_ui? %>
+  <%= javascript_include_tag "superuser" %>
+
+  <% if current_order %>
+    <%= render :partial=>"shared/pos_nav" %>
+  <% end %>
+<% end %>
+
+  <script>
+    var STRINGS = window.STRINGS || {};
+    STRINGS['error_invalid'] = "<%= t('errors.messages.invalid') %>";
+    STRINGS['error_blank'] = "<%= t('errors.messages.blank') %>";
+    STRINGS['error_not_an_email'] = "<%= t('errors.messages.not_an_email') %>";
+    STRINGS['error_not_a_url'] = "<%= t('errors.messages.not_a_url') %>";
+    STRINGS['error_no_selected_size'] = "<%= t('errors.messages.invalid_size') %>";
+
+    STRINGS['error_unknown'] = "<%= t('forms.error_unknown') %>";
+    STRINGS['success_unknown'] = "<%= t('forms.success_unknown') %>";
+
+    STRINGS['addtocart_success'] = '<%= t("cart.addtocart_success_html", :url1=>spree.cart_path, :url2=>spree.checkout_path) %>';
+  </script>
+
+
+  <%= render :partial=>"shared/minicart_tmpl" %>
+  <%= render :partial=>"email_subscribers/newsletter_bottombanner" %>
+  <%= render :partial=>"shared/share_modal" %>
+  <%= render :partial=>"shared/analytics_bottom" %>
+
+<% if enable_usersnap? %>
+  <script type="text/javascript">
+    (function() {
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = '//api.usersnap.com/load/<%= j Settings.usersnap_api_key %>.js';
+      var x = document.getElementsByTagName('head')[0];
+      x.appendChild(s);
+    })();
+  </script>
+<% end %>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<p><%= t('appointments.msg.appointment_form_opening') %></p>
+<%= semantic_form_for @apartment_visit, :html => { :class => "xhr", "data-conversion-path" => "#{main_app.apartment_visits_path}/thank_you" } do |f|%>
+  <%= f.inputs do %>
+    <%= f.input :name, :label => t('fields.name') %>
+    <%= f.input :email, :as => :email, :label => t('fields.email') %>
+    <%= f.input :what_time, :as => :string, :label => 'When would you like to visit The Apartment by The Line? (Appointments are available on Tuesday through Saturday.)' %>
+    <%= f.input :note, :label => 'Are you looking for something in particular? Interested in one of our complimentary services, such as fashion or home styling? Please let us know.', :input_html => { :cols => 40, :rows => 7 } %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input, :label => t('actions.schedule_your_visit') %>
+  <% end %>
+<% end %>

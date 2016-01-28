@@ -1,0 +1,212 @@
+/* _bridge2.scss
+  Beginning style guide v2.0
+
+  * Grid
+  * Type
+  * Forms
+*/
+
+/* Grid
+------------------------------------------- */
+.bridge2 {
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 6px;
+  }
+
+  @media #{$query-notsmall} {
+    .splitWrap {
+      @include display-flex;
+      @include flex-wrap(wrap);
+
+      // overflow: auto;
+
+      // &:after {
+      //   clear: left;
+      // }
+    }
+    .split {
+      // float: left;
+      // position: relative; // Safari 6.0 rendering issue?
+      min-width: 240px; // arbitrary? based on form in section
+      @include calc(width,'50% - 0.76923075vw',48%);
+
+      &:nth-child(odd) {
+        @include calc(margin-right,'1.5384615vw',2%);
+      }
+    }
+  }
+}
+
+
+/* Type
+------------------------------------------- */
+@include fallbackFontStackDefault('.bridge2 .subhd');
+
+.bridge2 {
+  font-size: 14px;
+  line-height: 18px;
+
+  .deem {
+    color: inherit;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 16px;
+    max-width: 30em;
+
+    @media #{$query-largetype} {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    &.opening {
+      font-size: 18px;
+      line-height: 24px;
+      margin-bottom: 20px;
+      max-width: 124em;
+
+      @media #{$query-largetype} {
+        font-size: 24px;
+        line-height: 28px;
+      }
+    }
+
+    &.deem {
+      color: inherit;
+      font-size: 14px;
+      line-height: 18px;
+      margin-bottom: 10px;
+      max-width: 32em
+    }
+  }
+
+  .subhd {
+    font-size: 18px;
+    line-height: 24px;
+    color: inherit;
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  ul,
+  ol,
+  p {
+    margin-top: 0;
+  }
+
+  ul.deem,
+  ol.deem {
+    color: inherit;
+    margin-bottom: 10px;
+
+    li {
+      max-width: 32em;
+      font-size: 14px;
+      line-height: 18px;
+      margin-bottom: 6px;
+      list-style-type: none;
+    }
+
+  }
+
+  p {
+
+  }
+
+
+  // h1, .alpha,
+  h2, .beta,
+  h3, .gamma {
+  // h4, .delta,
+  // h5, .epsilon,
+  // h6, .zeta {
+    margin-top: 0;
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  h1, .alpha {
+  }
+
+  h2, .beta {
+    font-size: 24px;
+    line-height: 29px;
+
+  }
+
+  h3, .gamma,
+  .gridhd {
+    font-size: 18px;
+    line-height: 24px;
+
+    .subhd {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  .gamma2 {
+  }
+
+
+  h4, .delta {
+  }
+
+  h5, .epsilon {
+  }
+
+  h6, .zeta {
+  }
+
+  .sectionhd { // old .gamma2
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: normal;
+    text-transform: uppercase;
+
+    &:nth-child(n+2) {
+      margin-top: 30px;
+    }
+
+    .subhd {
+      margin-top: 10px;
+      font-size: 17px;
+      line-height: 24px;
+      text-transform: none;
+      font-style: normal;
+    }
+  }
+
+  .gridhd {
+    margin-top: 14px;
+    font-weight: normal;
+  }
+
+  li {
+    font-size: 14px;
+    line-height: 18px;
+    list-style-type: none;
+  }
+
+}
+
+/* Forms
+------------------------------------------- */
+.bridge2 {
+
+  .inline-hints,
+  .inline-errors {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 10px;
+    font-style: italic;
+  }
+}

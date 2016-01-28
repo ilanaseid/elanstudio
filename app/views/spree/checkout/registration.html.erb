@@ -1,0 +1,38 @@
+<% content_for :title, t('site.nav.checkout') %>
+
+<div class="row-fluid">
+  <div class="span4 offset3">
+    <h2>Log-in to Checkout</h2>
+    <div>
+      <div data-hook="login">
+        <%= render :partial => 'spree/shared/login' %>
+        <ul class="nav">
+          <li><%= link_to Spree.t(:create_a_new_account), spree.signup_path, :class => 'lb-same' %></li>
+          <li><%= link_to Spree.t(:forgot_password), spree.recover_password_path, :class => 'lb-same' %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<% if Spree::Config[:allow_guest_checkout] %>
+  <div class="span4 offset2">
+    <h2><%= Spree.t(:guest_checkout) %></h2>
+    <% if flash[:guest_email_error] %>
+      <div class="form-messages">
+        <p class="alert alert-warning alert-track"><%= flash[:guest_email_error] %></p>
+      </div>
+    <% end %>
+    <%= semantic_form_for @order, :url => update_checkout_registration_path, :method => :put, :html => { :id => 'checkout_form_registration' } do |f| %>
+      <%= f.inputs do %>
+        <%= f.input :email, :as => :email, :label=>Spree.t(:email) %>
+        <li>
+          <%= check_box_tag :newsletter, 1, :options => {:checked => true} %>
+          <%= label_tag :newsletter, t('account.newsletter_subscription_prompt') %>
+        </li>
+      <% end %>
+        <%= f.submit Spree.t(:continue), :class => 'btn btn-em' %>
+    <% end %>
+  </div>
+<% end %>
+
+</div>

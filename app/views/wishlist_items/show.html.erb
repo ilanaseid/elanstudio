@@ -1,0 +1,15 @@
+<% content_for :title, t('site.nav.add_to_wishlist') %>
+<% content_for :lb_wrap_size, "6" %>
+
+
+<!-- 12 column grid system -->
+<div class="row-fluid">
+  <div class="span12">
+    <h2 class="gamma"><%= t('headings.addtowishlist') %></h2>
+
+    <p class="note accent text-center">
+      <%= t('msg.addtowishlist_success_html', :url => main_app.wishlist_items_path) %>
+    </p>
+
+  </div>
+</div>

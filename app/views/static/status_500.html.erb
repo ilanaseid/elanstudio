@@ -1,0 +1,14 @@
+<% content_for :title, t('site.nav.server_error') %>
+<main>
+  <div class="row-fluid">
+    <div class="span12 offset2">
+      <h1 class="zed">
+        <span class="subhd">Error 500</span>
+        <%= t('site.nav.server_error') %>
+      </h1>
+      <p><%= t('msg.server_error_html', :editorial_url => current_volume.try(:friendly_path), :shop_url => main_app.shop_index_path) %> <a href="mailto:<%=Settings.contact_info.service_email%>"><%=Settings.contact_info.service_email%></a>.</p>
+
+    </div>
+  </div>
+
+</main>

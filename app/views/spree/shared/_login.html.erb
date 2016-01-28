@@ -1,0 +1,13 @@
+<%= semantic_form_for (@user || Spree::User.new), :as => :spree_user, :url => spree.create_new_session_path do |f| %>
+
+<%= render :partial => 'shared/error_messages', :locals => { :target => @user } %>
+
+  <%= f.inputs do %>
+    <%= f.input :email, :as => :email %>
+    <%= f.input :password %>
+    <%= f.input :remember_me, :as=>:boolean, :label=>Spree.t(:remember_me), :input_html => { :checked => true } %>
+  <% end %>
+
+
+  <%= f.submit Spree.t(:login), :class => 'btn btn-em' %>
+<% end %>

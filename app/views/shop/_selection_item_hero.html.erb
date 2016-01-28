@@ -1,0 +1,12 @@
+<div class="span8 selection-hero">
+
+  <% if selection.assets_for_placement(:primary).any? %>
+    <%= link_to selection_path(selection.basename) do %>
+      <%= simple_picture_tag(selection.assets_for_placement(:primary)[0]) %>
+    <% end %>
+  <% end %>
+  <h2><%= link_to selection.title, selection_path(selection.basename), class: "selection-title"%></h2>
+  <span class="selection-label"><%=t('selections.selection')%></span>
+  <span class="selections-objects-count"><%= selection.linked_contents.length %> <%= t('selections.objects')%></span>
+</div>
+

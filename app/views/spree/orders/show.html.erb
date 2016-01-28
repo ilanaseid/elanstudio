@@ -1,0 +1,59 @@
+<%
+  order_has_special_delivery = false;
+  #TBD CASH JOEL FIX
+%>
+
+<% content_for :title, "#{accurate_title} #{@order.number}#{@order.packaging_indication}" %>
+
+
+<%# Spree sets commerce_tracking flash on initial submit (in addition to a :notice flash with success) %>
+<% if order_just_completed?(@order) %>
+  <%# analytics code, display only if first time page is shown after /checkout/update/confirm redirect %>
+  <% content_for :additional_analytics, (render :partial => 'order_tracking', :locals => { :order => @order }) %>
+  <% content_for :ga_custom_page_view, "/orders/thank_you" %>
+<% end %>
+
+<div class="row-fluid">
+  <div class="span12 offset2 account">
+    <h2><%= "#{accurate_title} #{@order.number}#{@order.packaging_indication}" %></h2>
+
+  <p class="opening"><%= t('cart.thank_you') %></p>
+
+  <% if !spree_current_user && !Spree::User.exists?(email: @order.email) %>
+    <hr />
+    <h2><%= t('shop.enter_password') %></h2>
+    <% @user = Spree::User.new(firstname: @order.billing_address.firstname, lastname: @order.billing_address.lastname, email: @order.email, newsletter: true) %>
+    <% session['registration_from_checkout'] = true %>
+    <%= semantic_form_for(@user, :as => :spree_user, :url => spree.registration_path(@user)) do |f| %>
+      <div data-hook="signup_inside_form" class="checkout-signup">
+        <%= render :partial => 'spree/shared/user_form', :locals => { :f => f } %>
+        <p><%= f.submit t('actions.create_account'), :class => 'btn btn-em' %></p>
+      </div>
+    <% end %>
+    <hr />
+  <% end %>
+
+  <% if order_has_special_delivery %>
+    <p class="note"><%= t('cart.order_shipping_exception') %></p>
+  <% end %>
+
+
+  </div> <!-- /.span-->
+</div><!-- /.row-fluid -->
+<%= render :partial => 'spree/shared/order_details', :locals => { :order => @order } %>
+
+<div class="row-fluid">
+  <div class="span12 offset2">
+
+
+<ul class="nav">
+  <li><%= link_to Spree.t(:back_to_store), main_app.shop_index_path, :class=>"btn" %></li>
+  <% unless order_just_completed?(@order)%>
+    <% if try_spree_current_user && respond_to?(:spree_account_path) %>
+      <li><%= link_to Spree.t(:my_account), spree_account_path %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+  </div>
+</div> <!-- /.row-fluid -->

@@ -1,0 +1,21 @@
+<%= form_tag update_email_preference_path, {class: 'accountManagement newsletter-edit', data: {'xhr-partial-target': '.email-preferences-container'}} do %>
+  <%= render :partial => 'shared/error_messages' %>
+  <dl>
+    <dt><%= t('account.headings.newsletter') %> <%= (link_to t('account.headings.close'), spree.account_path, {class: 'xhr-close-partial-trigger'}) if show_close_link %></dt>
+    <dd>
+      <% EmailList.visible_to_users.each do |list| %>
+        <% if list.displays_groups_as_lists %>
+          <%# make sure we embed current list preference for these groups %>
+          <%= hidden_field_tag("subscriptions[#{list.mailchimp_list_id}]", value: (email_preference.subscribed.include?(list) ? 1 : nil)) %>
+          <% list.email_interest_groups.each do |group_as_list| %>
+            <%= render partial: 'shared/email_interest_group_item_form', locals: {group_as_list: group_as_list, email_preference: email_preference} %>
+          <% end %>
+        <% else %>
+          <%= render partial: 'shared/email_list_item_form', locals: {list: list, email_preference: email_preference} %>
+        <% end %>
+      <% end %>
+      <%= hidden_field_tag :email, email_preference.email_address %>
+      <%= submit_tag :update, {class: 'btn-newsletter-edit'} %>
+    </dd>
+  </dl>
+<% end %>

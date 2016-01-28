@@ -1,0 +1,11 @@
+
+  <%= f.input :firstname, :label => "First Name" %>
+  <%= f.input :lastname, :label => "Last Name" %>
+
+  <%= f.input :email, :label => "Email" %>
+  <% if !f.object.persisted? || params[:change_password] %>
+    <%= f.input :password, :label => "Password" %>
+  <% end %>
+
+  <%# all user accounts are now opted in to all emails in a create callback %>
+  <%# f.input :newsletter, :as=>:boolean, :label => t('account.newsletter_subscription_prompt') %>

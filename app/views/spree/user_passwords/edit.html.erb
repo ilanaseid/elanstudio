@@ -1,0 +1,19 @@
+<% content_for :spree_heading, t('site.nav.change_password') %>
+<% content_for :spree_span, "4" %>
+<% content_for :spree_offset, "6" %>
+<% content_for :title, "#{t('site.nav.account')} — #{t('site.nav.change_password')}" %>
+<% content_for :lb_wrap_size, "4" %>
+<%= render :partial=>"spree/shared/spree_top" %>
+
+<%= render :partial => 'shared/error_messages', :locals => { :target => @spree_user } %>
+
+<%= semantic_form_for @spree_user, :as => :spree_user, :url => spree.update_password_path, :method => :put do |f| %>
+    <%= f.input:password, :label => t('account.new_password_label') %>
+    <%= f.input :password_confirmation, :label => t('account.confirm_new_password_label') %>
+
+    <%= f.input :reset_password_token, :as=>:hidden %>
+    <%= f.submit t('actions.change_password'), :class => 'button primary' %>
+<% end %>
+
+
+<%= render :partial=>"spree/shared/spree_bottom" %>

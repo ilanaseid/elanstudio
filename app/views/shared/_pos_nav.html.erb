@@ -1,0 +1,15 @@
+<script id="template-pos-nav" type="text/x-handlebars-template">
+  <li>
+    <%= form_tag main_app.shop_search_path, :method=>:get, :role=>'search' do %>
+      <input type="search" name="search" placeholder="search">
+    <% end %>
+  </li>
+  <li>
+    <%= semantic_form_for current_order, url: spree.order_path(current_order) do |f| %>
+      <%= select_tag 'order[stock_location_id]', options_from_collection_for_select(Spree::StockLocation.active.order(:id), :id, :abbr, current_order.stock_location_id), :class => 'select_stock_location_id' %>
+      <%#= f.submit 'save' %>
+    <% end %>
+  </li>
+  <li><%= nav_category_active_link_to 'Brands',  main_app.shop_designers_path %></li>
+  <li><a href="/clear_cms">CMS</a></li>
+</script>

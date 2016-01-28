@@ -1,0 +1,607 @@
+/* _chapters.scss
+  global layout specs for chapters and product features
+
+  * Universal Editoral Pages
+  * Editorial List (chapters)
+  * Editorial Carousel
+  * Chapter Page Customizations
+  * Provocation
+  * Apartment
+  * Individual Chapters
+  * Volume Page
+  * Editorial Helper Functions
+*/
+
+
+/* Universal Editoral Pages
+------------------------------------------- */
+.c_content.a_volume {
+  .main {
+    hr {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* Editorial List (chapters)
+------------------------------------------- */
+.chapterList {
+  @extend .pl;
+
+  .chapter {
+    // 3 up grid, except for the first content item
+    width: 100%;
+    padding-bottom: 21px;
+
+    @media #{$query-small} {
+
+    }
+
+    @media #{$query-notsmall} {
+      float: left;
+      width: grid-math($col4, $col12);
+      margin-left: grid-math($gutter1, $col12);
+
+    }
+
+    &:nth-child(3n-2) {
+      margin-left: 0;
+      clear: left;
+    }
+
+    .chapter-header {
+      // similar to .item-header
+
+      padding-bottom: 0;
+
+      a {
+        color: $grey-dark;
+        text-decoration: none;
+
+        &:hover,
+        &:active {
+          color: $grey-med;
+          text-decoration: underline;
+        }
+      }
+
+    }
+
+    .issue {
+      color: $grey-dark;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .chapter-body {
+      padding-top: 12px;
+      display: none;
+    }
+  }
+}
+
+// only make changes if over the poeper breakpoint
+.chapterList.withFeatured {
+
+  @media #{$query-notsmall} {
+    .chapter {
+      // move the gap
+      &:nth-child(3n-2) {
+        margin-left: grid-math($gutter1, $col12);
+        clear: none;
+      }
+
+      &:nth-child(3n-1) {
+        margin-left: 0;
+        clear: left;
+      }
+
+
+      // make the first item featured
+      &:first-child {
+        width: 100%;
+        margin-left: 0;
+
+        .chapter-header {
+          // make this a 4 column content item from 12 col layout
+
+          float: left;
+          width: grid-math($col4, $col12);
+        }
+
+        .chapter-body {
+          display: block;
+          float: right;
+          // width: auto;
+          width: grid-math($col8, $col12);
+          $textcols-gutter-width: grid-math($gutter1, $col8); // 1 gutter width based on 8 cols
+          @include column-count(2);
+          // @include column-width($textcols-column-width);
+          @include column-gap($gutter1 + 'px');
+
+          @media #{$query-small} {
+            @include column-count(1);
+          }
+        }
+      }
+    }
+  }
+}
+
+@include fallbackFontStackDisplay('.chapterList.indexList .chapter .title a');
+.chapterList.indexList {
+  .chapter {
+    width: 100%;
+    float: none;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: $border-default;
+
+    @media #{$query-notsmall} {
+      padding-top: 28px;
+      padding-bottom: 28px;
+    }
+
+    .item-content {
+      @media #{$query-notsmall} {
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      .description {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+
+    .chapter-date {
+      display: block;
+      font-size: 10px;
+      margin-bottom: 13px;
+
+      @media #{$query-notsmall} {
+        margin-bottom: 33px;
+      }
+
+      @media #{$query-largetype} {
+        margin-bottom: 68px;
+      }
+    }
+
+    .title {
+      margin-bottom: 18px;
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: normal;
+
+      a {
+        text-decoration: none;
+        &:hover,
+        &:active {
+          text-decoration: underline;
+        }
+      }
+
+    }
+
+    .label {
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+  }
+}
+
+
+.chapterList.span16 {
+  .chapter {
+    width: grid-math($col4, $col16);
+    margin-left: grid-math($gutter1, $col16);
+
+    @media #{$query-small} {
+      width: 100%;
+    }
+  }
+}
+
+.chapterList.span16.withFeatured {
+  .chapter {
+    // make the first item featured
+    &:first-child {
+      .chapter-header {
+        width: grid-math($col8, $col16);
+      }
+      .chapter-body {
+        width: grid-math($col8, $col16);
+        $textcols-gutter-width: grid-math($gutter1, $col8);
+        @include column-count(2);
+        @include column-gap(20px);
+
+        @media #{$query-small} {
+          @include column-count(1);
+        }
+      }
+    }
+  }
+}
+
+// no underline on the links in the summaries
+.chapter-summary {
+  h1,
+  .alpha,
+  h2,
+  .beta {
+    a { text-decoration: none; }
+  }
+}
+
+
+/* Editorial Carousel
+------------------------------------------- */
+.chapterCarousel {
+  .chapter {
+    position: relative;
+  }
+
+  .chapter-content {
+    margin: 0 auto;
+    height: 7em; // note: hack some android not calcualting margin-top based on container width
+    font-size: 14px;
+
+    @media #{$query-notsmall} {
+      // width: grid-math($col12, $col16);
+    }
+
+    @media #{$query-notsmalltopnav} {
+      // width: grid-math($col8, $col16);
+    }
+
+  }
+
+  .chapter-header {
+    text-align: center;
+  }
+
+}
+.slick-initialized {
+  .chapter-content {
+    opacity: 0;
+    margin-top: 30px;
+  }
+}
+
+/* Provocation
+------------------------------------------- */
+
+.provocation {
+  padding: 10px;
+  color: $grey-dark;
+
+  @media #{$query-notsmalltopnav} {
+    padding: 10px 0;
+  }
+
+
+  .provocation-volume {
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  .provocation-title {
+    margin: 12px 0;
+    font-size: 36px;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  .provocation-body {
+    font-size: 16px;
+    line-height: 1.25;
+    margin-top: 21px;
+
+    @media #{$query-notsmalltopnav} {
+      margin-top: 30px;
+      font-size: 24px;
+      line-height: 32px;
+      max-width: 725px;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+}
+
+/* Editorial List (chapters)
+------------------------------------------- */
+// Stuff that is "content" page specific
+.chapter,
+.footnote,
+.selection {
+  font-size: 14px;
+  line-height: 17px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  h1,
+  .alpha {
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 27px;
+  }
+
+  h2,
+  .beta {
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 20px;
+  }
+
+  dt,
+  dd {
+    font-size: 12px;
+  }
+
+  .zed {
+    font-size: 41px;
+    line-height: 1.1em;
+  }
+
+  .section-title-push {
+    margin-bottom: 80px;
+  }
+
+  .section-line-break {
+    margin-top: 50px;
+  }
+
+}
+
+// Stuff that is "content" page specific, but also applies to the apartment content - TODO: relevant?
+.apartment,
+.chapter,
+.footnote,
+.selection {
+  h1,
+  .alpha,
+  h2,
+  .beta {
+    font-weight: normal;
+
+    a {
+      color: $grey-dark;
+
+      &:hover,
+      &:active {
+        color: #000;
+      }
+    }
+  }
+}
+
+.apartment-title {
+  margin-bottom: 0;
+  h1 {
+    a { text-decoration: none; }
+  }
+}
+
+// reusable part, also on index
+.chapter-header {
+  padding-top: 12px;
+
+  .chapter-marker {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .chapter-date {
+    font-size: 12px;
+
+    @media #{$query-small} {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .chapter-label {
+    font-size: 12px;
+
+    @media #{$query-small} {
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+
+
+/* Individual Chapters
+------------------------------------------- */
+.c_content.a_chapter .main {
+  .share {
+    margin-bottom: 0;
+  }
+
+  .chapter-header {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 21px;
+  }
+}
+
+
+
+/* Volume Page
+------------------------------------------- */
+
+.c_content.a_volume .main {
+  .provocation-volume {
+    display: none;
+  }
+  .chapter p {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .pagination {
+    margin-top: 40px;
+    margin-bottom: 60px;
+  }
+}
+
+.volume-header {
+  margin-bottom: 0;
+  padding-top: 14px;
+  line-height: 29px; // button
+
+  .volume-marker {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+/* Apartment Page
+------------------------------------------- */
+.apartment-header {
+  line-height: 29px; // button
+
+  // TODO: code review, same as .chapter-marker
+  .apartment-marker {
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+.apartment {
+  h1,
+  h2 {
+    margin-top: 0;
+  }
+
+  // TODO: !important?
+  .text-center {
+    text-align: center;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+/* Editorial Helper Classes
+------------------------------------------- */
+article.chapter,
+article.footnote,
+article.selection {
+  font-size: 14px;
+  line-height: 18px;
+
+  h1,
+  .alpha {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .opening {
+    font-size: 18px;
+    line-height: 24px;
+
+    @media #{$query-largetype} {
+      font-size: 22px;
+      line-height: 27px;
+    }
+  }
+
+  .p18-bridge {
+    font-size: 16px;
+    line-height: 22px;
+
+    @media #{$query-largetype} {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+
+  h2 {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 8px;
+  }
+
+  .gamma2 {
+    font-size: 12px;
+    line-height: 15px;
+
+  }
+
+  p+h2 {
+    margin-top: 40px;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  img+p {
+    margin-top: 21px;
+  }
+
+  .text-small {
+    font-size: 14px;
+  }
+
+  .ed-credit {
+    font-size: 16px;
+    line-height: 22px;
+    color: $grey-med;
+  }
+}
+
+
+/* Editorial Helper Classes
+------------------------------------------- */
+
+// span 6
+.push-right {
+  padding-left: grid-math(($col2 + $gutter1), $col6);
+}
+.push-left {
+  padding-right: grid-math(($col2 + $gutter1), $col6);
+}
+
+// span 8
+.span8 {
+  .push-right {
+    padding-left: grid-math(($col2 + $gutter1), $col8);
+  }
+  .push-left {
+    padding-right: grid-math(($col2 + $gutter1), $col8);
+  }
+}
+
+@media #{$query-notsmall} {
+  .down-3 { margin-top: 3%; }
+  .down-5 { margin-top: 5%; }
+  .down-10 { margin-top: 10%; }
+  .down-25 { margin-top: 25%; }
+  .down-50 { margin-top: 50%; }
+  .down-75 { margin-top: 75%; }
+  .down-100 { margin-top: 100%; }
+  .down-125 { margin-top: 125%; }
+  .down-150 { margin-top: 150%; }
+}
+

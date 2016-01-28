@@ -1,0 +1,1 @@
+Signal.trap(:CONT) {|signo| puts 'Starting GC'; GC.start }

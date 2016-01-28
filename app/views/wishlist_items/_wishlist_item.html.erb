@@ -1,0 +1,60 @@
+<%# wishlist item, closest relative is spree/orders/_line_item %>
+<% cache wishlist_item do %>
+<li class="line-item hproduct">
+  <div class="item-image">
+    <%= link_to image_tag(wishlist_item.product.default_image_url(:grid)), main_app.shop_product_path(wishlist_item.product.basename) %>
+  </div> <!-- /.item-image -->
+
+  <div class="item-header">
+    <b><%= link_to wishlist_item.product.brand.title, main_app.brand_path(wishlist_item.product.brand.basename), :class=>'brand' %></b>
+    <h3 class="gamma fn"><%= link_to wishlist_item.product.title, main_app.shop_product_path(wishlist_item.product.basename) %></h3>
+
+  </div> <!-- /.item-header -->
+  <dl class="item-description">
+  <% if (wishlist_item.variant.options_text.length > 0) %>
+    <dt>Size</dt>
+    <dd><%= wishlist_item.variant.option_values.collect {|o| o.presentation }.join(' - ') %></dd>
+  <% end %>
+  </dl> <!-- /.item-description -->
+
+  <div>
+    <% if wishlist_item.product.on_sale? %>
+      <span class="price_original"><%=formatted_price(wishlist_item.product.original_price)%></span> | <span class="price price_markdown"><%=formatted_price(wishlist_item.product.price)%></span></span>
+    <% else %>
+      &mdash; <span class="price"><%=formatted_price(wishlist_item.product.price)%></span>
+    <% end %>
+  </div>
+
+  <div class="item-actions">
+
+
+    <%# based of shop/_product_detail sans size selector %>
+    <form action="<%=spree.populate_orders_path%>" method="POST" >
+      <input type="hidden" id="variants_<%= wishlist_item.variant.id %>" name="variants[<%= wishlist_item.variant.id %>]" value="1">
+
+      <fieldset class="actions">
+          <% if wishlist_item.product.available? %>
+          <%= token_tag form_authenticity_token %>
+            <% if wishlist_item.variant.default_location_count_on_hand > 0 %>
+              <input type="submit" value="<%= t('actions.add_to_cart') %>">
+            <% else %>
+              <input type="submit" disabled="disabled" value="<%= t('product.status_out_of_stock') %>">
+            <% end %>
+          <% elsif wishlist_item.product.out_of_stock? %>
+            <input type="submit" disabled="disabled" value="<%= t('product.status_out_of_stock') %>">
+
+          <% elsif wishlist_item.product.coming_soon? %>
+          <input type="submit" disabled="disabled" value="<%= t('product.status_preview') %>">
+
+          <% elsif wishlist_item.product.discontinued? %>
+          <input type="submit" disabled="disabled" value="<%= t('product.status_hidden') %>">
+          <% end %>
+      </fieldset>
+
+    </form>
+
+    <%# TBD: need to link this [form this] to the remove from wishlist action %>
+    <%= link_to '×', wishlist_item, :method=>:delete, :class => 'remove btn btn-remove' %>
+  </div> <!-- /.item-actions -->
+</li>
+<% end %>

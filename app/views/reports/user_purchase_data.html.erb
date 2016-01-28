@@ -1,0 +1,57 @@
+
+<main>
+
+  <div class="row-fluid page-title">
+    <div class="span8 text-left">
+      <h2 class="beta">Customer </br><%= params[:email] %></h2>
+    </div>
+    <div class="span8 text-left">
+      <h2 class="beta">Location </br><%= @location %></h2>
+    </div>
+  </div>
+
+  <div class="row-fluid page-title">
+    <div class="span4 text-left">
+      <h2 class="beta">Favorite Categories</h2>
+      <% @unique_primary_categories.each do |cat| %>
+      <li> <%= cat[0].titleize %> (<%= cat[1] %>) </li>
+      <% end %>
+    </br>
+      <h2 class="beta">Favorite Sub-Categories</h2>
+      <% @unique_subcategories.each do |sub_cat| %>
+      <li> <%= sub_cat[0].titleize %> (<%= sub_cat[1] %>) </li>
+      <% end %>
+    </div>
+    <div class="span4 text-left">
+      <h2 class="beta">Favorite Brands</h2>
+      <% @unique_brands.each do |brand| %>
+      <li> <%= brand[0].titleize %> (<%= brand[1] %>) </li>
+      <% end %>
+    </div>
+    <div class="span4 text-left">
+      <h2 class="beta">Price Points</h2>
+      <% @price_distribution_hash.each do |price| %>
+        <li> <%= price[0] %> (<%= price[1] %>) </li>
+      <% end %>
+    </div>
+     <div class="span4 text-left">
+      <h2 class="beta">Sizes</h2>
+      <% @sizes_array.each do |size| %>
+        <li> <%= size %></li>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="itemGrid itemGrid-3">
+    <div class="grid-sizer"></div>
+    <div class="gutter-sizer"></div>
+    <ul class="pl">
+    <% cache @cms_products do %>
+        <%= render :partial=>'shop/product_no_quickshop_grid', :collection=>@cms_products, as: :product %>
+    <% end %>
+    </ul>
+  </div>
+
+</main>
+
+

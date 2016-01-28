@@ -1,0 +1,82 @@
+      <% inventory_remaining = product.spree_product.default_location_total_on_hand %>
+
+      <form action="<%=spree.populate_orders_path%>" method="POST" class="populateCart">
+
+        <%# SIZE SELECTOR %>
+
+        <% if product.available_any_location? %>
+          <% if product.spree_product.variants.any? %>
+            <div class="<%= product.available? ? 'sizeSelector' : 'sizeSelector hide' %>">
+            <h5><%= product.option_label_override || 'Size' %></h5>
+            <ul class="pl">
+              <% product.spree_product.variants.each do |variant| %>
+              <!-- variant_id: <%= variant.id %> total_on_hand: <%= variant.default_location_count_on_hand %> -->
+              <li>
+                <% if !product.coming_soon? && variant.default_location_count_on_hand > 0 %>
+                  <input type="checkbox" id="variants_<%= variant.id %>" name="variants[<%= variant.id %>]" value="1" data-variant-id="<%= variant.id %>">
+                  <label class="label available" for="variants_<%= variant.id %>"><%= variant.option_values.collect {|o| o.presentation }.join(' - ') %></label>
+                <% else %>
+                  <input type="checkbox" disabled="disabled" id="variants_<%= variant.id %>" name="variants[<%= variant.id %>]" value="1" data-variant-id="<%= variant.id %>">
+                  <span class="label unavailable"><%= variant.option_values.collect {|o| o.presentation }.join(' - ') %></span>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+          <% else %>
+              <!-- variant_id: <%= product.spree_product.master.id %> total_on_hand: <%= product.spree_product.master.default_location_count_on_hand %> -->
+              <input type="hidden" name="variants[<%= product.spree_product.master.id %>]" value="1">
+          <% end  %>
+        <% end %>
+
+
+        <%# ALL MESSAGING %>
+
+        <% unless product.external? %>
+          <div class="product-messages">
+            <% if product.spree_product.shipping_category_id != 7 %>
+              <p class="accent"><i>* <%= t("shipping_category.id_#{product.spree_product.shipping_category_id}.product_short_label") %></i></p>
+            <% end %>
+            <% if product.final_sale %>
+              <p class="accent"><i>* <%= t("shipping_category.final_sale_label") %></i></p>
+            <% end %>
+            <% if inventory_remaining.between?(1,3) %>
+              <p class="alert alert-warning fade in"><%= t('product.low_inventory_count', remaining: inventory_remaining.to_words) %>.</p>
+            <% end %>
+          </div>
+        <% else %>
+          <% if !product.coming_soon? && !product.discontinued? %>
+            <div class="product-messages">
+              <p class="alert alert-warning">*<%= t('msg.external_product_note') %></p>
+            </div>
+          <% end %>
+        <% end %>
+
+
+        <div class="form-messages">
+          <% if product.notifiable? %>
+            <div class="supl-actions">
+              <% if product.out_of_stock? %>
+                <p><i><%= t('msg.notify_me_prompt_html',:url=>main_app.new_product_notification_path(:spree_product_id=>product.spree_product_id), :class=>"lb") %></i></p>
+              <% else %>
+                <p><i><%= t('msg.notify_me_sizes_prompt_html',:url=>main_app.new_product_notification_path(:spree_product_id=>product.spree_product_id), :class=>"lb", :option_value => (product.option_label_override.try(:downcase) || 'size')) %></i></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+
+        <%# FORM ACTIONS / LINKS %>
+
+        <fieldset class="actions">
+          <% if product.available_any_location? %>
+            <%= token_tag form_authenticity_token %>
+            <input id="add-to-cart" type="<%= product.available? ? 'submit' : 'hidden' %>" value="<%= t('actions.add_to_cart') %>">
+          <% elsif product.external? && !product.coming_soon? && !product.discontinued? %>
+            <%= link_to t('actions.purchase_on_external_site',:partner=>product.external_partner), product.external_url, :class=>'btn popup', :rel=>'external' %>
+          <% elsif product.coming_soon? %>
+            <input type="submit" disabled="disabled" value="<%= t('product.status_soon') %>">
+          <% end %>
+        </fieldset>
+      </form>
+

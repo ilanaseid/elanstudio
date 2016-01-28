@@ -1,0 +1,22 @@
+<% content_for :title, t('site.nav.not_found') %>
+<main>
+  <div class="row-fluid">
+    <div class="span12 offset2">
+      <h1 class="zed">
+        <span class="subhd">Error 404</span>
+        <%= t('site.nav.not_found') %>
+      </h1>
+      <p><%= t('msg.page_not_found_html', :editorial_url => current_volume.try(:friendly_path), :shop_url => main_app.shop_index_path) %> <a href="mailto:<%=Settings.contact_info.service_email%>"><%=Settings.contact_info.service_email%></a>.</p>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row-fluid">
+    <div class="span12 offset2">
+      <%= render :partial=>'shared/search_form' %>
+    </div>
+  </div>
+
+</main>

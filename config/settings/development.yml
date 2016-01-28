@@ -1,0 +1,18 @@
+google_analytics_ua: UA-39620740-4
+google_analytics_affiliation: The Line Development
+google_analytics_domain: '0.0.0.0'
+heap_analytics_display: false
+heap_analytics_id: '3177459971'
+shareasale_affiliate_display: false
+brickwork_pixel_display: false
+hivewyre_analytics_display: false
+optimizely_enabled: false
+optimizely_project_id: '1292961881'
+webfonts_enabled: true
+usersnap_api_key: 'b2c5f822-ff74-4f90-9922-ce30a05d1fd5'
+chartbeat_enabled: false
+steelhouse_enabled: false
+effective_spend_ftp:
+  host: 'uploads.google.com'
+  username: 'mc-ftp-9568557'
+effective_spend_analytics_display: false

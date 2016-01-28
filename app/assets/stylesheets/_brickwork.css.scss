@@ -1,0 +1,321 @@
+// ITEM GRID WIDGET
+#grid-widget {
+
+  position: relative;
+  background-color: #FFF;
+  padding-bottom: 50px;
+  .grid-widget-overlay {
+    overflow: hidden;
+    position: relative;
+    background-color: $grey-offwhite;
+    width: 100%;
+    height: 100%;
+    padding: 40px 60px 40px 60px;
+    .grid-widget-content {
+      text-align: center;
+      position: absolute;
+      width: calc(100% - 120px);
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      h3 {
+        text-transform: uppercase;
+      }
+      p {
+        font-size: 14px;
+        line-height: 18px;
+        a:first-child {
+          margin-bottom: 10px;
+        }
+      }
+      p:first-child {
+        padding-top: 10px;
+      }
+    }
+  }
+}
+@media #{$query-small} {
+  #grid-widget {
+    width: 100%;
+    .grid-widget-overlay {
+      padding: 25px;
+      .grid-widget-content {
+        width: calc(100% - 50px);
+      }
+    }
+  }
+}
+
+// GENERAL WIDGET BUTTON STYLING
+#brickwork-widget:not(.inline) {
+  a {
+    @extend .btn;
+  }
+}
+
+#brickwork-widget.inline {
+  display: inline;
+  font-size: 18px;
+  a {
+    text-transform: lowercase;
+  }
+}
+
+#brickwork-widget.inline::before {
+  content: 'or ';
+}
+
+// PAGE SPECIFIC BUTTON STYLING
+
+.c_content.a_apartments {
+  #brickwork-widget {
+    a {
+      margin-bottom: 20px;
+    }
+    @media #{$query-small} {
+      margin-top: -5px;
+    }
+  }
+}
+
+
+//OVERRIDES FOR BRICKWORK
+.bw-modal-container {
+  max-height: 600px !important;
+}
+
+.bw-modal-iframe {
+  border: solid 1px #e5e5e5 !important;
+}
+
+.appointments-block {
+.brickwork-button {
+  @media #{$query-notsmall} {
+    visibility: hidden;
+  }
+
+  @media #{$query-hack} {
+    visibility: visible;
+  }
+}
+
+ .brickwork-button:before {
+    visibility: hidden;
+    @media #{$query-notsmall} {
+      visibility: visible;
+      content:'BOOK AN APPOINTMENT';
+      display: block;
+      position: absolute;
+    }
+
+    @media #{$query-hack} {
+      visibility: hidden;
+    }
+  }
+}
+
+
+// BRICKWORK DASHBOARD CUSTOM CSS
+
+// body * {
+// font-family: 'Sabon Next W01', Times, serif;
+// letter-spacing: 0 !important;
+// }
+
+// small.error {
+// color: red !important;
+// background-color: #FFF !important;
+// }
+
+// b {
+// font-weight: normal !important;
+// }
+
+// .bw-iframe-container {
+// max-width: 940px !important;
+// }
+
+// .bw-appointment-header {
+// border-bottom: solid 1px #e5e5e5 !important;
+// }
+
+// .appointment-rsvp-container .bwt-appointment-submit, .appointment-rsvp-container .button {
+// background-color: #424042 !important;
+// }
+
+// input[type="text"], input[type="email"] {
+// color: #424042 !important;
+// }
+
+// .bw-appointment-service-link {
+// min-height: 130px !important;
+// }
+
+// .bw-appointment-header span, .bw-appointment-header a {
+// font-family: 'Sabon Next W01', Times, serif !important;
+// font-weight: normal;
+// text-transform: none;
+// }
+
+// .appointment-rsvp-container #select-appointment-time .appointment-slots .day_container .day_segment .segment_body a.appointment_link {
+// font-weight: normal !important;
+// }
+
+// .appointment-rsvp-container #select-appointment-time .appointment-slots .day_container .day_segment .segment_body a.appointment_link:hover,
+// .search_header .date_selection_container .date_selector:hover {
+// background-color: #424041 !important;
+// }
+
+// .appointment-rsvp-container h1 {
+// max-width: 400px;
+// margin: 0 auto;
+// padding-bottom: 50px;
+// }
+
+// .bw-appointment-header-column.selected span {
+// text-decoration: underline;
+// }
+
+// .bw-appointment-header-feedback {
+// display: none;
+// }
+
+// .bw-appointment-store-address h4 {
+// font-weight: normal !important;
+// }
+
+// .address h4, .address h6 {
+// font-family: 'Sabon Next W01', Times, serif !important;
+// }
+
+// table td {
+// font-family: 'Sabon Next W01', Times, serif !important;
+// }
+
+// .name_distance h4 {
+// font-size: 16px !important;
+// }
+
+// .name_distance h4, .name_distance .distance {
+// font-family: 'Sabon Next W01', Times, serif !important;
+// }
+
+// .button-clean {
+// font-family: arial !important;
+// }
+
+// .search {
+// display: none;
+// }
+
+// .local-stores input {
+// display: none;
+// }
+
+// .fa.fa-mobile {
+// font-family: normal normal normal 14px/1 FontAwesome !important;
+// }
+
+// .ribbon-banner a {
+// font-family: 'Sabon Next W01', Times, serif !important;
+// }
+
+// .store-container {
+// border: solid 1px #e5e5e5 !important;
+// }
+
+// .store-container .store-name {
+// border-bottom: solid 1px #e5e5e5 !important;
+// }
+
+// .store-container .store-name h1 {
+// text-transform: none !important;
+// }
+
+// .appointment-rsvp-container .local-stores .container {
+// border: solid 1px #e5e5e5 !important;
+// }
+
+// .date_selection_container {
+// background-color: #FFF !important;
+// }
+
+// .search_header .date_selection_container .date_selector {
+// border: solid 1px #e5e5e5 !important;
+// }
+
+// #ui-datepicker-div * {
+// background-color: #FFF !important;
+// }
+
+// .ui-datepicker-calendar {
+// border: none !important;
+// }
+
+// .ui-datepicker .ui-widget-header {
+// border-bottom: solid 1px #e5e5e5 !important;
+// }
+
+// .ui-widget-content {
+// border: solid 1px #e5e5e5 !important;
+// border-radius: none !important;
+// }
+
+// .ui-corner-all {
+// border-radius: none !important;
+// }
+
+// .ui-datepicker-month, .ui-datepicker-year {
+// font-weight: normal !important;
+// }
+
+// .appointment-rsvp-container #select-appointment-time #appointment_date {
+// font-weight: normal !important;
+// font-family: 'Sabon Next W01', Times, serif !important;
+// }
+
+// .appointment-rsvp-container #select-appointment-time .appointment-slots .day_container .day-title {
+// font-family: 'Sabon Next W01', Times, serif !important;
+// }
+
+// body input, body input[type="text"], body input[type="password"], body input[type="date"], body input[type="datetime"], body input[type="datetime-local"], body input[type="month"], body input[type="week"], body input[type="email"], body input[type="number"], body input[type="search"], body input[type="tel"], body input[type="time"], body input[type="url"], body textarea, html input, html input[type="text"], html input[type="password"], html input[type="date"], html input[type="datetime"], html input[type="datetime-local"], html input[type="month"], html input[type="week"], html input[type="email"], html input[type="number"], html input[type="search"], html input[type="tel"], html input[type="time"], html input[type="url"], html textarea {
+// border: solid 1px #e5e5e5 !important;
+// }
+
+// .segment_header img {
+// display: none;
+// }
+
+// .appointment-rsvp-container #select-appointment-time .appointment-slots .day_container .day_segment .segment_header .segment_name {
+// font-weight: normal !important;
+// }
+
+// .bw-appointment-service-link-name {
+// font-family: 'Sabon Next W01', Times, serif !important;
+// }
+
+// .appointment-rsvp-container h1 {
+// text-transform: none;
+// font-weight: normal !important;
+// font-family: 'Sabon Next W01', Times, serif;
+// font-size: 18px;
+// line-height: 24px;
+// letter-spacing: 0;
+
+// text-align: center;
+// }
+
+// .bw-appointment-services {
+// border: none;
+// }
+
+// .bw-appointment-service-link {
+// border: 1px solid #BCBEC0;
+// }
+
+// .bw-appointment-service-link-name {
+// font-weight: normal !Important;
+// font-size: 14px;
+// text-transform: uppercase;
+// }

@@ -1,0 +1,9 @@
+/* Simple Accordion Styles
+------------------------------------------- */
+.sa-active > dt {
+  cursor: pointer; }
+.sa-active > dd {
+  margin-bottom: 0;
+  overflow: hidden; }
+.sa-active .sa-open {
+  cursor: default; }

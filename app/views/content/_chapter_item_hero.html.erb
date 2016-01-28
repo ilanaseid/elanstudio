@@ -1,0 +1,21 @@
+<li id="item_<%= chapter.basename %>" class="chapter item hero row-fluid">
+  <div class="image">
+    <div class="item-image">
+      <% if chapter.assets_for_placement(:feature).any? %>
+        <%= link_to chapter_path(chapter.basename) do %>
+          <%= simple_picture_tag(chapter.assets_for_placement(:feature)[0], :large, :options => { :alt => "#{t('site.chapter_label')} #{chapter.chapter_number} — #{chapter.title}"}) %>
+        <% end %>
+      <% end %>
+    </div> <!-- /.item-image -->
+  </div>
+  <div class="item-content row-fluid">
+    <div class="item-header span3">
+      <span class="marker issue"><%= t('site.volume_abbr') %> <%= chapter.volume.volume_number %> <%= t('site.chapter_abbr') %> <%= chapter.chapter_number %></span>
+      <h3 class="title"><%= link_to chapter.title, chapter_path(chapter.basename) %></h3>
+    </div>
+    <div class="item-body offset1 span8">
+      <span class="label"><%= editorial_flags(chapter) %></span>
+      <p class="description"><%= chapter.short_description %></p>
+    </div>
+  </div> <!-- /.item-content -->
+</li>

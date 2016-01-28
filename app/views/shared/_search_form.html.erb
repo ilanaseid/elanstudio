@@ -1,0 +1,12 @@
+<% search_term = defined?(search_term) ? search_term : nil %>
+
+<%= form_tag main_app.shop_search_path, :method=>:get, :role=>'search', :class=>"singlefield singlefield-large" do %>
+  <ol>
+    <li class="input">
+      <%= search_field_tag(:search, nil, :required => true, :value => search_term, :placeholder => "Type to search", :"aria-label" => "Search",) %>
+    </li>
+    <li><button type="submit"><span class="icon_right">Go</span></button></li>
+  </ol>
+<% end %>
+
+

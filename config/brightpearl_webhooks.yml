@@ -1,0 +1,86 @@
+common: &defaults
+  httpMethod: GET
+  contentType: application/json
+  bodyTemplate: ''   
+  uriTemplate: http://www.theline.com/brightpearl/webhooks/${resource-type}/${resource-id}?account=${account-code}&event=${lifecycle-event}
+
+product_modified:
+  <<: *defaults
+  subscribeTo: product #.modified.on-hand-modified
+  
+order_status:
+  <<: *defaults
+  subscribeTo: order #.modified.order-status
+
+drop_ship_note:
+  <<: *defaults
+  subscribeTo: drop-ship-note
+
+goods_in_note: 
+  <<: *defaults
+  subscribeTo: goods-in-note
+
+goods_out_note:
+  <<: *defaults
+  subscribeTo: goods-out-note
+
+
+
+# Drop-Ship Note
+# drop-ship-note.created
+# A new Drop-Ship Note has been created.
+# 
+# drop-ship-note.destroyed
+# A Drop-Ship Note has been permanently destroyed.
+# 
+# drop-ship-note.modified.shipped
+# Indicates that all of the items on a Drop-Ship Note have been shipped to the recipient.
+# 
+# Goods-In Note
+# goods-in-note.created
+# A new Goods-In Note has been created.
+# 
+# Goods-Out Note
+# goods-out-note.created
+# A new Goods-Out Note has been created.
+# 
+# goods-out-note.destroyed
+# A Goods-Out Note has been permanently destroyed.
+# 
+# goods-out-note.modified.printed
+# Indicates that a picking list has been printed for the items on a Goods-Out Note.
+# 
+# goods-out-note.modified.picked
+# Indicates that all the items on a Goods-Out Note have been picked from the shelves and are awaiting packing.
+# 
+# goods-out-note.modified.packed
+# Indicates that all the items on a Goods-Out Note have been packaged and are awaiting shipping.
+# 
+# goods-out-note.modified.un-printed
+# Indicates that the packing list for a Goods-Out Note has been cancelled/destroyed.
+# 
+# goods-out-note.modified.un-picked
+# Indicates that the items for a Goods-Out Note has been returned to the shelves.
+# 
+# goods-out-note.modified.un-packed
+# Indicates that the packaging of items on a Goods-Out Note has been cancelled or reversed.
+# 
+# goods-out-note.modified.shipped
+# Indicates that all the items on a Goods-Out Note have been shipped to the recipient.
+# 
+# Order
+# order.modified.fully-shipped
+# All of the items on an Order have now been shipped to the recipient.
+# 
+# order.modified.order-status
+# The status of an Order has changed.
+# 
+# Product
+# product.created
+# A new Product has been added to Brightpearl.
+# 
+# product.destroyed
+# A Product has been permanently removed from Brightpearl.
+# 
+# product.modified.on-hand-modified
+# The amount of 'on-hand' stock for a Product has changed.

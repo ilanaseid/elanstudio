@@ -1,0 +1,215 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// the compiled file.
+//
+// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
+// GO AFTER THE REQUIRES BELOW.
+//
+//= require jquery
+//= require jquery_ujs
+//= require jquery.mobile.custom
+//= require jquery.ba-throttle-debounce
+//= require jquery.placeholder
+//= require handlebars
+//= require masonry.pkgd.min
+//= require imagesloaded.pkgd.min
+//= require jquery.cookie.min
+//= require jquery.magnific-popup.min
+//= require jquery.simpleaccordion.min
+//= require jquery.stickycolumn.min
+//= require jquery.wordcount.min
+//= require slick.min
+//= require parseUri
+//= require fontfaceobserver
+//= require Line.e
+//= require Line.Util
+//= require Line.WideLoaded
+//= require Line.User
+//= require Line.Behavior
+//= require Line.Track
+//= require Line.Form
+//= require Line.Banners
+//= require Line.Containers
+//= require Line.CartPanels
+//= require Line.NavPanels
+//= require Line.ContextualNav
+//= require Line.Nav
+//= require Line.ProvWindow
+//= require Line.Search
+//= require Line.SiteMessage
+//= require Line.ProductGrid
+//= require Line.UI
+//= require Line.Cart
+//= require Line.Checkout
+//= require Line.ShowMore
+//= require Line.Account
+//= require Line.BookingWidget
+//= require Line.PushdownBanner
+//= require Line.RolloverImage
+//= require Line.Hack
+//= require_self
+
+// simple dom randomize plugin
+// http://stackoverflow.com/questions/1533910/randomize-a-sequence-of-div-elements-with-jquery
+(function($) {
+  $.fn.randomize = function(childElem) {
+  return this.each(function() {
+    var $this = $(this),
+        elems = $this.children(childElem);
+
+    elems.sort(function() { return (Math.round(Math.random())-0.5); });
+
+    $this.remove(childElem);
+
+    for(var i=0; i < elems.length; i++)
+      $this.append(elems[i]);
+    });
+  }
+})(jQuery);
+
+
+(function($){
+  'use strict';
+
+  $(document).ready(function() {
+    // placehodler fallbacks
+    $('input').placeholder();
+
+    // svg fallbacks
+    if (!Modernizr.svg) {
+      $('img[src*="svg"]').attr('src', function() {
+        return $(this).data('svg-fallback');
+      });
+    }
+
+
+    // initilaize event monitoring
+    Line.e.initialize();
+
+    // intialize user based config
+    Line.User.initialize();
+
+    // intialize user based config
+    Line.Behavior.initialize();
+
+    // initlaize cart panel
+    Line.CartPanels.initialize();
+
+    // intialize panel / off canvas nav
+    Line.NavPanels.initialize();
+
+    // initialize contextual nav
+    Line.ContextualNav.initialize();
+
+    // initialize top nav
+    Line.Nav.initialize();
+
+    // initialize containers / last remaining container events
+    Line.Containers.initialize();
+
+    // initialize provocation window
+    // Line.ProvWindow.initialize();
+
+    // initialize search window
+    Line.Search.initialize();
+
+    // initialize site wide messaging window
+    Line.SiteMessage.initialize();
+
+    // initialize generic form handling
+    Line.Form.initialize();
+
+    // initialize tracking
+    Line.Track.initialize();
+
+    // initialize ajax cart features
+    Line.Cart.initialize();
+
+    // initialize checkout features
+    Line.Checkout.initialize();
+
+    // initilize any product grids
+    Line.ProductGrid.initialize();
+
+    // initialize basic ui widgets
+    Line.UI.initialize();
+
+    // intialize ad/cta banners
+    Line.Banners.initialize();
+
+    // initialiaze top banner
+    // Line.FixedBanner.initialize();
+
+    // initialize any desktop only content
+    Line.WideLoaded.initialize();
+
+    // initialize show more widget
+    Line.ShowMore.initialize();
+
+    // initilize any product grids
+    Line.Account.initialize();
+
+     // initialize booking widget for brickwork
+    Line.BookingWidget.initialize();
+
+    // initialize pushdown banner
+    Line.PushdownBanner.initialize();
+
+    // initialize image rollover/hover UI behavior
+    Line.RolloverImage.initialize();
+
+    // initialize hack fixes
+    Line.Hack.initialize();
+
+  });
+})(jQuery);
+
+
+// misc config stuffs
+$.cookie.json = true;
+
+// add special easing functions. this should match jquery.simpleaccordion.js
+$.extend($.easing, {
+  lineEase: function (x, t, b, c, d) {
+    // easeOutExpo - https://github.com/gdsmith/jquery.easing
+    return (t===d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+  }
+});
+
+// http://stackoverflow.com/questions/10377700/limit-results-of-each-in-handlebars-js
+Handlebars.registerHelper('each_upto', function(ary, max, options) {
+  if (!ary || ary.length === 0) {
+    return options.inverse(this);
+  }
+
+  var result = [],
+      i;
+
+  for (i = 0; i < max && i < ary.length; ++i) {
+    result.push(options.fn(ary[i]));
+  }
+
+  return result.join('');
+});
+
+Handlebars.registerHelper('lasteach_upto', function(ary, max, options) {
+  if (!ary || ary.length === 0) {
+    return options.inverse(this);
+  }
+
+  var result = [],
+      i,
+      j;
+
+  for (i = 0, j = ary.length-1; i < max && j >= 0; ++i, --j) {
+    result.push(options.fn(ary[j]));
+  }
+
+  return result.join('');
+});
+

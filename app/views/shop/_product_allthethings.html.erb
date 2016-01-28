@@ -1,0 +1,43 @@
+<%# cache product do %>
+  <% if !product.external? && product.spree_product.total_on_hand > 0 %>
+
+  <tr class="hproduct">
+    <% if product.default_content_block.content_assets.any? %>
+    <td>
+      <%= link_to shop_product_path(product.basename) do %>
+        <%= image_tag product.default_image_url(:thumb), { :alt => "#{product.brand.title} — #{product.title}", :width => 100 }  %>
+      <% end %>
+    </td>
+    <% else %>
+    <td class="no">SHOOT ME</td>
+    <% end %>
+    <td class="text-left"><%= link_to product.title, shop_product_path(product.basename), :class=>'fn' %></td>
+    <td class="text-left"><%= link_to product.brand.title, brand_path(product.brand.basename), :class=>'brand' %></td>
+    <td><%= product.primary_category.titlecase %></td>
+    <td><%= product_status_span(product) %></td>
+    <td><%= product.spree_product.total_on_hand %></td>
+    <td class="text-right" data-sort-value="<%= product.price %>"><%= number_to_currency(product.price, :unit => '$') %> </td>
+    <td class="no"><%= t("shipping_category.id_#{product.spree_product.shipping_category_id}.product_short_label") %></td>
+
+    <% if product.published? %>
+    <td class="yes">yes</td>
+    <% else %>
+    <td class="no">no</td>
+    <% end %>
+
+    <%# if there's no size selector, show add to cart button %>
+    <td>
+    <% if !product.spree_product.variants.any? && product.available? %>
+      <form action="<%=spree.populate_orders_path%>" method="POST" class="populateCart">
+        <input type="hidden" name="variants[<%= product.spree_product.master.id %>]" value="1">
+        <%= token_tag form_authenticity_token %>
+        <input type="submit" value="<%= t('actions.add_to_cart') %>" class="btn btn-deem">
+      </form>
+    <% else %>
+      <%= link_to "View Page", shop_product_path(product.basename) %>
+    <% end %>
+    </td>
+
+  </tr>
+  <% end %>
+<%# end %>

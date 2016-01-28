@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Email:</b>
+  <%= @support_request.email %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @support_request.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_support_request_path(@support_request) %> |
+<%= link_to 'Back', support_requests_path %>

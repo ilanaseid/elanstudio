@@ -1,0 +1,14 @@
+<% content_for :title, "Notify Me" %>
+<% content_for :lb_wrap_size, "6" %>
+
+<!-- 12 column grid system -->
+<div class="row-fluid">
+  <div class="span12">
+    <h2 class="gamma"><%= t('headings.notifyme') %></h2>
+
+    <p class="note text-center">
+      <%= @product_notification ? t('msg.notifyme_success_html') : t('msg.notifyme_fail_html') %>
+    </p>
+
+  </div>
+</div>

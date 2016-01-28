@@ -1,0 +1,32 @@
+<% cache product do %>
+
+  <li id="item_<%= product.basename %>" class="item hproduct <%= product_state_class(product) %> <%= product_status_class(product) %>" <%= !product.spree_product_id.nil? ? "data-spree-product-id=" + product.spree_product_id.to_s : '' %> data-inventory="">
+    <div class="item-image">
+      <%= link_to shop_category_path(product.primary_category) do %>
+        <%= product_status_span(product) %>
+        <%= image_tag product.default_image_url(:grid), { :alt => "#{product.brand.title} — #{product.title}" } %>
+      <% end %>
+    </div> <!-- /.item-image -->
+
+    <div class="item-content">
+      <div class="item-header">
+        <%= link_to product.brand.title, brand_path(product.brand.basename), :class=>'brand' %><br>
+        <%= link_to product.title, shop_product_path(product.basename), :class=>'fn' %>
+      </div> <!--/.item-header -->
+
+      <div class="item-hover">
+        <% if product.current? %>
+          <% if product.on_sale? %>
+            <span><span class="price_original"><%=formatted_price(product.original_price)%></span> | <span class="price price_markdown"><%=formatted_price(product.price)%></span></span>
+          <% else %>
+            <span>&mdash; <span class="price"><%=formatted_price(product.price)%></span></span>
+          <% end %>
+        <% elsif product.coming_soon? %>
+          <% if product.available_date %>
+            <i>Est. <%= time_ago_in_words product.available_date %></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div> <!--/.item-content -->
+  </li>
+<% end %>

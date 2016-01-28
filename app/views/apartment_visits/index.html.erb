@@ -1,0 +1,29 @@
+<h1>Listing apartment_visits</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>What time</th>
+    <th>Note</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @apartment_visits.each do |apartment_visit| %>
+  <tr>
+    <td><%= apartment_visit.name %></td>
+    <td><%= apartment_visit.email %></td>
+    <td><%= apartment_visit.what_time %></td>
+    <td><%= apartment_visit.note %></td>
+    <td><%= link_to 'Show', apartment_visit %></td>
+    <td><%= link_to 'Edit', edit_apartment_visit_path(apartment_visit) %></td>
+    <td><%= link_to 'Destroy', apartment_visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Apartment visit', new_apartment_visit_path %>

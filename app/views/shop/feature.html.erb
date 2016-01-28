@@ -1,0 +1,39 @@
+<% content_for :title, @content.title.titleize %>
+<% content_for :canonical_url, product_feature_path(params[:basename]) %>
+<% content_for :meta_description, truncate(strip_tags(@content.meta_description).squish, length: 215) %>
+<% content_for :additional_metas, (render :partial => 'shared/meta_article', :locals => { :article => @content, :section => t('site.nav.editorial') }) %>
+<% content_for :additional_css, @content.custom_css %>
+<% content_for :additional_body_classes, @content.published? ? "published" : "unpublished" %>
+
+<main>
+  <article class="product_feature">
+    <%= @content.default_content_block.body %>
+  </article>
+
+  <% @grid_featured_products=[] %>
+
+  <% if @content %>
+    <% @content.resolve_linked_contents.each_with_index do |product, index| %>
+      <% @grid_featured_products << product %>
+    <% end %>
+  <% end %>
+  <hr>
+
+  <div class="itemGrid itemGrid-4">
+    <div class="grid-sizer"></div>
+    <div class="gutter-sizer"></div>
+    <ul class="pl">
+    <% cache @grid_featured_products do %>
+        <%= render :partial=>'product_grid', :collection=>@grid_featured_products, as: :product %>
+    <% end %>
+    </ul>
+  </div>
+
+</main>
+
+
+<div class="row-fluid">
+  <div class="span16">
+    <p><%= link_to 'Shop The Objects&mdash;All'.html_safe, main_app.shop_index_path, :class=>'arr' %></p>
+  </div>
+</div> <!-- /.row-fluid -->

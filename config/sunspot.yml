@@ -1,0 +1,22 @@
+production:
+  auto_commit_after_request: false
+  solr:
+    #hostname: <%= ENV['WEBSOLR_URL'] %>
+    #port: 8983
+    log_level: FINE
+    read_timeout: 4
+    open_timeout: 1
+
+development:
+  solr:
+    hostname: localhost
+    port: 8983
+    log_level: FINE
+    read_timeout: 4
+    open_timeout: 2
+
+test:
+  solr:
+    hostname: localhost
+    port: 8981
+    log_level: WARNING

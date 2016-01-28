@@ -1,0 +1,44 @@
+<% content_for :title, t('site.nav.brand_index') %>
+
+<main>
+  <div class="row-fluid page-title">
+    <div class="span16 text-center">
+      <h2 class="beta"><%= yield :title %></h2>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span3 offset2">
+      <h2 class="gamma"><%= t('shop.category.fashion') %></h2>
+      <ul class="pl">
+        <% @fashion_brands.each do |brand| %>
+          <li><%= link_to brand.title, brand.friendly_path %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="span3">
+      <h2 class="gamma"><%= t('shop.category.home') %></h2>
+      <ul class="pl">
+        <% @home_brands.each do |brand| %>
+          <li><%= link_to brand.title, brand.friendly_path %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="span3">
+      <h2 class="gamma"><%= t('shop.category.beauty') %></h2>
+      <ul class="pl">
+        <% @beauty_brands.each do |brand| %>
+          <li><%= link_to brand.title, brand.friendly_path %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="span3">
+      <h2 class="gamma"><%= t('shop.category.art') %></h2>
+      <ul class="pl">
+        <% @art_brands.each do |brand| %>
+          <li><%= link_to brand.title, brand.friendly_path %></li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div> <!-- /.row-fluid -->
+</main>

@@ -1,0 +1,56 @@
+<% @cms_product=Product.where(:spree_product_id=>variant.product_id).first %>
+<% inventory_remaining = line_item.variant.default_location_count_on_hand %>
+
+<li class="<%= cycle('', 'alt') %> line-item hproduct">
+  <div class="item-image">
+    <%= link_to image_tag(@cms_product.default_image_url(:grid), { :alt => "#{@cms_product.brand.title} — #{@cms_product.title}" }), main_app.shop_product_path(@cms_product.basename) %>
+  </div> <!-- /.item-image -->
+
+  <div class="item-header">
+    <b><%= link_to @cms_product.brand.title, main_app.brand_path(@cms_product.brand.basename), :class=>'brand' %></b>
+    <h3 class="gamma fn"><%= link_to variant.product.name, main_app.shop_product_path(@cms_product.basename) %></h3>
+
+    <div class="form-messages">
+      <% if @order.insufficient_stock_lines.include? line_item %>
+        <p class="alert alert-error"><%= Spree.t(:insufficient_stock, :on_hand => variant.count_on_hand_at_location(@order.stock_location)) %> <%# this is calculated by stock quantifier which uses order's location, so error messaging should reflect that?%></p>
+      <% end %>
+      <% if @cms_product.spree_product.shipping_category_id != 7 %>
+        <p class="alert alert-warning fade in">*<%= t("shipping_category.id_#{@cms_product.spree_product.shipping_category_id}.product_short_label") %></p>
+      <% end %>
+      <% if @cms_product.final_sale %>
+        <p class="alert alert-warning fade in">*<%= t("shipping_category.final_sale_label") %></p>
+      <% end %>
+      <% if inventory_remaining.between?(1,3) %>
+        <p class="alert alert-warning fade in"><%= t('product.low_inventory_count', remaining: inventory_remaining.to_words) %>.</p>
+      <% end %>
+    </div>
+
+  </div> <!-- /.item-header -->
+  <dl class="item-description">
+    <dt>Size</dt>
+    <dd><%= (variant.options_label.length > 0) ? variant.options_label : t('shop.size_not_applicable') %></dd>
+
+    <dt>Price</dt>
+    <dd>
+    <% if @cms_product.on_sale? %>
+      <span class="price_original"><%=formatted_price(@cms_product.original_price)%></span> | <span class="price price_markdown"><%=line_item.single_money.to_html%></span>
+    <% else %>
+      <span class="price"><%=line_item.single_money.to_html%></span>
+    <% end %>
+    </dd>
+
+    <dt>Quantity</dt>
+    <dd><%= item_form.number_field :quantity, :min => 0, :class => "line_item_quantity", :size => 5 %></dd>
+
+    <dt>Total</dt>
+    <dd><%= line_item.display_amount.to_html unless line_item.quantity.nil? %></dd>
+
+  </dl> <!-- /.item-description -->
+
+  <div class="item-actions">
+  </div> <!-- /.item-actions -->
+ <% if @cms_product.wishlistable? %>
+   <%= link_to "<span class='icon_plus'></span>#{t('actions.save_wishlist_item')}".html_safe, "/wishlist_items/new?spree_product_id=#{@cms_product.spree_product_id}",:class=>"lb btn btn-save wishlist-add", :data=>{:spree_product_id => @cms_product.spree_product_id} %>
+  <% end %>
+  <%= link_to '×', "#", :onclick=>"$(this).parents('.line-item').find('.line_item_quantity').val(0); $(this).parents('form').submit(); return false", :class => 'remove btn btn-remove' %>
+</li>

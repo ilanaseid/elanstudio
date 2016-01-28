@@ -1,0 +1,22 @@
+<%= semantic_form_for :user, :url => spree.user_path(:user), :method => :put, :html => { :class => 'accountManagement'}, data: {'xhr-partial-target': '.contact-info-container'} do |f| %>
+  <%= render :partial => 'shared/error_messages' %>
+  <dl>
+    <dt>Contact Info <%= link_to t('account.headings.close'), spree.edit_account_path, {class: 'xhr-close-partial-trigger', data: {'xhr-partial-target': '.contact-info-container'}} unless !request.xhr? %></dt>
+    <dd>
+    <%= f.inputs do %>
+      <%= f.input :firstname, :label => "First Name" %>
+      <%= f.input :lastname, :label => "Last Name" %>
+      <%= f.input :email, :as => :email, :label => t('account.email_field_label_html') %>
+      <%= f.input :current_password, :label => t('account.confirm_exisiting_password_label'), :required => true, :input_html => { :value => '' } %>
+      <% if superuser_view_roles.include?(user_class) %>
+      <dt class="down-5">Staff Settings</dt>
+        <%= f.input :disable_staff_inventory_ui, :as => :boolean, :label => "Turn Off My Staff Inventory Interface (Default is On)", :input_html => { :checked => current_spree_user.disable_staff_inventory_ui }  %>
+      <% end %>
+    <% end %>
+    <%= f.actions :class => "actions compact" do %>
+      <li><%= link_to t('spree.actions.cancel'), spree.account_path, :class => "btn xhr-close-partial-trigger" %></li>
+      <li class="em"><%= f.submit Spree.t(:update), :class => "btn-em" %></li>
+    <% end %>
+    </dd>
+  </dl>
+<% end %>

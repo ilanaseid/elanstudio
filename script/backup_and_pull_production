@@ -1,0 +1,4 @@
+heroku pg:backups capture --app theline-production
+script/postgres_pull_production
+#cp db/development.sqlite3 db/development-backup-production-`date +%Y%m%d-%H%M`.sqlite3
+script/mongo_script pull production

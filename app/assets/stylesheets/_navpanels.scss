@@ -1,0 +1,162 @@
+/* _navpanels.scss
+  layout for contents and positioning of nav panels
+
+  * Nav Panel Wrapper / origins
+  * Individial Panel Layout
+  * Panel Nav Items
+*/
+
+/* Nav Panel Wrapper / origins
+------------------------------------------- */
+
+#navPanelWrap {
+  position: absolute;
+  height: 100%;
+  z-index: 4; // above .panel-mask
+
+  @media #{$query-notsmalltopnav} {
+    display: none !important;
+  }
+}
+
+/* Individial Panel Layout
+------------------------------------------- */
+
+#navPanelWrap {
+  .nav-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: $offcanvaspanel-basewidth;
+    background: $white;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1;
+    @include transform(translate3d(0, 0, 0));
+    @include transition($offcanvaspanel-transition);
+    border-right: $border-default;
+  }
+
+  .nav-panel-open {
+  }
+  .nav-panel-childopen {
+    @include transform(translate3d(#{$offcanvaspanel-basewidth*-1}, 0, 0));
+  }
+
+  .nav-panel-open {
+    &.nav-panel-1 {
+      z-index: 10;
+    }
+
+    &.nav-panel-2 {
+      z-index: 9;
+    }
+    &.nav-panel-3 {
+      z-index: 8;
+    }
+  }
+
+}
+
+.no-csstransforms3d {
+  #navPanelWrap {
+    .nav-panel-childopen {
+      left: $offcanvaspanel-basewidth*-1;
+    }
+  }
+}
+
+/* Panel Nav Items
+------------------------------------------- */
+@include fallbackFontStackSansSerif('#navPanelWrap .nav-panel .nav-panel-title, #navPanelWrap .nav-panel .icon_mobileNavLeft');
+#navPanelWrap {
+  .nav-panel {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li, .li {
+      display: block;
+      width: 100%;
+      min-height: $offcanvaspanel-itemheight;
+      line-height: $offcanvaspanel-itemheight;
+      padding: 0;
+      background: $white;
+    }
+
+    // only for site message stuff
+    h3,
+    p {
+      padding: 0 1em;
+      white-space: normal;
+
+      a {
+        display: inline;
+        padding: 0;
+        white-space: normal;
+      }
+    }
+
+    p {
+      line-height: 1.2em;
+    }
+
+    a, .a {
+      display: block;
+      width: 100%;
+      height: $offcanvaspanel-itemheight;
+      margin: 0;
+      line-height: $offcanvaspanel-itemheight;
+      padding: 0 14px;
+      text-decoration: none;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+
+
+      &.active {
+        color: $grey-dark;
+        text-decoration: underline;
+      }
+
+      &:active,
+      &:hover {
+        color: $grey-dark;
+      }
+    }
+
+    .nav-panel-title,
+    .icon_mobileNavLeft {
+      font-size: 10px;
+      text-transform: uppercase;
+      background-size: inherit;
+    }
+
+    .nav-panel-title {
+      font-weight: bold;
+    }
+
+    .icon_mobileNavLeft {
+      padding-left: 34px;
+      background-position: 14px 50%;
+      border-bottom: $border-default;
+      text-indent: 0;
+    }
+
+    .icon_mobileNavRight {
+      padding-right: 36px;
+      background-position: 90% 50%;
+      background-position: calc(100% - 15px) 50%;
+      text-indent: 0;
+      background-size: inherit;
+    }
+
+    // we removed '.siteMessageItem', so what do we have left?
+    .accent {
+      font-style: italic;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<li id="item_<%= selection.basename %>" class="selection item">
+  <div class="item-image">
+    <%= link_to selection.friendly_path do %>
+      <% if selection.assets_for_placement(:primary).any? %>
+        <% if selection.archived? %>
+          <span class="item-status archived-selection"><span><%= t('selections.archived') %></span></span>
+        <% end %>
+        <%= simple_picture_tag(selection.assets_for_placement(:primary)[0], :grid, :options => { :alt => "#{selection.title}"}) %>
+      <% end %>
+    <% end %>
+  </div> <!-- /.item-image -->
+  <div class="item-content">
+    <div class="item-header">
+      <span class="selection-label"><%= t('selections.selection') %></span>
+      <h3 class="selection-title"><%= link_to selection.title, selection_path(selection.basename) %></h3>
+      <span class="selection-objects-count"><%= selection.linked_contents.length %> <%= t('selections.objects') %></span>
+    </div>
+    <div class="item-body">
+    </div>
+  </div> <!-- /.item-content -->
+</li>

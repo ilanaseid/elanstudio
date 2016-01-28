@@ -1,0 +1,8 @@
+web: bundle exec puma -C config/puma.rb | tee log/development.log
+postgres: postgres -D /usr/local/var/postgres
+mongod: mongod --config /usr/local/etc/mongod.conf
+solr: bundle exec rake sunspot:solr:run
+solr_test: bundle exec rake sunspot:solr:run RAILS_ENV=test 
+sidekiq: bundle exec sidekiq
+redis: redis-server
+#clock: clockwork clock.rb

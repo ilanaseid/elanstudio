@@ -1,0 +1,15 @@
+<% cache product do %>
+  <li id="item_<%= product.basename %>" class="item hproduct small <%= product_state_class(product) %> <%= product_status_class(product) %>">
+    <%= link_to shop_product_path(product.basename) do %>
+      <div class="item-image">
+        <%= image_tag product.default_image_url(:grid), { :alt => "#{product.brand.title} — #{product.title}" } %>
+      </div> <!-- /.item-image -->
+
+      <div class="item-hover">
+        <div class="item-header">
+          <span class="fn"><%= product.title %></span>
+        </div> <!--/.item-header -->
+      </div> <!--/.item-hover -->
+    <% end %>
+  </li>
+<% end %>

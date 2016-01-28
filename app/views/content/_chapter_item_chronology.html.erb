@@ -1,0 +1,32 @@
+<li id="item_<%= chapter.basename %>" class="chapter item chronology row-fluid">
+  <div class="span4 offset2 stickycolumn">
+    <div class="item-content text-center">
+      <div class="item-header">
+        <div class="marker issue"><%= t('site.volume_abbr') %> <%= chapter.volume.volume_number %> <%= t('site.chapter_abbr') %> <%= chapter.chapter_number %></div>
+
+        <h2 class="title"><%= link_to chapter.title, chapter_path(chapter.basename) %></h2>
+        <div class="label"><%= editorial_flags(chapter) %></div>
+      </div>
+      <div class="item-body">
+        <p class="description"><%= chapter.short_description %></p>
+        <p><%= link_to chapter.title, chapter_path(chapter.basename), :class=>'icon_mobileNavRight' %></p>
+      </div>
+    </div> <!-- /.item-content -->
+  </div>
+  <div class="span8 offset2">
+      <div class="item-image">
+        <%= link_to chapter_path(chapter.basename) do %>
+          <% if chapter.assets_for_placement(:primary).any? %>
+            <%= simple_picture_tag(chapter.assets_for_placement(:primary)[0], :medium, :options => { :alt => "#{t('site.chapter_label')} #{chapter.chapter_number} — #{chapter.title}"}) %>
+          <% end %>
+          <div class="wideload" data-wideload-template="template-<%= chapter.basename %>" data-wideloaded="false">
+          </div>
+          <script id="template-<%= chapter.basename %>" type="text/x-handlebars-template">
+            <% chapter.assets_for_placement(:secondary)[0,3].each do |image| %>
+              <%= simple_picture_tag(image) %>
+            <% end %>
+          </script>
+        <% end %>
+      </div> <!-- /.item-image -->
+  </div>
+</li>

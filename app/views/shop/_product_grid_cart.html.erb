@@ -1,0 +1,41 @@
+<%#  shop grid items, with quick shop %>
+<li id="item_<%= product.basename %>" class="item quickshop hproduct <%= product_state_class(product) %> <%= product_status_class(product) %>" <%= !product.spree_product_id.nil? ? "data-spree-product-id=" + product.spree_product_id.to_s : '' %> data-inventory="">
+  <div class="item-image">
+    <%= link_to main_app.shop_product_path(product.basename) do %>
+      <%= product_status_span(product) %>
+      <%= image_tag product.default_image_url(:grid), { :alt => "#{product.brand.title} — #{product.title}" }  %>
+    <% end %>
+  </div>
+
+  <div class="item-content">
+    <div class="item-header">
+      <%= product.brand.title %><br> <!-- , :class=>'brand' -->
+      <%= product.title %> <!-- , :class=>'fn' -->
+      <% if product.option_label_override == 'Color' %><br><i>available in <%= product.spree_product.variants.count.to_words %> colors</i><% end %>
+    </div>
+    <div class="item-hover">
+      <% if product.current? %>
+        <% if product.on_sale? %>
+          <span><span class="price_original"><%=formatted_price(product.original_price)%></span> | <span class="price price_markdown"><%=formatted_price(product.price)%></span></span>
+        <% else %>
+          <span>&mdash; <span class="price"><%=formatted_price(product.price)%></span></span>
+        <% end %>
+      <% elsif product.external? %>
+        <%#TBD: bring in the external price here %>
+        <span>&mdash; <span class="price"><%=formatted_price(product.price)%></span></span>
+      <% elsif product.coming_soon? %>
+        <% if product.available_date %>
+          <i>Est. <%= time_ago_in_words product.available_date %></i>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="item-meta">
+      <p class="description"><%= truncate(strip_tags(product.content_block('description').try(:body)), length: 100) %></p>
+
+      <%= render :partial=>'shop/product_form', :locals=>{product: product} %>
+
+    </div>
+  </div> <!--/.item-content-->
+
+</li>

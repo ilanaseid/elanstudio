@@ -1,0 +1,26 @@
+<% address_id = address_type.chars.first %>
+
+
+<ol id="address_<%=address_id%>">
+  <%= form.input :firstname %>
+  <%= form.input :lastname %>
+  <%= form.input :company %>
+
+  <%= form.input :country_id, :as => :select, :collection => available_countries, :wrapper_html => { :class => 'gapabove'}  %>
+
+  <%= form.input :address1 %>
+  <%= form.input :address2 %>
+  <%= form.input :city %>
+  <%= form.input :zipcode %>
+  <%#= form.input :country_id, :as => :hidden %>
+  <%#= form.input :country_id, :as => :select, :collection => available_countries, :input_html => { :readonly => true } %>
+  <% if Spree::Config[:address_requires_state] %>
+    <%= form.input :state, :required => true, :input_html => { :disabled => true, :'data-default-selected' => form.object.state_id }, :wrapper_html => { :style => 'display: none' } %>
+    <%= form.input :state_name %>
+  <% end %>
+
+  <%= form.input :phone %>
+  <% if Spree::Config[:alternative_shipping_phone] %>
+    <%= form.input :alternative_shipping_phone %>
+  <% end %>
+</ol>

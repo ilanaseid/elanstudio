@@ -1,0 +1,33 @@
+<% content_for :title, t('site.nav.theline_newsletter') %>
+<div class="row-fluid">
+
+  <% if EmailSubscriber.email_valid?(@email_preference.email_address) %>
+
+    <div class="span6 offset5">
+      <%= render :partial => 'shared/error_messages' %>
+      <h3><%= @email_preference.email_address.capitalize %> <%= t('account.manage_newsletter.is_subscribed_to') %> <br> <%= t('account.manage_newsletter.edit_another_email_html', url: edit_email_preference_path(email: "")) %></h3>
+      <div class="down-5">
+        <%= render partial: "shared/newsletter_subscriptions_edit", locals: { email_preference: @email_preference, show_close_link: false } %>
+      </div>
+    </div>
+
+  <% else %>
+
+    <div class="span5 offset5">
+      <%= form_tag(edit_email_preference_path, method: "get") do %>
+        <%= render :partial => 'shared/error_messages' %>
+        <ol>
+          <li class="input">
+            <p class="inline"><%= t('account.manage_newsletter.enter_valid_email') if @email_preference.email_address.present? %></p>
+            <%= label_tag(:email, '<abbr title="required">*</abbr> Email Address:'.html_safe) %>
+            <%= email_field_tag(:email, @email_preference.email_address, :required => true) %>
+          </li>
+          <%= submit_tag "Manage Subscription", class: "text-center" %>
+        </ol>
+      <% end %>
+    </div>
+
+  <% end %>
+
+</div>
+

@@ -1,0 +1,301 @@
+/* _tools.scss
+  generic, reusable parts and tools for use in writing SCSS
+  elsewhere in the project.
+
+  * Font definitions
+  * Variables
+  * Mixins
+  * Shared Animations
+  * Browser tools and normalization
+*/
+
+
+/* Font Definitions
+------------------------------------------- */
+
+// Main Copy Sabon, via Fonts.com
+$fontStack-Default: 'Sabon Next W01', 'Times New Roman', Times, serif;
+$fontStack-DefaultFallback: 'Times New Roman', Times, serif;
+$fontStack-Display: 'Sabon Next W01 Display','Sabon Next W01', 'Times New Roman', Times, serif;
+$fontStack-DisplayFallback: 'Times New Roman', Times, serif;
+$fontStack-SansSerif: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+@mixin fallbackFontStackDefault($selectors) {
+  #{$selectors} {
+    font-family: $fontStack-DefaultFallback;
+    letter-spacing: +0.02em; // TBD
+  }
+  .fonts-loaded #{$selectors} {
+    //  reset to intended style
+    font-family: $fontStack-Default;
+    letter-spacing: normal;
+  }
+}
+
+@mixin fallbackFontStackDisplay($selectors){
+  #{$selectors} {
+    font-family: $fontStack-DisplayFallback;
+    letter-spacing: +0.005em; // TBD
+  }
+  .fonts-loaded #{$selectors} {
+    font-family: $fontStack-Display;
+    letter-spacing: normal;
+  }
+}
+
+// NOTE: this is needed to maintain specificity against nesting and '.fonts-loaded'
+@mixin fallbackFontStackSansSerif($selectors){
+  #{$selectors} {
+    font-family: $fontStack-SansSerif;
+    letter-spacing: 1px;
+  }
+  .fonts-loaded #{$selectors} {
+    font-family: $fontStack-SansSerif;
+    letter-spacing: 1px;
+  }
+}
+
+
+
+@mixin smallSansSerif() {
+  font-family: $fontStack-SansSerif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Variables
+------------------------------------------- */
+
+// media queries
+
+// general page layout / 16 column grid breaks
+$query-small: "only screen and (max-width: 620px)"; // note: referenced to px val in Line.e.js
+$query-notsmall: "only screen and (min-width: 621px)";
+$query-largetype: "only screen and (min-width: 825px)";
+$query-oversized: "only screen and (min-width: 1800px)";
+$query-short: "only screen and (max-height: 520px)";
+$query-hack: "only screen and (min-width: 946px)";
+
+// component: navigation bar changes
+$query-smalltopnav: "only screen and (max-width: 800px)"; // note: reference to px val in Line.e.js
+$query-notsmalltopnav: "only screen and (min-width: 801px)";
+
+
+  // component: itemGrid queries: .itemGrid:
+$query-itemgrid-small: "only screen and (max-width: 520px)";
+$query-itemgrid-step0: "only screen and (min-width: 521px)";
+$query-itemgrid-step1: "only screen and (min-width: 781px)";
+$query-itemgrid-step2: "only screen and (min-width: 1025px)";
+$query-itemgrid-step3: "only screen and (min-width: 1281px)";
+
+  // component: stepped grid queries: .row-stepped
+$query-rowstepped-step1: "only screen and (min-width: 961px)";
+$query-rowstepped-step2: "only screen and (min-width: 1101px)";
+$query-rowstepped-step3: "only screen and (min-width: 1351px)";
+
+
+  // component: home page hero: .hero
+$query-hero-step0: "only screen and (min-width: 0)"; // used for small / tall layout
+$query-hero-step1: "only screen and (min-width: 401px)"; // used only for _layout: no top padding on hero a-tag on mobile-ish sizes
+$query-hero-step2: "only screen and (min-width: 851px)"; // used for changing h1 & markers on hero content
+$query-hero-step3: "only screen and (min-width: 981px)"; // used only for _layout: add top padding on hero a-tag larger than 980
+$query-hero-step4: "only screen and (min-width: 1121px)"; // used for changing h1 & markers on hero content
+$query-hero-step5: "only screen and (min-width: 1501px)"; // used for changing h1 & markers on hero content
+
+// component: anthology chapter items: .anthologyList .chapter
+$query-anthology-item-step0: "only screen and (min-width: 0)";  // used for small / tall layout
+$query-anthology-item-step1: "only screen and (min-width: 272px)"; // swap to stretching horizontal
+$query-anthology-item-step2: "only screen and (min-width: 765px)"; // swap back to fixed aspect ratio
+$query-anthology-item-step3: "only screen and (min-width: 1101px)"; // use to change type sizes
+
+$query-volume-hero-step0: "only screen and (min-width: 0)";  // used for small / tall layout
+$query-volume-hero-step1: "only screen and (min-width: 360px)"; // swap to stretching horizontal
+$query-volume-hero-step2: "only screen and (min-width: 815px)"; // swap back to fixed aspect ratio
+$query-volume-hero-step3: "only screen and (min-width: 1101px)"; // use to change type sizes
+
+
+// component: banners, to 'separate heading from paragraph'
+$query-banner-notsmall: "only screen and (min-width: 1401px)";
+
+// component: wishlist items 2 up list
+$query-wishlistitems-step1: "only screen and (min-width: 851px)";
+
+  // generic 1024 query used for homepage category list block (on _grid line 575.  combine with itemgrid-1025 query?)
+$query-1024-plus: "only screen and (min-width: 1024px)";
+  // product detail description font size bump-up
+$query-pdp-oversize: "only screen and (min-width: 1551px)"; // in _views.css
+$query-homeapartmenthdrbreaks: "only screen and (max-width: 760px)";
+
+// universal colors
+$grey-dark: #414042;
+$grey-med: #6D6E71;
+$grey-light: #BCBEC0;
+$fog: #E5E5E5;
+$grey-offwhite: #f1f1f1;
+$grey-offblack: #231F20;
+$red-error: #ED1C24;
+$gold: #9E6F55;
+$gold-dark: #824A2b;
+$gold-light: #d8bfb0;
+$white: #fff;
+$black: #000;
+
+// misc. universal definitions
+$border-default: 1px solid $fog;
+$border-default-svg: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%222%22%20width%3D%22100%22%3E%3Cline%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22100%22%20y2%3D%220%22%20stroke-width%3D%222%22%20stroke%3D%22%23E5E5E5%22%2F%3E%3C%2Fsvg%3E%0A");
+
+// universal measurements
+$content-maxwidth: 1800px;
+$offcanvaspanel-basewidth: 280px;
+$offcanvaspanel-notsmallwidth: 375px;
+$offcanvaspanel-itemheight: 45px;
+$offcanvaspanel-transition: transform 0.3s ease-in-out;
+$topnav-itemheight: 39px;
+$topnav-startheight: 82px; // TODO: accurate?
+$topnav-smallheight: 65px;
+
+// grid math
+$baseWidth: 1300;
+$col16plus2: 1300;
+$col16: 1260;
+$col15: 1180;
+$col14: 1100;
+$col13: 1020;
+$col12: 940;
+$col11: 860;
+$col10: 780;
+$col9: 700;
+$col8: 620;
+$col7: 540;
+$col6: 460;
+$col5: 380;
+$col4: 300;
+$col3: 220;
+$col2: 140;
+$col1: 60;
+$gutter1: 20;
+$gutter2: 40;
+
+
+/* Mixins
+------------------------------------------- */
+
+@mixin placeholder($property, $value) {
+  // syntax via http://css-tricks.com/snippets/css/style-placeholder-text/
+  ::-webkit-input-placeholder { #{$property}: $value; }
+  :-moz-placeholder { #{$property}: $value; } // Firefox 18-
+  ::-moz-placeholder { #{$property}: $value; } // Firefox 19+
+  :-ms-input-placeholder { #{$property}: $value; }
+}
+
+@mixin box-sizing($bs) {
+  -webkit-box-sizing: $bs;
+  -moz-box-sizing: $bs;
+  box-sizing: $bs;
+}
+
+@mixin calc($property, $expression, $fallback) {
+  #{$property}: $fallback;
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -o-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+// Values for $display are: flex (default), inline-flex
+@mixin display-flex($display: flex) {
+  display: -ms-#{$display}box;      /* TWEENER - IE 10 */
+  display: -webkit-#{$display};     /* NEW - Chrome */
+  display: $display;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+// Values: nowrap | wrap | wrap-reverse
+@mixin flex-wrap($wrap) {
+  -ms-flex-wrap: $wrap;
+  -webkit-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+}
+// Values: row | row-reverse | column | column-reverse
+@mixin flex-direction($direction) {
+  // Q: for consistency, probably don't need these legacy items
+  @if $direction == column {
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+  } @else {
+    -moz-box-orient: horizontal;
+    -webkit-box-orient: horizontal;
+  }
+
+  -webkit-flex-flow: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+// Accepts an integer
+@mixin order($order) {
+  // Q: for consistency, probably don't need these legacy items
+  -moz-box-ordinal-group: $order;
+  -webkit-box-ordinal-group: $order;
+  -webkit-order: $order;
+  -ms-flex-order: $order;
+  order: $order;
+}
+
+
+// Shorthand for flex-grow, flex-shrink and optionally flex-basis.
+// Space separated, in that order.
+@mixin flex($flex) {
+  // Q: don't use shorthand do all the legacy stuff
+  -webkit-flex: $flex;
+  -ms-flex: $flex;
+  flex: $flex;
+}
+
+@function grid-math($first-val, $second-val, $percent-val: 100%) {
+  @return $first-val / $second-val * $percent-val;
+}
+
+
+/* Shared Animations
+------------------------------------------- */
+
+// Webkit
+@-webkit-keyframes flash-background {
+  from  { background-color: rgba(255,255,0,1); }
+  to    { background-color: rgba(255,255,0,0); }
+}
+
+// Firefox
+@-moz-keyframes flash-background {
+  from  { background-color: rgba(255,255,0,1); }
+  to    { background-color: rgba(255,255,0,0); }
+}
+
+// Spec
+@keyframes flash-background {
+  from  { background-color: rgba(255,255,0,1); }
+  to    { background-color: rgba(255,255,0,0); }
+}
+
+.flash {
+  -webkit-animation: flash-background 0.8s linear;
+     -moz-animation: flash-background 0.8s linear;
+          animation: flash-background 0.8s linear;
+}
+
+/* Browser tools and normalization
+------------------------------------------- */
+body,
+input,
+button {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
+
+*,
+input[type="search"] {
+  @include box-sizing(border-box);
+}
+

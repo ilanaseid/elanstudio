@@ -1,0 +1,83 @@
+  <script id="template-minicart" type="text/x-handlebars-template">
+    <div class="miniCart">
+      {{#if message}}
+      <h4>{{message}}</h4>
+      {{/if}}
+
+      <div class="miniCart-header">
+        <h3><%= t('site.nav.cart') %> <span class="bag-count deem">{{item_count}}</span></h3>
+        <span class="note accent"><%= t('site.free_shipping_notice')%></span>
+      </div>
+
+      {{#if cart.line_items}}
+
+      <ul class="cartItemList">
+        {{#each cart.line_items}}
+          <li class="line-item hproduct" data-line-item-id="{{id}}">
+
+            {{#if variant.default_image}}
+            <div class="item-image">
+              <a href="{{variant.product_path}}"><img src="{{variant.default_image}}" alt="{{variant.name}}" data-pin-nopin="true"></a>
+            </div>
+            {{/if}}
+
+            <div class="item-header">
+              <b><a class="brand" href="{{variant.brand_path}}">{{variant.brand_name}}</a></b>
+              <h3 class="gamma"><a href="{{variant.product_path}}">{{variant.name}}</a></h3>
+              {{#if variant.special_shipping }}
+                <p class="note accent"><%= t('cart.minicart_shipping_exception')%></p>
+              {{/if}}
+              {{#if variant.final_sale }}
+                <p class="note accent"><%= t('cart.minicart_final_sale')%></p>
+              {{/if}}
+              {{#if variant.low_inventory_message }}
+                <p class="note accent">{{variant.low_inventory_message}}</p>
+              {{/if}}
+            </div>
+
+            <div class="pl item-description">
+              {{#if variant.options_label}}
+                <div class="size deem mini-desc left">
+                {{#if variant.option_label_override}}
+                  {{variant.option_label_override}}
+                {{else}}
+                  Size
+                {{/if}}</div>
+                <div class="mini-desc right">{{variant.options_label}}</div>
+              {{/if}}
+              <div>
+                <div class="deem mini-desc left">Price</div><div class="mini-desc right">${{price}}</div>
+              </div>
+              <div>
+                <div class="deem mini-desc left">Qty</div><div class="mini-desc right">{{quantity}}</div>
+              </div>
+              <div>
+            </div>
+
+
+            <a href="#" class="remove btn btn-remove" onclick="Line.Form.removeLineItem(this); return false;">×</a>
+
+          </li>
+        {{/each}}
+      </ul>
+
+      {{else}}
+
+        <div class="miniCart-header">
+          <h3><%= t('spree.your_cart_is_empty') %></h3>
+          <h3><%= t('headings.would_you_like_to_shop_html', :url=>main_app.shop_index_path) %></h3>
+        </div>
+
+      {{/if}}
+    </div>
+
+    {{#if cart.line_items}}
+    <div class="minicart-footer">
+
+        <a href="<%= spree.cart_path %>" class="btn">View Bag</a>
+        <a href="<%= spree.checkout_path %>" class="btn btn-em">Checkout Now</a>
+
+    </div>
+    {{/if}}
+
+  </script>

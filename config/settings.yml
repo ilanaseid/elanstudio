@@ -1,0 +1,57 @@
+# Testing UA for GA, see production for actual
+google_analytics_ua: UA-39620740-4
+facebook_app_id: some_id
+canonical_url_root: https://www.theline.com
+mailassets_url_root: https://www.theline.com
+
+social_media:
+  twitter_url: https://twitter.com/theline
+  twitter_username: theline
+  facebook_url: https://www.facebook.com/pages/The-Line/247864752023107
+  tumblr_url: http://thelinecom.tumblr.com
+  instagram_url: https://instagram.com/thelinenyc
+  instagram_username: thelinenyc
+  pinterest_url: https://www.pinterest.com/thelinenyc/
+
+contact_info:
+  service_email: hello@theline.com
+  service_phone: + 1 646 678 4908
+  orderinq_email: orders@theline.com
+  jobs_email: employment@theline.com
+  press_email: press@theline.com
+  merchandising_email: merchandising@theline.com
+  operations_email: operations@theline.com
+  apartment_visits_email: appointmentsNYC@theline.com
+
+# Sandbox, see production settings for ENV...this is now set directly in the spree.rb initializer
+braintree:
+  use_production_gateway: <%= ENV['BRAINTREE_USE_PRODUCTION_GATEWAY'] || false %>
+  name: Braintree Sandbox
+  environment: sandbox
+  merchant_id: kc3y3vv5kdmz8nrh
+  public_key: 974bgnc83wt92skx
+  private_key: 27804117813c13ee16dd1fc3839259b5
+  client_side_encryption_key: MIIBCgKCAQEAu0ESbIaGmaa9jn3J1Xc7JPdvZBa1TuCi9AmOCZwoOczlNNe6JqYfbFfEtLjUh36vM6Hizn/zvGMK8RTC6GB7zCpjTLdSHgFc3ki8QyPhx655+1kGOxwAhi76y9xT2KaPrKNiFLzvfYH8lA/v+8GVCiq15PgyNhtgDytHPnPHcdLVg4Ej4x1MGzgXOStapV/64q1X5a2Xl0c8+kH+kx8XfkBc7iVZBgugbMfpDx9EVbAk/vx+A/vFRkw7swZYBYOUQvZKl0DfmpmtOxhgTx6sZBehrz0MmahalbR2Ud8KXAbdvNluQhL8X2DBd6Z5bYyFbFMRgmzDy9YLara1PIs9sQIDAQAB
+
+order_mailer_bcc: retailops@theline.com
+order_mailer_cc: order_cc@theline.com
+order_mailer_from: The Line <orders@theline.com>
+
+brightpearl:
+  readonly: <%= ENV['BRIGHTPEARL_READONLY'] || true %>
+  disable_sync: <%= ENV['BRIGHTPEARL_DISABLE_SYNC'] || false %>
+
+mailchimp:
+  readonly: <%= ENV['MAILCHIMP_READONLY'] || true %>
+  environment: <%= ENV['MAILCHIMP_ENVIRONMENT'] || 'sandbox' %>
+  api_key: <%= ENV['MAILCHIMP_API_KEY'] || '7ba2a6a3b61bc37c7d170714966c0d24-us11' %> # Sandbox account
+
+pagination:
+  per_page_less: 36
+  per_page_more: 108
+
+trigger_emails:
+  disable_product_notification_emails: <%= ENV['DISABLE_PRODUCT_NOTIFICATION_EMAILS'] || true %>
+
+# spree:
+#   site_name: <%= ENV['SPREE_SITE_NAME'] || 'The Line' %>

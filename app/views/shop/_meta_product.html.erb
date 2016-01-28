@@ -1,0 +1,15 @@
+  <%# in addtion to core opengraph - pinterest, etc %>
+<meta property="og:type" content="product" />
+  <meta property="og:image" content="<%= product.default_image_url(:grid) %>">
+  <meta property="og:price:amount" content="<%= formatted_price(product.price) %>">
+  <meta property="og:price:currency" content="USD">
+
+  <%# twitter card stuff %>
+  <meta name="twitter:card" content="product">
+  <meta name="twitter:site" content="@theline">
+  <%# <meta name="twitter:creator" content="@theline"> %>
+  <!-- <meta name="twitter:image" content="<%= product.default_image_url(:grid) %>"> -->
+  <meta name="twitter:data1" content="<%= formatted_price(product.price) %>">
+  <meta name="twitter:label1" content="USD">
+  <meta name="twitter:data2" content="<%= product.primary_category.titlecase %>">
+  <meta name="twitter:label2" content="Category">

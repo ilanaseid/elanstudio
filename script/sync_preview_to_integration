@@ -1,0 +1,6 @@
+heroku pg:backups capture -a theline-preview
+heroku pg:reset DATABASE --confirm theline-integration -a theline-integration
+heroku pg:backups restore `heroku pg:backups public-url -a theline-preview` DATABASE -a theline-integration --confirm theline-integration
+
+script/mongo_script pull preview
+script/mongo_script push integration

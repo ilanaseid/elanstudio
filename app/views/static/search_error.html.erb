@@ -1,0 +1,12 @@
+<% content_for :title, t('site.nav.search_unavailable') %>
+<main>
+  <div class="row-fluid">
+    <div class="span12 offset2">
+      <h1 class="zed">
+        <span class="subhd">Error 500</span>
+        <%= t('site.nav.search_unavailable') %>
+      </h1>
+       <p><%= t('msg.search_error_html', :designer_index_url => shop_designers_path, :editorial_url => current_volume.try(:friendly_path), :shop_url => main_app.shop_index_path) %> <a href="mailto:<%=Settings.contact_info.service_email%>"><%=Settings.contact_info.service_email %></a>.</p>
+    </div>
+  </div>
+</main>

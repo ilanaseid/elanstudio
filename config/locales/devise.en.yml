@@ -1,0 +1,5 @@
+en:
+  devise:
+    failure:
+      invalid: "Your password was incorrect. Please try again."
+      not_found_in_database: "No account was found with that email address."

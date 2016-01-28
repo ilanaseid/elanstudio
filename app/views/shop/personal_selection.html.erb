@@ -1,0 +1,95 @@
+<% content_for :title, "#{t('site.nav.shop')} — #{@personal_selection.title}" %>
+<% content_for :nav_title, "#{@personal_selection.title}" %>
+<% content_for :canonical_url, @personal_selection.friendly_path %>
+<% content_for :meta_description, truncate(strip_tags(@personal_selection.meta_description).squish, length: 215) %>
+<% content_for :additional_metas, (render :partial => 'shared/meta_article', :locals => { :article => @personal_selection, :section => t('site.nav.shop') }) %>
+<% content_for :additional_analytics_config do %>
+  <% analytics_selection_status = @personal_selection.archived? ? "archived" : "none" %>
+  ga('set', 'dimension1', '<%= analytics_selection_status %>');
+  Line.Track.heapEvent('Additional Analytics Info', { 'Personal Selection Status' : '<%= analytics_selection_status %>' });
+<% end %>
+<% content_for :additional_body_classes, @personal_selection.published? ? "published" : "unpublished" %>
+
+<% cache cache_buster do %>
+
+<%
+share_url = "#{j Settings.canonical_url_root}#{@personal_selection.friendly_path}"
+share_target = "#{@personal_selection.friendly_path}"
+share_email_subject = t('social_media.share_personal_selection.email_subject', :url=> share_url, :title=> t('selections.personal_selection_social_desc'))
+share_email_body = t('social_media.share_personal_selection.email_body', :url=> share_url, :title=>t('selections.personal_selection_social_desc'))
+share_tweet_text = t('social_media.share_personal_selection.tweet_text', :url=> share_url, :title=>t('selections.personal_selection_social_desc'))
+%>
+
+<div class="bridge2">
+  <main>
+    <div class="row-fluid selection-share">
+      <div class="span16 text-right">
+        <button class="btn-share meta lb-tmpl" data-tmpl-id="template-share-modal" data-tmpl-data='{"item_url":"<%= share_url %>","tweet_text":"<%= share_tweet_text  %>","email_subject":"<%= share_email_subject %>","email_body":"<%= share_email_body %>","target":"<%= share_target %>"}'><span class="icon_upSmall"></span><%= t('actions.share_item') %></button>
+      </div>
+    </div>
+
+    <div class="row-fluid selection-header">
+      <div class="span4 offset6 text-center">
+        <span class="selection-marker"><%= @personal_selection.archived? ? t('selections.archived') : nil %> <%=t('selections.personal_selection')%></span>
+      </div>
+
+      <div class="span6 selection-objects-count">
+        <%= @personal_selection.linked_contents.length %> <%= t('selections.objects')%>
+      </div>
+
+    </div>
+
+    <article class="selection">
+      <%= @personal_selection.default_content_block.body %>
+    </article>
+
+    <% if @personal_selection %>
+      <% @grid_featured_products=Product.sort_by_available(@personal_selection.resolve_linked_contents) %>
+    <% else %>
+      <% @grid_featured_products=[] %>
+    <% end %>
+    <hr>
+
+    </hr>
+
+
+    <div class="itemGrid itemGrid-4" id="featured-objects">
+      <div class="grid-sizer"></div>
+      <div class="gutter-sizer"></div>
+      <ul class="pl">
+      <% cache @grid_featured_products do %>
+          <%= render :partial=>'product_grid', :collection=>@grid_featured_products, as: :product %>
+      <% end %>
+      </ul>
+    </div>
+
+  </main>
+
+
+<%# YET ANOTHER HACK BECAUSE THIS PAGE IS V2 BUT HOMEPAGE ISN'T %>
+</div> <!--/.bridge2-->
+  <hr>
+  <%= render 'shared/apartment_section' %>
+<div class="bridge2">
+<%# end hack %>
+
+  <hr class="related-selections-header">
+  <div class="row-fluid related-selections-header">
+    <div class="span16">
+      <h2 class="sectionhd"><%= t('selections.related_selections') %></h2>
+      <p class="p18-bridge personal-selection"><%= t('selections.related_selections_for_personal_selection')%></p>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span16 relatedItemBlock relatedItemBlock-4">
+      <ul class="relatedItemList selectionsList">
+        <% @recent_selections.each do |selection| %>
+          <%= render :partial=>'selection_item', locals: {selection: selection} %>
+        <% end %>
+      </ul> <!-- /.relatedItemList-->
+    </div> <!-- /.relatedItemBlock-->
+  </div>
+
+</div> <!--/.bridge2-->
+<% end %>

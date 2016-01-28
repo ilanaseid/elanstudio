@@ -1,0 +1,30 @@
+<% content_for :title, "#{t('site.nav.editorial')} — Footnotes" %>
+<% content_for :nav_title, "Index of Footnotes" %>
+<% content_for :canonical_url, @content_footnotes_path %>
+
+<% cache cache_buster do %>
+<div class="bridge2">
+  <main>
+    <div class="row-fluid page-description">
+      <div class="offset5 span6">
+        <h1 class="gamma text-center"><%= t('site.footnotes_label')%><sup><%= @footnotes.count %></sup></h1>
+        <p class="text-center"><%= t('site.footnotes_page_description') %></p>
+      </div>
+    </div><!--/.row-fluid-->
+    <hr>
+    <div class="footnotes-items">
+      <ul>
+        <% @footnotes.each do |footnote| %>
+          <%= render :partial=>'footnote_item_index', locals: {footnote: footnote} %>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span8 offset4">
+        <%= paginate @footnotes, theme: 'theline' %>
+      </div>
+    </div>
+  </main>
+</div> <!--/.bridge2-->
+<% end %>

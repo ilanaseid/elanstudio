@@ -1,0 +1,5 @@
+<% if (story[:_type] == "Chapter") %>
+  <%= render :partial=>'content/chapter_item_chronology', locals: {chapter: story} %>
+<% else (story[:_type] == "Footnote") %>
+  <%= render :partial=>'content/footnote_item_chronology', locals: {footnote: story} %>
+<% end %>

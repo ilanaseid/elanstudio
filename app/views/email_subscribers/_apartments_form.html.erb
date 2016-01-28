@@ -1,0 +1,23 @@
+
+<%
+  conversion_pixel_array = []
+  facebook_pixel = "//www.facebook.com/offsite_event.php?id=6015091908252"
+
+  conversion_pixel_array << facebook_pixel
+%>
+
+<%= semantic_form_for [main_app,(@apartment_request ||= ApartmentRequest.new(:newsletter=>true))], :html => { :class => "json singlefield", :"data-conversion-path" => "#{main_app.apartment_requests_path}/thank_you", :"data-conversion-pixels" => conversion_pixel_array.to_json } do |f| %>
+<% if @apartment_request.errors.any? %>
+    <div id="error_explanation">
+      <% @apartment_request.errors.full_messages.each do |msg| %>
+        <span class="error"><%= msg %></span>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.inputs do %>
+    <%= f.input :email, :as => :email, :placeholder => t('fields.email').downcase, :class => "input", :required => true, :label => t('fields.email'), :"aria\-label" => t('fields.email').downcase  %>
+    <li><%= f.submit :value => t('actions.newsletter_add'), :class => "btn btn-accent" %></li>
+  <% end %>
+
+<% end %>

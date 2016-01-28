@@ -1,0 +1,115 @@
+/* _menus.scss
+  Baseline navigational elements
+
+
+  * Horizontal Link Lists
+  * Horizontal Link Lists as JumpNav
+  * Table of Contents Nav
+  * Button Lists
+  * Filtering UI
+*/
+
+
+
+
+/* Horizontal Link Lists
+------------------------------------------- */
+
+.nav {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+
+  li {
+    display: inline-block;
+    position: relative;
+    margin: 0 1em 0 0;
+    white-space: nowrap;
+
+
+  }
+  &>li:first-child {
+    margin-left: 0;
+  }
+
+  a {
+    display: inline-block;
+  }
+
+  button,
+  [type=submit],
+  .btn {
+    margin-bottom: 8px;
+  }
+
+  @media #{$query-notsmall} {
+     .gapbefore {
+      margin-left: 21px;
+    }
+  }
+}
+
+/* Horizontal Link Lists as JumpNav
+------------------------------------------- */
+.nav.jump {
+  // start this at explicit height so down-nav-jump can work for alignment
+  min-height: 24px;
+
+  a {
+    font-size: 16px;
+    line-height: 26px;
+    text-decoration: none;
+
+    @media #{$query-notsmall} {
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+
+    sup {
+      text-decoration: none !important;
+    }
+  }
+}
+
+.down-nav-jump {
+  margin-top: 38px;
+}
+
+/* Table of Contents Nav
+------------------------------------------- */
+
+@include fallbackFontStackDisplay('.nav.toc li');
+.nav.toc {
+  margin-top: 0;
+  font-size: 32px;
+  line-height: 1em;
+
+  li {
+   display: block;
+   margin-bottom: 1em; // TODO: design review
+  }
+}
+
+
+
+/* Button Lists
+------------------------------------------- */
+.buttons {
+  @extend .pl;
+  margin: 0 auto;
+  padding-bottom: 21px;
+  text-align: center;
+
+  li {
+    margin-bottom: 0.5em;
+  }
+}
+
+
+/* Filtering UI
+------------------------------------------- */

@@ -1,0 +1,57 @@
+<% content_for :title, t('site.nav.contact_us') %>
+  <main>
+  <div class="row-fluid">
+    <article class="span12 offset2">
+      <h1 class="gamma"><%= t('site.nav.contact_us') %></h1>
+
+      <p class="opening">We’re here to help you find your new favorite things. Curious about an object on The Line? Need more information about size, fit, cut, color, or materials? Craving additional stories about our designers? </p>
+
+      <ul class="pl">
+        <li>Give us a ring: <%= Settings.contact_info.service_phone %></li>
+        <li><%= link_to t('actions.contact_customer_service'),'/content/contact', :class=>'lb' %></li>
+      </ul>
+    </article>
+  </div> <!-- /.row-fluid -->
+
+  <div class="row-fluid">
+    <div class="span6 offset2">
+
+      <h2 class="delta">ORDER-RELATED INQUIRIES</h2>
+      <p>Please drop us a line at <%= mail_to(Settings.contact_info.orderinq_email) %>. We're here to answer your questions about existing orders, shipping, and returns Monday through Friday, between 9:00 a.m. and 6:00 p.m. EST.</p>
+      <ul class="pl">
+        <li><%= mail_to(Settings.contact_info.orderinq_email) %></li>
+      </ul>
+
+      <h2 class="delta down-10">PRESS INQUIRIES</h2>
+      <p>If you are a member of the press and would like information about The Line, our designers, our objects, or The Apartments, please drop us a line at <%= mail_to(Settings.contact_info.press_email) %>.</p>
+      <ul class="pl">
+        <li><%= mail_to(Settings.contact_info.press_email) %></li>
+      </ul>
+
+      <h2 class="delta down-10">VENDOR INQUIRIES</h2>
+      <p>If you have a refined, versatile, or honest item to suggest we add to The Line,  please tell us its story by dropping us a line at <%= mail_to(Settings.contact_info.merchandising_email) %>.</p>
+      <ul class="pl">
+        <li><%= mail_to(Settings.contact_info.merchandising_email) %></li>
+      </ul>
+
+    </div>
+
+    <div class="span6">
+      <h2 class="delta">EMPLOYMENT OPPORTUNITIES</h2>
+      <p>
+        If you are interested in joining our quest for the quintessential as a member of our New York City- and/or Los Angeles-based teams, please drop us a line at <%= mail_to(Settings.contact_info.jobs_email) %>. Be sure to include a cover letter and resume.
+      </p>
+      <p>
+        <span class="accent">
+          <i>We are currently seeking to fill these positions:<br>
+            Operations – Fulfillment Associate<br>
+            User Experience – Design Lead</i>
+        </span>
+      </p>
+      <ul class="pl">
+        <li><%= mail_to(Settings.contact_info.jobs_email) %></li>
+      </ul>
+    </div>
+  </div> <!-- /.row-fluid -->
+
+</main>

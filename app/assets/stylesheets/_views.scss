@@ -1,0 +1,1144 @@
+/* _views.scss
+	'page' type / content specific syling
+
+	* Home Page
+  * Brand Pages
+  * Account Pages
+  * Checkout Confirmation and View Order
+  * Product Details Page
+  * Product Details
+  * Search Page, Error Page
+  * Static Pages
+  * Checkout Delivery
+*/
+
+
+/* Home Page
+------------------------------------------- */
+.selection-index-item {
+  &.home-page {
+    border-top: none;
+
+    .description {
+      h2 {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+h2.selections-title {
+  font-size: 14px !important;
+  line-height: 21px !important;
+}
+
+.categoryLists {
+  .itemListBlock {
+    h2.home-block {
+      font-size: 14px !important;
+      line-height: 21px !important;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.apartment-section {
+  h1 {
+    margin-top: 14px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  h2 {
+    span {
+      text-decoration: underline;
+      text-transform: none;
+      line-height: 2em;
+    }
+  }
+
+  div:nth-child(n+2) {
+    margin-top: 12px;
+
+    @media #{$query-notsmall} {
+       margin-top: 0;
+    }
+  }
+
+  p {
+    margin-top: 25px;
+    margin-bottom: initial;
+  }
+
+  .readmore {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: $grey-dark;
+  }
+}
+
+/* Brand Pages
+------------------------------------------- */
+
+
+/* Account Pages
+------------------------------------------- */
+
+.accountManagement {
+
+  input.btn-newsletter-edit  {
+   // in newsletter edit block design wants this aligned with list
+    margin-left: 39px;
+    width: grid-math($col4 + $gutter2, $col6);
+  }
+}
+
+.email-list-name {
+  color: $grey-dark;
+}
+
+.email-list-description {
+  color: $grey-med;
+}
+
+.email-preferences-container {
+  ul {
+    margin-right: 10%; // (helps line-length)
+
+    @media #{$query-notsmall} {
+      margin-right: initial; // clear margin-right from mobile
+    }
+  }
+}
+
+
+/* Checkout and View Order
+------------------------------------------- */
+.c_spree_checkout,
+.c_spree_orders {
+  .main {
+    .nav { // match .actions
+      margin-top: 21px;
+    }
+    .summary_group {
+      margin-bottom: 39px;
+    }
+
+    h2 .subhd {
+      font-size: 12px;
+      line-height: 12px;
+      color: inherit;
+      font-weight: normal;
+    }
+
+    .credit-card-icons {
+      margin-bottom: 50px;
+
+      @media #{$query-notsmall} {
+        margin-bottom: 10px;
+      }
+
+      .card-icon {
+        height: 20px;
+        width: 32px;
+      }
+
+      .accepted-cards {
+        font-style: italic;
+        font-size: 11px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+    @media #{$query-small} {
+      .hide-on-small {
+        display: none;
+      }
+    }
+  }
+}
+
+// only on early steps of checkout
+.c_spree_checkout {
+  // shipping methods on checkout/delivery
+  input+.shipmentWrap,
+  .shipmentWrap+.shipmentWrap {
+    margin-top: 50px;
+  }
+  #unshippableNotice {
+    .mfp-close {
+      display: none;
+    }
+    @media #{$query-notsmall} {
+      display: none;
+    }
+  }
+
+  .stock-shipping-method-title {
+    margin-bottom: 7px;
+  }
+
+  .shipping-detail {
+    font-size: 11px;
+    padding-bottom: 10px;
+  }
+
+  .delivery-margin {
+    margin-top: 0px;
+    @media #{$query-notsmall} {
+      margin-top: -10px;
+    }
+  }
+
+  .packaging-options.packaging {
+    .packaging-wrapper {
+      display: inline-block;
+      float: right;
+      width: calc(100% - 25px);
+    }
+    input[type="radio"] {
+      vertical-align: top;
+    }
+    img {
+      max-width: 30%;
+      float: left;
+      margin-right: 10px;
+    }
+    span {
+      font-size: 12px;
+      font-weight: bold;
+      vertical-align: top;
+      display: inline-block;
+      color: $grey-med;
+      @media #{$query-notsmall} {
+        padding-top: 10px;
+      }
+      @media #{$query-largetype} {
+        padding-top: 0;
+      }
+    }
+    p {
+      font-size: 11px;
+    }
+  }
+}
+
+// bag page specifics
+.c_spree_orders.a_edit {
+  .bagActionsTop {
+    padding-top: 33px; // visually match heading
+    text-align: right;
+  }
+  .bagActionsBottom {
+    text-align: right;
+  }
+}
+
+/* Product Details Page
+------------------------------------------- */
+@include fallbackFontStackDefault('.a_product .mainProduct .fn');
+.a_product {
+  .mainProduct {
+    .item-header {
+      h1 {
+        margin-top: 0;
+      }
+    }
+
+    .top-header {
+      padding: 4px 0;
+    }
+
+    .middle-header {
+      display: none;
+    }
+
+    @media #{$query-notsmall} {
+      .top-header {
+        display: none;
+      }
+
+      .middle-header {
+        display: block;
+      }
+    }
+
+    .item-status {
+      @extend .dt;
+    }
+
+    .item-meta {
+      &.shop-designer {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      &.shop-categories {
+        padding-bottom: 20px;
+      }
+    }
+
+    .brand {
+      color: $grey-dark;
+      text-decoration: none;
+
+      &:hover,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+
+    .fn {
+      margin-top: 0;
+      font-weight: normal;
+
+    }
+    a.fn {
+      text-decoration: none;
+
+      &:hover,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      margin-bottom: 6px;
+
+      &.archived-image {
+        opacity: 0.35;
+        float: left;
+        width: calc(25% - 3px);
+        clear: left;
+
+        @media #{$query-notsmall} {
+          width: calc(100% - 3px);
+        }
+      }
+    }
+
+    .description {
+      // margin-top: 21px;
+      color: $grey-dark;
+      font-size: 20px;
+      line-height: 1.25;
+
+      @media #{$query-pdp-oversize} {
+        font-size: 26px;
+      }
+    }
+
+    .description + .section-content {
+      margin-top: 14px;
+    }
+
+    .section-content + .supl-actions {
+      margin-top: 14px;
+    }
+
+    .accordion {
+      margin-top: 14px;
+    }
+
+    .accordion > dt {
+      font-size: 14px;
+      line-height: 17px;
+      text-transform: none;
+      margin-top: 11px;
+      margin-bottom: 5px;
+      text-decoration: underline;
+
+      span {
+        &.icon_downCaret {
+          @extend .icon_downCaret-ia;
+        }
+
+        &.icon_upCaret {
+          @extend .icon_upCaret-ia;
+        }
+      }
+
+    }
+
+    .accordion > dd {
+
+    }
+
+    .section-content dl {
+      dt,
+      dd {
+        line-height: 17px;
+      }
+      dd {
+        margin-bottom: 14px;
+      }
+    }
+
+    .populateCart {
+      padding-top: 12px;
+      border-top: $border-default;
+    }
+
+    .populateCart+.nav {
+      margin-top: 0;
+    }
+
+    // note: repeated in item grid (_grid.scss)
+    .product-messages,
+    .form-messages {
+      min-height: 18px;
+      margin: 0;
+      font-size: 12px;
+      line-height: 14px;
+
+      p {
+        margin: 0;
+      }
+    }
+    .product-messages {
+      margin-top: 4px;
+    }
+    .form-messages {
+      margin-bottom: 4px;
+    }
+
+    .sizeSelector,
+    .sizeSelector .pl,
+    .sizeSelector h5  {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .actions {
+      margin: 0;
+    }
+  }
+}
+
+.archived-product-message {
+  font-size: 12px;
+  font-style: italic;
+  padding-bottom: 20px;
+  margin-top: -8px;
+}
+
+
+/* Product Feature Grid Page
+------------------------------------------- */
+
+
+/* Search Page, Error Pages
+------------------------------------------- */
+.a_search,
+.a_status_404,
+.a_status_500 {
+
+  .noresults {
+    padding-top: 60px;
+    padding-bottom: 60px;
+
+    .search-label {
+      font-size: 14px;
+      line-height: 21px;
+      margin: 12px 0;
+      font-weight: normal;
+    }
+  }
+
+  .zed {
+    .subhd {
+      height: auto;
+      line-height: 14px;
+    }
+  }
+}
+
+/* Spree / account lightbox pages
+------------------------------------------- */
+
+.c_spree_user_sessions {
+  // hide first set of errors, show grouping by form
+  .main .form-messages.span12 {
+    display: none;
+  }
+}
+
+/* Static Pages
+------------------------------------------- */
+.c_static {
+
+  .gamma {
+    font-weight: normal;
+  }
+  article {
+    padding: 42px 0;
+
+    p,
+    li {
+      font-size: 19px;
+      line-height: 1.25;
+      max-width: none;
+    }
+  }
+
+  .opening {
+    font-size: 36px;
+    @media #{$query-small} {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+}
+
+
+// ORDER SHOW CHECKOUT CONFIRMATION
+.checkout-signup {
+  li {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+    width: 100%;
+  }
+  li:last-child {
+    margin-right: 0;
+  }
+  .btn {
+    margin: 10px 0 20px 0;
+  }
+}
+
+@media #{$query-largetype} {
+  .checkout-signup {
+    li {
+      margin-top: 0;
+      width: calc((100% / 4) - 20px);
+    }
+  }
+}
+
+@media #{$query-notsmall} and (max-width: 1180px) {
+  .checkout-signup {
+    li {
+      float: left;
+      margin-top: 10px;
+      width: calc(50% - 5px);
+    }
+    li:nth-child(2), li:nth-child(4) {
+      margin-right: 0;
+    }
+  }
+}
+
+/* Apartment Pages
+------------------------------------------- */
+
+// WRAPPER TO MAKE SURE CSS BELOW DOESN"T EFFECT ANYTHING ELSE
+.to-wrapper {
+  .address-block {
+    margin-top: 8px;
+    font-size: 14px !important;
+    p {
+      max-width: none;
+    }
+
+      @media #{$query-notsmall} {
+        line-height: 20px;
+        margin-top: 25px;
+      }
+  }
+  .appointments-block {
+    margin-top: 32px;
+
+    @media #{$query-notsmall} {
+      margin-top: 60px;
+    }
+  }
+  .events-container {
+    padding-left: 0;
+      @media #{$query-notsmall} {
+        padding-left: 20px;
+      }
+      @media #{$query-largetype} {
+        //margin-left: 26% !important;
+        padding-left: 0;
+      }
+
+      @media #{$query-largetype} {
+        margin-left: 26% !important;
+        }
+  }
+
+  .city-location {
+    margin-top: 0;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .small-p {
+
+    font-size: 14px;
+    line-height: 20px;
+
+    @media #{$query-largetype} {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+.apt-image {
+  margin-left: 0;
+
+ @media #{$query-notsmall} {
+    margin-left: 20px;
+  }
+
+  @media #{$query-largetype} {
+    margin-left: 0;
+  }
+
+}
+  .center-margin { margin: 0 auto; }
+  .uppercase { text-transform: uppercase; }
+  .pbottom20 {
+    padding-bottom: 20px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  // 2 COLUMN LAYOUT FOR SMALL SCREENS
+  .half-wrap {
+    .half {
+      width: calc(50% - 10px);
+      display: block;
+      float: left;
+      text-align: center;
+      img {
+        width: 100%;
+      }
+    }
+    .half:first-child {
+      margin-right: 20px;
+    }
+  }
+  .half-wrap:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  // KILL MARGINS - MAINLY USED FOR PARAGRAPH TAGS
+  .no-margin {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  // KILL TOP MARGIN
+  .no-top-m {
+    margin-top: 0;
+  }
+
+  // UPPERCASE
+  .upcase {
+    text-transform: uppercase;
+  }
+
+  // CENTER ON SMALL SCREENS - MAY HAVE DUPLICATE
+  .center-on-small {
+   text-align: center;
+   p {
+      max-width: none;
+    }
+
+    @media #{$query-notsmall} {
+      font-size: 12px;
+      text-align: left;
+    }
+    @media #{$query-largetype} {
+      font-size: 14px;
+      text-align: left;
+    }
+  }
+
+  .left-on-small {
+    @media #{$query-small} {
+      text-align: left;
+    }
+  }
+
+  // PADDING SECTIONS TO HAVE ENOUGH WHITE SPACE ON TOP AND BOTTOM
+  .general-padding {
+    padding: 15px 0 20px 0;
+    margin-top: -15px;
+
+    &.apartment {
+      padding: 10px 0 5px 0;
+
+      @media #{$query-notsmall} {
+        padding: 15px 0 25px 0
+      }
+    }
+
+    @media #{$query-notsmall} {
+      padding: 25px 0 25px 0;
+    }
+  }
+
+  // THE APARTMENT HEADING STYLING
+  h1.the-apartment-header {
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 28px;
+    padding-top: 20px;
+
+    @media #{$query-notsmall} {
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    @media #{$query-largetype} {
+      font-size: 26px;
+      line-height: 30px;
+      padding-top: 0;
+    }
+
+    .subhd {
+      text-transform: none;
+      font-style: normal;
+    }
+  }
+  p.the-apartment-header-description {
+    line-height: 22px;
+    font-size: 14px;
+
+    @media #{$query-largetype} {
+      line-height: 26px;
+      font-size: 16px;
+    }
+  }
+  p.the-apartment-contentline {
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 45px;
+    @media #{$query-small} {
+      font-size: 14px;
+      padding: 0 15px 0 15px;
+      padding-bottom: 15px;
+    }
+  }
+
+  // OVERRIDING EXISTING APT GRID TO SETTLE INTO SCREEN
+  .each-apt-grid {
+    .each-apt-grid-block {
+      display: inline-block;
+      vertical-align: top;
+      width: calc((100% / 3) - 10px);
+      @media #{$query-small} {
+        width: 100%;
+        padding: 0 10px 0 10px;
+      }
+    }
+    .each-apt-grid-block.with-margin {
+      margin-right: 10px;
+      @media #{$query-small} {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  // CSS FOR ITERATING OVER MULTIPLE APARTMENTS ON INDEX
+  .each-apartment {
+    padding-bottom: 10px;
+    .no-margin {
+      margin: 0;
+    }
+    h1, h4:not(.keep-left) {
+      text-transform: uppercase;
+      @media #{$query-small} {
+        text-align: center;
+      }
+    }
+    h1 {
+      font-style: italic;
+      text-transform: none;
+      margin-bottom: 10px;
+      @media #{$query-small} {
+        font-size: 24px;
+        line-height: 26px;
+        padding-top: 5px;
+        margin-bottom: 0;
+      }
+
+      @media #{$query-notsmall} {
+        font-size: 28px;
+        line-height: 32px;
+      }
+
+    }
+    h4 {
+      font-size: 14px;
+      @media #{$query-small} {
+        padding-top: 20px;
+      }
+    }
+    p.is-it-open {
+      font-style: italic;
+      color: $gold;
+    }
+    p.learn-more {
+      padding-top: 35px;
+      font-size: 14px;
+      font-style: italic;
+      line-height: 20px;
+      @media #{$query-small} {
+        padding-top: 8px;
+        padding-bottom: 15px;
+      }
+    }
+    .contact {
+      h4 {
+        padding-top: 10px;
+        @media #{$query-small} {
+          // padding: 0;
+        }
+      }
+      p {
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0;
+      }
+    }
+  }
+
+  // CSS USED FOR APARTMENTS SHOW AND EVENTS SHOW PAGES
+  .apartment-show, .events-show {
+
+  .wrapper > * {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 12px;
+
+  @media #{$query-notsmall} {
+    @include flex(grow 3);
+  }
+}
+
+.share-item-ul {
+  @include flex(1 100%);
+  border-top: $border-default;
+  border-bottom: $border-default;
+
+  @media #{$query-notsmall} {
+    @include flex(3 0px);
+    @include order(2);
+    border-bottom: none;
+    padding-right: .75em !important;
+    padding-left: .75em !important;
+  }
+
+  ul {
+    margin-top: 12px;
+  }
+}
+  .p18-bridge {
+    margin-top: 0;
+    margin-bottom: 21px;
+
+    &.top-p {
+      margin-top: 15px;
+       @media #{$query-notsmall} {
+        margin: 0;
+      }
+      @media #{$query-largetype} {
+        margin-bottom: 21px;
+      }
+    }
+  }
+    .apt-quote {
+      margin: 25px 0;
+
+      @media #{$query-largetype} {
+        margin: 30px 0 35px 0;
+      }
+    }
+
+    .appt-block {
+      margin-bottom: 0px;
+    }
+
+    .apartment-detail-title {
+      margin-top: 52px !important;
+      margin-bottom: 15px;
+
+      @media #{$query-notsmall} {
+        margin: 12px 0 !important;
+      }
+    }
+
+    #brickwork-widget {
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      font-style: italic;
+      font-weight: normal;
+      margin-top: 22px;
+      font-size: 22px;
+    }
+    h2.past-event {
+      font-style: normal;
+      @media #{$query-small} {
+        font-size: 18px;
+      }
+    }
+    .small-divider {
+      border-bottom: solid 1px black;
+      height: 1px;
+      width: 12px;
+      margin: 0 auto;
+    }
+    p {
+      margin: 0 auto;
+    }
+
+    p.opening {
+      //font-size: 18px;
+      //line-height: 24px
+      padding: 0 10px 0 10px;
+
+      &.apt-desc {
+        padding: 12px 10px 5px 10px;
+        margin: 0 auto;
+      }
+
+      @media #{$query-notsmall} {
+        //font-size: 22px;
+        //line-height: 30px;
+      }
+
+      @media #{$query-largetype} {
+        //font-size: 28px;
+        //line-height: 32px;
+      }
+    }
+    .address, .hours {
+      font-size: 14px;
+      line-height: 22px;
+
+      @media #{$query-notsmall} {
+        font-size: 14px;
+        line-height: 22px;
+      }
+      @media #{$query-largetype} {
+        font-size: 16px;
+        line-height: 22px;
+      }
+
+    }
+    .hours {
+      color: $gold;
+      padding: 15px 0 18px 0;
+      font-style: italic;
+    }
+
+    .bw-button {
+      padding-bottom: 3px;
+    }
+
+    .opening-padding {
+      padding: 10px 0 10px 0;
+
+      @media #{$query-notsmall} {
+         padding: 3px 0 10px 0;
+      }
+
+      @media #{$query-largetype} {
+        padding: 30px 0 40px 0;
+      }
+    }
+    .big-image {
+      img {
+        @media #{$query-small} {
+          padding: 0 10px 0 10px;
+        }
+      }
+    }
+
+    .sectionhd {
+      margin-top: 30px;
+       @media #{$query-notsmall} {
+         margin-top: 10px;
+      }
+      &.find-us {
+        margin-top: 15px;
+
+        @media #{$query-notsmall} {
+         margin-top: 10px;
+      }
+
+      }
+      &.appointments-svcs {
+        margin-top: 52px;
+        @media #{$query-notsmall} {
+         margin-top: 0;
+      }
+      }
+    }
+
+    .appointments-section, .events-section, .history-section {
+      @media #{$query-small} {
+        padding: 0 10px 0 10px;
+      }
+    }
+    .appointments-section {
+      @media #{$query-notsmall} {
+        padding-top: 38px;
+        padding-bottom: 18px !important;
+      }
+
+      p {
+        margin: 0;
+      }
+      p.bigger {
+        font-size: 22px;
+        line-height: 25px;
+        margin: 10px 0 15px 0;
+      }
+      @media #{$query-small} {
+        img {
+          padding-top: 20px;
+        }
+      }
+    }
+    .events-section {
+      .when {
+        margin: 50px 10px 0 0;
+        font-size: 40px;
+        line-height: 42px;
+        color: $grey-light;
+        display: inline-block;
+      }
+      .time-til {
+        font-style: italic;
+        font-size: 18px;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .indent {
+        h2 {
+          font-size: 38px;
+          line-height: 40px;
+          font-style: normal;
+          display: inline-block;
+          margin: 0 10px 10px 0;
+        }
+        p {
+          margin: 0;
+          padding: 0;
+        }
+        img {
+          max-width: 40em;
+          margin: 0 0 20px 0;
+        }
+        .learn-more {
+          padding-top: 30px;
+          font-size: 14px;
+          font-style: italic;
+        }
+      }
+      .indent.no-indent-on-small {
+        margin-top: 15px;
+      }
+      .event-info-block {
+        padding-bottom: 15px;
+        button {
+          margin-top: 10px;
+        }
+        .upcoming-event-box {
+          margin-bottom: 10px;
+          p.date {
+            color: $grey-light;
+            padding-top: 0;
+          }
+          p {
+            font-size: 20px;
+            padding-top: 10px;
+          }
+          p.learn-more {
+            padding-top: 15px;
+            padding-bottom: 20px;
+            font-size: 14px;
+            font-style: italic;
+          }
+        }
+      }
+      @media #{$query-small} {
+        .when {
+          font-size: 26px;
+          line-height: 30px;
+        }
+        .time-til {
+          display: block;
+        }
+        .indent {
+          padding-left: 20px;
+          h2 {
+            font-size: 26px;
+            line-height: 30px;
+            margin-bottom: 5px;
+          }
+          .time-til {
+            padding-bottom: 20px;
+          }
+          img {
+            width: 100%;
+            margin-bottom: 20px;
+          }
+        }
+        .indent.no-indent-on-small {
+          padding-left: 0;
+        }
+      }
+    }
+    .subscribe-section {
+      h2 {
+        font-style: normal;
+      }
+      input[type="submit"] {
+        @extend .btn-em
+      }
+      @media #{$query-small} {
+        button {
+          width: 100%;
+          max-width: none;
+        }
+      }
+      @media #{$query-notsmall} {
+        padding: 12px 0 0 0;
+      }
+    }
+    .share-section {
+      p {
+        .description {
+          font-style: italic;
+          font-size: 14px;
+        }
+        a {
+          font-size: 14px;
+          margin-left: 10px;
+        }
+      }
+    }
+    .history-section {
+      img.small-screen-margin {
+        @media #{$query-small} {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+
+}

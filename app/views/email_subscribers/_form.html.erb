@@ -1,0 +1,35 @@
+<% context ||= nil %>
+
+<%
+  track_ending = context.to_s
+  form_classes = context == "bottom_banner" ? "newsletterSubscribeXHR" : "json singlefield"
+
+  conversion_pixel_array = []
+  facebook_pixel = "//www.facebook.com/offsite_event.php?id=6015091908252"
+
+  conversion_pixel_array << facebook_pixel
+%>
+
+<%= semantic_form_for [main_app,(@email_subscriber ||= EmailSubscriber.new)], :html => { :class => "#{form_classes}", :"data-conversion-path" => "#{main_app.email_subscribers_path}/thank_you#{track_ending}", :"data-conversion-pixels" => conversion_pixel_array.to_json } do |f| %>
+  <% if @email_subscriber.errors.any? %>
+    <div id="error_explanation">
+      <% @email_subscriber.errors.full_messages.each do |msg| %>
+        <span class="error"><%= msg %></span>
+      <% end %>
+
+    </div>
+  <% end %>
+
+
+  <% if context == "bottom_banner" %>
+    <%= f.inputs do %>
+      <%= f.input :email, :as => :email, :placeholder => t('fields.email').downcase, :class => "input", :required => true, :label => t('fields.email'), :"aria\-label" => t('fields.email').downcase  %>
+      <li><%= f.submit :value => "subscribe", :class => "btn" %></li>
+    <% end %>
+  <% else %>
+    <%= f.inputs do %>
+      <%= f.input :email, :as => :email, :placeholder => t('fields.email').downcase, :class => "input", :required => true, :label => t('fields.email'), :"aria\-label" => t('fields.email').downcase  %>
+      <li><%= f.submit :value => t('actions.newsletter_add'), :class => "btn #{context == 'selections_banner' ? 'btn-em' : 'btn-accent'}" %></li>
+    <% end %>
+  <% end %>
+<% end %>

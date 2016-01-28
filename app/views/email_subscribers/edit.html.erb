@@ -1,0 +1,34 @@
+<%
+  # track_ending = defined?(context) ? "/#{context}" : "";
+  track_ending = "/bottom_banner";
+%>
+
+<%= semantic_form_for [main_app,@email_subscriber], :html => { :class => "newsletterSubscribeXHR", :"data-conversion-path" => "#{main_app.email_subscribers_path}/edit#{track_ending}" } do |f| %>
+  <div class="banner_step banner_step-0">
+    <div class="row-fluid">
+      <div class="span7">
+        <p>Where are you located? Enter your zip code to receive invitations to events (discussions, workshops, screenings, and more) we’re hosting near you.</p>
+
+        <div class="">
+          <%= f.inputs do %>
+            <%= f.input :zipcode, :as => :string, :placeholder => "Enter your zip code here".downcase, :class => "input", :label => "Enter your zip code here", :"aria\-label" => "Enter your zip code here".downcase  %>
+          <% end %>
+
+        </div>
+      </div>
+      <div class="span7 offset2">
+        <div>
+          <p>Finally, which of these categories most interest you?<br> <i>(Check all that apply)</i></p>
+
+          <%= f.inputs do %>
+            <%= f.input :interests, :as => :check_boxes, :wrapper_html => { :class => "horizontalChoices" }, :input_html => { :class => "" }, :collection=>["Fashion", "Home", "Beauty", "Art", "Architecture","Design"] %>
+
+            <li><%= f.submit :value => "Next", :class => "btn" %></li>
+          <% end %>
+
+        </div>
+      </div>
+    </div> <!-- /.row_fluid -->
+  </div> <!-- /.banner_step -->
+
+<% end %>

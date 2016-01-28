@@ -1,0 +1,300 @@
+<% more_than_one = @more_than_one %>
+<% default_font = 'style="font-size: 14px; line-height: 21px; color: #414042; text-decoration: none; !important;"' %>
+<% default_font_with_typeface = "font-family: 'Sabon Next W01', Garamond, 'Apple Garamond', Times, serif; font-size: 14px; line-height: 21px; color: #414042; !important;" %>
+
+
+  <!-- TWO COLUMN SECTION -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#ffffff" align="center" class="section-padding">
+      <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
+        <tr>
+          <td>
+
+            <table cellpadding="6px">
+              <tr>
+                <td>
+                  <!-- spacer -->
+                </td>
+              </tr>
+            </table>
+
+            <!-- TITLE SECTION AND COPY -->
+            <table width="66%" align="center" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="center" width="80%" style="font-size: 24px; line-height: 32px; font-family: 'Sabon Next W01', Garamond, 'Apple Garamond', Times, serif; color: #414042;" class="padding-copy">
+                  <%= more_than_one ? "They’re" : "It’s" %> here!
+                </td>
+              </tr>
+            </table>
+
+            <table width="80%" align="center" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="center" width="100%" style="font-family: 'Sabon Next W01', Garamond, 'Apple Garamond', Times, serif; font-size: 14px; line-height: 21px; color: #414042; text-decoration: none; !important;" class="padding-copy"><font style="<%= default_font_with_typeface %>">
+                <%= more_than_one ? "As someone who asked to be notified when these items were back in stock, you’re among the first to know, but please act fast, because quantities are limited." : "As someone who asked to be notified when this item was back in stock, you’re among the first to know, but please act fast, because quantities are limited." %></font>
+                </td>
+              </tr>
+            </table>
+
+            <table cellpadding="1px">
+              <tr>
+                <td>
+                <!-- spacer -->
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+
+
+        <% if more_than_one %>
+
+        <% parent_index = 0 %>
+        <% @notifications.each_slice(2) do | notifications | %>
+          <tr>
+            <td>
+              <!-- TWO COLUMNS -->
+                <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr>
+                    <td valign="top" style="padding: 0;" class="mobile-wrapper">
+
+                      <% notifications.each_with_index do | notification, i | %>
+
+                        <table cellpadding="10" cellspacing="0" border="0" width="47%" align="<%= i.even? ? "left" : "right" %>">
+                          <tr>
+                            <td style="padding: 20px 0 40px 0;">
+                              <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                  <td align="left" bgcolor="#ffffff" valign="middle" class="copy">
+                                   <%= render partial: "item_notification", locals: {notification: notification, i: i+1+parent_index } %>
+                                  </td>
+                                </tr>
+                            </table>
+                              </td>
+                            </tr>
+                        </table>
+
+                      <% end # end product row of 2 %>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+          <% parent_index += 2 %>
+        <% end # end product grid %>
+
+      <% else %>
+
+        <tr>
+          <td>
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td valign="top" style="padding: 0;" class="mobile-wrapper">
+
+                  <table cellpadding="0" cellspacing="0" border="0" align="center">
+                    <tr>
+                      <td style="padding: 20px 0 40px 0;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                          <tr>
+                            <td align="left" bgcolor="#ffffff" valign="middle">
+                             <%= render partial: "item_notification", locals: {notification: @notifications.first, i: 1 } %>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      <% end %> <!-- end big if statement -->
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+<!-- Horizontal Rule -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#ffffff" align="center" class="side-padding">
+      <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
+        <tr>
+          <td>
+            <!-- TITLE SECTION AND COPY -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td>
+                  <hr size="1" style="color: #414042; background: #E5E5E5; border: 0; height: 1px;">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+
+<!-- TWO COLUMN SECTION -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#ffffff" align="center" class="section-padding">
+      <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
+
+          <td>
+            <!-- TITLE SECTION AND COPY -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="center" style="font-size: 24px; line-height: 48px; font-family: 'Sabon Next W01', Garamond, 'Apple Garamond', Times, serif; color: #414042;" class="padding-copy">More to Discover in The Objects</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <% related_parent_index = 0 %>
+        <% @related.each_slice(2) do |related| %>
+          <tr>
+            <td>
+              <!-- TWO COLUMNS -->
+                <table cellspacing="0" cellpadding="0" border="0" width="500" align="center" class="responsive-table">
+                  <tr>
+                    <td valign="top" style="padding: 0;" class="mobile-wrapper">
+
+                      <% related.each_with_index do |product, i| %>
+
+                        <% utm_prefix = "RelatedProducts-Section#{i+1+related_parent_index}" %>
+
+                        <table cellpadding="0" cellspacing="0" border="0" width="47%" align="<%= i.even? ? "left" : "right" %>">
+                          <tr>
+                            <td style="padding: 20px 0 40px 0;">
+                              <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                  <td align="left" bgcolor="#ffffff" valign="middle">
+                                    <a href="<%= shop_product_url(product.basename, utm_options(@date_integer, "#{utm_prefix}-ProductImage", @campaign)) %>" target="_blank">
+                                    <%= image_tag product.default_image_url(:grid), style: "width:100%; height:auto; border:none;", alt: "#{product.brand.title} — #{product.title}" %></a><br>
+                                    <br>
+                                    <font style="font-size: 14px; line-height: 21px; font-family: 'Sabon Next W01', Garamond, 'Apple Garamond', Times, serif; color: #414042; text-decoration: none; !important;" color="#414042">
+                                    <%= product.brand.title %><br>
+                                    <%= product.title %><br></font>
+                                    <%= image_tag("icons/rightShort.png") %>
+                                    <%= link_to " See more details", shop_product_url(product.basename, utm_options(@date_integer, "#{utm_prefix}-SeeDetails", @campaign)) , style: "font-size: 14px; line-height: 21px; color: #414042; text-decoration: underline; !important; margin-left: 3px", target: "_blank" %> <br>
+                                  </td>
+                                </tr>
+                            </table>
+                              </td>
+                            </tr>
+                        </table>
+
+                      <% end # end related product row of 2 %>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <% related_parent_index += 2 %>
+        <% end # end related product grid %>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!-- Horizontal Rule -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#ffffff" align="center" class="side-padding">
+      <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
+        <tr>
+          <td>
+            <!-- TITLE SECTION AND COPY -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td>
+                  <hr size="1" style="color: #414042; background: #E5E5E5; border: 0; height: 1px;">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!-- ONE COLUMN SECTION -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#ffffff" align="center" class="section-padding">
+      <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td>
+                  <!-- HERO IMAGE -->
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                       <tr>
+                          <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td align="center" style="font-size: 24px; line-height: 48px; font-family: 'Sabon Next W01', Garamond, 'Apple Garamond', Times, serif; color: #414042;" class="padding-copy">
+                                Recently in The Stories
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <table align="center">
+                <tr>
+                  <td>
+                    <!-- RECENT STORIES HERO -->
+
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tbody>
+                       <tr>
+                        <td class="padding-copy">
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td align="center">
+                                <% chapter_link = chapter_url(@chapter.basename, utm_options(@date_integer, "RelatedChapters", @campaign)) %>
+                                <a href="<%= chapter_link %>" target="_blank">
+                                <img src="<%= @chapter.default_content_block.content_assets[0].mounted_file.medium.url %>" style="width:100%; height:auto; border:none;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td align="center">
+                                <p><a href="<%= chapter_link %>" style="text-decoration: none; font-size: 11px; font-family: 'Sabon Next W01', Garamond, 'Apple Garamond', Times, serif; color: #414042;", target="_blank">CH. <%= @chapter.chapter_number %><br></a></p>
+                                <p><a href="<%= chapter_link %>" style="text-decoration: none; font-size: 14px; line-height: 21px; font-family: 'Sabon Next W01', Garamond, 'Apple Garamond', Times, serif; color: #414042;", target="_blank"><font size="3" color="#414042"><%= @chapter.title %></a></p></font>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+

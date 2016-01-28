@@ -1,0 +1,26 @@
+<% content_for :spree_heading, t('headings.register') %>
+<% content_for :spree_span, "4" %>
+<% content_for :spree_offset, "6" %>
+<% content_for :lb_wrap_size, "4" %>
+<% content_for :title, "#{t('site.nav.account')} — #{t('site.nav.register')}" %>
+<%= render :partial=>"spree/shared/spree_top" %>
+
+<%= render :partial => 'shared/error_messages', :locals => { :target => @user } %>
+
+<div id="new-customer">
+
+
+    <%= semantic_form_for (@user || Spree::User.new(:newsletter=>true)), :as => :spree_user, :url => spree.registration_path(@user) do |f| %>
+      <div data-hook="signup_inside_form">
+        <%= render :partial => 'spree/shared/user_form', :locals => { :f => f } %>
+        <p><%= f.submit t('actions.create_account'), :class => 'btn btn-em' %></p>
+      </div>
+    <% end %>
+    <ul class="nav">
+      <li><%= link_to Spree.t(:login_as_existing), spree.login_path, :class => 'lb-same' %></li>
+    </ul>
+
+
+</div>
+
+<%= render :partial=>"spree/shared/spree_bottom" %>

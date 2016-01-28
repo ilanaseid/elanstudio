@@ -1,0 +1,47 @@
+<%
+  step_label = ''
+  case @order.state.downcase
+    when 'address'
+      step_title = t('site.nav.checkout_address')
+      step_number = 1
+    when 'delivery'
+      step_title = t('site.nav.checkout_delivery')
+      step_number = 2
+    when 'payment'
+      step_title = t('site.nav.checkout_payment')
+      step_number = 3
+    when 'confirm'
+      step_title = t('site.nav.checkout_confirm')
+      step_number = 4
+  end
+%>
+<%
+  order_has_special_delivery = true;
+  #TBD: CASH/JOEL DEAL WITH THIS
+
+%>
+<% content_for :title, step_title %>
+
+<div class="row-fluid">
+  <div class="span12 offset2 account">
+    <h2><%= raw("<span class='subhd'>Checkout #{step_number} of 4:</span> #{step_title}") %></h2>
+
+  <%= render :partial => 'shared/error_messages', :locals => { :target => @order } %>
+
+  </div> <!-- end span -->
+</div> <!-- /.row-fluid -->
+
+
+
+      <%= semantic_form_for @order, :url => update_checkout_path(@order.state), :html => { :class=>'submitonce', :id => "checkout_form_#{@order.state}" } do |form| %>
+
+        <%= render @order.state, :form => form, :order_has_special_delivery => order_has_special_delivery %>
+      <% end %>
+
+
+<div class="row-fluid">
+  <div class="span12 offset2">
+    <br>
+    <p class="note text-center"><%= link_to 'Need Help? Contact Us.', '/s/contact', :class=>'accent' %></p>
+  </div>
+</div> <!-- /.row-fluid -->

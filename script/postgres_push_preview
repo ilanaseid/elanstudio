@@ -1,0 +1,2 @@
+heroku pg:reset DATABASE -a theline-preview
+heroku pg:push theline_development DATABASE -a theline-preview

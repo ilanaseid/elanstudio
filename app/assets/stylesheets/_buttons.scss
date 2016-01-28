@@ -1,0 +1,383 @@
+/* _buttons.scss
+	button (input, button, link) styling
+
+	* Button Sizing
+	* Button Appearance
+	* Button States
+  * Special Buttons
+  * Compact Actions Group Styling
+*/
+
+
+/* Button Sizing
+------------------------------------------- */
+
+[type=submit],
+button,
+.btn {
+  display: inline-block;
+  height: 29px;
+  line-height: 28px; // TODO: browser review
+  padding: 0 0.5em;
+  min-width: 200px;
+
+}
+//TODO, why is this baseline off?
+.item .item-meta {
+  .nav {
+    a.btn {
+      vertical-align: middle;
+    }
+  }
+}
+.mainProduct {
+  .nav {
+    a.btn {
+      position: relative;
+      top: 1px;
+    }
+  }
+}
+
+.span4,
+.span3,
+.span2,
+.span1 {
+  [type=submit],
+  button,
+  .btn {
+    width: 100%;
+    max-width: 22em;
+    min-width: 50px;
+  }
+}
+
+/* Button Appearance
+------------------------------------------- */
+
+@include fallbackFontStackSansSerif('[type=submit], button, .btn');
+[type=submit],
+button,
+.btn {
+  font-size: 9px;
+  text-align: center;
+  font-weight: bold;
+  color: $grey-dark;
+  background-color: #fff;
+  border: 1px #3E3E3F solid;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+
+  &:focus,
+  &:hover {
+    background-color: #F1F2F2;
+  }
+
+  &:active {
+    background-color: #E6E7E8;
+  }
+}
+
+.btn-em {
+  color: $white;
+  background: $grey-dark;
+  border-color: $grey-dark;
+
+  &:focus,
+  &:hover,
+  &:active {
+    color: $grey-light;
+    background: $grey-offblack;
+    border-color: $grey-offblack;
+  }
+}
+
+.btn-deem {
+  min-width: 0;
+  color: $white;
+  background: $grey-light;
+  border-color: $grey-light;
+
+  &:focus,
+  &:hover,
+  &:active {
+    color: $white;
+    background: $grey-med;
+    border-color: $grey-med;
+  }
+}
+
+.btn-accent {
+  color: $white;
+  background: $gold;
+  border-color: $gold;
+
+  &:focus,
+  &:hover,
+  &:active {
+    color: $white;
+    background: $gold-dark;
+    border-color: $gold-dark;
+  }
+}
+
+@include fallbackFontStackDefault('.btn-text');
+.btn-text {
+  display: inline-block;
+  color: $grey-dark;
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  min-width: 0;
+
+  &:focus,
+  &:hover,
+  &:active {
+    color: $grey-med;
+    background: transparent;
+    border: none;
+  }
+}
+
+
+@include fallbackFontStackDefault('.btn-link');
+.btn-link {
+  color: $grey-med;
+  text-align: center;
+  font-weight: normal;
+  background-color: transparent;
+  border: none;
+  text-transform: none;
+  cursor: pointer;
+  letter-spacing: 0px;
+  border-radius: 0;
+  text-align: left;
+  text-decoration: underline;
+  font-size: 1em;
+  padding: 0;
+  min-width: 0;
+  line-height: inherit;
+
+  &:focus,
+  &:hover,
+  &:active {
+    background-color: transparent;
+    color: $grey-dark;
+    outline: 0;
+  }
+
+  &.accent {
+    color: $gold;
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: $gold-dark;
+    }
+  }
+}
+
+.btn-share,
+.btn-save {
+  display: inline-block;
+  color: $grey-med;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  padding: 0;
+  min-width: 0;
+  line-height: 28px;
+
+  @include smallSansSerif;
+
+  &:focus,
+  &:hover,
+  &:active {
+    color: $grey-med;
+    background: transparent;
+    border: none;
+    text-decoration: underline
+  }
+}
+
+.volume-header,
+.chapter-header {
+  .btn-share {
+    width: auto;
+    margin: 0 -0.5em;
+  }
+}
+
+// TODO: why is this off in grid? margin top on nav?
+.item .nav .btn-save {
+  line-height: 36px;
+}
+
+.btn-show-more {
+  margin-top: 5px;
+  margin-bottom: 11px;
+
+  &.archive {
+    margin-top: 10px;
+  }
+
+  @media #{$query-notsmall} {
+    margin-top: 19px;
+    margin-bottom: 22px;
+  }
+}
+
+
+/* Button States
+------------------------------------------- */
+
+
+[type=submit],
+button,
+.btn {
+  &[disabled],
+  &.disabled {
+    color: #E6E7E8;
+    background: $white;
+    border-color: #E6E7E8;
+    cursor: default;
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: #E6E7E8;
+      background: $white;
+      border-color: #E6E7E8;
+    }
+  }
+
+  &.btn-em {
+    &[disabled],
+    &.disabled {
+      color: $grey-light;
+      background: $grey-offwhite;
+      border-color: $grey-offwhite;
+      cursor: default;
+
+      &:focus,
+      &:hover,
+      &:active {
+        color: $grey-light;
+        background: $grey-offwhite;
+        border-color: $grey-offwhite;
+      }
+    }
+  }
+
+  &.btn-accent {
+    &[disabled],
+    &.disabled {
+      color: $white;
+      background: $gold-light;
+      border-color: $gold-light;
+      cursor: default;
+
+      &:focus,
+      &:hover,
+      &:active {
+        color: $white;
+        background: $gold-light;
+        border-color: $gold-light;
+      }
+    }
+  }
+
+  &.btn-deem {
+    &[disabled],
+    &.disabled {
+      color: $grey-light;
+      background: $grey-offwhite;
+      border-color: $grey-offwhite;
+      cursor: default;
+
+      &:focus,
+      &:hover,
+      &:active {
+        color: $grey-light;
+        background: $grey-offwhite;
+        border-color: $grey-offwhite;
+      }
+    }
+  }
+}
+
+/* Button States
+------------------------------------------- */
+// close / remove buttons
+@include fallbackFontStackSansSerif('.btn-remove, button.mfp-close'); //TODO: test if needed
+.btn-remove,
+button.mfp-close {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  min-width: 0;
+  font-weight: normal;
+  font-size: 18px;
+  top: 0;
+  right: 0;
+  border: 0;
+  color: #6d6e71;
+  background: transparent;
+
+  &:active,
+  &:hover {
+    top: 0;
+    right: 0;
+    color: #414042;
+    background: transparent;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-remove {
+  position: absolute;
+  top: 8px;
+  right: 0;
+
+    &:active,
+    &:hover {
+      top: 8px;
+      right: 0;
+    }
+}
+
+/* Compact Actions Styling
+------------------------------------------- */
+// compact actions list, flex to make even space among them
+.actions.compact {
+  margin-top: 0;
+
+  /* undo some narrow colum work */
+  [type=submit],
+  button,
+  .btn {
+    width: 100%;
+    max-width: none;
+  }
+
+  ol {
+    @include display-flex();
+    @include flex-direction(row);
+  }
+
+  li {
+    display: inline-block;
+    @include flex(1);
+
+    &.em {
+      @include flex(2);
+    }
+  }
+  li+li {
+    margin-left: 4px;
+  }
+}

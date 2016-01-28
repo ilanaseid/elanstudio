@@ -1,0 +1,6 @@
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop
+
+pg_ctl -w -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+dropdb theline_development
+heroku pg:pull DATABASE theline_development -a theline-integration
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop

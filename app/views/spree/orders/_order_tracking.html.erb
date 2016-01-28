@@ -1,0 +1,152 @@
+<%
+order_shipping = 0;
+order_taxes = 0;
+
+order.all_adjustments.eligible.each do |adjustment|
+  case adjustment.source_type
+  when 'Spree::TaxRate'
+    order_taxes += adjustment.amount
+  # when 'Spree::Shipment'
+  #   order_shipping += adjustment.amount
+  # Changed to using the sum of order.shipments like in order_details.
+  end
+end
+
+order_shipping = order.shipments.inject(0) { |sum, shipment| sum + shipment.cost.to_f }
+
+# These are for sharesale and steelhouse params below,
+sku_list = order.line_items.map { |item| item.variant.sku }.join(",").gsub(" ", "%20")
+price_list = order.line_items.map { |item| sprintf('%.2f', item.price) }.join(",")
+quantity_list = order.line_items.map { |item| item.quantity }.join(",")
+
+%>
+
+<script>
+  ga('ecommerce:addTransaction', {
+    'id': '<%= order.number %>',
+    'affiliation': '<%= j Settings.google_analytics_affiliation %>',
+    'revenue': '<%= order.item_total %>',
+    'shipping': '<%= order_shipping %>',
+    'tax': '<%= order_taxes %>',
+    'currency': 'USD'
+  });
+
+<% order.line_items.each do |item| %>
+<%
+  @cms_product=Product.where(:spree_product_id=>item.variant.product_id).first
+  item_category = @cms_product.primary_category
+%>
+  ga('ecommerce:addItem', {
+    'id': '<%= order.number %>',
+    'name': '<%= item.product.name %>',
+    'sku': '<%= item.variant.sku %>',
+    'category': '<%= item_category %>',
+    'price': '<%= number_to_currency(item.price, :delimiter=>nil) %>',
+    'quantity': '<%= item.quantity %>',
+    'currency': 'USD'
+  });
+<% end %>
+
+ga('ecommerce:send');
+
+/* end google analytics ecommerce */
+
+/* Google Code for all sales Conversion Page */
+
+var google_conversion_id = 986814828;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "NS0CCPzr1wcQ7LLG1gM";
+var google_conversion_value = <%= order.item_total %>;
+var google_remarketing_only = false;
+
+</script>
+
+<% if Settings.heap_analytics_display %>
+<!-- Heap Analytics -->
+<script type="text/javascript">
+  Line.Track.heapEvent('Conversion', {
+    'id': '<%= order.number %>',
+    'affiliation': '<%= j Settings.google_analytics_affiliation %>',
+    'revenue': '<%= order.item_total %>',
+    'shipping': '<%= order_shipping %>',
+    'tax': '<%= order_taxes %>',
+    'currency': 'USD',
+    'value' : '<%= order.item_total %>',
+    });
+</script>
+<% end %>
+
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/986814828/?value=<%= order.item_total %>&amp;label=NS0CCPzr1wcQ7LLG1gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<% if Settings.effective_spend_analytics_display %>
+<!-- Effective Spend Conversion Pixel -->
+<script type=text/javascript>
+   var hostProtocol = (("https:" == document.location.protocol) ? "https" : "http");
+   document.write('<scr'+'ipt src="', hostProtocol+
+   '://105.xg4ken.com/media/getpx.php?cid=b135e7b7-6863-4868-8a9f-68efea9b535b','" type="text/JavaScript"><\/scr'+'ipt>');
+</script>
+<script type=text/javascript>
+   var params = new Array();
+   params[0]='id=b135e7b7-6863-4868-8a9f-68efea9b535b';
+   params[1]='type=conv';
+   params[2]='val=<%= order.total %>';
+   params[3]='orderId=<%= order.number %>';
+   params[4]='promoCode=none';
+   params[5]='valueCurrency=USD';
+   k_trackevent(params,'105');
+</script>
+
+<noscript>
+   <img src="https://105.xg4ken.com/media/redir.php?track=1&token=b135e7b7-6863-4868-8a9f-68efea9b535b&type=conv&val=<%= order.total %>&orderId=<%= order.number %>&promoCode=none&valueCurrency=USD" width="1" height="1"/>
+</noscript>
+<% end %>
+
+<% if Settings.shareasale_affiliate_display %>
+<!-- Shareasale Conversion Pixel -->
+<img src="//shareasale.com/sale.cfm?amount=<%= order.item_total %>&tracking=<%= order.number %>&transtype=sale&skulist=<%= sku_list %>&pricelist=<%= price_list %>&quantitylist=<%= quantity_list %>&merchantID=55717" width="1" height="1" alt="">
+<% end %>
+
+<% if Settings.hivewyre_analytics_display %>
+<!-- Hivewire Conversion Pixel -->
+<script src="https://js.b1js.com/tagcontainer.js?id=d0c779b048604fe58bbd50911b7ca241&type=0&order_id=<%= order.number %>&value=<%= order.item_total %>"></script>
+<% end %>
+
+<!-- Facebook Conversion Code for E-Commerce Transaction -->
+<script type="text/javascript">
+var fb_param = {};
+fb_param.pixel_id = '6015091885852';
+fb_param.value = '<%= order.item_total %>';
+fb_param.currency = 'USD';
+(function(){
+var fpw = document.createElement('script');
+fpw.async = true;
+fpw.src = '//connect.facebook.net/en_US/fp.js';
+var ref = document.getElementsByTagName('script')[0];
+ref.parentNode.insertBefore(fpw, ref);
+})();
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="//www.facebook.com/offsite_event.php?id=6015091885852&amp;value=<%= order.item_total %>&amp;currency=USD" /></noscript>
+
+<% if Settings.steelhouse_enabled %>
+<script>
+(function(){var x=null,p,q,m,
+o="11029",
+l="<%= order.number %>",
+i="<%= order.item_total %>",
+c="",
+k="<%= sku_list %>",
+g="<%= quantity_list %>",
+j="<%= price_list %>",
+u="",
+shadditional="";
+try{p=top.document.referer!==""?encodeURIComponent(top.document.referrer.substring(0,512)):""}catch(n){p=document.referrer!==null?document.referrer.toString().substring(0,512):""}try{q=window&&window.top&&document.location&&window.top.location===document.location?document.location:window&&window.top&&window.top.location&&""!==window.top.location?window.top.location:document.location}catch(b){q=document.location}try{m=parent.location.href!==""?encodeURIComponent(parent.location.href.toString().substring(0,512)):""}catch(z){try{m=q!==null?encodeURIComponent(q.toString().substring(0,512)):""}catch(h){m=""}}var A,y=document.createElement("script"),w=null,v=document.getElementsByTagName("script"),t=Number(v.length)-1,r=document.getElementsByTagName("script")[t];if(typeof A==="undefined"){A=Math.floor(Math.random()*100000000000000000)}w="dx.steelhousemedia.com/spx?conv=1&shaid="+o+"&tdr="+p+"&plh="+m+"&cb="+A+"&shoid="+l+"&shoamt="+i+"&shocur="+c+"&shopid="+k+"&shoq="+g+"&shoup="+j+"&shpil="+u+shadditional;y.type="text/javascript";y.src=("https:"===document.location.protocol?"https://":"http://")+w;r.parentNode.insertBefore(y,r)}());
+</script>
+<% end %>

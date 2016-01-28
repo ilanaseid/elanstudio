@@ -1,0 +1,9 @@
+<% @hero_contents.each do |content| %>
+  <%= image_tag content.default_image_url(:large) %>
+<% end %>
+
+<% @contents.each do |content| %>
+  <%= link_to friendly_path(content) do %>
+    <%= image_tag content.default_image_url(:feature) %>
+  <% end %>
+<% end %>

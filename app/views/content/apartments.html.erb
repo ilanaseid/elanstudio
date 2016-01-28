@@ -1,0 +1,57 @@
+<% content_for :title, "#{t('site.nav.apartment')} by The Line" %>
+
+<main class="bridge2">
+  <div class="to-wrapper">
+    <div class="row-fluid">
+      <div class="span6 offset5 text-center" style="padding-bottom: 30px;">
+        <h1 class="the-apartment-header text-center">The Apartment<span class="subhd">by The Line</span></h1>
+        <p class="center-margin the-apartment-header-description"><%= t('apartment.apartments_desc') %></p>
+      </div>
+    </div>
+
+    <% @apartments.each do |apartment| %>
+    <hr>
+    <div class="row-fluid each-apartment">
+      <div class="span3 center-on-small">
+        <h1 class="city-location" style="margin-bottom: 0;"><a href="/the_apartments/<%= apartment.basename %>"><%= apartment.reference_city || '' %></a></h1>
+        <!-- <span class="note accent center-on-small"><%# check_apartment_opening(apartment) %></span> -->
+        <p class="center-on-small address-block">
+          <a href="<%= apartment.map_url %>" target="_blank"><%= apartment.address.html_safe || '' %></a><br>
+          <%= apartment.phone_number || '' %>
+        </p>
+        <div class="center-on-small appointments-block">
+          <h3 class="sectionhd"><%= t('appointments.heading.appointments') %></h3>
+          <%= render 'appointment_widget' %>
+        </div>
+        <p class="center-on-small learn-more"><a href="/the_apartments/<%= apartment.basename %>">Look inside <%= t('site.nav.apartment') %><br><span class="icon_rightShort"></span></a></p>
+      </div>
+      <div class="span12 offset1">
+        <% if apartment.default_content_block.content_assets.any? %>
+          <a href="/the_apartments/<%= apartment.basename %>"><%= simple_picture_tag(apartment.default_content_block.content_assets[0],:large, :alt=>"", :class=>"apt-image") %></a>
+        <% else %>
+          <%= image_tag('http://placehold.it/640x480', :class => 'apt-image')  %>
+        <% end %>
+      </div>
+
+        <div class="span3 offset1 events-container">
+          <h3 style="margin-top: 20px;" class="sectionhd keep-left"><%= t('apartment.heading.upcoming_events') %></h3>
+          <p class="small-p"><%= t('apartment.no_upcoming_events') %></p>
+        </div>
+        <div class="span3 offset1">
+          <h3 style="margin-top: 20px;" class="sectionhd"><%= t('apartment.heading.hours') %></h3>
+          <p class="small-p">
+             <%= apartment.hours.html_safe %><br>
+              or <a href="#" data-brickwork-reveal-modal="appointment-widget-6">by appointment</a>
+          </p>
+        </div>
+        <div class="span3 offset1">
+          <h3 style="margin-top: 20px;" class="sectionhd keep-left">Contact</h3>
+          <p class="small-p">
+            <a href="<%= 'mailto:' + apartment.email.html_safe  %>"><%= apartment.email.html_safe %></a><br>
+            <%= apartment.phone_number %>
+          </p>
+        </div>
+   </div>
+    <% end %>
+  </div>
+</main>

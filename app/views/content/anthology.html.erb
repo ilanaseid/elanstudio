@@ -1,0 +1,25 @@
+<% content_for :title, "Anthology" %>
+<% content_for :nav_title, "Anthology" %>
+<% content_for :canonical_url, @content_anothology_path %>
+
+
+<div class="bridge2">
+  <main>
+     <div class="row-fluid page-description">
+      <div class="offset5 span6">
+        <h1 class="gamma text-center">The Stories: Anthology</h1>
+        <p class="text-center">Explore The Stories by type: chapters collected into thematic volumes and shorter-form footnotes.</p>
+      </div>
+    </div><!--/.row-fluid-->
+    <div class="row-fluid">
+      <div class="span16">
+        <ul class="anthologyList indexList">
+          <% @volumes.each do |volume| %>
+            <%= render :partial=>'volume_item_index', locals: {volume: volume} %>
+          <% end %>
+        </ul>
+      </div>
+    </div><!--/.row-fluid-->
+  </main>
+</div> <!--/.bridge2-->
+

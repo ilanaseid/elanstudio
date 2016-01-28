@@ -1,0 +1,124 @@
+<%
+size_heading = t('shop.sizing_heading')
+if (product.in_category?('home') || product.in_category?('art'))
+  size_heading = t('shop.notes_heading')
+elsif (product.in_category?('beauty'))
+  size_heading = t('shop.directions_heading')
+end
+%>
+
+<% cache product do %>
+<main>
+<div class="row-fluid row-stepped hproduct mainProduct <%= product_state_class(product) %> <%= product_status_class(product) %>" <%= !product.spree_product_id.nil? ? "data-spree-product-id=" + product.spree_product_id.to_s : '' %> data-inventory="">
+
+<% if !product.archived? %>
+  <%= render :partial=>'shop/product_detail_current', :locals=>{:product=>product, :size_heading=>size_heading} %>
+<% else %>
+  <%= render :partial=>'shop/product_detail_archived', :locals=>{:product=>product} %>
+<% end %>
+
+</div> <!-- /.row-fluid.row-stepped -->
+</main>
+<% end %>
+
+<% if (product.resolve_linked_contents.any? || product.related.any?) %>
+  <hr>
+  <div class="row-fluid">
+    <div class="bridge2 span16">
+      <h2 class="sectionhd"><%= t('headings.featured_in_shop') %></h2>
+    </div>
+    <%# RULES FOR MERCHANDISING BLOCK
+        Attempt to dispaly 4 products
+        First show 0-4 linked items as 'paired with'/manually merchadising
+        Then fill in with 0-4 products from matching subcategory
+
+        Logic:
+          * baseline case: 4 linked products
+          * baseline case: 0 linked contents
+          * otherwise we have to mix
+
+    %>
+
+    <% if product.resolve_linked_contents.length >= 4 %>
+      <div class="span16 relatedItemBlock relatedItemBlock-4">
+        <div class="bridge2">
+          <h3 class="itemhd"><%= t("product.grid_headings.paired_in_shop") %></h3>
+        </div>
+        <ul class="relatedItemList">
+          <% product.resolve_linked_contents(4).each do |paired_product| %>
+            <%= render :partial=>'shop/product_no_quickshop_grid', :locals=>{:product=>paired_product} %>
+          <% end %>
+        </ul> <!-- /.relatedItemList-->
+      </div> <!-- /.relatedItemBlock-->
+
+    <% elsif product.resolve_linked_contents.empty? %>
+      <div class="span16 relatedItemBlock relatedItemBlock-4">
+        <%# TBD: change primary category to new "primary subcategory" %>
+        <div class="bridge2">
+          <h3 class="gridhd"><%= t('product.grid_headings.related_in_shop') %></h3>
+        </div>
+        <ul class="relatedItemList">
+          <% product.related(4).each do |more_product| %>
+            <%= render :partial=>'shop/product_no_quickshop_grid', :locals=>{:product=>more_product} %>
+          <% end %>
+        </ul> <!-- /.relatedItemList-->
+      </div> <!-- /.relatedItemBlock-->
+
+
+    <% else %>
+      <% objects_remaining = 4 %>
+
+      <div class="span<%= product.resolve_linked_contents.length * 4 %> relatedItemBlock relatedItemBlock-<%= product.resolve_linked_contents.length %>">
+        <div class="bridge2">
+          <h3 class="gridhd"><%= t("product.grid_headings.paired_in_shop") %></h3>
+        </div>
+        <ul class="relatedItemList">
+          <% product.resolve_linked_contents(4).each do |paired_product| %>
+            <%= render :partial=>'shop/product_no_quickshop_grid', :locals=>{:product=>paired_product} %>
+            <% objects_remaining = objects_remaining - 1 %>
+          <% end %>
+        </ul> <!-- /.relatedItemList-->
+      </div> <!-- /.relatedItemBlock-->
+
+
+      <%# TBD: do we need to bother to detect for 0 items in this group? %>
+
+      <div class="span<%= objects_remaining * 4 %>  relatedItemBlock relatedItemBlock-<%= objects_remaining %>">
+        <%# TBD: change primary category to new "primary subcategory" %>
+        <div class="bridge2">
+          <h3 class="gridhd"><%= t('product.grid_headings.related_in_shop') %></h3>
+        </div>
+        <ul class="relatedItemList">
+          <% product.related(objects_remaining).each do |more_product| %>
+            <%= render :partial=>'shop/product_no_quickshop_grid', :locals=>{:product=>more_product} %>
+          <% end %>
+        </ul> <!-- /.relatedItemList-->
+      </div> <!-- /.relatedItemBlock-->
+
+    <% end %>
+
+
+
+  </div> <!-- /.row-fluid -->
+<% end %>
+<% if (product.related_stories(5).any?) %>
+  <hr>
+
+  <div class="bridge2 itemGrid-header">
+    <h2 class="sectionhd"><%= t('headings.featured_in_editorial') %></h2>
+    <h3 class="gridhd"><%= t('headings.featuring_this_object') %></h3>
+  </div> <!-- /.itemGrid-header"-->
+  <div class="itemGrid itemGrid-4">
+    <div class="grid-sizer"></div>
+    <div class="gutter-sizer"></div>
+    <ul class="storiesList">
+      <% product.related_stories(5).each_with_index do |story,index| %>
+        <% if (index == 0 && ((product.related_stories(5).count != 2) && (product.related_stories(5).count != 3))) %>
+          <%= render :partial=>'content/story_item_hero', :locals=>{:story=>story} %>
+        <% else %>
+          <%= render :partial=>'content/story_item', :locals=>{:story=>story} %>
+        <% end %>
+      <% end %>
+    </ul> <!-- /.storiesList -->
+  </div> <!-- /.itemGrid-4 -->
+<% end %>

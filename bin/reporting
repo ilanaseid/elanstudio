@@ -1,0 +1,2 @@
+#!/bin/sh
+HEROKU_APP=theline-reporting HKAPP=theline-reporting exec "${HEROKU_COMMAND:-heroku}" "$@"

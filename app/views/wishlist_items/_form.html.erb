@@ -1,0 +1,45 @@
+<%
+sizeRadioCollection = [];
+@product.spree_product.variants.each do |variant|
+  # if there is a size option selected coming in to this view, preset the checkbox to true
+  sizeRadioCollection << ["<span>#{variant.options_label}</span>".html_safe, variant.id, { :disabled => false, :checked => (variant.id == @spree_variant) } ]
+end
+%>
+
+<%= semantic_form_for @wishlist_item, :html => { :class => 'xhr' } do |f| %>
+  <%# only if variants exist, show size selector and related language %>
+
+  <% if @wishlist_item.errors.any? %>
+    <p class="note inline-errors">
+      <% @wishlist_item.errors.each do |field,message| %>
+        <%= message %>
+      <% end %>
+    </p>
+  <% end %>
+
+
+  <% if @product.spree_product.variants.any? %>
+    <p class="note">
+      <%= t('msg.addtowishlist_prompt_html', option_value: (@product.option_label_override ? 'an option' : 'a size' )) %>
+    </p>
+
+    <div class="sizeSelector">
+      <h5><%= @product.option_label_override || 'Size' %></h5>
+      <ol class="pl">
+        <%= f.input :spree_variant_id, :as=>:radio, :collection=>sizeRadioCollection, :label => false %>
+      </ol>
+    </div>
+  <% else %>
+    <p class="note">
+      <%= t('msg.addtowishlist_prompt_nosizeoptions_html') %>
+    </p>
+    <%= f.input :spree_variant_id, :as=>:hidden %>
+  <% end %>
+
+
+
+  <%= f.actions do %>
+    <%= f.submit t('actions.submit_form') %>
+  <% end %>
+<% end %>
+

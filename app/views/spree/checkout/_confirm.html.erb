@@ -1,0 +1,12 @@
+
+<%= render :partial => 'spree/shared/order_details', :locals => { :order => @order, :context => 'confirm' } %>
+
+
+<div class="row-fluid">
+  <div class="span4 offset10">
+
+    <fieldset class="actions">
+      <%= submit_tag Spree.t(:place_order), :class => 'btn-em continue button primary' %>
+    </fieldset>
+  </div>
+</div> <!-- /.row-fluid -->

@@ -1,0 +1,1153 @@
+/* _grid.scss
+	Reusable Grid Spec
+
+  * compass bootstrap grid mixin
+  * Shared Grid Spec (.row-fluid) & Modifiers
+  * 16 col Grid Spec (.row-fluid)
+  * 12 col gird spec - no gutter (lightbox)
+  * Masonry Grid Spec
+  * Stepped Grid (2c / product)
+  * Item list
+  * Item Scroller (temporary?)
+  * Individual product item
+  * Product State & Label Customizing
+  * Product Item Interaction States
+  * Feature List
+  * Text Columns
+  * Page Title
+*/
+
+
+
+
+/* bootstrap sass grid mixin -
+------------------------------------------- */
+// Grid system builder for fixed, responsive and input grids
+// https://github.com/ericdfields/compass-bootstrap
+// https://gist.github.com/ericdfields/1724908
+
+@mixin clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin gridSystem(
+    $type: fixed, // fixed | responsive | input
+    $columns: $gridColumns,
+    $columnWidth: if($type == responsive, $fluidGridColumnWidth, $gridColumnWidth),
+    $gutterWidth: if($type == responsive, $fluidGridGutterWidth, $fluidGridGutterWidth)
+  ){
+  @if $type == fixed {
+    .row {
+      margin-left: $gutterWidth * -1;
+      @include clearfix;
+    }
+    [class*="span"] {
+      float: left;
+      margin-left: $gutterWidth;
+    }
+    @for $i from 1 through $columns {
+      @if $i == $columns {
+        .span#{$i},.container { width: ($columnWidth * $i) + ($gutterWidth * ($i - 1)); }
+      } @else {
+        .span#{$i} { width: ($columnWidth * $i) + ($gutterWidth * ($i - 1)); }
+      }
+    }
+    @for $i from 1 through $columns {
+      @if $i != $columns {
+        .offset#{$i} { margin-left: ($columnWidth * $i) + ($gutterWidth * ($i - 1)) + ($gutterWidth * 2); }
+      }
+    }
+  } @else if $type == responsive {
+    .row-fluid {
+      width: 100%;
+      @include clearfix;
+      > [class*="span"] {
+        float: left;
+        margin-left: $gutterWidth;
+        min-height: 1px;
+        // &:first-child {
+        //   margin-left: 0;
+        // }
+        &:last-child {
+          margin-right: $gutterWidth;
+        }
+      }
+      @for $i from 1 through $columns {
+        .span#{$i} { width: ($columnWidth * $i) + ($gutterWidth * ($i - 1));
+      }
+
+
+		@if $i != $columns {
+			//.offset#{$i} { margin-left: ($columnWidth * $i) + ($gutterWidth * ($i)) + ($gutterWidth * 2) !important; }
+			.offset#{$i} { margin-left: ($columnWidth * $i) + ($gutterWidth * ($i - 1)) + ($gutterWidth * 2) !important; }
+		}
+      }
+    }
+  } @else if $type == input {
+    input,textarea,.uneditable-input {
+      @for $i from 1 through $columns {
+        &.span#{$i} { width: (($gridColumnWidth) * $i) + ($gridGutterWidth * ($i - 1)) - 10; }
+      }
+    }
+  }
+}
+
+
+
+/* Shared Grid Spec (.row-fluid) & Modifiers
+------------------------------------------- */
+.row-fluid {
+  width: 100%;
+  margin-bottom: 21px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  @media #{$query-notsmall} {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// todo: guess this combo is a mistake, otherwise killed by source order
+.row-fluid.pl {
+  padding-left: 0;
+  padding-right: 0;
+
+  @media #{$query-notsmall} {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+// row-fluid that collapses preview margins
+// similar mechanics to .down-zed / header measurements
+@media #{$query-notsmall} {
+  .row-fluid.up-margin {
+    margin-top: -21px;
+  }
+}
+
+// special column type that allows positioning
+
+@media #{$query-notsmall} {
+  .row-fluid.with-bottom {
+    position: relative;
+  }
+
+  .row-fluid .bottom {
+
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+/* 16 col Grid Spec (.row-fluid)
+------------------------------------------- */
+// total width: 1310px
+// column width : 60px
+// gutter width : 20px
+$colWidth: 60/1300*100%;
+$gutterWidth: 20/1300*100%;
+
+@media #{$query-notsmall} {
+  @include gridSystem(responsive, 16, $colWidth, $gutterWidth);
+}
+
+
+/* 12 col gird spec - no gutter (lightbox)
+------------------------------------------- */
+// total width: 940px
+// column width : 60px
+// gutter width : 20px
+
+@media #{$query-notsmall} {
+  $colWidthLightbox: 58/940*100%;
+  $gutterWidthLightbox: 20/940*100%;
+  .mfp-wrap {
+    @include gridSystem(responsive, 12, $colWidthLightbox, $gutterWidthLightbox);
+  }
+
+
+  $colWidthLightbox: 58 / (8*60+7*20) * 100%;
+  $gutterWidthLightbox: 20 / (8*60+7*20) * 100%;
+  .mfp-wrap {
+    .lb-wrap-8 {
+      @include gridSystem(responsive, 8, $colWidthLightbox, $gutterWidthLightbox);
+    }
+
+  }
+}
+
+/* Masonry Grid Spec
+------------------------------------------- */
+
+// grid heading, should follow the grid patterns
+
+.itemGrid-header,
+.itemGrid-footer {
+  margin: 0 auto 21px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  @media #{$query-itemgrid-step0} {
+    width: grid-math($col16, $baseWidth);
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @media #{$query-itemgrid-step3} {
+    width: grid-math($col12, $baseWidth);
+  }
+}
+
+.itemGrid-3-footer {
+  @media #{$query-itemgrid-step1} {
+    width: grid-math($col16, $baseWidth);
+  }
+  @media #{$query-itemgrid-step2} {
+    width: grid-math($col14, $baseWidth);
+  }
+  @media #{$query-itemgrid-step3} {
+    width: grid-math($col14, $baseWidth);
+  }
+
+}
+
+// item grid spec
+.itemGrid {
+  // default all to 2 up on 16c
+  /* 1300 - (60*4) - (20*6) = */
+  // width: 72.307692%; /* 940 / 1300 */
+  margin: 0 auto;
+
+  padding-left: 10px;
+  padding-right: 10px;
+
+  // start at 2 columns / 16c
+  width: grid-math($col16, $baseWidth);
+
+  .grid-sizer {
+    width: grid-math($col8, $col16);
+  }
+  .gutter-sizer {
+    width: grid-math($gutter1, $col16);
+  }
+  .pl {
+    margin: 0;
+  }
+  .item {
+    width: grid-math($col8, $col16);
+  }
+
+  @media #{$query-itemgrid-step0} {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &.withQuickshopBuffer {
+    @media #{$query-itemgrid-step0} {
+      margin-bottom: 240px;
+    }
+  }
+
+  &.withShowMore {
+    @media #{$query-itemgrid-step0} {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+
+.itemGrid-3 {
+  @media #{$query-itemgrid-step1} {
+    // move to 1/3 of 16c (special maths)
+    width: grid-math($col16, $baseWidth);
+
+    .grid-sizer {
+      width: grid-math((($col16 - (2 * $gutter1)) / 3), $col16);
+
+    }
+    .gutter-sizer {
+      width: grid-math($gutter1, $col16);
+    }
+    .item {
+      width: grid-math((($col16 - (2 * $gutter1)) / 3), $col16);
+    }
+  }
+  @media #{$query-itemgrid-step2} {
+    // move to 1/3 of 14c (special maths)
+    width: grid-math($col14, $baseWidth);
+
+    .grid-sizer {
+      width: grid-math((($col14 - (2 * $gutter1)) / 3), $col14);
+    }
+    .gutter-sizer {
+      width: grid-math($gutter1, $col14);
+    }
+    .item {
+      width: grid-math((($col14 - (2 * $gutter1)) / 3), $col14);
+    }
+  }
+}
+
+
+
+// 4 up grid
+.itemGrid-4 {
+
+  @media #{$query-itemgrid-step1} {
+    // move to 4up on 16c
+    width: grid-math($col16, $baseWidth);
+
+    .grid-sizer {
+      width: grid-math($col4, $col16);
+    }
+    .gutter-sizer {
+      width: grid-math($gutter1, $col16);
+    }
+    .item {
+      width: grid-math($col4, $col16);
+    }
+  }
+
+  @media #{$query-itemgrid-step3} {
+    //move to 4 up on 12c
+    width: grid-math($col12, $baseWidth);
+
+    .grid-sizer {
+      width: grid-math($col3, $col12);
+    }
+    .gutter-sizer {
+      width: grid-math($gutter1, $col12);
+    }
+    .item {
+      width: grid-math($col3, $col12);
+    }
+  }
+
+}
+
+// 8 up grid
+.itemGrid-8 {
+  // start at 4up / 16c
+  width: grid-math($col16, $baseWidth);
+  margin-bottom: 100px;
+
+  .grid-sizer {
+    width: grid-math($col4, $col16);
+  }
+  .gutter-sizer {
+    width: grid-math($gutter1, $col16);
+  }
+  .item {
+    width: grid-math($col4, $col16);
+  }
+
+  @media #{$query-itemgrid-step1} {
+    // move to 8up on 16c
+    width: grid-math($col16, $baseWidth);
+
+    .grid-sizer {
+      width: grid-math($col2, $col16);
+    }
+    .gutter-sizer {
+      width: grid-math($gutter1, $col16);
+    }
+    .item {
+      width: grid-math($col2, $col16);
+    }
+  }
+
+  @media #{$query-itemgrid-step3} {
+    //move to 8up up on 12c
+    width: grid-math($col12, $baseWidth);
+
+    .grid-sizer {
+      width: grid-math(90, $col12); // 940 - 220 / 8
+    }
+    .gutter-sizer {
+      width: grid-math($gutter1, $col12);
+    }
+    .item {
+      width: grid-math(90, $col12); // 940 - 220 / 8
+    }
+  }
+
+}
+
+
+@media #{$query-itemgrid-small} {
+  .itemGrid {
+    .item {
+      width: 100%;
+    }
+  }
+  .itemGrid-8 {
+    margin-bottom: 0;
+    // these should mimic like img.half
+    .item {
+      float: left;
+      width: grid-math((($col9 - 6) / 2), $col9);
+      width: calc(50% - 3px);
+      position: static !important;
+
+      &:nth-child(even) {
+        margin-left: grid-math(6, $col9);
+        margin-left: calc(6px);
+        clear: right;
+      }
+
+      &:nth-child(odd) {
+        clear: left;
+      }
+    }
+  }
+}
+
+// generic proudct item styles
+.itemGrid {
+  .item {
+    height: auto;
+    transform: translateZ(0); // attempted hack for Chrome 38 rendering glitches
+    img {
+      width: 100%;
+    }
+  }
+}
+
+
+/* Stepped Grid (2c / product)
+------------------------------------------- */
+// NOTE: this is a hacky customization to take a fluid grid and make some sizes "stepped"
+// IMPORTANT: this is really only designed for a start of 9+7+gutter, all other spans will behave as originally designed
+// extra classes are for clarification, won't apply any behavior
+.row-stepped {
+  position: relative;
+
+  .span-stepped {
+    // nothing
+  }
+  .span9 {
+    // start at normal 9c / 16c
+    img {
+      float: left;
+    }
+
+    img.half {
+      width: grid-math((($col9 - 6) / 2), $col9);
+      width: calc(50% - 3px);
+      clear: left;
+
+      &:nth-child(even) {
+        clear: none;
+        margin-left: grid-math(6, $col9);
+        margin-left: calc(6px);
+      }
+    }
+
+    picture:nth-child(even) {
+      img.half {
+        clear: none;
+        margin-left: grid-math(6, $col9);
+        margin-left: calc(6px);
+      }
+    }
+
+    @media #{$query-notsmalltopnav} {
+      // recalc as 8c / 16c
+      width: grid-math($col8, $col16plus2);
+    }
+
+  }
+  .span7 {
+    clear: left;
+
+    @media #{$query-notsmall} {
+      clear: none;
+    }
+
+    // start at normal 7c / 16c
+    @media #{$query-notsmalltopnav} {
+      // recalc as 8c / 16c
+      width: grid-math($col8, $col16plus2);
+    }
+    @media #{$query-rowstepped-step1} {
+      // recalc as 7c / 16c
+      width: grid-math($col7, $col16plus2);
+    }
+    @media #{$query-rowstepped-step2} {
+      // recalc as 6c / 16c
+      width: grid-math($col6, $col16plus2);
+    }
+    @media #{$query-rowstepped-step3} {
+      // recalc as 5c / 16c
+      width: grid-math($col5, $col16plus2);
+    }
+  }
+
+  .backToProductTop {
+    display: none;
+
+    @media #{$query-notsmall} {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: grid-math(($col9 + $gutter1), $col16);
+    }
+
+    @media #{$query-notsmalltopnav} {
+      left: grid-math(($col8 + $gutter1), $col16);
+    }
+  }
+
+  // rules for sticky column
+  .span7.sc-active {
+    top: $topnav-itemheight;
+  }
+
+  .sc-active+.backToProductTop {
+    display: none;
+  }
+}
+
+
+/* Item list
+------------------------------------------- */
+
+.itemList {
+  @extend .pl;
+}
+
+/* Item List Block
+------------------------------------------- */
+
+
+
+/* homepage category list block
+------------------------------------------- */
+.categoryLists {
+  // mimic 2 up / see related block
+  .itemListBlock {
+    float: left;
+    width: grid-math(245, 500);
+    margin-left: grid-math(10, 500);
+
+    &:nth-child(odd) {
+      clear: left;
+      margin-left: 0;
+    }
+  }
+
+  h3,
+  .gamma {
+    text-align: center;
+  }
+
+  h2,
+  .gamma {
+    text-align: center;
+  }
+
+  // NOTE: change column span behavior similar to .itemGrid-3
+  // 3 up on 16c until 1024px
+  // 1025px + 3 up on 14c
+
+  @media #{$query-notsmall} {
+    // mimic 12c/16c - override the span16 code
+    // width: $col12 / $col16 * 100%;
+    width: 100%;
+    margin: 0 auto;
+    background: pink;
+
+    // mimic 3 up
+    .itemListBlock {
+      width: grid-math((($col16 - (2 * $gutter1)) / 3), $col16);
+      margin-left: grid-math($gutter1, $col16);
+
+      &:nth-child(odd) {
+        clear: none;
+        margin-left: grid-math($gutter1, $col16);
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  @media #{$query-1024-plus} {
+    width: grid-math($col14, $col16);
+
+    // mimic 3 up
+    .itemListBlock {
+      width: grid-math((($col14 - (2 * $gutter1)) / 3), $col14);
+      margin-left: grid-math($gutter1, $col14);
+
+      &:nth-child(odd) {
+        clear: none;
+        margin-left: grid-math($gutter1, $col14);
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+/* Related Item Block & List
+------------------------------------------- */
+// restart a few cases anew
+.relatedItemBlock-2,
+.relatedItemBlock-3,
+.relatedItemBlock + .relatedItemBlock-1 {
+  clear: left;
+
+  @media #{$query-notsmall} {
+    clear: none;
+  }
+}
+
+// start 2 up, left aligned, go to 4 up (or 2 up next to 2 up)
+.relatedItemList {
+  @extend .pl;
+
+  li {
+    float: left;
+    width: grid-math(245, 500);
+    margin-left: grid-math(10, 500);
+
+
+    &:nth-of-type(odd) {
+      margin-left: 0;
+    }
+  }
+}
+
+
+.relatedItemBlock-1 .relatedItemList {
+  li {
+    @media #{$query-notsmall} {
+
+      width: grid-math($col4, $col4);
+      margin-left: grid-math($gutter1, $col4);
+
+      &:nth-of-type(odd) {
+        margin-left: grid-math($gutter1, $col4);
+      }
+
+      &:nth-of-type(4n+1) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.relatedItemBlock-2 .relatedItemList {
+  li {
+    @media #{$query-notsmall} {
+
+      width: grid-math($col4, $col8);
+      margin-left: grid-math($gutter1, $col8);
+
+      &:nth-of-type(odd) {
+        margin-left: grid-math($gutter1, $col8);
+      }
+
+      &:nth-of-type(4n+1) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.relatedItemBlock-3 .relatedItemList {
+  li {
+    @media #{$query-notsmall} {
+
+      width: grid-math($col4, $col12);
+      margin-left: grid-math($gutter1, $col12);
+
+      &:nth-of-type(odd) {
+        margin-left: grid-math($gutter1, $col12);
+      }
+
+      &:nth-of-type(4n+1) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.relatedItemBlock-4 .relatedItemList {
+  li {
+    // float: left;
+    // width: (3*60 + 2*20) / (12*60 + 11*20) * 100%;
+    // margin-left: 20 / (12*60 + 11*20) * 100%;  // 1 gutter width based on 1300px / 12 cols+11 gutter
+
+
+    &:nth-of-type(odd) {
+      // margin-left: 20 / (12*60 + 11*20) * 100%;
+      // margin-left:
+      clear: left;
+    }
+    &:nth-of-type(4n+1) {
+      // margin-left: 0;
+    }
+
+    @media #{$query-notsmall} {
+      width: grid-math($col4, $col16);
+      margin-left: grid-math($gutter1, $col16);
+
+      &:nth-of-type(odd) {
+        clear: none;
+        margin-left: grid-math($gutter1, $col16);
+      }
+
+      &:nth-of-type(4n+1) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+/* Individual product item
+------------------------------------------- */
+
+.item,
+.item.hproduct { // need specificity to fight .bridge2
+  padding-bottom: 21px;
+  background: #fff;
+  font-size: 12px;
+  line-height: 14px;
+
+  img {
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .item-image {
+    overflow: hidden;
+
+    a {
+      position: relative;
+      display: block;
+    }
+
+    .item-status {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.6);
+      @include transition(background 0.3s ease-in-out);
+
+      span {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        //margin-top: -8px;
+        //padding-bottom: 4px;
+        font-size: 12px;
+        width: 100%;
+        color: $grey-dark;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .item-content {
+    position: relative;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0);
+  }
+
+  .item-header {
+    // width: 60%;
+
+    a {
+      color: $grey-dark;
+      text-decoration: none;
+
+      &:hover,
+      &:active {
+        color: $grey-med;
+        text-decoration: underline;
+      }
+    }
+    .brand {
+      display: inline-block;
+      width: 70%;
+    }
+  }
+
+  .item-more {
+    white-space: nowrap;
+  }
+
+  .icon_rightShort {
+    margin-right: 3px;
+  }
+
+  .item-hover {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    width: 40%;
+    text-align: right;
+    color: $grey-dark;
+
+    span {
+      color: transparent;
+    }
+  }
+
+  .item-meta {
+    margin-top: 8px;
+    display: none;
+    color: $grey-med;
+
+    p {
+      margin-bottom: 6px;
+    }
+  }
+
+  // note: repeated in product detail (_views.scss)
+  .product-messages,
+  .form-messages {
+    min-height: 18px;
+    margin: 0;
+    font-size: 12px;
+    line-height: 14px;
+
+    p {
+      margin: 0;
+    }
+  }
+  .product-messages {
+    margin-top: 4px;
+  }
+  .form-messages {
+    margin-bottom: 4px;
+  }
+
+  .sizeSelector,
+  .sizeSelector .pl {
+    margin-bottom: 0;
+  }
+
+  .actions {
+    margin: 0;
+  }
+
+  input[type=submit],
+  button,
+  .btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+}
+
+// Small item
+.item.small {
+  position: relative;
+
+  a {
+    position: relative;
+    display: block;
+  }
+
+  .item-hover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: auto;
+    width: 100%;
+    height: auto;
+    padding: 2px;
+    opacity: 0;
+    background-color: rgba(255,255,255,0.8);
+    @include transition(opacity 0.3s ease-in-out);
+    // outline: 1px red solid;
+
+    // .item-header {
+    //   position: absolute;
+    //   background: green;
+    // }
+
+    .fn {
+      display: block;
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      // height: 100%;
+      padding: 2px;
+      color: inherit;
+
+      text-align: left;
+      // background: pink;
+
+      &:hover,
+      &:focus {
+
+      }
+    }
+  }
+
+  @media #{$query-notsmall} {
+    a {
+      &:hover,
+      &:focus {
+        text-decoration: none;
+
+        .item-hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+
+/* Product State & Label Customizing
+------------------------------------------- */
+
+// states without the faded hover state
+.item.hproduct.state-current,
+.item.hproduct.state-external {
+  .item-status {
+    background: rgba(255,255,255,0);
+  }
+
+  // but not these
+  &.status-out_of_stock {
+    .item-status {
+      background: rgba(255,255,255,0.6);
+    }
+  }
+}
+
+// sale label customizations
+.item.hproduct.status-on_sale {
+  .item-status {
+    border-top: 1px solid $grey-dark;
+    span {
+      top: 11px;
+    }
+  }
+  // always show
+  .item-hover {
+    color: $grey-dark;
+
+    span {
+      color: $grey-dark;
+    }
+    span.price_markdown {
+      color: $gold;
+    }
+  }
+}
+
+
+/* Product Item Interaction States
+------------------------------------------- */
+
+.item.active {
+  .item-hover {
+    span {
+      color: $grey-dark;
+    }
+    span.price_markdown {
+      color: $gold;
+    }
+
+  }
+  .item-status {
+    background: rgba(255,255,255,0) !important;
+  }
+}
+@media #{$query-notsmall} {
+  // standin for no-touch / iOS using tap for hover
+  .item:hover {
+    .item-hover {
+      span {
+        color: $grey-dark;
+      }
+      span.price_markdown {
+        color: $gold;
+      }
+
+    }
+    .item-status {
+      background: rgba(255,255,255,0) !important;
+    }
+  }
+}
+
+// clicked / open state
+.item.active {
+  .item-content {
+    border-color: $grey-dark;
+  }
+
+  .item-meta {
+    display: block;
+    overflow: hidden;
+    visibility: hidden; // TBD: temporary hack?
+  }
+}
+
+
+/* Feature List
+------------------------------------------- */
+.featureList {
+  @extend .pl;
+
+  li {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  li:first-child {
+    border-bottom: $border-default;
+  }
+
+  h3,
+  .gamma {
+    text-align: center;
+  }
+
+  @media #{$query-notsmall} {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    li {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    li:first-child {
+      border-bottom: none;
+    }
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  h2 a {
+    text-decoration: underline;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: normal;
+    color: $grey-dark;
+  }
+
+  .subhd {
+    color: $grey-dark;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+  }
+}
+
+
+/* Text Columns
+------------------------------------------- */
+dl.textcols {
+  dt,
+  dd {
+    // @include column-break-inside(avoid);
+    line-height: 17px;
+  }
+  dt {
+    @include column-break-inside(avoid);
+    @include column-break-after(avoid);
+  }
+  dd {
+    @include column-break-before(avoid);
+    margin-bottom: 0;
+    margin-bottom: 21px;
+  }
+  ul {
+    @include column-break-before(avoid);
+  }
+  li {
+    @include column-break-after(auto);
+  }
+
+}
+
+// First, a list of the possible widths we will calculate two columns for.
+// Note: col1-col3 are currently not calculated, but help sync index value nicely from 1-16.
+$textcols-list: $col1 $col2 $col3 $col4 $col5 $col6 $col7 $col8 $col9 $col10 $col11 $col12 $col13 $col14 $col15 $col16;
+
+// From span4 through span16, calculate the appropriate values for 2 column text, based on our list.
+@for $textcol-width from 4 through 16 {
+  .span#{$textcol-width} .textcols {
+  $textcols-gutter-width: grid-math($gutter1, nth($textcols-list, $textcol-width));
+  @include column-count(2);
+  @include column-gap($textcols-gutter-width);
+  }
+}
+
+// undo targeted mobile textcols
+@media #{$query-small} {
+  .textcols {
+    margin-bottom: 21px; // match p
+  }
+
+  .row-fluid .textcols-onesmall {
+    @include column-count(1);
+  }
+}
+
+
+
+/* Page Title
+------------------------------------------- */
+// container spaced proportionately between grid and top nav
+.page-title {
+  margin-bottom: 14px;
+
+  @media #{$query-notsmalltopnav} {
+    margin-bottom: 33px;
+  }
+
+  h2, .beta {
+    font-size: 24px;
+    line-height: 1em;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    @media #{$query-largetype} {
+      &.tag {
+        margin-top: 30px;
+      }
+    }
+  }
+}

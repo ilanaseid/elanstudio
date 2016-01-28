@@ -1,0 +1,29 @@
+<% content_for :title, "The Stories" %>
+<% content_for :nav_title, "All Stories" %>
+<% content_for :canonical_url, @content_stories_path %>
+
+<% cache cache_buster do %>
+<div class="bridge2">
+  <main>
+     <div class="row-fluid page-description">
+      <div class="span4 offset6">
+        <h1 class="gamma text-center">The Stories: Chronology<sup><%= @stories.count %></sup></h1>
+        <p class="text-center">Explore The Stories in chronological order, with the most recent at top.</p>
+      </div>
+    </div><!--/.row-fluid-->
+    <hr>
+
+    <ul class="storiesList chronologyList">
+      <% @stories.each do |story| %>
+        <%= render :partial=>'story_item_chronology', locals: {story: story} %>
+      <% end %>
+    </ul>
+
+    <div class="row-fluid">
+      <div class="span8 offset4">
+        <%= paginate @stories, theme: 'theline' %>
+      </div>
+    </div>
+  </main>
+</div> <!--/.bridge2-->
+<% end %>

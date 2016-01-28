@@ -1,0 +1,31 @@
+<div class="row-fluid">
+  <div class="span8 offset4">
+    <h1>The Line Reports Generator</h1>
+      <%= render :partial => 'shared/error_messages' %>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span4 offset4">
+    <%= form_tag("/reports", method: "post") do %>
+      <%= label_tag(:email, "Email to send report to:") %>
+      <%= text_field_tag(:email, @user.email) %>
+      <%= label_tag(:report_name, "Report:") %>
+      <%= select_tag(:report_name, options_for_select(@reports)) %>
+      <br><br>
+      <%= submit_tag "Email Report", class: "report_submit_tag" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span6 offset4">
+    <h1>Customer Purchase History Generator</h1>
+    <%= form_tag("reports/user_purchase_data", method: "post") do %>
+      <%= label_tag(:email, "Customer Email:") %>
+      <%= text_field_tag(:email) %>
+      <br><br>
+      <%= submit_tag "Generate Report", class: "report_submit_tag" %>
+    <% end %>
+  </div>
+</div>

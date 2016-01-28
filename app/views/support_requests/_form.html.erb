@@ -1,0 +1,11 @@
+<%= semantic_form_for (@support_request || SupportRequest.new(request_type: (defined?(:request_type) ? request_type : 'default'))), :html => { :class => "json" } do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :email, :label => t('fields.email') %>
+    <%= f.input :comment, :label => t('fields.comment'),  :input_html => {:rows => 10} %>
+    <%= f.input :request_type, :as=>:hidden %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input, :label=> t('actions.submit_form') %>
+  <% end %>
+<% end %>

@@ -1,0 +1,47 @@
+<dl>
+  <dt><%= t('account.headings.newsletter') %> <%= link_to t('account.headings.edit'), main_app.edit_email_preference_path, {class: 'xhr-partial-trigger', data: {'xhr-partial-target': '.email-preferences-container'}} %></dt>
+
+  <% if email_preference.subscribed.present? %>
+    <dd>
+      <% if flash[:notice] %>
+        <div class="form-messages">
+          <p class="alert alert-track"><%= flash[:notice] %></p>
+        </div>
+      <% end %>
+      <p class="down-3"><%= t('account.manage_newsletter.subscribed_to') %></p>
+      <ul>
+        <% email_preference.subscribed.each do |list| %>
+
+          <% if list.email_interest_groups.any? && list.displays_groups_as_lists %>
+
+            <% list.email_interest_groups.each do |group_as_list| %>
+              <% if email_preference.subscribed_groups.include?(group_as_list) %>
+                <%= render partial: 'shared/email_list_item', locals: {list: group_as_list } %>
+              <% end %>
+            <% end %>
+
+          <% else # if a list has no groups, display it as-is %>
+            <%= render partial: 'shared/email_list_item', locals: {list: list } %>
+          <% end %>
+        <% end %>
+      </ul>
+    </dd>
+  <% end %>
+
+  <% if email_preference.not_subscribed.present? || email_preference.unsubscribed_groups.present? %>
+    <dd>
+      <p><%= t('account.manage_newsletter.not_subscribed_to') %><br>
+      <%= t('account.manage_newsletter.click_to_manage') %></p>
+      <ul>
+        <% email_preference.not_subscribed.each do |list| %>
+          <%= render partial: 'shared/email_list_item', locals: {list: list } if !list.displays_groups_as_lists %>
+        <% end %>
+
+        <% email_preference.unsubscribed_groups.each do |group_as_list| %>
+          <%= render partial: 'shared/email_list_item', locals: {list: group_as_list } %>
+        <% end %>
+      </ul>
+  <% end %>
+
+</dl>
+

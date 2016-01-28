@@ -1,0 +1,90 @@
+<% content_for :title, "#{t('site.nav.search')} — #{params[:search]}" %>
+
+<div class="row-fluid">
+  <div class="span6 offset5 text-center">
+    <h2 class="sectionhd"><%= t('search.results_for') %></h2>
+    <h1 class="zed hide"><%= params[:search] %></h1>
+  </div>
+</div>
+
+<div class="row-fluid up-margin">
+  <div class="span10 offset3">
+    <%= render partial: 'shared/search_form', :locals => { :search_term => params[:search]} %>
+  </div>
+</div>
+
+<hr>
+
+<% if @results_type == 'stories' %>
+  <%# tbd: this is the same block used on content/brand.html.erb %>
+  <% if @results.any? %>
+    <div class="itemGrid-header">
+      <p><%= t('search.results_from') %> <%= t('search.the_stories') %></p>
+    </div> <!-- /.itemGrid-header"-->
+    <div class="itemGrid itemGrid-4">
+      <div class="grid-sizer"></div>
+      <div class="gutter-sizer"></div>
+      <ul class="storiesList">
+        <% @results.each do |story| %>
+          <%= render :partial=>'content/story_item', :locals=>{:story=>story} %>
+        <% end %>
+      </ul> <!-- /.storiesList -->
+    </div> <!-- /.itemGrid-4 -->
+  <% end %>
+<% end # stories results %>
+
+<% if @results_type == 'objects' %>
+  <%# TBD: This isn't really working ?? is there always a @results, so we need to test something else? %>
+  <% if @results.any? %>
+    <div class="itemGrid-header">
+      <p><%= t('search.results_from') %> <%= t('search.the_objects') %> </p>
+    </div>
+    <div class="itemGrid itemGrid-4">
+      <div class="grid-sizer"></div>
+      <div class="gutter-sizer"></div>
+      <ul class="pl">
+        <% @results.each do |product| %>
+          <% if product._type == 'Product' %> <%# TBD: temporary fix for #55239770 %>
+            <%= render :partial=>'shop/product_no_quickshop_grid', :locals=>{:product=>product} %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div> <!-- /.itemGrid -->
+  <% end %>
+<% end # objects results %>
+
+
+<% if @results_type == 'selections' %>
+  <% if @results.any? %>
+    <div class="itemGrid-header" id="selections_results">
+      <p><%= t('search.results_from') %> <%= t('search.selections') %></p>
+    </div> <!-- /.itemGrid-header"-->
+    <div class="itemGrid itemGrid-4">
+      <div class="grid-sizer"></div>
+      <div class="gutter-sizer"></div>
+      <ul class="selectionsList">
+        <% @results.each do |selection| %>
+          <%= render :partial=>'shop/selection_item', :locals=>{:selection=>selection} %>
+        <% end %>
+      </ul> <!-- /.storiesList -->
+    </div> <!-- /.itemGrid-4 -->
+  <% end %>
+<% end %>
+
+<hr class="results-bottom-spacer">
+ <div class="row-fluid">
+    <div class="span8 offset4">
+      <%= paginate @results, theme: 'theline' %>
+      <% if @results_type == 'objects' %>
+        <%= render :partial=>'shared/pagination_prefs', :locals=>{paged_content: @results } %>
+      <% end %>
+    </div>
+  </div>
+
+
+<div class="row-fluid">
+  <div class="span6 offset1">
+    <p class="arr"> <%= t('search.go_back_to_all_results_html', url: shop_search_path(search: params[:search], utf8: params[:utf8]), search: params[:search]) %></p>
+  </div>
+</div>
+

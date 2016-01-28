@@ -1,0 +1,119 @@
+
+/* utilities.scss
+  generic, reusable parts and tools for use in writing SCSS with output
+  elsewhere in the project.
+
+  * Abstracted utility classes
+  * SVG icon support
+*/
+
+
+/* Abstracted utility classes
+------------------------------------------- */
+
+.hide {
+  display: none;
+}
+
+.tbd {
+  margin: 2em;
+  padding: 0.5em;
+  background: #ffffb6;
+  clear: both;
+}
+
+.gridBackground {
+  background-position: 0 0;
+  background-repeat: repeat-y;
+  background-image: url('data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%05%14%00%00%00P%01%03%00%00%00R%D9kv%00%00%00%06PLTE%CC%CC%CC%FF%FF%FF%D3%8D%15v%00%00%00%5BIDATx%5E%ED%CE1%0D%00%20%10%04%C1w%82%7Fw%A7%80%27%21%28%80%D0%CDV%5BNu%A7v%1Fn%9E%1BO%17F%C6%DBcddddddddddddddddddddddddddddddddddddddddddddddd%5C8j%C5%C4S%B4%989%00%00%00%00IEND%AEB%60%82');
+  @include background-size(100%);
+}
+
+.trackingpixel {
+  display: none;
+}
+
+
+/* SVG Icon Support
+------------------------------------------- */
+
+/* Kellum Method: http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/ */
+.r {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  background-size: cover;
+}
+
+// replaced sprited content
+@mixin iconproperties($which) {
+  @extend .r;
+  height: image-height('icons/icon_'+$which+'.png');
+  width: image-width('icons/icon_'+$which+'.png');
+}
+
+@mixin iconafterproperties($which) {
+  &:after {
+    @extend .r;
+    content: "";
+    margin-left: 6px;
+    position: relative;
+    height: image-height('icons/icon_'+$which+'.png');
+    width: image-width('icons/icon_'+$which+'.png');
+  }
+}
+
+.icon_jcb { @include iconproperties('jcb'); }
+.icon_dinersclub { @include iconproperties('dinersclub'); }
+.icon_americanexpress { @include iconproperties('americanexpress'); }
+.icon_visa { @include iconproperties('visa'); }
+.icon_mastercard { @include iconproperties('mastercard'); }
+.icon_discover { @include iconproperties('discover'); }
+
+.icon_downCaret { @include iconproperties('downCaret'); }
+.icon_downCaret-white { @include iconproperties('downCaret-white'); }
+.icon_left { @include iconproperties('left'); }
+.icon_leftShort { @include iconproperties('leftShort'); }
+.icon_menu { @include iconproperties('menu'); }
+.icon_mobileNavLeft { @include iconproperties('mobileNavLeft'); }
+.icon_mobileNavRight { @include iconproperties('mobileNavRight'); }
+.icon_plus { @include iconproperties('plus'); }
+.icon_right { @include iconproperties('right'); }
+.icon_rightShort { @include iconproperties('rightShort'); }
+.icon_search { @include iconproperties('search'); }
+.icon_up { @include iconproperties('up'); }
+.icon_upCaret{ @include iconproperties('upCaret'); }
+.icon_upCaret-white{ @include iconproperties('upCaret-white'); }
+.icon_close-white{ @include iconproperties('close-white'); }
+.icon_upSmall{ @include iconproperties('upSmall'); }
+
+.icon_close-white-ia{ @include iconproperties('close-white'); }
+.icon_downCaret-ia { @include iconafterproperties('downCaret'); }
+.icon_downCaret-white-ia { @include iconafterproperties('downCaret-white'); }
+.icon_left-ia { @include iconafterproperties('left'); }
+.icon_leftShort-ia { @include iconafterproperties('leftShort'); }
+.icon_menu-ia { @include iconafterproperties('menu'); }
+.icon_mobileNavLeft-ia { @include iconafterproperties('mobileNavLeft'); }
+.icon_mobileNavRight-ia { @include iconafterproperties('mobileNavRight'); }
+.icon_plus-ia { @include iconafterproperties('plus'); }
+.icon_right-ia { @include iconafterproperties('right'); }
+.icon_rightShort-ia { @include iconafterproperties('rightShort'); }
+.icon_search-ia { @include iconafterproperties('search'); }
+.icon_up-ia { @include iconafterproperties('up'); }
+.icon_upCaret-ia { @include iconafterproperties('upCaret');}
+.icon_upCaret-white-ia { @include iconafterproperties('upCaret-white');}
+.icon_upSmall-ia { @include iconafterproperties('upSmall'); }
+
+/* visual adjustment for icons */
+
+input[type=submit],
+button,
+a.btn {
+  .icon_plus {
+    margin-right: 1px;
+  }
+  .icon_upSmall {
+    margin-right: 2px;
+  }
+}

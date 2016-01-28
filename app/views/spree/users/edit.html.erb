@@ -1,0 +1,11 @@
+<% if params[:change_password] == 'true' %>
+
+  <%= render :partial => 'spree/users/password_form', :locals => { :user => @user } %>
+
+<% else %>
+
+  <%= render :partial => 'spree/shared/user_form_account_page', :locals => { :user => @user } %>
+
+<% end %>
+
+<%= render :partial=>"spree/shared/spree_bottom" %>

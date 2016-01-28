@@ -1,0 +1,17 @@
+  <meta property="og:site_name" content="<%= t('site.the_line') %>">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta property="fb:app_id" content="247864752023107">
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+
+<% if content_for?(:meta_description) %>
+  <meta name="description" content="<%= yield :meta_description %>">
+  <meta name="og:description" content="<%= yield :meta_description %>">
+<% else %>
+  <meta name="description" content="<%= t('site.base_meta_description') %> <%= Settings.contact_info.service_phone %>">
+  <meta name="og:description" content="<%= t('site.base_meta_description') %> <%= Settings.contact_info.service_phone %>">
+<% end %>
+
+<% if content_for?(:canonical_url) %>
+  <link rel="og:url" href="<%= j Settings.canonical_url_root %><%= yield :canonical_url%>">
+  <link rel="canonical" href="<%= j Settings.canonical_url_root %><%= yield :canonical_url%>">
+<% end %>

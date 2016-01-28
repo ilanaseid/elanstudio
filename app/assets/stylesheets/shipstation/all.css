@@ -1,0 +1,213 @@
+/* _layout.scss
+  strutural layout bits
+
+  * Embedded Font Data
+  * Typography
+  * Layout
+*/
+
+/* Embedded Font Data
+------------------------------------------- */
+
+
+/*
+This CSS resource incorporates links to font software which is the valuable copyrighted
+property of Monotype Imaging and/or its suppliers. You may not attempt to copy, install,
+redistribute, convert, modify or reverse engineer this font software. Please contact Monotype
+Imaging with any questions regarding Web Fonts:  http://webfonts.fonts.com
+*/
+
+@import url("http://fast.fonts.net/t/1.css?apiType=css&projectid=75a8fa95-0144-4851-96bb-72e79d5a4a03");
+@font-face{
+font-family:"Sabon Next W01 Display_R3";
+src:url("c79a1b5e-cbfb-4d98-bd9b-980d559cc595.eot?#iefix") format("eot")
+}
+@font-face{
+font-family:"Sabon Next W01 Display";
+src:url("c79a1b5e-cbfb-4d98-bd9b-980d559cc595.eot?#iefix");
+src:url("c79a1b5e-cbfb-4d98-bd9b-980d559cc595.eot?#iefix") format("eot"),url("0ec59a8b-e91f-45d4-928d-f864aa5a36c5.woff") format("woff"),url("abd429d8-ec4d-4446-b19f-b9bff66efbd1.ttf") format("truetype"),url("213756cc-2525-43ae-9fcc-76da813a4717.svg#213756cc-2525-43ae-9fcc-76da813a4717") format("svg");
+font-weight: 300;
+font-style: Regular;
+}
+@font-face{
+font-family:"Sabon Next W01_i4";
+src:url("d21223cc-1baa-4908-a7f3-31f3ac4466d8.eot?#iefix") format("eot")
+}
+@font-face{
+font-family:"Sabon Next W01";
+src:url("d21223cc-1baa-4908-a7f3-31f3ac4466d8.eot?#iefix");
+src:url("d21223cc-1baa-4908-a7f3-31f3ac4466d8.eot?#iefix") format("eot"),url("a1a8e1e5-7387-45ce-96bb-70af11ca66c0.woff") format("woff"),url("7fa25463-c847-4def-849d-9ce9fd6a8878.ttf") format("truetype"),url("4d387d5f-db42-47e0-9c4b-62cd5174a9ff.svg#4d387d5f-db42-47e0-9c4b-62cd5174a9ff") format("svg");
+font-weight: 400;
+font-style: italic;
+}
+@font-face{
+font-family:"Sabon Next W01_n7";
+src:url("e7cf7dde-4c17-42f1-8570-32fd8d5fd6f0.eot?#iefix") format("eot")
+}
+@font-face{
+font-family:"Sabon Next W01";
+src:url("e7cf7dde-4c17-42f1-8570-32fd8d5fd6f0.eot?#iefix");
+src:url("e7cf7dde-4c17-42f1-8570-32fd8d5fd6f0.eot?#iefix") format("eot"),url("952c2825-2ba9-448a-8375-492e78886fc9.woff") format("woff"),url("99f2ba52-d5f4-46b2-bb31-fd4f1f2b8d65.ttf") format("truetype"),url("c64c09ef-6c2d-46b1-9390-d7e9bfc0fd8f.svg#c64c09ef-6c2d-46b1-9390-d7e9bfc0fd8f") format("svg");
+font-weight: 700;
+font-style: normal;
+}
+@font-face{
+font-family:"Sabon Next W01_n4";
+src:url("5a9b7009-6bac-4b26-b5ff-15ea67d4117d.eot?#iefix") format("eot")
+}
+@font-face{
+font-family:"Sabon Next W01";
+src:url("5a9b7009-6bac-4b26-b5ff-15ea67d4117d.eot?#iefix");
+src:url("5a9b7009-6bac-4b26-b5ff-15ea67d4117d.eot?#iefix") format("eot"),url("9bbfbdbd-1ab0-4d8f-80d8-c690ab217070.woff") format("woff"),url("35fd1f96-599b-4392-b501-8b8fe5146b1a.ttf") format("truetype"),url("451477dd-a1aa-48c1-bcf9-27bb631eb04c.svg#451477dd-a1aa-48c1-bcf9-27bb631eb04c") format("svg");
+font-weight: 400;
+font-style: normal;
+}
+
+/* Typography
+------------------------------------------- */
+
+.display {
+  font-family: 'Sabon Next W01 Display','Sabon Next W01 Regular', Garamond, "Apple Garamond", Georgia, serif;
+  font-weight: normal;
+}
+
+*,
+th,
+td {
+  font-family: 'Sabon Next W01', Garamond, "Apple Garamond", Georgia, serif;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 16pt;
+  line-height: 19pt;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 11pt;
+  line-height: 14pt;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 7.5pt;
+  line-height: 10pt;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+p,
+th,
+td {
+  font-size: 7.5pt;
+  line-height: 10pt;
+  font-weight: normal
+}
+
+p.alt {
+  font-size: 11pt;
+  line-height: 14pt;
+}
+
+.marker {
+  display: block;
+  font-size: 16pt;
+  line-height: 13px;
+  margin-bottom: 6px;
+}
+
+.note {
+  font-style: italic;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.user_value {
+  display: block;
+  height: 1.4em;
+  margin: 0 2px;
+  border-bottom: 1px solid #000;
+
+}
+
+
+/* Layout
+------------------------------------------- */
+
+html,
+body,
+.header {
+  margin-top: 0;
+}
+
+.logo {
+  margin-bottom: 20px;
+  display: block;
+  margin: 0 auto;
+}
+
+.row {
+  clear: both;
+  page-break-inside: avoid;
+}
+
+.column {
+  display: block;
+  float: left;
+}
+
+.box {
+  /*border-bottom: 1px solid #000;*/
+  /*min-height: 1in;*/
+  page-break-before: avoid;
+}
+.box:after {
+  display: block;
+  height: 2in;
+  overflow: hidden;
+  content: " ";
+  border-bottom: 1px solid #000;
+  -webkit-transform: scaleY(0.5);
+  -moz-transform: scaleY(0.5);
+  -ms-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead,
+th {
+  background-color: transparent;
+  color: black;
+}
+
+th,
+td {
+  /*margin: 2px;*/
+}
+
+hr {
+  height: 1px;
+  border: none;
+  background-color: #000;
+  outline: none;
+  -webkit-transform: scaleY(0.5);
+  -moz-transform: scaleY(0.5);
+  -ms-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+th {
+  /*border-bottom: 1px solid #000;*/
+}
+
+
+.page-break {
+  page-break-after: always;
+}

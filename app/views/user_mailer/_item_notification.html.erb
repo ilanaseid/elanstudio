@@ -1,0 +1,19 @@
+<% variant = notification.spree_variant %>
+<% product = variant.product.cms_product %>
+<% utm_prefix = "MainNotify-Section#{i}" %>
+
+<a href="<%= shop_product_url(product.basename, utm_options(@date_integer, "#{utm_prefix}-ProductImage", @campaign)) %>" target="_blank">
+<%= image_tag product.default_image_url(:grid), style: "width:100%; height:auto; border:none;", alt: "#{product.brand.title} — #{product.title}" %></a><br>
+<br>
+<font style="font-size: 14px; line-height:21px; font-family:'Sabon Next W01',Garamond,'Apple Garamond',Times,serif; color:rgb(65,64,66); text-decoration:none; !important;">
+<%= product.brand.title %><br>
+<%= product.title %><br>
+<% size_values = variant.option_values.collect {|o| o.presentation }.join(' - ') %></font>
+<% if size_values.length > 0 %>
+  <font style="font-size: 14px; line-height:21px; font-family:'Sabon Next W01',Garamond,'Apple Garamond',Times,serif; color:rgb(65,64,66); text-decoration:none; !important;">Size : <%= size_values %><br></font>
+<% end %>
+<% if variant.default_location_count_on_hand < 4 %>
+  <font color="#9e6f55" style="font-size: 14px; line-height: 21px; font-family:'Sabon Next W01',Garamond,'Apple Garamond',Times,serif; text-decoration: none; !important;">Only a few left</font><br>
+<% end %>
+<%= image_tag("icons/rightShort.png") %>
+<%= link_to " See more details", shop_product_url(product.basename, utm_options(@date_integer, "#{utm_prefix}-SeeDetails", @campaign)) , style: "font-family:'Sabon Next W01',Garamond,'Apple Garamond',Times,serif; font-size: 14px; line-height: 21px; color: #414042; text-decoration: underline; !important; margin-left: 3px", target: "_blank" %> <br>

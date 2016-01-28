@@ -1,0 +1,23 @@
+<script id="template-bottombanner" type="text/x-handlebars-template">
+<div class="banner banner-fixedbottom-2">
+  <button title="Close" type="button" class="btn-remove">×</button>
+  <div class="banner_step banner_step-0" style="max-width: 1800px">
+    <div class="row-fluid">
+      <div class="span5">
+        <h2 class="beta">Welcome to The Line.<br>Let’s stay in touch.</h2>
+      </div>
+      <div class="span5 offset1">
+        <h3 class="gamma2">Be First In Line</h3>
+        <p>Subscribe for priority access to our latest arrivals, seasonal sales, and special events.</p>
+      </div>
+      <div class="span4 offset1" id="abtestFormTarget">
+        <%= render :partial=>"email_subscribers/form", :locals=>{:context=>'bottom_banner'} %>
+      </div>
+    </div><!-- /.row-fluid -->
+  </div> <!-- /.banner_step -->
+      <div class="banner_step banner_step-1 hide" style="max-width: 1800px">
+        <p class="gamma">Subscribe to discover the people, ideas, and process behind quintessential things. What is the best way to contact you?</p>
+      </div>
+  </div> <!-- /.row-fluid -->
+</div> <!-- /.banner -->
+</script>

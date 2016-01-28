@@ -1,0 +1,37 @@
+<%
+# "sizeRadioCollection" is collection used for all "sizeSelector" widget instances
+sizeRadioCollection = [];
+@product.spree_product.variants.each do |variant|
+  sizeRadioCollection = sizeRadioCollection.push(["<span>#{variant.options_label}</span>".html_safe, variant.id, { :disabled => (!@product.coming_soon? && variant.default_location_count_on_hand > 0) } ])
+end
+%>
+
+    <%= semantic_form_for @product_notification, :html => { :class=>'xhr' } do |f| %>
+      <%# TBD if not an anonymous user, info is not on file, so request it %>
+      <%= f.inputs do %>
+        <%= f.input :name, :input_html => { :value => @product_notification.name } %>
+        <%= f.input :email, :as => :email, :input_html => { :value => @product_notification.email } %>
+      <% end %>
+      <%# TBD end %>
+
+      <%# only if variants exist, show size selector and related language %>
+      <% if @product.spree_product.variants.any? %>
+        <p class="note">
+          <%= t('msg.notifyme_prompt_html') %>
+        </p>
+
+        <div class="sizeSelector">
+          <h5>Size</h5>
+          <ol class="pl">
+            <%= f.input :spree_variant_id, :as=>:radio, :collection=>sizeRadioCollection, :label => false %>
+          </ol>
+        </div>
+      <% else %>
+        <%= f.input :spree_variant_id, :as=>:hidden %>
+      <% end %>
+
+      <%= f.actions do %>
+        <%= f.submit t('actions.submit_form') %>
+      <% end %>
+    <% end %>
+

@@ -1,0 +1,25 @@
+<li id="item_<%= footnote.basename %>" class="footnote item index row-fluid">
+  <div class="item-marker offset1 span1">
+    <%= t('site.footnote_abbr')+ " "%><%= footnote.footnote_number %>
+  </div>
+  <div class="item-image offset1 span5">
+    <% if footnote.assets_for_placement(:primary).any? %>
+      <%= link_to footnote_path(footnote.basename) do %>
+        <%= simple_picture_tag(footnote.assets_for_placement(:primary)[0], :grid, :options => { :alt => "#{t('site.footnote_label')} #{footnote.footnote_number} — #{footnote.title}"}) %>
+      <% end %>
+    <% end %>
+  </div> <!-- /.item-image -->
+  <div class="item-content offset1 span6">
+    <div class="footnote-date"><%= footnote.publish_at.strftime('%B %d, %Y') %></div>
+  <div class="footnote-title">
+  <%= link_to footnote_path(footnote.basename) do %>
+    <%= footnote.title %>
+  <% end %>
+  </div>
+    <div class="category-labels"><%= editorial_flags(footnote) %></div>
+    <div class="item-body">
+      <p class="description"><%= footnote.short_description %></p>
+      <div class="icon-right"><%= link_to footnote.title, footnote_path(footnote.basename), :class=>'icon_mobileNavRight' %></div>
+    </div>
+  </div>
+</li>

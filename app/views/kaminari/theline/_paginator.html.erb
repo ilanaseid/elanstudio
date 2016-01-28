@@ -1,0 +1,37 @@
+<%# The container tag
+  - available local variables
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+    paginator:     the paginator that renders the pagination tags inside
+-%>
+<%= paginator.render do -%>
+  <nav class="pagination numeric_pagination">
+    <ol class="nav">
+    <%#= first_page_tag unless current_page.first? %>
+    <li><span class="prev">
+      <% if current_page.first? %>
+        <span class="bigPrev icon_left disabled"></span>
+      <% else %>
+        <%= prev_page_tag %>
+      <% end %>
+    </span></li>
+    <% each_page do |page| -%>
+      <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
+        <%= page_tag page %>
+      <% elsif !page.was_truncated? -%>
+        <%= gap_tag %>
+      <% end -%>
+    <% end -%>
+    <li><span class="next">
+      <% if current_page.last? %>
+        <span class="bigNext icon_right disabled"></span>
+      <% else %>
+        <%= next_page_tag %>
+      <% end %>
+    </span></li>
+    <%#= last_page_tag unless current_page.last? %>
+    </ol>
+  </nav>
+<% end -%>

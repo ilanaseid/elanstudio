@@ -1,0 +1,8 @@
+<%= render :partial => 'shared/error_messages', :locals => { :target => @user } %>
+<dl>
+  <dt>Contact Info <%= link_to "Edit", spree.edit_account_path, {class: 'xhr-partial-trigger', data: {'xhr-partial-target': '.contact-info-container'}} %></dt>
+  <dd class="down-3">
+    <%= @user.firstname %> <%= @user.lastname %><br>
+    <%= @user.email %>
+  </dd>
+</dl>

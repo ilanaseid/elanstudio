@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html style="margin:0; padding:0; position:relative;">
+
+<body style="margin:0; padding:0; background:#ffffff; color: #404041; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; position: relative;" bgcolor="#ffffff" color="#000000" align="center">
+
+<table class="header" width="100%">
+<tr>
+  <td align="center" valign="top">
+    <%= link_to image_tag("mailer/logo_theline_small.png", { :alt => t('site.the_line'), :width=>"94", :height=>"21", :class=>"logo" }), root_url %>
+  </td>
+</tr>
+</table>
+
+<br><br>
+
+<hr size="1" style="color: #E5E5E5; background: #E5E5E5; height: 1px; border: 0; width: 100%; position: absolute; top: 250px;">
+
+<%= yield %>
+
+<br><br>
+
+<table class="footer" width="100%">
+<tr>
+  <td align="center" valign="top" style="background: #fff; color: #BBBDC0; font-size: 9px; font-weight: bold; letter-spacing: 1px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+    <p style="background: #fff; color: #BBBDC0; font-size: 9px; font-weight: bold; letter-spacing: 1px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+      <b><%= t('mailer.address') %><br>
+      <%= link_to t('site.nav.privacy_policy'), main_app.static_content_url('privacy_policy'), :style => "color: #BBBDC0; text-decoration: none" %></b>
+    </p>
+  </td>
+</tr>
+</table>
+</body>
+</html>

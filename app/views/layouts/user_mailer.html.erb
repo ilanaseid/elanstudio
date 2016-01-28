@@ -1,0 +1,229 @@
+<% layout_default_text = "font-family: 'Sabon Next W01', Garamond, 'Apple Garamond', Times, serif; font-size: 14px; line-height: 21px; color: #414042; !important;" %>
+<% layout_no_underline_link = "text-decoration: none; " + layout_default_text %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<style type="text/css">
+    /* CLIENT-SPECIFIC STYLES */
+    #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" message */
+    .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
+    body, table, td, a{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
+    table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up */
+    img{-ms-interpolation-mode:bicubic;} /* Allow smoother rendering of resized image in Internet Explorer */
+
+    /* RESET STYLES */
+    body{margin:0; padding:0;}
+    img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+    table{border-collapse:collapse !important;}
+    body{height:100% !important; margin:0; padding:0; width:100% !important;}
+
+    /* iOS BLUE LINKS */
+    .appleBody a {color:#68440a; text-decoration: none;}
+    .appleFooter a {color:#999999; text-decoration: none;}
+
+    /* Custom CSS */
+
+    td[class="header-padding"]{
+      padding: 40px 15px 0px 15px !important;
+    }
+
+    td[class="side-padding"]{
+      padding: 0px 5% 0px 5% !important;
+    }
+
+    td[class="section-padding"]{
+      padding: 10px 15px 10px 15px !important;
+    }
+
+    td[class="padding-copy"]{
+      padding: 10px 5% 10px 5% !important;
+      text-align: center;
+      }
+
+    td[class="copy"]{
+    }
+
+    /* MOBILE STYLES */
+    @media screen and (max-width: 525px) {
+
+        /* ALLOWS FOR FLUID TABLES */
+        table[class="wrapper"]{
+          width:100% !important;
+        }
+
+        /* ADJUSTS LAYOUT OF LOGO IMAGE */
+        td[class="logo"]{
+          text-align: left;
+          padding: 20px 0 20px 0 !important;
+        }
+
+        td[class="logo"] img{
+          margin:0 auto!important;
+        }
+
+        /* USE THESE CLASSES TO HIDE CONTENT ON MOBILE */
+        td[class="mobile-hide"]{
+          display:none;}
+
+        img[class="mobile-hide"]{
+          display: none !important;
+        }
+
+        img[class="img-max"]{
+          max-width: 100% !important;
+          height:auto !important;
+        }
+
+        /* FULL-WIDTH TABLES */
+        table[class="responsive-table"]{
+          width:100%!important;
+        }
+
+        /* UTILITY CLASSES FOR ADJUSTING PADDING ON MOBILE */
+        td[class="padding"]{
+          padding: 10px 5% 15px 5% !important;
+        }
+
+
+
+        td[class="padding-meta"]{
+          padding: 30px 5% 0px 5% !important;
+          text-align: center;
+        }
+
+        td[class="no-pad"]{
+          padding: 0 0 20px 0 !important;
+        }
+
+        td[class="no-padding"]{
+          padding: 0 !important;
+        }
+
+        td[class="section-padding-bottom-image"]{
+          padding: 50px 15px 0 15px !important;
+        }
+
+        /* ADJUST BUTTONS ON MOBILE */
+        td[class="mobile-wrapper"]{
+            padding: 10px 5% 15px 5% !important;
+        }
+
+        table[class="mobile-button-container"]{
+            margin:0 auto;
+            width:100% !important;
+        }
+
+        a[class="mobile-button"]{
+            width:80% !important;
+            padding: 15px !important;
+            border: 0 !important;
+            font-size: 16px !important;
+        }
+
+    }
+</style>
+</head>
+<body style="margin: 0; padding: 0;">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#ffffff" align="center" class="header-padding">
+      <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
+        <tr>
+          <td>
+            <!-- TITLE SECTION AND COPY -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="center">
+                  <%= link_to image_tag("mailer/logo_theline_small.png", { :alt => t('site.the_line'), :width=>"94", :height=>"21", :class=>"logo", :border=>"none", :style=>"border: none;"}), root_url %>
+                  <br><br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <hr size="1" style="color: #414042; background: #E5E5E5; border: 0; height: 1px;">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<%= yield %>
+
+
+<!-- Horizontal Rule -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#ffffff" align="center" class="side-padding">
+      <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
+        <tr>
+          <td>
+            <!-- TITLE SECTION AND COPY -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td>
+                 <hr size="1" style="color: #414042; background: #E5E5E5; border: 0; height: 1px;">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+
+
+<!-- FOOTER -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td bgcolor="#ffffff" align="center">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr>
+          <td style="padding: 20px 0px 20px 0px;">
+            <!-- UNSUBSCRIBE COPY -->
+            <table width="500" border="0" cellspacing="0" cellpadding="0" align="center" class="responsive-table">
+              <tr>
+                <td align="center">
+                  <strong style="color:rgb(96,96,96);font-family:Helvetica;font-size:11px;line-height:13.75px;text-align:center"><%= t('headings.find_us_on').upcase %><br>
+                    <% social_media = [['TWITTER', Settings.social_media.twitter_url], ['INSTAGRAM', Settings.social_media.instagram_url], ['FACEBOOK', Settings.social_media.facebook_url], ['PINTEREST', Settings.social_media.pinterest_url]]%>
+                    <% social_media.each do |social_link| %>
+                      <%= link_to social_link[0], social_link[1], :rel=>'external', style: "color:rgb(96,96,96);word-wrap:break-word;font-weight:normal;text-decoration:none;font-family:Helvetica;", target: "_blank" %>&nbsp; &nbsp;&nbsp;
+                    <% end %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-size: 14px; line-height: 21px; font-family: 'Sabon Next W01', Garamond, 'Apple Garamond', Times, serif; color: #414042;" class="padding-copy">
+                  <p style="font-size: 14px; line-height: 21px; color: #414042; text-decoration: none; !important;">
+                  <%= t('mailer.address_two_line_html') %></p>
+
+                  <p style="<% layout_default_text %>">Keep in touch: <a href="mailto:<%=Settings.contact_info.service_email%>" style="color: #414042; line-height: 21px;"><%=Settings.contact_info.service_email%></a>
+                  <font color="#BCBEC0">
+                  <br><%= t('mailer.footer_copyright_html') %>
+                  <br><%= t('mailer.footer_rights_reserved_html') %></font></p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>

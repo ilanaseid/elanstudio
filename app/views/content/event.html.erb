@@ -1,0 +1,100 @@
+<div class="bridge2">
+	<div class="to-wrapper">
+		<div class="events-show">
+
+			<div class="row-fluid">
+	      <div class="span12 offset2">
+	        <h1 class="the-apartment-header text-center">The Apartment<span class="subhd">By The Line</span></h1>
+	        <div class="small-divider"></div>
+	        <h2 class="text-center"><%= @apartment.title %></h2>
+	        <p class="text-center address"><%= @address.html_safe %></p>
+	        <p class="text-center hours"><%= check_apartment_opening(@apartment) %></p>
+	      </div>
+	    </div>
+
+			<hr>
+
+			<% if @is_past %>
+				<div class="subscribe-section">
+					<%= render 'past_event_subscribe' %>
+				</div>
+			<% end %>
+
+			<div class="events-section general-padding">
+				<div class="row-fluid">
+					<div class="span6 offset1">
+						<p class="when"><%= @event.subtitle %></p>
+						<div class="time-til"><%= time_till_event(@event.subtitle) %></div>
+					</div>
+					<div class="span8 offset2 indent">
+						<h2><%= @event.title %></h2>
+					</div>
+					<div class="span8 offset2">
+						<div class="indent">
+							<%= @event.content_block('historical_description').try(:body) %>
+						</div>
+						<div class="indent no-indent-on-small">
+							<% if @event.default_content_block.content_assets.any? %>
+                <%= simple_picture_tag(@event.default_content_block.content_assets[0],:medium, :alt=>"") %>
+              <% end %>
+            </div>
+            <h4 class="upcase">Location</h4>
+            <p class="no-margin">The Apartment by The Line - <%= @event.apartment.title %></p>
+            <p class="no-margin"><%= @event.apartment.address.html_safe %></p>
+					</div>
+					
+					<div class="span4">
+
+						<% if @is_past %>
+							<div class="event-info-block">
+								<h4 class="upcase no-top-m">Upcoming &amp; Ongoing Events</h4>
+								<% if @future_events.any? %>
+									<% @future_events.each do |event| %>
+										<li>
+											<div class="upcoming-event-box">
+												<p class="date"><%= event.subtitle %>,<br><%= trim_contact_info(event.apartment.address) %></p>
+												<p><%= event.title %></p>
+												<p class="learn-more"><a href="/events/<%= event.basename %>">Learn More About This Event<br><span class="icon_rightShort"></span></a></p>
+											</div>
+										</li>
+									<% end %>
+								<% else %>
+									<p>More events are in the making. Sign up for our newsletter at the top of the page to reveive updates.</p>
+								<% end %>
+							</div>
+						<% else %>
+							<div class="event-info-block">
+								<h4 class="upcase no-top-m">Location</h4>
+								<p><%= @apartment.address.html_safe %></p>
+							</div>
+							<div class="event-info-block">
+								<h4 class="upcase">Event Info</h4>
+								<% if @apartment.title == 'Soho' %>
+									<p><a href="mailto:theapartment@theline.com">theapartment@theline.com</a></p>
+									<p>1 646 678 4908</p>
+								<% else %>
+									
+								<% end %>
+							</div>
+							<div class="event-info-block">
+								<h4 class="upcase">RSVP</h4>
+								<p>Let us know by <%= event_rsvp_date(@event) %></p>
+								<p><a href="mailto:theapartment@theline.com">theapartment@theline.com</a></p>
+								<button class="btn">RSVP</button>
+							</div>
+						<% end %>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row-fluid">
+        <div class="span16">
+          <p class="no-margin">» View Stories inside the The Apartment New York: Devoted to Denim: The Line and Jean Stories welcome AMO</p>
+          <p class="no-margin">» Take a closer look at The Apartment by The Line – Los Angeles</p>
+        </div>
+      </div>
+
+		</div>
+	</div>
+</div>

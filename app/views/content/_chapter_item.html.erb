@@ -1,0 +1,16 @@
+<li id="item_<%= chapter.basename %>" class="chapter item">
+  <div class="item-image">
+    <% if chapter.assets_for_placement(:primary).any? %>
+      <%= link_to chapter_path(chapter.basename) do %>
+        <%= simple_picture_tag(chapter.assets_for_placement(:primary)[0], :grid, :options => { :alt => "#{t('site.chapter_label')} #{chapter.chapter_number} — #{chapter.title}"}) %>
+      <% end %>
+    <% end %>
+  </div> <!-- /.item-image -->
+  <div class="item-content">
+    <div class="item-header">
+        <span class="marker issue"><%= t('site.volume_abbr') %> <%= chapter.volume.volume_number %> <%= t('site.chapter_abbr') %> <%= chapter.chapter_number %></span>
+        <h3 class="title"><%= link_to chapter.title, chapter_path(chapter.basename) %></h3>
+      <i class="label"><%= editorial_flags(chapter) %></i>
+    </div>
+  </div> <!-- /.item-content -->
+</li>

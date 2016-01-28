@@ -1,0 +1,29 @@
+<h1>Listing apartment_requests</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Newsletter</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @apartment_requests.each do |apartment_request| %>
+  <tr>
+    <td><%= apartment_request.first_name %></td>
+    <td><%= apartment_request.last_name %></td>
+    <td><%= apartment_request.email %></td>
+    <td><%= apartment_request.newsletter %></td>
+    <td><%= link_to 'Show', apartment_request %></td>
+    <td><%= link_to 'Edit', edit_apartment_request_path(apartment_request) %></td>
+    <td><%= link_to 'Destroy', apartment_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Apartment request', new_apartment_request_path %>

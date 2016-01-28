@@ -1,0 +1,25 @@
+<div id="new_payment_method">
+<%#= image_tag 'credit_cards/credit_card.gif', :id => 'credit-card-image' %>
+<% param_prefix = "payment_source[#{payment_method.id}]" %>
+<ol>
+  <li class="input required" data-hook="card_number">
+    <%= label_tag "card_number", "<abbr title='required'>*</abbr>#{Spree.t(:card_number)}".html_safe %>
+    <% options_hash = Rails.env.production? ? {:autocomplete => 'off'} : {} %>
+    <%= text_field_tag "#{param_prefix}[number]", '', options_hash.merge(:id => 'card_number', :class => 'required', :size => 19, :maxlength => 19, :autocomplete => "off", :required => true) %>
+  </li>
+  <li class="input required" data-hook="card_expiration">
+    <%= label_tag "card_month",  "<abbr title='required'>*</abbr>#{Spree.t(:expiration)}".html_safe %>
+    <%= select_month(Date.today, { :prefix => param_prefix, :field_name => 'month', :use_month_numbers => true }, :class => 'required', :id => "card_month", :required => true, :style => 'width: 24%') %>
+    <%= select_year(Date.today, { :prefix => param_prefix, :field_name => 'year', :start_year => Date.today.year, :end_year => Date.today.year + 15 }, :class => 'required', :id => "card_year", :required => true, :style => 'width: 68%') %>
+  </li>
+  <li class="input" data-hook="card_code">
+    <%= label_tag "card_code",  "<abbr title='required'>*</abbr>#{Spree.t(:card_code)}".html_safe %>
+    <%= text_field_tag "#{param_prefix}[verification_value]", '', options_hash.merge(:id => 'card_code', :class => 'required', :size => 5, :required => true, :style => 'width: 40%') %>
+    <br>
+    <%# TBD: what to do with this?
+    <%= link_to "(#{Spree.t(:what_is_this)})", spree.content_path('cvv'), :target => '_blank', "data-hook" => "cvv_link", :id => "cvv_link" %>
+  </li>
+</ol>
+<%= hidden_field param_prefix, 'name', :value => "#{@order.billing_firstname} #{@order.billing_lastname}" %>
+
+</div>

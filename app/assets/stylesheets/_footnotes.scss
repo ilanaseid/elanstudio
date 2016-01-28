@@ -1,0 +1,161 @@
+/* _footnotes.scss
+  layout specs for footnotes details and items
+*/
+
+/* Footnotes Index
+------------------- */
+
+@include fallbackFontStackDisplay('.footnotes-items .footnote-title'); // TODO: Confirm as this is just 22px
+// @include fallbackFontStackDisplay('.footnotes-items .item-body .description'); // TODO: Confirm This is just 12px???
+
+.footnotes-items {
+  ul {
+    padding-left: 0;
+  }
+
+  li {
+      padding-top: 10px;
+      padding-bottom: 18px;
+      border-bottom: $border-default;
+      margin-bottom: 0;
+
+    @media #{$query-notsmall} {
+      padding-top: 28px;
+      padding-bottom: 28px;
+
+    }
+  }
+
+  .item-marker {
+    font-size: 10px;
+    margin-bottom: 10px;
+
+    @media #{$query-notsmall} {
+      margin-bottom: 0;
+    }
+  }
+
+  .item-content {
+    padding-left: 0;
+    padding-top: 0;
+  }
+
+  .footnote-date {
+    padding-top: 13px;
+    padding-bottom: 13px;
+    font-size: 10px;
+
+    @media #{$query-notsmall} {
+      padding-top: 0;
+      padding-bottom: 41px;
+    }
+
+    @media #{$query-largetype} {
+      padding-bottom: 45px;
+    }
+  }
+
+  .footnote-title {
+    font-size: 22px;
+    line-height: 26px;
+    padding-bottom: 13px;
+
+    a {
+      text-decoration: none;
+      &:hover,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+
+    @media #{$query-notsmall} {
+      padding-bottom: 14px;
+    }
+
+    @media #{$query-largetype} {
+      padding-bottom: 15px;
+    }
+  }
+
+  .category-labels {
+    font-size: 10px;
+    font-style: italic;
+    padding-bottom: 13px;
+
+    @media #{$query-notsmall} {
+      padding-bottom: 14px;
+    }
+
+    @media #{$query-largetype} {
+      padding-bottom: 15px;
+    }
+  }
+
+  .item-body {
+    .description {
+      font-size: 12px;
+      line-height: 18px;
+      padding-bottom: 13px;
+      margin-bottom: 0;
+
+      @media #{$query-notsmall} {
+        padding-bottom: 14px;
+      }
+
+      @media #{$query-largetype} {
+        padding-bottom: 15px;
+      }
+    }
+  }
+}
+
+/* Footnotes Detail
+------------------- */
+.footnote {
+  .share {
+    margin-bottom: 0;
+  }
+}
+
+.footnote-header {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 21px;
+
+  .footnote-marker {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .footnote-date {
+    text-align: center;
+    font-size: 12px;
+
+    @media #{$query-notsmall} {
+      text-align: left;
+    }
+  }
+
+  .category-labels {
+    font-size: 12px;
+     font-style: italic;
+     text-align: center;
+     margin-right: 0;
+
+     @media #{$query-notsmall} {
+      text-align: right;
+    }
+  }
+
+  .footnote-label {
+    font-size: 12px;
+    display: block;
+    text-align: center;
+
+    @media #{$query-notsmall} {
+
+    }
+  }
+}

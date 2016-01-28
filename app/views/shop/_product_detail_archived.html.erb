@@ -1,0 +1,42 @@
+<div class="span2 span-stepped">
+  <div class="top-header">
+    <div class="item-meta">
+      <%= product_status_span(product) %>
+    </div> <!-- /.item-meta -->
+
+    <div class="item-header">
+      <b><%= link_to product.brand.title, brand_path(product.brand.basename), :class=>'brand' %></b>
+      <h1 class="gamma fn"><%= product.title %></h1>
+      <div class="accent archived-product-message"><%= t('product.archived_product_message')%></div>
+    </div> <!-- /.item-header -->
+  </div> <!-- /.top-header -->
+
+  <% if product.default_content_block.content_assets.any? %>
+    <%= image_tag product.default_image_url(:grid), { :alt => "#{product.brand.title} — #{product.title}", :class=>"archived-image"} %>
+  <% else %>
+    <%= image_tag 'data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%14%00%00%00%14%01%00%00%00%00%A5%F2%20%A0%00%00%00%0EIDATx%01c%FC%CF%F0%91%9A%18%00%13%0A%26%D5u%94o%E1%00%00%00%00IEND%AEB%60%82', :width=>"100%" %>
+  <% end %>
+</div> <!-- /.span9 -->
+
+<div class="span7 span-stepped">
+  <div class="middle-header">
+    <div class="item-meta">
+      <%= product_status_span(product) %>
+    </div> <!-- /.item-meta -->
+
+    <div class="item-header">
+      <b><%= link_to product.brand.title, brand_path(product.brand.basename), :class=>'brand' %></b>
+      <h1 class="gamma"><%= product.title %></h1>
+      <div class="accent archived-product-message"><%= t('product.archived_product_message')%></div>
+      <div class="item-meta shop-designer">
+        <div class="item-status"><%= t('product.shop_by_designer')%></div>
+        <b><%= link_to product.brand.title, brand_path(product.brand.basename) %></b>
+      </div> <!-- /.item-meta -->
+      <div class="item-meta shop-categories">
+        <div class="item-status"><%= t('product.shop_by_category')%></div>
+        <b><%= link_to product.primary_category.titleize, main_app.shop_category_path(product.primary_category.downcase) %></b>
+        <b><%= link_to product.first_subcategory.titleize, main_app.shop_category_path(product.first_subcategory.downcase) %></b>
+      </div> <!-- /.item-meta -->
+    </div> <!-- /.item-header -->
+  </div> <!-- middle header -->
+</div> <!-- span7 -->

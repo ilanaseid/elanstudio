@@ -1,0 +1,18 @@
+<% content_for :spree_heading, t('site.nav.login') %>
+<% content_for :spree_span, "4" %>
+<% content_for :spree_offset, "6" %>
+<% content_for :title, "#{t('site.nav.account')} — #{t('site.nav.login')}" %>
+<% content_for :lb_wrap_size, "4" %>
+<%= render :partial=>"spree/shared/spree_top" %>
+
+<div id="existing-customer">
+  <div class="login" data-hook="login" data-show-modal="<%= ( !current_spree_user && session["spree_user_return_to"].nil? && JSON.parse(cookies["behavior"])["visits"] < 2 ) %>">
+    <%= render :partial => 'spree/shared/login' %>
+    <ul class="nav">
+      <li><%= link_to Spree.t(:create_a_new_account), spree.signup_path, :class => 'lb-same' %></li>
+      <li><%= link_to Spree.t(:forgot_password), spree.recover_password_path, :class => 'lb-same' %></li>
+    </ul>
+  </div>
+</div>
+
+<%= render :partial=>"spree/shared/spree_bottom" %>

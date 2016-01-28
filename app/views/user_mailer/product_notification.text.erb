@@ -1,0 +1,29 @@
+<% if @more_than_one %>
+They’re back.
+
+As someone who asked to be notified when these items were back in stock, you’re among the first to know, but please act fast, because quantities are limited.
+
+VIEW IN THE OBJECTS:
+  <% @notifications.each do |notification| %>
+    <% variant = Spree::Variant.find(notification.spree_variant_id) %>
+    <% product = variant.product.cms_product %>
+
+<% size_values = variant.option_values.collect {|o| o.presentation }.join(' - ') %>
+<%= product.brand.title %> <%= product.title %> <%= size_values.length > 0 ? " - Size: #{size_values}" : nil %>
+<%= shop_product_url(product.basename, utm_options(@date_integer, "Text-Only", @campaign)) %>
+
+  <% end %>
+
+<% else %>
+  <% notification = @notifications.first %>
+  <% variant = Spree::Variant.find(notification.spree_variant_id) %>
+  <% product = variant.product.cms_product %>
+  <% size_values = variant.option_values.collect {|o| o.presentation }.join(' - ') %>
+It's back: <%= product.brand.title %> <%= product.title %> <%= size_values.length > 0 ? "- Size: #{size_values}" : nil %>
+
+As someone who asked to be notified when this item was back in stock, you’re among the first to know, but please act fast, because quantities are limited.
+
+VIEW IN THE OBJECTS:
+<%= shop_product_url(product.basename, utm_options(@date_integer, "Text-Only", @campaign)) %>
+
+<% end %>

@@ -1,0 +1,282 @@
+/* _buttons.scss
+  button (input, button, link) styling
+
+  * Shared banner styling
+  * Inline Newsletter Banner
+  * Fixed Bottom Banner
+  * Pushdown Banner
+*/
+
+
+/* Shared banner styling
+------------------------------------------- */
+.banner {
+
+  .gamma2 {
+    // @extend .accent;
+  }
+
+  label {
+    display: none;
+  }
+}
+
+
+/* Inline Banner
+------------------------------------------- */
+.banner_inline {
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: 15px; // visally tweaked from 21px
+
+  @media #{$query-notsmall} {
+    width: grid-math($col6, $baseWidth);
+    min-width: 350px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  form {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+
+/* Fixed Bottom Banner
+------------------------------------------- */
+.banner-fixedbottom {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  background: rgba(255,255,255,0.9);
+  z-index: 1001;
+
+  p {
+    margin-bottom: 4px;
+  }
+
+  // make room for remove button
+  form,
+  .alert {
+    float: left;
+    max-width: 400px;
+    padding-top: 14px;
+  }
+
+  .alert {
+    padding-top: 39px;
+  }
+
+  .btn-remove {
+    color: $grey-med;
+    top: 0;
+    right: grid-math($gutter1, $baseWidth);
+    width: 12px; // TBD: why not make change universal & test? too small mobile UI?
+    height: 30px;
+    padding: 0;
+
+    &:active,
+    &:hover {
+      top: 0;
+      right: grid-math($gutter1, $baseWidth);
+    }
+  }
+
+  // separate heading from paragraph
+  @media #{$query-banner-notsmall} {
+    .span10 {
+      h3 {
+        float: left;
+        width: grid-math($col4, $col10);
+      }
+      p {
+        margin-top: 11px;
+        margin-left: grid-math(($col4 + $gutter1), $col10);
+      }
+    }
+
+    form {
+      padding-top: 2px;
+    }
+    .alert {
+      padding-top: 13px;
+    }
+  }
+
+  // keep centered to match content behavior
+  @media #{$query-oversized} {
+    width: $content-maxwidth;
+    left: 50%;
+    margin-left: $content-maxwidth * -0.5;
+  }
+}
+
+/* Fixed Bottom Banner - take 2
+------------------------------------------- */
+.banner-fixedbottom-2 {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: $white;
+  opacity: 0.96;
+  border-top: 1px solid $grey-med;
+  z-index: 2; // must be below .panel-mask
+  @include transition($offcanvaspanel-transition, all 0.3s ease-in-out);
+
+  .banner_step,
+  .banner_carousel {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 50px;
+  }
+
+  .banner_carousel {
+    max-width: 630px;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 12px;
+
+    @media #{$query-notsmall} {
+      margin-bottom: 0;
+    }
+  }
+
+  input[type=submit] {
+    background-color: $grey-dark;
+    color: $white;
+  }
+
+  h2,
+  .beta {
+    line-height: 36px;
+    font-size: 32px;
+    @media only screen and (min-width: 621px) and (max-width: 1010px) {
+      font-size: 28px;
+    }
+  }
+
+  h3 {
+    @media #{$query-notsmall} {
+      padding-top: 8px;
+    }
+  }
+
+  #abtestFormTarget {
+    @media #{$query-notsmall} {
+      padding-top: 8px;
+    }
+  }
+
+  .actions {
+    margin-top: 12px;
+  }
+
+  .singlefield {
+    max-width: none;
+  }
+
+  // to align left with paragraph text: TODO: should we always?
+  .btn-text {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  // TODO: why is this different here????
+  li.input .inline-errors {
+    margin-bottom: 0;
+  }
+
+  // keep centered to match content behavior
+  @media #{$query-oversized} {
+    width: $content-maxwidth;
+    left: 50%;
+    margin-left: $content-maxwidth * -0.5;
+  }
+}
+
+
+// PUSHDOWN BANNER
+.pushdown-banner-header, .pushdown-banner-content {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.pushdown-banner-header {
+  display: none;
+  z-index: 300;
+  height: 38px;
+  background-color: #333;
+  h1 {
+    color: #FFF;
+    font-size: 14px;
+    line-height: 38px;
+    text-align: center;
+    margin: 0;
+    cursor: default;
+    span:first-child {
+      display: none;
+      @media #{$query-notsmall} {
+        display: inline;
+      }
+    }
+  }
+}
+.pushdown-banner-content {
+  z-index: 301;
+  height: 0;
+  background-color: red;
+  background-position: center center;
+  background-size: cover;
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .row-fluid {
+    margin: 0;
+    h1 {
+      margin: 0;
+      color: #FFF;
+      text-align: center;
+      font-size: 14px;
+      line-height: 22px;
+      @media #{$query-notsmall} {
+        font-size: 16px;
+      }
+      a.readmore {
+        width: 100%;
+        text-align: center;
+        color: #FFF;
+        font-size: 12px;
+      }
+      span {
+        display: none;
+        @media #{$query-notsmall} {
+          display: inline;
+        }
+      }
+    }
+    h1:first-child {
+      margin-top: 30px;
+    }
+  }
+}

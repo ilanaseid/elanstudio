@@ -1,0 +1,15 @@
+<%
+  share_url = shop_product_url(product.basename)
+  share_target = "#{shop_product_path(product.basename)}"
+  share_email_subject = t('social_media.share_product.email_subject', :url=> share_url, :name=>product.title, :brand=>product.brand.title)
+  share_email_body = t('social_media.share_product.email_body', :url=> share_url, :name=>product.title, :brand=>product.brand.title)
+  share_tweet_text = t('social_media.share_product.tweet_text', :url=> share_url, :name=>product.title, :brand=>product.brand.title)
+%>
+
+    <ul class="nav">
+      <li><button class="btn-share meta lb-tmpl" data-tmpl-id="template-share-modal" data-tmpl-data='{"item_url":"<%= share_url %>","tweet_text":"<%= share_tweet_text  %>","email_subject":"<%= share_email_subject %>","email_body":"<%= share_email_body %>","target":"<%= share_target %>"}'><span class="icon_upSmall"></span><%= t('actions.share_item') %></button>
+      </li>
+    <% if product.wishlistable? %>
+      <li><%= link_to "<span class='icon_plus'></span>#{t('actions.save_wishlist_item')}".html_safe, new_wishlist_item_path(:spree_product_id=>product.spree_product_id), :class=>"lb btn btn-save wishlist-add", :data=>{:spree_product_id => product.spree_product_id} %></li>
+    <% end %>
+    </ul>

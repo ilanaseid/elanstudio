@@ -1,0 +1,28 @@
+<% content_for :title, t('site.nav.contact_us') %>
+<% content_for :lb_wrap_size, "8" %>
+
+<!-- 12 column grid system -->
+<div class="row-fluid">
+  <div class="span6 offset1">
+
+    <h2><%= t('headings.contact') %></h2>
+
+  <%# TBD: being non-success response %>
+    <p class="note">
+      <%= t('msg.contact_prompt_html') %> <a href="mailto:<%=Settings.contact_info.service_email%>"><%=Settings.contact_info.service_email%></a>
+    </p>
+
+
+
+   <%= render :partial=>'support_requests/form', locals: {request_type: 'contact'} %>
+  <%# TBD: end non-success response %>
+  <%# TBD: being success response %>
+  <!--
+    <p class="note">
+      <%= t('msg.contact_success_html') %> <a href="mailto:<%=Settings.contact_info.service_email%>"><%=Settings.contact_info.service_email%></a>
+    </p>
+  -->
+  <%# TBD: end success response %>
+
+  </div>
+</div>

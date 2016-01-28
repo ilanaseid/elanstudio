@@ -1,0 +1,28 @@
+<li id="item_<%= chapter.basename %>" class="chapter item index row-fluid">
+  <div class="span2 offset1">
+    <span class="marker issue"><%= t('site.chapter_abbr') %> <%= chapter.chapter_number %></span>
+  </div>
+  <div class="span4">
+      <div class="item-image">
+        <% if chapter.assets_for_placement(:primary).any? %>
+          <%= link_to chapter_path(chapter.basename) do %>
+            <%= simple_picture_tag(chapter.assets_for_placement(:primary)[0], :grid, :options => { :alt => "#{t('site.chapter_label')} #{chapter.chapter_number} — #{chapter.title}"}) %>
+          <% end %>
+        <% end %>
+      </div> <!-- /.item-image -->
+  </div>
+  <div class="span5 offset1">
+    <div class="item-content">
+      <div class="item-header">
+          <time class="chapter-date" datetime="<%= chapter.publish_at.strftime('%Y-%m-%d') %>"><%= chapter.publish_at.strftime('%B %e, %Y') %></time>
+
+          <h2 class="title"><%= link_to chapter.title, chapter_path(chapter.basename) %></h2>
+          <div class="label"><%= editorial_flags(chapter) %></div>
+        </div>
+        <div class="item-body">
+          <p class="description"><%= chapter.short_description %></p>
+          <p><%= link_to chapter.title, chapter_path(chapter.basename), :class=>'icon_mobileNavRight' %></p>
+        </div>
+    </div> <!-- /.item-content -->
+  </div>
+</li>

@@ -1,0 +1,39 @@
+<% content_for :title, t('site.nav.order_history') %>
+
+<div class="row-fluid">
+  <div class="span12 offset2 account">
+    <h2><%= t('site.nav.order_history') %></h2>
+
+  <% if @orders.present? %>
+    <table class="order-summary">
+      <thead>
+      <tr>
+        <th class="order-date"><%= Spree.t(:order_date) %></th>
+        <th class="order-number"><%= Spree.t(:order_number) %></th>
+        <th class="order-status"><%= Spree.t(:status) %></th>
+        <th class="order-payment-state"><%= Spree.t(:payment_state) %></th>
+        <th class="order-shipment-state"><%= Spree.t(:shipment_state) %></th>
+        <th class="order-total"><%= Spree.t(:total) %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @orders.each do |order| %>
+        <tr class="<%= cycle('even', 'odd') %>">
+          <td class="order-date"><%= l order.completed_at.to_date %></td>
+          <td class="order-number"><%= order.number %></td>
+          <td class="order-status"><%= Spree.t(order.state).titleize %></td>
+          <td class="order-payment-state"><%= Spree.t("payment_states.#{order.payment_state}") if order.payment_state %></td>
+          <td class="order-shipment-state"><%= Spree.t("shipment_states.#{order.shipment_state}") if order.shipment_state %></td>
+          <td class="order-total"><%= order.display_total %></td>
+          <td><i><%= link_to "View Order", order_path(order) %></i></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="note"><%= Spree.t(:you_have_no_orders_yet) %></p>
+  <% end %>
+
+  </div>
+</div> <!-- /.row-fluid -->

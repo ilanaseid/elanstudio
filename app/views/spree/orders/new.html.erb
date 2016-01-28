@@ -1,0 +1,15 @@
+<% content_for :title, t('site.nav.cart') %>
+
+<div class="row-fluid">
+  <div class="span12 offset2 account">
+    <h2><%= t('site.nav.cart') %></h2>
+
+<%= semantic_form_for @order, :url =>'#', :method => :put do |order_form| %>
+  <%= render :partial => 'form', :locals => { :order_form => order_form } %>
+<% end %>
+
+<p><%= link_to Spree.t(:continue_shopping), products_path %></p>
+
+  </div>
+</div> <!-- /.row-fluid -->
+

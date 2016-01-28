@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @apartment_request.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @apartment_request.last_name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @apartment_request.email %>
+</p>
+
+<p>
+  <b>Newsletter:</b>
+  <%= @apartment_request.newsletter %>
+</p>
+
+
+<%= link_to 'Edit', edit_apartment_request_path(@apartment_request) %> |
+<%= link_to 'Back', apartment_requests_path %>

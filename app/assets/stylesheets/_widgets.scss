@@ -1,0 +1,568 @@
+/* _widgets.scss
+	non-plugin/vendor'd UI widgets
+
+  * Heros
+  * Notification Box
+  * Lightboxes
+  * Simple Accordion
+  * Size Selector
+  * Pagination
+  * Outlined Boxes
+  * Locking Partial Sections (XHR partials)
+  * Rollover Images
+*/
+
+
+
+/* Heros
+------------------------------------------- */
+
+// hero content areas
+
+@include fallbackFontStackDefault('.a_page .hero h1');
+@media #{$query-hero-step2} {
+  @include fallbackFontStackDisplay('.a_page .hero h1');
+  @include fallbackFontStackDefault('.a_page .hero h1 .marker');
+}
+
+.a_page .hero {
+  overflow-x: hidden;
+
+  // do this here so padding calc isn't screwed up o child eleement
+  max-width: 1229px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media #{$query-hero-step0} {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  a {
+    // following properties apply to ALL states
+    color: $black;
+
+    &:hover {
+      // default hero hover color
+      color: $black;
+    }
+
+    // background layout
+    display: block;
+    position: relative;
+    height: 0;
+    padding-top: 50%;
+    background-position: center center;
+
+    // following properties apply to just the default state, and should be rewritten with mq support
+
+    @media #{$query-hero-step0} { // small screen, supports mq
+      // old "defaults"
+      @include background-size(cover);
+      padding-top: 125%;
+    }
+    @media #{$query-hero-step1} {
+      height: 475px;
+      padding-top: 0;
+    }
+    @media #{$query-hero-step3} {
+      height: 0;
+      padding-top: 50%;
+    }
+  }
+
+  h1 {
+    position: absolute;
+    z-index: 1;
+    top: 2.5%;
+    left: 5%;
+    margin: 0;
+
+    font-size: 26px;
+    line-height: 1.1;
+    font-weight: normal;
+
+    .marker {
+      display: block;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+
+    @media #{$query-notsmall} {
+      left: 2.5%;
+      font-size: 36px;
+    }
+    @media #{$query-hero-step2} {
+      font-size: 46px;
+    }
+    @media #{$query-hero-step4} {
+      font-size: 60px;
+      .marker {
+        font-size: 20px;
+      }
+
+    }
+    @media #{$query-hero-step5} {
+      font-size: 76px;
+      .marker {
+        font-size: 22px;
+      }
+    }
+  }
+
+  .bottom {
+    top: auto;
+    bottom: 2.5%
+  }
+
+  // .subhd {
+  //   position: absolute;
+  //   z-index: 1;
+  //   bottom: 5%;
+  //   left: 2.5%;
+  //   margin: 0;
+
+  //   color: $black;
+  //   font-size: 28px;
+  //   font-size: 3.5vw;
+  //   line-height: 1;
+  // }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  hr {
+    position: absolute;
+    top: 50%;
+    @include calc(left,'-10px','0');
+
+    height: 4px;
+    @include calc(width,'100% + 20px','100%');
+
+    z-index: 1;
+    border: 0;
+    color: $black;
+    background: $black;
+
+    @media #{$query-notsmall} {
+      left: -1 * grid-math($gutter1, $col16);
+      width: grid-math($baseWidth, $col16);
+    }
+  }
+}
+
+.lt-ie9 {
+  .hero {
+    hr {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+
+
+
+/* Notification Box
+------------------------------------------- */
+.nb-wrap {
+  display: block;
+  position: absolute;
+  top: 10px; // match right
+  right: 10px; // match top
+  min-width: 280px;
+  max-width: 30em; // arbitrary, but keep down line lengths
+  padding: 0 14px 0;
+  background: $white;
+  border: $border-default;
+  z-index: 1000;
+  @include transform(translate3d(0, 0, 0));
+  @include transition($offcanvaspanel-transition);
+
+  >.btn-remove {
+    top: 2px;
+    right: 2px;
+
+    &:hover,
+    &:active {
+      top: 2px;
+      right: 2px;
+    }
+  }
+
+  .alert {
+    margin-bottom: 14px;
+  }
+
+  &.staged {
+    @include transform(translate3d(150%, 0, 0));
+  }
+
+  @media #{$query-notsmalltopnav} {
+    top: 10px; // match right
+    right: 10px; //match top
+  }
+}
+
+/* Lightboxes
+------------------------------------------- */
+
+// link to trigger lightbox from Handlebars tmpl
+.lb-tmpl {
+  opacity: 0;
+  cursor: default;
+}
+
+// lightbox and contents
+.lb-wrap {
+  position: relative;
+  width: grid-math($col12, $baseWidth); /* 940/1300 */
+  min-width: 300px; // for small screens
+  margin: 0 auto;
+  padding: 21px 21px 0;
+  overflow: auto;
+
+  // margin: 21px auto;
+  // padding: 21px 74px;
+  background: #fff;
+
+  .row-fluid {
+    position: relative;
+    left: $gutterWidth * -1;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .gamma {
+    margin: 0;
+    padding: 0 0;
+    text-align: center;
+  }
+  .span12 .gamma {
+    padding: 21px 0;
+  }
+}
+
+.lb-wrap-4 {
+  width: grid-math($col4, $baseWidth);
+}
+
+.lb-wrap-6 {
+  width: grid-math($col6, $baseWidth);
+}
+
+.lb-wrap-8 {
+  padding-right: 0;
+  padding-left: 0;
+  width: grid-math($col8, $baseWidth);
+  left: grid-math($gutter1, $col8, -100%)
+  // left: 20 / (8*60 + 7*20) * -100%;
+
+}
+
+.lb-wrap-10 {
+  width: grid-math($col10, $baseWidth);
+}
+
+
+// short circuit grids inside some lightbox cases
+.mfp-wrap {
+  .lb-wrap-4,
+  .lb-wrap-6 {
+    .row-fluid {
+      position: static;
+      left: 0;
+    }
+
+    .row-fluid > [class*="span"] {
+       width: 100%;
+       margin: 0 !important;
+    }
+  }
+}
+
+
+/* Simple Accordion
+------------------------------------------- */
+
+// no overrides to plugin currently
+
+.sa-active {
+  >dt {
+    text-decoration: none;
+  }
+
+  .section-content {
+    // padding: 10px 0;
+
+    dl {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      margin: 0;
+      color: $grey-med;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    h3+ul {
+      margin-top: 0;
+    }
+  }
+}
+
+
+/* Size Selector
+------------------------------------------- */
+@include fallbackFontStackSansSerif('.sizeSelector .label, .sizeSelector [type=checkbox]+label, .sizeSelector [type=checkbox]+.label, .sizeSelector [type=radio]+span, .sizeSelector [type=radio]+.span');
+.sizeSelector {
+  margin-bottom: 8px;
+  padding-top: 0;
+
+  h5 {
+    margin-top: 14px;
+    margin-bottom: 0;
+
+    span {
+      padding-left: 0.5em;
+      line-height: 1em;
+    }
+  }
+
+  // fake alignment without changing shap of hit areas
+  ul {
+    position: relative;
+    left: -6px; // label margin+padding
+    margin-top: 0;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  [type=checkbox],
+  [type=radio] {
+    width: 20px;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .label,
+  [type=checkbox]+label,
+  [type=checkbox]+.label,
+  [type=radio]+span,
+  [type=radio]+.span {
+    color: $grey-med;
+    display: inline-block;
+    background: #fff;
+    margin: 0 2px;
+    padding: 0 5px;
+    font-size: 11px;
+    letter-spacing: normal !important; // combat fonts-loaded helper
+    line-height: 21px;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  [type=checkbox]+label,
+  [type=checkbox]+.label {
+    margin-left: -15px; // sketchy
+  }
+
+  [type=radio]+span,
+  [type=radio]+.span {
+    margin-left: -26px; // sketchy
+  }
+
+  // .available {
+  //   margin-left: -21px; // sketchy
+  //   color: $grey-med;
+  //   cursor: pointer;
+
+  //   &:hover,
+  //   &:focus {
+  //     color: $grey-dark;
+  //   }
+  // }
+
+  // .unavailable {
+  //   color: #D1D2D4;
+  //   text-decoration: line-through;
+  // }
+
+  .unavailable,
+  :disabled+span,
+  :disabled+.span,
+  :disabled+label,
+  :disabled+.label {
+    color: #D1D2D4;
+    text-decoration: line-through;
+    cursor: default;
+  }
+
+
+  [type=checkbox]:checked+label,
+  [type=checkbox]:checked+.label,
+  [type=radio]:checked+span,
+  [type=radio]:checked+.span {
+    border-color: $grey-med;
+  }
+
+  [type=radio] {
+  }
+}
+
+
+/* Pagination
+------------------------------------------- */
+.pagination {
+  position: relative;
+  margin-top: 21px;
+  margin-bottom: 42px;
+  padding-top: 0;
+  text-align: center;
+  li {
+    position: static;
+    margin: 0 0.25em
+  }
+
+  .current {
+    text-decoration: underline;
+  }
+
+  .disabled {
+    opacity: 0.25;
+  }
+
+  a {
+    text-decoration: none;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  .bigPrev,
+  .bigNext {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+
+  }
+  .bigNext {
+    left: auto;
+    top: 5px;
+    right: 0;
+  }
+
+  .icon_left {
+    margin-right: 0.75em;
+  }
+
+  .icon_right {
+    margin-left: 0.75em;
+  }
+
+  .sep {
+    margin: 0 0.25em;
+  }
+
+  &.numeric_pagination {
+    li:nth-child(2) {
+      .gap {
+        display: none;
+      }
+    }
+
+    .page {
+      display: inline-block;
+      text-align: center;
+      width: 1.25em;
+
+      a {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+
+    @media #{$query-notsmalltopnav} {
+      .bigPrev {
+        left: 10%;
+      }
+      .bigNext {
+        right: 10%;
+      }
+    }
+  }
+}
+
+@include fallbackFontStackSansSerif('.pagination_prefs');
+.pagination_prefs {
+  margin-top: -24px;
+  margin-bottom: 42px;
+  text-align: center;
+  // about matches a.meta
+  color: $grey-med;
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+
+
+span {
+  text-decoration: underline;
+}
+a {
+  text-decoration: none;
+
+}
+  h4,
+  span,
+  a {
+    display: inline-block;
+    margin: 0 0.5em;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+
+  }
+
+}
+
+/* Outlined Boxes
+------------------------------------------- */
+// outlined boxes (see terms page)
+
+.outlined {
+  border: 1px $grey-dark solid;
+  padding: 21px 14px 0;
+  margin-bottom: 21px
+}
+
+
+/* Locking Partials
+------------------------------------------- */
+// (see account management page)
+.xhr-partial-trigger,
+.xhr-close-partial-trigger {
+  text-transform: initial;
+}
+
+
+/* Rollover Images
+------------------------------------------- */
+.rollover-image {
+  display: none;
+}

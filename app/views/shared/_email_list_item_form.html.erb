@@ -1,0 +1,8 @@
+<ul>
+  <li>
+    <%= check_box_tag( "subscriptions[#{list.mailchimp_list_id}]", 1, email_preference.subscribed.include?(list)) %>
+    <%= list.display_name %>
+    <br>
+    <span class="email-list-description"><%= list.short_description %></span>
+  </li>
+</ul>

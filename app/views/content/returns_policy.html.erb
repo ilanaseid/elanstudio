@@ -1,0 +1,79 @@
+<% content_for :title, t('site.nav.returns_policy') %>
+<% content_for :lb_wrap_size, "12" %>
+
+<!-- 12 column grid system -->
+<div class="row-fluid">
+  <div class="span10 offset1">
+
+    <h1 class="gamma"><%= t('site.nav.returns_policy') %></h1>
+
+
+    <h2>U.S. Shipping</h2>
+    <p>The Line offers free two-day shipping on most orders shipping within the United States. Next-day shipping is available for an additional charge. Orders placed before 2 p.m. on business days begin processing on that day; orders placed after 2 p.m. begin processing on the next business day.</p>
+
+    <h3 class="gamma2">U.S. Ground Shipping</h3>
+    <p>Some items are only available for delivery via ground shipping, which takes approximately 3–6 business days. <i>*Items will be flagged as requiring ground shipping.</i></p>
+
+    <h3 class="gamma2">U.S. Special Delivery</h3>
+    <p>Some items are made to order, and may ship from us or directly from the manufacturer. If you place an order for one or more of these items, we will contact you via email with regard to production and/or shipping. <i>*Items will be flagged as requiring special delivery.</i></p>
+
+    <br><br>
+
+    <h2>International Shipping</h2>
+    <p>The Line ships to more than 100 countries using UPS Worldwide Expedited service, with delivery within two to five business days. International shipping rates vary by country and range from approximately $35 to $50. To see the shipping cost for your order, place items in your bag and begin the checkout process: add your billing and shipping information and continue to the next step to view your shipping cost. All applicable customs fees, taxes, and duties are the sole responsibility of the customer and will be assessed at the point of delivery.</p>
+
+    <h3 class="gamma2">International Special Delivery</h3>
+    <p>Some items are made to order, and may ship from us or directly from the manufacturer. If you place an order for one or more of these items, we will contact you via email with regard to production and/or shipping. <i>*Items will be flagged as requiring special delivery.</i></p>
+
+    <h3 class="gamma2">Customs acceptance policy</h3>
+    <p>International orders are subject to duties and taxes determined by the country to which we are shipping. These fees may total as much as 30% of your order value and are the responsibility of the customer to pay upon delivery. Orders refused at the point of delivery will incur return shipping charges as well as a 30% restocking fee.</p>
+
+    <p>We are required by law to list directly on the package the full retail value of items ordered and contained therein. We cannot mark any package as a gift to avoid customs and duties fees. On rare occasions, customs agents may delay the delivery of, open, and/or examine the contents of packages at their discretion. For more information on customs fees and procedures, please contact your local customs office.</p>
+
+    <br><br>
+
+    <%# NOTE: see also: faq.html.erb %>
+    <h2>Returns</h2>
+    <h3 class="gamma2">U.S. Orders</h3>
+    <p>We accept returns of unused, unworn, unwashed, unaltered, and undamaged items* within 30 days of purchase. Items flagged as requiring special delivery must be returned within 14 days of purchase. All returns must include original packaging: any boxes, hangers, garment bags, and other packaging materials.</p>
+
+    <p>For orders shipped within the United States, return shipping is free for all eligible items if returned within 14 days of purchase using the prepaid label that accompanied the original shipment.</p>
+
+    <p>For an item to be eligible for return:</p>
+    <ul>
+      <li>Item must be unused, unworn, unwashed, and undamaged.</li>
+      <li>Item must have all original tags attached.</li>
+      <li>Beauty products are only eligible for return if they are unopened.</li>
+      <li>Footwear must include the original shoe box in original condition (without postal labels). If footwear is returned in a damaged shoe box or without the original shoe box, a shoe box fee of $30 will be charged.</li>
+    </ul>
+
+    <p>*Exceptions: Undergarments, swimwear, pierced earrings, opened beauty items, and any items designated “final sale” are not eligible for return. Additionally, we cannot accept returns of monogrammed, personalized, or special-order items, or of items damaged through normal wear and tear.</p>
+
+
+    <h3 class="gamma2">International Orders</h3>
+    <p>The above return policy also applies to international orders; however, in the case of international orders, return shipping fees are the responsibility of the customer.</p>
+
+    <h3 class="gamma2">Large Home Goods and Artwork</h3>
+    <p>Large home goods and works of art may be returned for a refund of the merchandise value. Items flagged as requiring special delivery must be returned within 14 days of purchase.</p>
+
+    <p>Home goods and works of art that did not initially qualify for free shipping do not qualify for free return shipping.</p>
+
+    <h3 class="gamma2">How to Return</h3>
+
+    <ul>
+      <li>Mark the return slip with the item(s) you are returning along with the reason(s) for your return.</li>
+      <li>Repackage the item(s) you would like to return along with the completed return slip.</li>
+      <li>Place the prepaid UPS return label that accompanied your order on the outside of the box you’ll ship back to us.</li>
+      <li>Drop off your shipment at a UPS Store (find your nearest store at www.ups.com) or at any UPS facility.</li>
+      <li>As soon as we receive your return, we’ll let you know in an e-mail and make sure that your refund is processed within 5 days.</li>
+    </ul>
+
+    <p>It may take up to 14 business days from the date we process your refund for it reflect on your original form of payment.</p>
+
+    <br><br>
+
+    <h2>Questions?</h2>
+    <p>Please contact us at <a href="mailto:<%=Settings.contact_info.service_email%>"><%=Settings.contact_info.service_email%></a></p>
+
+  </div>
+</div>

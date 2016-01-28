@@ -1,0 +1,2 @@
+#!/bin/sh
+HEROKU_APP=theline-preview HKAPP=theline-preview exec "${HEROKU_COMMAND:-heroku}" "$@"

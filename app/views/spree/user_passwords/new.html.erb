@@ -1,0 +1,21 @@
+<% content_for :spree_heading, t('site.nav.forgot_password') %>
+<% content_for :spree_span, "4" %>
+<% content_for :spree_offset, "6" %>
+<% content_for :title, "#{t('site.nav.account')} — #{t('site.nav.forgot_password')}" %>
+<% content_for :lb_wrap_size, "4" %>
+<%= render :partial=>"spree/shared/spree_top" %>
+
+<%= render :partial => 'shared/error_messages', :locals => { :target => @spree_user } %>
+
+<div id="forgot-password">
+  <p><%= Spree.t(:instructions_to_reset_password) %></p>
+
+  <%= semantic_form_for @spree_user, :as => :spree_user, :url => spree.reset_password_path, :html => { :class=>'xhr' } do |f| %>
+
+      <%= f.input :email, :as => :email %>
+      <%= f.submit Spree.t(:reset_password), :class => 'button primary' %>
+  <% end %>
+</div>
+
+
+<%= render :partial=>"spree/shared/spree_bottom" %>

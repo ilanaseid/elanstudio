@@ -1,0 +1,42 @@
+<% content_for :spree_heading, t('site.nav.account') %>
+<% content_for :title, t('site.nav.account') %>
+<% content_for :spree_span, "12" %>
+<% content_for :spree_offset, "2" %>
+<%= render :partial=>"spree/shared/spree_top" %>
+  </div>
+</div>
+
+<hr>
+
+<div class="row-fluid">
+  <div class="span4 offset2">
+
+    <div class="contact-info-container">
+      <%= render partial: "spree/users/contact_info" %>
+    </div>
+
+
+    <div class="password-edit-container down-25">
+      <%= render partial: "spree/users/password_info" %>
+    </div>
+  </div>
+
+  <div class="span6 offset2">
+
+    <div class="email-preferences-container">
+      <%= render partial: "shared/newsletter_subscriptions_show", locals: { email_preference: @email_preference, show_close_link: true } %>
+    </div>
+
+  </div>
+
+</div>
+
+<!--
+<h2 class="gamma">Account Personalization <a href="#TBD">Edit</a></h2>
+<h2 class="gamma">Address Book <a href="#TBD">Edit</a></h2>
+-->
+
+<div class="row-fluid">
+<div class="span12 offset2">
+
+<%= render :partial=>"spree/shared/spree_bottom" %>

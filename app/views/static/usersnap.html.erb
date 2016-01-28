@@ -1,0 +1,20 @@
+<div class="row-fluid">
+
+    <div class="provocation span12 offset2">
+
+
+<% if cookies[:usersnap] %>
+  <h1 class="provocation-title">USERSNAP IS CURRENTLY ENABLED</h1>
+  <p class="provocation-body text-center">
+    <%= link_to 'DISABLE', '/s/usersnap?disable=true' %>
+  </p>
+<% else %>
+  <h1 class="provocation-title">USERSNAP IS CURRENTLY DISABLED</h1>
+  <p class="provocation-body text-center">
+    <%= link_to 'ENABLE', '/s/usersnap?enable=true' %>
+  </p>
+<% end %>
+
+</div>
+
+</div>

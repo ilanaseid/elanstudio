@@ -1,0 +1,31 @@
+<% content_for :title, t('site.nav.wishlist') %>
+
+<div class="row-fluid">
+  <div class="span12 offset2 account">
+    <h1 class="gamma"><%= t('site.nav.wishlist') %></h1>
+
+    <% if @wishlist_items.any? %>
+    <ul class="wishlistItemList">
+      <% @wishlist_items.each do |item| %>
+          <%= render :partial=>'wishlist_item', locals: { wishlist_item: item } %>
+      <% end %>
+    </ul>
+    <% else %>
+    <p class="note"><%= t('msg.no_wishlist_items_html', :url=>main_app.shop_index_path) %></p>
+    <% end %>
+
+  </div>
+</div> <!-- /.row-fluid -->
+
+
+<% if @wishlist_items.any? %>
+  <div class="row-fluid">
+    <div class="span8 offset4">
+      <%= paginate @wishlist_items, theme: 'theline' %>
+    </div>
+  </div>
+<% end %>
+
+<hr>
+<%= render 'shared/apartment_section' %>
+

@@ -1,0 +1,747 @@
+/* _layout.scss
+  strutural layout bits
+
+  * Baseline Viewport Styles
+  * Layout Container Styling
+
+  * Top Nav
+  * Basic Panels and states
+  * Nav Panels (see _navpanels.scss for more)
+  * Cart Panel
+  * Branding / Header Layout
+  * Provocation
+  * Contextual Nav
+  * Footer Content
+  * Utility Classes
+  * Unpublished Variations
+*/
+
+
+/* Baseline Viewport Styles
+------------------------------------------- */
+html {
+  background: $grey-med;
+  // letter-spacing: -0.210px aka  -0.0220406em
+  // letter-spacing:  -0.0220406em;
+}
+
+// html.fonts-loaded {
+  // letter-spacing: initial;
+// }
+
+@include fallbackFontStackDefault('body');
+body {
+  font-size: 14px;
+  line-height: 1.5; // magic number = 21
+  color: $grey-dark;
+  background-color: $grey-light;
+}
+
+#bodyWrap {
+  background-color: $white;
+}
+
+
+/* Layout Container Styling
+------------------------------------------- */
+
+html,
+body,
+#bodyWrap,
+#viewWrap {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#bodyWrap {
+
+}
+
+#viewWrap {
+  z-index: 1;
+  @include transform(translate3d(0, 0, 0));
+  @include transition($offcanvaspanel-transition);
+
+  @media #{$query-notsmalltopnav} {
+    // overflow: auto;
+    // overflow-y: scroll;
+    // -webkit-overflow-scrolling: touch; // momentum scrolling
+  }
+
+  @media #{$query-oversized} {
+    width: $content-maxwidth;
+    margin-right: auto;
+    margin-left: auto;
+    // left: 50%;
+    // margin-left: $content-maxwidth * -0.5;
+  }
+}
+
+#pageWrap {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; // momentum scrolling
+
+  z-index: 1;
+  @include transform(translate3d(0, 0, 0));
+  @include transition($offcanvaspanel-transition);
+}
+
+#navWrap {
+  position: relative;
+  height: $topnav-itemheight; // manage borders, etc
+  margin-top: 46px;
+  border-bottom: $border-default;
+
+}
+.js {
+  #navWrap {
+    @media #{$query-smalltopnav} {
+      margin-top: 0;
+      height: 69px;
+    }
+  }
+}
+
+#contextualNav {
+}
+
+#navPanelWrap {
+  @include transform(translate3d(#{$offcanvaspanel-basewidth*-1}, 0, 0));
+  @include transition($offcanvaspanel-transition);
+}
+
+.no-csstransforms3d {
+  #navPanelWrap {
+    left: $offcanvaspanel-basewidth*-1;
+  }
+}
+
+#cartPanelWrap {
+}
+
+.wrapper {
+  @include display-flex(box);
+  @include display-flex(flex);
+  @include flex-direction(row wrap);
+
+  text-align: center;
+  justify-content: space-around;
+
+  ol {
+    padding-left: 0;
+  }
+
+  ul {
+   padding-left: 0;
+
+    li:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.wrapper > * {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 12px;
+
+  @media #{$query-notsmall} {
+    @include flex(grow 3);
+  }
+}
+
+.share-item-ul {
+  @include flex(1 100%);
+  border-top: $border-default;
+  border-bottom: $border-default;
+
+  @media #{$query-notsmall} {
+    @include flex(3 0px);
+    @include order(2);
+    border-bottom: none;
+    padding-right: .75em !important;
+    padding-left: .75em !important;
+  }
+}
+
+.aside {
+  @include flex(2 auto);
+
+  ol > li {
+    margin-right: 21px;
+    margin-left: 21px;
+  }
+
+  a {
+    text-decoration: none;
+    padding-right: 0;
+  }
+
+  @media #{$query-notsmall} {
+    @include flex(0 auto);
+    min-width: 190px;
+    border-top: $border-default;
+  }
+}
+
+.aside.short {
+  @media #{$query-notsmall} {
+    min-width: 155px;
+  }
+}
+
+.aside-1 {
+  @include order(1);
+  text-align: left;
+
+  a {
+    .icon_left  {
+      margin-right: 0.75em;
+    }
+  }
+
+  @media #{$query-notsmall} {
+    border-right: $border-default;
+  }
+}
+
+.aside-2 {
+  @include order(2);
+  text-align: right;
+
+  a {
+    .icon_right  {
+      margin-left: 0.75em;
+    }
+  }
+
+  @media #{$query-notsmall} {
+    border-left: $border-default;
+    @include order(3);
+  }
+}
+
+/* Top Nav Interactions
+------------------------------------------- */
+
+// margin-top: control whitespace between #navWrap and .main
+// padding-top: make room for open sub nav items
+
+.main {
+  margin-top: 34px;
+}
+
+.nav_levels_open-1 + .main {
+  padding-top: #{($topnav-itemheight*1)+1};
+}
+.nav_levels_open-2 + .main {
+  padding-top: #{($topnav-itemheight*2)+2};
+}
+.nav_levels_open-3 + .main {
+  padding-top: #{($topnav-itemheight*3)+3};
+}
+
+// only for Line.NavPanels.js inialized state && proper media queries
+.js {
+  @media #{$query-smalltopnav} {
+    .main {
+      margin-top: 12px;
+      padding-top: 0 !important; // don't need extra space for open top nav
+    }
+  }
+  @media #{$query-small} {
+    .main {
+      margin-top: 16px;
+    }
+  }
+}
+
+
+/* Basic Panels and States
+------------------------------------------- */
+
+#bodyWrap {
+  &.nav-panels-open {
+    @include transform(none);
+  }
+}
+
+.nav-panels-open {
+  #navPanelWrap {
+    @include transform(translate3d(0, 0, 0));
+  }
+
+  #pageWrap,
+  #contextualNav.contextualNav-stuck,
+  .banner-fixedbottom-2 {
+    @include transform(translate3d(#{$offcanvaspanel-basewidth}, 0, 0));
+
+    @media #{$query-notsmalltopnav} {
+      @include transform(none);
+    }
+  }
+}
+
+.no-csstransforms3d {
+  .nav-panels-open {
+    #navPanelWrap {
+      left: 0;
+    }
+
+    #pageWrap {
+      position: relative;
+    }
+    #pageWrap,
+    #contextualNav.contextualNav-stuck,
+    .banner-fixedbottom-2 {
+      left: $offcanvaspanel-basewidth;
+
+      @media #{$query-notsmalltopnav} {
+        left: 0;
+      }
+    }
+  }
+}
+
+.cart-panel-open {
+  #cartWrap {
+    @include transform(translate3d(0, 0, 0));
+  }
+  #viewWrap,
+  #contextualNav.contextualNav-stuck,
+  .banner-fixedbottom-2 {
+    @include transform(translate3d(#{$offcanvaspanel-basewidth*-1}, 0, 0));
+
+    @media #{$query-notsmalltopnav} {
+      @include transform(translate3d(#{$offcanvaspanel-notsmallwidth*-1}, 0, 0));
+    }
+  }
+}
+
+.no-csstransforms3d {
+  .cart-panel-open {
+    #cartWrap {
+      right: 0;
+    }
+
+    #viewWrap {
+      position: relative;
+    }
+
+    #viewWrap,
+    #contextualNav.contextualNav-stuck,
+    .banner-fixedbottom-2 {
+      left: $offcanvaspanel-basewidth*-1;
+
+      @media #{$query-notsmalltopnav} {
+        left: $offcanvaspanel-notsmallwidth*-1;
+      }
+    }
+  }
+}
+
+.nav-panels-open,
+.cart-panel-open {
+  .panel-mask {
+    display: block;
+  }
+
+  &#bodyWrap > .panel-mask {
+    display: none;
+
+    @media #{$query-notsmalltopnav} {
+      display: block;
+    }
+  }
+
+  #contextualNav > .panel-mask {
+    @media #{$query-notsmalltopnav} {
+      display: none;
+    }
+  }
+
+  #viewWrap > .panel-mask {
+    @media #{$query-notsmalltopnav} {
+      display: none;
+    }
+  }
+}
+
+.nav-panel-open,
+.cart-panel-open {
+  #pageWrap {
+    -webkit-overflow-scrolling: auto; // turn off momentum scrolling as it allows for scroll through masks
+  }
+}
+
+
+/* Cart Panels
+------------------------------------------- */
+
+#cartWrap {
+  position: fixed; // TODO: absolute screws with ios horizontal scrollbars. why?
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: $offcanvaspanel-basewidth;
+  overflow: auto;
+  z-index: 4;
+  background: $white;
+  border-left: $border-default;
+  @include transform(translate3d(#{$offcanvaspanel-basewidth}, 0, 0));
+  @include transition($offcanvaspanel-transition);
+
+  @media #{$query-notsmalltopnav} {
+    width: $offcanvaspanel-notsmallwidth;
+    @include transform(translate3d(#{$offcanvaspanel-notsmallwidth}, 0, 0));
+  }
+}
+
+.no-csstransforms3d {
+  #cartWrap {
+    right: $offcanvaspanel-basewidth*-1;
+    @media #{$query-notsmalltopnav} {
+      right: $offcanvaspanel-notsmallwidth*-1;
+    }
+  }
+}
+
+
+/* Branding / Header Layout
+------------------------------------------- */
+
+#headerWrap {
+  // don't create layout box, use parent #navWrap
+}
+
+// center content in area
+.header-logo,
+.header-prov {
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin: 0;
+  text-align: center;
+  z-index: 5;
+}
+
+.header-logo {
+  top: -18px; // measured from the start at margin-top 46px
+  width: 94px;
+  min-height: 21px;
+  margin-left: -47px;
+
+  .logo {
+    display: block;
+    width: 100%;
+  }
+}
+
+.header-prov {
+  top: 11px; // measured from the start at margin-top 46px
+  height: 16px;
+  width: 20em; // guess at a reasonable width
+  margin-left: -10em;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+
+// adjust for when we have initialized the mobile nav panels
+.js {
+  .header-logo {
+    @media #{$query-smalltopnav} {
+      width: 74px;
+      min-height: 17px;
+      margin-left: -37px;
+      top: 19px; // measured from the start at 0
+    }
+  }
+  .header-prov {
+    @media #{$query-smalltopnav} {
+      top: 41px; // measured from the start at 0
+    }
+  }
+}
+
+
+/* Provocation
+------------------------------------------- */
+@include fallbackFontStackDefault('.provWindow  .provWindow .title'); // TODO: possible to refactor, or context sensitive?
+
+.provWindow {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: rgba(255,255,255,0.93);
+  z-index: 3; // always below hovered .nav-header-2 & .nav-header-3
+  top: 38px;
+  padding: 0;
+  border-bottom: $border-default;
+
+  .prov-volume {
+    padding-top: 24px;
+    border-top: $border-default;
+
+    .issue,
+    .title {
+      font-size: 20px;
+      line-height: 20px;
+    }
+    .issue {
+      font-style: italic;
+    }
+    .title {
+      margin-top: 0;
+    }
+  }
+}
+
+.js {
+  .provWindow {
+    @media #{$query-smalltopnav} {
+      top: 65px;
+      padding: 0 10px;
+    }
+  }
+}
+
+.header-prov-trigger {
+  cursor: pointer;
+  color: $grey-dark;
+
+  &:hover,
+  &:active {
+    color: $black;
+  }
+}
+
+/* Search Provocation
+------------------------------------------- */
+
+.searchPanel {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: rgba(255,255,255,0.93);
+  z-index: 3; // always below hovered .nav-header-2 & .nav-header-3
+  top: 38px; // TODO: use variable here
+  padding: 58px 0; // match search results areas
+  border-top: $border-default;
+  border-bottom: $border-default;
+}
+
+/* Contextual Nav
+------------------------------------------- */
+
+#contextualNav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $topnav-itemheight;
+  padding: 0;
+  background-color: $white;
+  z-index: 3;
+  white-space: nowrap;
+  @include transform(translate3d(0, #{$topnav-itemheight*-1}, 0));
+  @include transition($offcanvaspanel-transition);
+
+  &.contextualNav-stuck {
+    @include transform(translate3d(0, 0, 0));
+  }
+
+  @media #{$query-oversized} {
+    width: $content-maxwidth;
+    left: 50%;
+    margin-left: $content-maxwidth * -0.5;
+  }
+}
+
+.no-csstransforms3d {
+  #contextualNav {
+    top: $topnav-itemheight*-1;
+
+    &.contextualNav-stuck {
+      top: 0;
+    }
+  }
+}
+
+
+/* Footer Content
+------------------------------------------- */
+
+footer {
+  clear: both;
+  padding-top: 14px;
+  color: $grey-med;
+  border-top: $border-default;
+  font-size: 10px;
+  line-height: 15px;
+  margin-bottom: 0 !important;
+
+  ul,
+  .delta {
+    margin: 8px 0;
+  }
+
+  .nav li a {
+    color: $grey-med;
+  }
+}
+
+.footer-meta {
+  ul:first-child {
+    font-weight: bold;
+    @include smallSansSerif;
+  }
+}
+
+.footer-social {
+  text-align: center;
+  @include smallSansSerif;
+
+  .delta {
+    @include smallSansSerif;
+    font-weight: bold;
+    margin: 5px 0 4px 0;
+  }
+
+  .nav {
+    margin-top: 0;
+  }
+}
+
+.footer-newsletter,
+.homepage-apt-newsletter {
+  .delta {
+    @include smallSansSerif;
+    font-weight: bold;
+    margin: 5px 0 4px 0;
+  }
+
+  label,
+  .inline-errors {
+    display: none;
+  }
+
+  form {
+    margin-top: -3px;
+
+    input {
+      @media #{$query-notsmall} {
+        width: 95%;
+      }
+      @media #{$query-largetype} {
+        width: 100%;
+      }
+    }
+
+    input[type=submit] {
+      @media #{$query-notsmall} {
+        min-width: 52px;
+        margin-left: -8px;
+      }
+
+      @media #{$query-largetype} {
+        min-width: 40px;
+        margin-left: 0;
+      }
+    }
+  }
+
+
+}
+
+@media #{$query-small} {
+  footer {
+    padding-top: 12px;
+    padding-bottom: 28px;
+
+    .nav {
+      margin-top: 5px;
+      margin-bottom: 0px;
+      padding-top: 0;
+    }
+    .nav + .nav {
+      margin-top: 0;
+    }
+
+    .nav li {
+      display: block;
+      margin: 0 0.5em 0  0;
+      padding: 0;
+      border-left: 0;
+      line-height: 21px;
+    }
+    .nav li a {
+      padding: 0;
+      line-height: 21px;
+    }
+  }
+  .footer-meta {
+    width: 50%;
+    float: left;
+  }
+  .footer-social {
+    width: 50%;
+    padding-left: 12px;
+    float: right;
+    text-align: left;
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    h1+.nav {
+      margin-top: 0;
+    }
+  }
+
+  .footer-newsletter {
+    clear: both;
+    width: 100%;
+    text-align: left;
+    margin-top: 5px;
+  }
+}
+
+/* Utility Classes
+------------------------------------------- */
+.panel-mask {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3; // make sure above .banner-fixedbottom-2
+  background-color: rgba(0,0,0,0.1);
+}
+
+/* Unpublished Variations
+------------------------------------------- */
+body.unpublished {
+  #bodyWrap {
+    background-color: $grey-light;
+  }
+  .main,
+  footer {
+    background-color: $white;
+  }
+  #navWrap,
+  #contextualNav {
+    background-color: $grey-light;
+
+    .mainnav {
+      background-color: $grey-light;
+    }
+  }
+}
+

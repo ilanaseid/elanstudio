@@ -1,0 +1,1331 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+
+  site:
+    the_line: "THE LINE"
+    base_meta_description: "Discover refined, versatile, and honest goods. Free two-day shipping and returns."
+    stories_meta_description: "Contemplate a future of objects that inspire and refine you with The Line. Our stories reveal the origins, creators, meanings, and uses of items that are carefully chosen to enrich a life well-lived."
+    footnotes_page_description: "Creative stimulation in the form of conversations, ideas, insights, and reviews."
+    footer_copyright_html: "&copy;2015 The Line"
+    free_shipping_notice: "*Free two-day shipping and returns"
+    volume_label: "Volume"
+    volume_abbr: "VOL."
+    volume_abbr_mixedcase: "Vol."
+    chapter_label: "Chapter"
+    chapter_abbr: "CH."
+    footnotes_label: "Footnotes"
+    footnote_label: "Footnote"
+    footnote_abbr: "FN."
+    apartment_label: "Apartment"
+    apartment_abbr: "APT."
+    nav:
+      shop: "The Objects"
+      editorial: "The Stories"
+      account: "My Account"
+      order_history: "Order History"
+      cart: "My Bag"
+      checkout: "Checkout"
+      checkout_address: "Contact Information"
+      checkout_delivery: "Shipping Selection"
+      checkout_payment: "Payment Information"
+      checkout_confirm: "Review and Confirm"
+      wishlist: "Wish List"
+      add_to_wishlist: "Add To Wish List"
+      login: "Log-in"
+      logout: "Log-out"
+      register: "Register"
+      shop_all: "View All Objects"
+      brand_index: "Designer Index"
+      gifts: "Gifts"
+      sale: "Sale"
+      new: "New"
+      apartment: "The Apartment"
+      apartments: "The Apartments"
+      our_stores: "Our Stores"
+      search: "Search"
+      contact_us: "Contact Us"
+      feedback: "Feedback"
+      product_notification: "Notify Me"
+      schedule_appointment: "Schedule an Appointment"
+      about: "About"
+      faq: "FAQ"
+      terms_of_use: "Terms of Use"
+      privacy_policy: "Privacy Policy"
+      returns_policy: "Shipping & Return Policies"
+      theline_newsletter: "The Line Newsletter"
+      change_password: "Change My Password"
+      forgot_password: "Forgot My Password"
+      sizechart_rtw: "Ready-to-Wear Size Chart"
+      sizechart_shoes: "Footwear Size Chart"
+      not_found: "Page Not Found"
+      server_error: "Application Error"
+      search_unavailable: "Search Unavailable"
+      selections: "Selections"
+
+  actions:
+    submit_form: "Submit"
+    save_wishlist_item: "Wish List"
+    share_item: "Share"
+    share_via_twitter: "Twitter"
+    share_via_facebook: "Facebook"
+    share_via_email: "E-mail"
+    share_via_pinterest: "Pinterest"
+    add_to_cart: "Add to Bag"
+    search: "Search"
+    contact_customer_service: "Contact Customer Service"
+    # header_apartment: "Visit The Apartment"
+    schedule_an_appointment: "Make an Appointment"
+    schedule_your_visit: "Schedule your Visit"
+    create_account: "Submit"
+    link_here: "here"
+    request_invite: "Request an Invite"
+    newsletter_add: "Sign Up"
+    join_apartment_newsletter: "Request Updates"
+    view_full_chapter: "View Full Chapter"
+    previous_chapter: "Previous Chapter"
+    next_chapter: "Next Chapter"
+    view_full_apartment: "Visit The Apartment"
+    change_password: "Change Password"
+    save_and_continue_to_delivery: "Continue to Shipping"
+    save_and_continue_to_payment: "Continue to Payment"
+    save_and_continue_to_confirm: "Continue to Review & Confirm"
+    purchase_on_external_site: "Purchase on %{partner}"
+    show_less_items: "less"
+    show_more_items: "more"
+    show_all: "Show All"
+
+  fields:
+    first_name: "First Name"
+    last_name: "Last Name"
+    name: "Your Name"
+    email: "Your Email"
+    comment: "Comment"
+    gift_message_prompt: "Add a gift message to my order"
+    gift_to: "To"
+    gift_from: "From"
+    gift_message: "Message"
+
+  retail_order:
+    staff_order_type: "Staff Order Type"
+    personal_order: "Personal Order"
+    apartment_order: "Apartment Order"
+    customer_id: "Customer ID / Email"
+    trade_discount: "Trade Discount"
+    shipping_method: "Shipping / Packout Method"
+    carry_out: "Carry Out"
+    messenger_service: "Messenger Service"
+    pack_out: "Normal Pack Out"
+    internal_comments: "Internal Comments"
+
+  # reusable headings
+  headings:
+    featured_in_editorial: "Featured in The Stories"
+    featuring_this_object: "Stories featuring this Object"
+    featured_in_shop: "Featured in The Objects"
+    related_in_editorial: "Related in The Stories"
+    related_in_shop: "Related in The Objects"
+    from_the_archive: "From the Archive"
+    search_again: "Search Again?"
+    paired_with_fashion: "Paired with"
+    paired_with_home: "Paired with"
+    paired_with_beauty: "Paired with"
+    paried_with_art: "Paired with"
+    share: "Share"
+    find_us_on: "Find Us on:"
+    feedback: "Feedback"
+    contact: "Contact Us"
+    addtowishlist: "Add to Wish List"
+    notifyme: "Please notify me when this product is available"
+    register: "Create Your Account"
+    newsletter_receive_info: "Receive Offers, Invites, And Updates"
+    newsletter_be_the_first_to_know: "Be the first to know"
+    frequently_asked_questions: "Frankly Answered Queries"
+    request_an_invitation: "Request an Invitation"
+    join_apartment_newsletter: "Sign Up"
+    about_the_apartment: "About"
+    gift_message: "Gift Message"
+    retail_staff_order_message: "Apartment Order Information"
+    would_you_like_to_shop_html: "Would you like to shop <a href=\"%{url}\">The Objects</a>?"
+    featured_in_cart: "'TIS THE SEASON"
+    gifts_in_cart: "Gifts to delight the discerning:"
+
+  search:
+    results_for: "Results For"
+    results_from: "Results from"
+    results_found_in: "Results found in"
+    sorry_no_results: "Sorry, we couldn't find any results for that."
+    browse_objects_instead_html: "Would you like to browse the <a href=\"%{url}\">Objects</a> instead?"
+    browse_stories_instead_html: "Would you like to browse the <a href=\"%{url}\">Stories</a> instead?"
+    browse_selections_instead_html: "Would you like to browse <a href=\"%{url}\">Selections</a> to see what's new?"
+    the_stories: "The Stories"
+    the_objects: "The Objects"
+    stories: "Stories"
+    objects: "Objects"
+    selections: "Selections"
+    view: "View"
+    view_results_for: "View Results For"
+    show_more: "Show More"
+    go_back_to_all_results_html: "Go back to <a href=\"%{url}\">all results for '%{search}'</a>"
+
+  product:
+    grid_headings:
+      paired_in_shop: "Pair with:"
+      related_in_shop: "Discover related items:"
+    back_in_stock: "Back In Stock"
+    flag_new: "New"
+    flag_exclusive: "Exclusive"
+    status_available: "Available"
+    status_discontinued: "Archived"
+    archived_product_message: "*This object has been archived and is not expected to become available again."
+    status_hidden: "Archived"
+    status_external: "Partner"
+    status_preview: "Coming Soon"
+    status_out_of_stock: "Out of Stock"
+    status_new_product: "New"
+    status_exclusive: "Exclusive"
+    status_on_sale: "Sale"
+    more_details: "See more details"
+    more_size_info_html: "Need more size information? <a class=\"lb\" href=\"%{url}\">Consult our sizing chart</a>."
+    part_of: "Part of"
+    shop_by_designer: "Discover More From This Designer"
+    shop_by_category: "Explore More In These Categories"
+    low_inventory_count: "* Only %{remaining} left in stock"
+    #more_shipping_info_html: "Not the right fit? See our <a class=\"lb\" href=\"%{url}\">Returns Policy</a> for details."
+
+  chapter:
+    headings:
+      featured_in_shop: "Featured in this Chapter"
+      related_in_shop: "More to explore"
+    grid_headings:
+      featured_in_shop: "Take a closer look at items related to this Chapter:"
+      archived_in_shop: "All items featured in this Chapter have been archived:"
+      related_in_shop: "Discover complementary items from The Objects:"
+
+  footnote:
+    headings:
+      featured_in_shop: "Featured in this Footnote"
+      related_in_shop: "Related to this Footnote"
+    grid_headings:
+      featured_in_shop: "Take a closer look at items highlighted in this Footnote:"
+      archived_in_shop: "All items featured in this Footnote have been archived:"
+      related_in_shop: "Discover items that resemble or complement those featured in this Footnote:"
+
+  brand:
+    grid_headings:
+      featured_in_editorial: "Discover %{brand} in our Stories"
+      current_in_shop: "Current Objects from %{brand}"
+      archived_in_shop: "Archived Objects from %{brand}"
+    established: "Established"
+    founder: "Founder"
+    origin: "Origin"
+    designer: "Designer"
+    born: "Born"
+    lives:  "Lives and Works"
+
+  shop:
+    size_not_applicable: "n/a"
+    category:
+      fashion: "Fashion"
+      home: "Home"
+      beauty: "Beauty"
+      art: "Art"
+    description_heading: "Description"
+    details_heading: "Detail"
+    sizing_heading: "Construction, Fit, and Size"
+    directions_heading: "Directions for Use and Ingredients"
+    notes_heading: "Notes"
+    shipping_heading: "Shipping & Returns"
+    become_a_member: "Become a member"
+    enter_password: "Enter a password to create your account:"
+
+  apartment_inventory:
+    available_in_store: "Sold Out / Available In Store"
+    in_store_heading: "* This item may be purchased at The Apartments by The Line."
+
+  apartment:
+    heading:
+      newsletter: "Let's keep in touch."
+      news: "News"
+      hours: "Hours"
+      address: "Where to Find Us"
+      appointments: "By Appointment"
+      description: "History of the Apartment"
+      upcoming_events: "Upcoming & Ongoing Events"
+      past_events: "Recent Events"
+    newsletter_prompt: "Join The Apartment newsletter and be among the first to learn about upcoming events, community activities, and private sales."
+    no_upcoming_events: "More events are in the making."
+    apartments_desc: "What new meanings and functions do quintessential objects take on in an intimate domestic setting? How do storied objects relate to one another? What do they say about their owner? The answers are revealed in The Apartments by The Line."
+
+  appointments:
+    heading:
+      appointments: "Appointments"
+      schedule_your_visit: "Schedule Your Visit"
+      appointments_and_personal_services: "Appointments and Personal Services"
+    msg:
+      appointment_form_opening: "The Apartment by The Line is open by appointment on Tuesday through Saturday. Please let us know below what date and time would work best for you, and we’ll get back to you promptly to confirm."
+      appointment_form_success: "Thanks for your inquiry. We will be in touch shortly via email to complete the scheduling process. We look forward to seeing you soon at The Apartment by The Line!"
+
+  selections:
+    selection: "Selection"
+    selections: "Selections"
+    previous_selection: "Previous Selection"
+    next_selection: "Next Selection"
+    related_selections: "Related Selections"
+    related_selections_description: "Discover Selections that resemble or complement this one."
+    related_selections_for_personal_selection: "Discover thematic collections and seasonal assortments that complement your Personal Selection."
+    objects: "objects"
+    featured: "Featured"
+    archive: "Archive"
+    archived: "Archived"
+    view_archive: "View Archive"
+    recent: "Recent"
+    recent_selections: "Recent Selections"
+    published: "Published"
+    show_more: "Show More"
+    back_to_index_html: "Go back to <a href=\"%{url}\"> Selections Index </a>"
+    header_text: "Thematic collections and seasonal assortments bring together refined objects in new contexts."
+    archive_title_text: "Archived Selections"
+    archive_header_text: "Collected objects of seasons and years past."
+    personal_selections: "Personal Selections"
+    personal_selection: "Personal Selection"
+    personal_selection_social_desc: "my Personal Selection at The Line."
+
+  msg:
+    payment_error: "We’re having trouble processing your payment information."
+    no_search_results_for_editorial_html: "Sorry. We couldn’t find any results for that."
+    no_search_results_for_shop_html: "Sorry. We couldn’t find any results for that, but please look at this instead: <a href=\"%{url}\">The Objects</a>."
+    no_wishlist_items_html: "You have no items in your wish list. Please look at this instead: <a href=\"%{url}\">The Objects</a>."
+    notify_me_prompt_html: "<a href=\"%{url}\" class=\"%{class}\">Contact me</a> when this becomes available online."
+    notify_me_sizes_prompt_html: "<a href=\"%{url}\" class=\"%{class}\">Contact me</a> when my %{option_value} becomes available online."
+    feedback_prompt_html: "Thank you for helping us improve The Line.<br> We also welcome your feedback anytime via e-mail to"
+    feedback_success_html: "Your feedback has been sent.<br>  You can also e-mail any feedback to"
+    contact_prompt_html: "You can also e-mail customer service at"
+    contact_success_html: "Your message has been sent.<br> You can reach customer service anytime at"
+    addtowishlist_prompt_html: "Select %{option_value} to add to your wish list"
+    addtowishlist_prompt_nosizeoptions_html: "Add this item to your wish list"
+    addtowishlist_success_html: "This item has been added to your wish list. <a class='accent' href=\"%{url}\">View Wish List</a>"
+    notifyme_prompt_html: "Select a size to be notified about"
+    notifyme_success_html: "We will notify you by e-mail when this product is available."
+    notifyme_fail_html: "We're sorry, we are unable to notify you about this product.  Please try again or contact support."
+    provocation_header_prompt: "We seek to answer this question"
+    page_not_found_html: "Sorry, we couldn’t find any pages that matched your request.<br><br> Please start over with <a href=\"%{editorial_url}\">The Stories</a>, <a href=\"%{shop_url}\">The Objects</a>, or you can reach customer service at "
+    server_error_html: "Sorry, we encountered an unknown error trying to show you this page.<br><br> Please start over with <a href=\"%{editorial_url}\">The Stories</a>, <a href=\"%{shop_url}\">The Objects</a>, or you can reach customer service at "
+    search_error_html: "Sorry, search is temporarily offline. Please try the <a href=\"%{designer_index_url}\">Designer Index</a>, <a href=\"%{shop_url}\">The Objects</a>, or <a href=\"%{editorial_url}\">The Stories</a>. You can reach customer service at "
+    intl_ship_note_html: "Is your billing and/or shipping address outside of the U.S.? Please e-mail <a href=\"mailto:%{service_email}\">%{service_email}</a> for information on international orders."
+    external_product_note: "This item can be purchased on our partner's site."
+    email_preferences_updated: "Your email preferences have been updated."
+
+  views:
+    pagination:
+      previous: "&lt;"
+      next: "&gt;"
+      truncate: "…"
+
+  account:
+    newsletter_subscription_prompt: "Be the first to know about our latest arrivals, sales, and events."
+    current_password_label: "Current Password"
+    confirm_exisiting_password_label: "Confirm Current Password"
+    new_password_label: "New Password"
+    confirm_new_password_label: "Confirm New Password"
+    email_field_label_html: "Email (we&#39;ll send requested newsletters or notifications to this address)"
+    headings:
+      contact_info: "Contact Info"
+      password: "Password"
+      newsletter: "Newsletter"
+      edit: "Edit"
+      close: "Close"
+    manage_newsletter:
+      subscribed_to: "You are subscribed to:"
+      edit_another_email_html: "*<a href=\"%{url}\">Edit subscription settings</a> for another email address"
+      is_subscribed_to: "is subscribed to:"
+      not_subscribed_to: "You are not subscribed to:"
+      click_to_manage: "(Click 'Edit' to manage your subscription settings)"
+      enter_valid_email: "Please enter a valid email address."
+
+  forms:
+    error_unknown: "An unknown error occurred"
+    success_unknown: "Thank You"
+
+  errors:
+    messages:
+      invalid: "invalid"
+      blank: "required field"
+      not_an_email: "invalid email address"
+      not_a_url: "invalid url"
+      invalid_size: "please select a size"
+      email_is_invalid: "Email address is blank or invalid."
+
+      password_not_set: "Password not saved. Please check that name and email are valid."
+
+      too_long:
+        one: too long (maximum is 1 character)
+        other: too long (maximum is %{count} characters)
+      too_short:
+        one: too short (minimum is 1 character)
+        other: too short (minimum is %{count} characters)
+
+
+  shipping_method:
+    id_1:
+      name: 2nd-Day
+      additional_information:
+    id_2:
+      name: Next-Day
+      additional_information:
+    id_3:
+      name: International Rate 1
+      additional_information:
+    id_4:
+      name: International Rate 2
+      additional_information:
+    id_5:
+      name: International Rate 3
+      additional_information:
+    id_6:
+      name: Special Delivery TBD
+      additional_information: '*This item requires special delivery. We will contact you by phone within 1 business day to discuss rates and delivery times.'
+    id_7:
+      name: Ground 5-7
+      additional_information:
+
+  shipping_category:
+    final_sale_label: "This item is Final Sale."
+      # in spree
+      # 7 - default
+      # 8 - ground/usa only
+      # 9 - usa only/no export
+      # 10 - special delivery
+    id_7:
+      product_short_label: ""
+      product_details_html: "The Line offers free two-day shipping and returns on U.S. orders of most items. International shipping is also available. <a href=\"%{url}\" class=\"lb\">See our full shipping and return policies</a>."
+    id_8:
+      product_short_label: "This item ships only to the U.S. via ground shipping."
+      product_details_html: "This item ships only to U.S. addresses and requires ground shipping (5-7 business days). Within the U.S., shipping is free. Returns are also free unless specified otherwise above. <a href=\"%{url}\" class=\"lb\">See our full shipping and return policies</a>."
+    id_9:
+      product_short_label: "This item ships only to the U.S."
+      product_details_html: "This item ships only to U.S. addresses.  Within the U.S., shipping is free. Returns are also free unless specified otherwise above. <a href=\"%{url}\" class=\"lb\">See our full shipping and return policies</a>."
+    id_10:
+      product_short_label: "This item requires special delivery."
+      product_details_html: "This item requires special delivery. We will contact you within one business day to discuss shipping arrangements and fees. Please <a href=\"%{url}\">contact us</a> for a quote."
+
+  cart:
+    quantity_total: "Qty. Total"
+    accepted_cards: "*Accepted Cards"
+    #inline_shipping_exception: "*This item requires special delivery."
+    inline_shipping_exception_extended: "*This item requires special delivery. We will contact you by phone within 1 business day to discuss rates and delivery times."
+    inline_shipping_exception_short: "*requires special delivery"
+    luxury_packaging: "Signature Packaging (Complimentary)"
+    luxury_packaging_description: "We'll wrap your order in tissue paper and place it inside a sturdy, reusable gift box before packing it securely in a shipping box."
+    minimal_packaging: "Minimal Packaging (Complimentary)"
+    minimal_packaging_description: "Have enough giftboxes? Choose this eco-friendly option and we'll wrap your order in tissue paper before packing it securely in a shipping box."
+    packaging_exceptions: "Some exclusions apply."
+    minicart_shipping_exception: "*special shipping conditions apply"
+    minicart_final_sale: "* final sale"
+    delivery_method_exception: "*Note: Some home items may require special delivery rates."
+    shipping_method_detail: "*Orders placed after 2 p.m. EST will begin processing on the next business day."
+    order_shipping_exception: "Note: Some items in your order require special delivery. We will be contacting you within 1 business day to confirm delivery and price."
+    thank_you: "Thank you for your order."
+    addtocart_success_html: "The item has been added to your bag. <a href=\"%{url1}\">View Bag</a> or <a href=\"%{url2}\">Checkout Now</a>."
+
+
+  mailer:
+    address: "76 GREENE ST, 3rd FL, NEW YORK, NY 10012"
+    address_two_line_html: "76 Greene Street, 3rd Floor<br>New York, NY 10012"
+    footer_copyright_html: "Copyright &copy; 2014 The Line"
+    footer_rights_reserved_html: "All rights reserved."
+
+  static:
+    address_html: "The Line LLC<br> 76 GREENE ST, 3rd FL<br> NEW YORK, NY 10012"
+
+
+  social_media:
+    share_product:
+      email_subject: "Check out what I found on The Line"
+      email_body: "Check out what I found on The Line: %{name} from %{brand} %{url}"
+      tweet_text: "%{brand} — %{name}"
+    share_volume:
+      email_subject: "%{title} - The Line"
+      email_body: "Read %{title} at The Line:%0D%0A%0D%0A%{url}"
+      tweet_text: "%{title}"
+    share_apartment:
+      email_subject: "%{title} by The Line"
+      email_body: "Visit %{title} by The Line:%0D%0A%0D%0A%{url}"
+      tweet_text: "%{title} by The Line"
+    share_chapter:
+      email_subject: "Chapter %{num} - The Line"
+      email_body: "Read Chapter %{num}, %{title} at The Line%0D%0A%0D%0A%{url}"
+      tweet_text: "Read Chapter %{num}, %{title}"
+    share_selection:
+      email_subject: "%{title} - The Line"
+      email_body: "Discover %{title} %0D%0A%0D%0A%{url}"
+      tweet_text: "Discover %{title}"
+    share_personal_selection:
+      email_subject: "Discover my Personal Selection at The Line"
+      email_body: "Discover %{title} %0D%0A%0D%0A%{url}"
+      tweet_text: "Discover %{title}"
+    share_footnote:
+      email_subject: "Footnote %{num} - The Line"
+      email_body: "Read Footnote %{num}, %{title} at The Line%0D%0A%0D%0A%{url}"
+      tweet_text: "Read Footnote %{num}, %{title}"
+
+  pos:
+    location_abbr:
+      loc_1: Web
+      loc_2: SoHo
+      loc_3: LA
+
+  spree:
+    selected_quantity_not_available: 'Sorry, we don’t have enough stock available.'
+    # selected_quantity_not_available: ! 'selected of %{item} is not available.'  # alternate with item name
+    # abbreviation: Abbreviation
+    # account: Account
+    # account_updated: Account updated
+    # action: Action
+    actions:
+    #   cancel: Cancel
+    #   continue: Continue
+    #   create: Create
+    #   destroy: Destroy
+      edit: "Edit"
+    #   list: List
+    #   listing: Listing
+    #   new: New
+    #   save: Save
+    #   update: Update
+    # activate: Activate
+    # active: Active
+    # add: Add
+    # add_action_of_type: Add action of type
+    # add_country: Add Country
+    # add_new_header: Add New Header
+    # add_new_style: Add New Style
+    # add_one: Add One
+    # add_option_value: Add Option Value
+    # add_product: Add Product
+    # add_product_properties: Add Product Properties
+    # add_rule_of_type: Add rule of type
+    # add_state: Add State
+    # add_stock: Add Stock
+    # add_stock_management: Add Stock Management
+    add_to_cart: "Add to Bag"
+    # add_variant: Add Variant
+    # additional_item: Additional Item Cost
+    # address1: Address
+    # address2: Address (contd.)
+    # adjustment: Adjustment
+    # adjustment_amount: Amount
+    # adjustment_successfully_closed: Adjustment has been successfully closed!
+    # adjustment_successfully_opened: Adjustment has been successfully opened!
+    # adjustment_total: Adjustment Total
+    # adjustments: Adjustments
+    # admin:
+    #   mail_methods:
+    #     send_testmail: Send Test Mail
+    #     testmail:
+    #       delivery_error: Test Mail delivery error
+    #       delivery_success: Test Mail sent successfully
+    #       error: ! 'Test Mail error: %{e}'
+    #   tab:
+    #     configuration: Configuration
+    #     orders: Orders
+    #     overview: Overview
+    #     products: Products
+    #     promotions: Promotions
+    #     reports: Reports
+    #     users: Users
+    # administration: Administration
+    # agree_to_privacy_policy: Agree to Privacy Policy
+    # agree_to_terms_of_service: Agree to Terms of Service
+    # all: All
+    # all_adjustments_closed: All adjustments successfully closed!
+    # all_adjustments_opened: All adjustments successfully opened!
+    # all_departments: All departments
+    # allow_ssl_in_development_and_test: Allow SSL to be used when in development and test modes
+    # allow_ssl_in_production: Allow SSL to be used in production mode
+    # allow_ssl_in_staging: Allow SSL to be used in staging mode
+    # already_signed_up_for_analytics: You have already signed up for Spree Analytics
+    # alt_text: Alternative Text
+    # alternative_phone: Alternative Phone
+    # amount: Amount
+    # analytics_desc_header_1: Spree Analytics
+    # analytics_desc_header_2: Live analytics integrated into your Spree dashboard
+    # analytics_desc_list_1: Get live sales information as it happens
+    # analytics_desc_list_2: Requires only a free Spree account to activate
+    # analytics_desc_list_3: Absolutely no code to install
+    # analytics_desc_list_4: It's completely free!
+    # analytics_trackers: Analytics Trackers
+    # and: and
+    # are_you_sure: Are you sure?
+    # are_you_sure_delete: Are you sure you want to delete this record?
+    # associated_adjustment_closed: The associated adjustment is closed, and will not be recalculated. Do you want to open it?
+    # attachment_default_style: Attachments Style
+    # attachment_default_url: Attachments Default URL
+    # attachment_path: Attachments Path
+    # attachment_styles: Paperclip Styles
+    # attachment_url: Attachments URL
+    # authorization_failure: Authorization Failure
+    # available_on: Available On
+    # back: Back
+    # back_end: Backend
+    # back_to_adjustments_list: Back To Adjustments List
+    # back_to_images_list: Back To Images List
+    # back_to_option_types_list: Back To Option Types List
+    # back_to_orders_list: Back To Orders List
+    # back_to_payment_methods_list: Back To Payment Methods List
+    # back_to_payments_list: Back To Payments List
+    # back_to_products_list: Back To Products List
+    # back_to_promotions_list: Back To Promotions List
+    # back_to_properties_list: Back To Properties List
+    # back_to_prototypes_list: Back To Prototypes List
+    # back_to_reports_list: Back To Reports List
+    # back_to_shipping_categories: Back To Shipping Categories
+    # back_to_shipping_methods_list: Back To Shipping Methods List
+    # back_to_states_list: Back To States List
+    # back_to_stock_locations_list: Back to Stock Locations List
+    # back_to_stock_movements_list: Back to Stock Movements List
+    # back_to_stock_transfers_list: Back to Stock Transfers List
+    back_to_store: "Go Back to Store"
+    # back_to_tax_categories_list: Back To Tax Categories List
+    # back_to_taxonomies_list: Back To Taxonomies List
+    # back_to_trackers_list: Back To Trackers List
+    # back_to_users_list: Back To Users List
+    # back_to_zones_list: Back To Zones List
+    # backorderable: Backorderable
+    # backorders_allowed: backorders allowed
+    # balance_due: Balance Due
+    # bill_address: Bill Address
+    # billing: Billing
+    # billing_address: Billing Address
+    # both: Both
+    # calculator: Calculator
+    # calculator_settings_warning: If you are changing the calculator type, you must save first before you can edit the calculator settings
+    # cancel: cancel
+    cancelled: cancelled
+    canceled: canceled
+    # cannot_create_payment_without_payment_methods: You cannot create a payment for an order without any payment methods defined.
+    # cannot_create_returns: Cannot create returns as this order has no shipped units.
+    # cannot_perform_operation: Cannot perform requested operation
+    # cannot_set_shipping_method_without_address: Cannot set shipping method until customer details are provided.
+    # capture: Capture
+    card_code: Card Code (CVV)
+    # card_number: Card Number
+    # card_type_is: Card type is
+    cart: "Bag"
+    # categories: Categories
+    # category: Category
+    # check_for_spree_alerts: Check for Spree alerts
+    checkout: "Checkout"
+    # choose_a_customer: Choose a customer
+    # choose_currency: Choose Currency
+    # choose_dashboard_locale: Choose Dashboard Locale
+    # city: City
+    # clone: Clone
+    # close: Close
+    # close_all_adjustments: Close All Adjustments
+    # code: Code
+    # company: Company
+    # complete: complete
+    # configuration: Configuration
+    # configurations: Configurations
+    # configure_s3: Configure S3
+    # confirm: Confirm
+    # confirm_delete: Confirm Deletion
+    # confirm_password: Password Confirmation
+    # continue: Continue
+    continue_shopping: "Continue shopping"
+    # cost_currency: Cost Currency
+    # cost_price: Cost Price
+    # could_not_connect_to_jirafe: Could not connect to Jirafe to sync data. This will be automatically retried later.
+    # could_not_create_stock_movement: There was a problem saving this stock movement. Please try again.
+    # count_on_hand: Count On Hand
+    # countries: Countries
+    # country: Country
+    # country_based: Country Based
+    # country_name: Name
+    # country_names:
+    #   CA: Canada
+    #   FRA: France
+    #   ITA: Italy
+    #   US: United States of America
+    # coupon: Coupon
+    coupon_code: Offer code
+    # coupon_code_already_applied: The coupon code has already been applied to this order
+    # coupon_code_applied: The coupon code was successfully applied to your order.
+    # coupon_code_better_exists: The previously applied coupon code results in a better deal
+    # coupon_code_expired: The coupon code is expired
+    # coupon_code_max_usage: Coupon code usage limit exceeded
+    # coupon_code_not_eligible: This coupon code is not eligible for this order
+    # coupon_code_not_found: The coupon code you entered doesn't exist. Please try again.
+    create: "Create"
+    create_a_new_account: "Create an account"
+    # created_at: Created At
+    # credit: Credit
+    # credit_card: Credit Card
+    # credit_cards: Credit Cards
+    # credit_owed: Credit Owed
+    # currency: Currency
+    # currency_decimal_mark: Currency decimal mark
+    # currency_settings: Currency Settings
+    # currency_symbol_position: Put currency symbol before or after dollar amount?
+    # currency_thousands_separator: Currency thousands separator
+    # current: Current
+    # current_promotion_usage: ! 'Current Usage: %{count}'
+    # customer: Customer
+    # customer_details: Customer Details
+    # customer_details_updated: Customer Details Updated
+    # customer_search: Customer Search
+    # cut: Cut
+    # dash:
+    #   jirafe:
+    #     app_id: App ID
+    #     app_token: App Token
+    #     currently_unavailable: Jirafe is currently unavailable. Spree will automatically connect to Jirafe once it is available.
+    #     explanation: The fields below may already be populated if you chose to register with Jirafe from the admin dashboard.
+    #     header: Jirafe Analytics Settings
+    #     site_id: Site ID
+    #     token: Token
+    #   jirafe_settings_updated: Jirafe Settings have been updated.
+    # date: Date
+    # date_completed: Date Completed
+    # date_picker:
+    #   first_day: 0
+    #   format: ! '%Y/%m/%d'
+    #   js_format: yy/mm/dd
+    # date_range: Date Range
+    # default: Default
+    # default_meta_description: Default Meta Description
+    # default_meta_keywords: Default Meta Keywords
+    # default_seo_title: Default Seo Title
+    # default_tax: Default Tax
+    # default_tax_zone: Default Tax Zone
+    # delete: Delete
+    # delivery: Delivery
+    # depth: Depth
+    # description: Description
+    # destination: Destination
+    # destroy: Destroy
+    # discount_amount: Discount Amount
+    # dismiss_banner: No. Thanks! I'm not interested, do not display this message again
+    # display: Display
+    # display_currency: Display currency
+    # edit: Edit
+    # editing_option_type: Editing Option Type
+    # editing_payment_method: Editing Payment Method
+    # editing_product: Editing Product
+    # editing_promotion: Editing Promotion
+    # editing_property: Editing Property
+    # editing_prototype: Editing Prototype
+    # editing_shipping_category: Editing Shipping Category
+    # editing_shipping_method: Editing Shipping Method
+    # editing_state: Editing State
+    # editing_stock_location: Editing Stock Location
+    # editing_stock_movement: Editing Stock Movement
+    # editing_tax_category: Editing Tax Category
+    # editing_tax_rate: Editing Tax Rate
+    # editing_tracker: Editing Tracker
+    # editing_user: Editing User
+    # editing_zone: Editing Zone
+    # email: Email
+    # empty: Empty
+    empty_cart: "Empty Bag"
+    # enable_mail_delivery: Enable Mail Delivery
+    # end: End
+    ending_in: Ending in
+    # environment: Environment
+    # error: error
+    error_saving_user_information: An error has occurred. Please try again.
+    # errors:
+    #   messages:
+    #     could_not_create_taxon: Could not create taxon
+    #     no_payment_methods_available: No payment methods are configured for this environment
+    #     no_shipping_methods_available: No shipping methods available for selected location, please change your address and try again.
+    errors_prohibited_this_record_from_being_saved:
+      one: "An error has occurred. Please see below."
+      other: ! '%{count} errors have occurred. Please see below.'
+    # event: Event
+    # events:
+    #   spree:
+    #     cart:
+    #       add: Add to cart
+    #     checkout:
+    #       coupon_code_added: Coupon code added
+    #     content:
+    #       visited: Visit static content page
+    #     order:
+    #       contents_changed: Order contents changed
+    #     page_view: Static page viewed
+    #     user:
+    #       signup: User signup
+    # exceptions:
+    #   count_on_hand_setter: Cannot set count_on_hand manually, as it is set automatically by the recalculate_count_on_hand callback. Please use `update_column(:count_on_hand, value)` instead.
+    # expiration: Expiration
+    # extension: Extension
+    # filename: Filename
+    # fill_in_customer_info: Please fill in customer info
+    # filter_results: Filter Results
+    # finalize: Finalize
+    # first_item: First Item Cost
+    # first_name: First Name
+    # first_name_begins_with: First Name Begins With
+    # flat_percent: Flat Percent
+    # flat_rate_per_item: Flat Rate (per item)
+    # flat_rate_per_order: Flat Rate (per order)
+    # flexible_rate: Flexible Rate
+    forgot_password: Forgot Password?
+    # free_shipping: Free Shipping
+    # front_end: Front End
+    # gateway: Gateway
+    # gateway_config_unavailable: Gateway unavailable for environment
+    # gateway_error: Gateway Error
+    # general: General
+    # general_settings: General Settings
+    # google_analytics: Google Analytics
+    # google_analytics_id: Analytics ID
+    guest_checkout: Checkout as Guest
+    # guest_customers: Guest Customers
+    # guest_user_account: Checkout as a Guest
+    # has_no_shipped_units: has no shipped units
+    # height: Height
+    # hide_cents: Hide cents
+    # home: Home
+    # i18n:
+    #   available_locales: Available Locales
+    #   fields: Fields
+    #   language: Language
+    #   localization_settings: Localization Settings
+    #   only_complete: Only complete
+    #   only_incomplete: Only incomplete
+    #   select_locale: Select locale
+    #   show_only: Show only
+    #   supported_locales: Supported Locales
+    #   this_file_language: English (US)
+    #   translations: Translations
+    # icon: Icon
+    # image: Image
+    # image_settings: Image Settings
+    # image_settings_updated: Image Settings successfully updated.
+    # image_settings_warning: You will need to regenerate thumbnails if you update the paperclip styles. Use rake paperclip:refresh:thumbnails CLASS=Spree::Image to do this.
+    # images: Images
+    # included_in_price: Included in Price
+    # included_price_validation: cannot be selected unless you have set a Default Tax Zone
+    instructions_to_reset_password: Please enter your e-mail address below.
+    insufficient_stock: Sorry, we only have %{on_hand} of these left.
+    # intercept_email_address: Intercept Email Address
+    # intercept_email_instructions: Override email recipient and replace with this address.
+    # internal_name: Internal Name
+    # invalid_payment_provider: Invalid payment provider.
+    # invalid_promotion_action: Invalid promotion action.
+    # invalid_promotion_rule: Invalid promotion rule.
+    # inventory: Inventory
+    # inventory_adjustment: Inventory Adjustment
+    inventory_error_flash_for_insufficient_quantity: An item in your bag has become unavailable.
+    # is_not_available_to_shipment_address: is not available to shipment address
+    # iso_name: Iso Name
+    # item: Item
+    # item_description: Item Description
+    # item_total: Item Total
+    # item_total_rule:
+    #   operators:
+    #     gt: greater than
+    #     gte: greater than or equal to
+    # items_cannot_be_shipped: We are unable to ship the selected items to your shipping address. Please choose another shipping address.
+    # jirafe: Jirafe
+    # landing_page_rule:
+    #   path: Path
+    # last_name: Last Name
+    # last_name_begins_with: Last Name Begins With
+    # learn_more: Learn More
+    # list: List
+    # listing_countries: Listing Countries
+    # listing_orders: Listing Orders
+    # listing_products: Listing Products
+    # listing_reports: Listing Reports
+    # listing_tax_categories: Listing Tax Categories
+    # listing_users: Listing Users
+    # loading: Loading
+    # locale_changed: Locale Changed
+    # location: Location
+    # lock: Lock
+    # logged_in_as: Logged in as
+    # logged_in_succesfully: Logged in successfully
+    # logged_out: You have been logged out.
+    login: Log-in
+    login_as_existing: Log-in as Existing Customer
+    # login_failed: Login authentication failed.
+    # login_name: Login
+    # logout: Logout
+    # look_for_similar_items: Look for similar items
+    # maestro_or_solo_cards: Maestro/Solo cards
+    # mail_method_settings: Mail Method Settings
+    # mail_methods: Mail Methods
+    # make_refund: Make refund
+    # master_price: Master Price
+    # match_choices:
+    #   all: All
+    #   none: None
+    # max_items: Max Items
+    # meta_description: Meta Description
+    # meta_keywords: Meta Keywords
+    # metadata: Metadata
+    # minimal_amount: Minimal Amount
+    # month: Month
+    # more: More
+    # move_stock_between_locations: Move Stock Between Locations
+    my_account: My Account
+    my_orders: My Orders
+    # name: Name
+    # name_or_sku: Name or SKU (enter at least first 4 characters of product name)
+    # new: New
+    # new_adjustment: New Adjustment
+    # new_customer: New Customer
+    # new_image: New Image
+    # new_option_type: New Option Type
+    # new_order: New Order
+    new_order_completed: New Order Completed
+    # new_payment: New Payment
+    # new_payment_method: New Payment Method
+    # new_product: New Product
+    # new_promotion: New Promotion
+    # new_property: New Property
+    # new_prototype: New Prototype
+    # new_return_authorization: New Return Authorization
+    # new_shipping_category: New Shipping Category
+    # new_shipping_method: New Shipping Method
+    # new_state: New State
+    # new_stock_location: New Stock Location
+    # new_stock_movement: New Stock Movement
+    # new_stock_transfer: New Stock Transfer
+    # new_tax_category: New Tax Category
+    # new_tax_rate: New Tax Rate
+    # new_taxon: New Taxon
+    # new_taxonomy: New Taxonomy
+    # new_tracker: New Tracker
+    # new_user: New User
+    # new_variant: New Variant
+    # new_zone: New Zone
+    # next: Next
+    # no_actions_added: No actions added
+    # no_orders_found: No orders found
+    # no_payment_methods_found: No payment methods found
+    # no_pending_payments: No pending payments
+    # no_products_found: No products found
+    # no_promotions_found: No promotions found
+    # no_results: No results
+    # no_rules_added: No rules added
+    # no_shipping_methods_found: No shipping methods found
+    # no_stock_locations_found: No stock locations found
+    # no_trackers_found: No Trackers Found
+    # no_tracking_present: No tracking details provided.
+    # none: None
+    # normal_amount: Normal Amount
+    # not: not
+    # not_available: N/A
+    # not_enough_stock: There is not enough inventory at the source location to complete this transfer.
+    # not_found: ! '%{resource} is not found'
+    # notice_messages:
+    #   product_cloned: Product has been cloned
+    #   product_deleted: Product has been deleted
+    #   product_not_cloned: Product could not be cloned
+    #   product_not_deleted: Product could not be deleted
+    #   variant_deleted: Variant has been deleted
+    #   variant_not_deleted: Variant could not be deleted
+    # on_hand: On Hand
+    # open: Open
+    # open_all_adjustments: Open All Adjustments
+    # option_type: Option Type
+    # option_type_placeholder: Choose an option type
+    # option_types: Option Types
+    # option_value: Option Value
+    # option_values: Option Values
+    # optional: Optional
+    # options: Options
+    # or: or
+    # or_over_price: ! '%{price} or over'
+    # order: Order
+    order_adjustments: Order adjustments
+    order_date: 'Order Date'
+    # order_details: Order Details
+    # order_email_resent: Order Email Resent
+    # order_information: Order Information
+    order_mailer:
+    #   cancel_email:
+    #     dear_customer: Dear Customer,
+    #     instructions: Your order has been CANCELED.  Please retain this cancellation information for your records.
+    #     order_summary_canceled: Order Summary [CANCELED]
+    #     subject: Cancellation of Order
+    #     subtotal: ! 'Subtotal: %{subtotal}'
+    #     total: ! 'Order Total: %{total}'
+      confirm_email:
+        # dear_customer: Dear
+        # instructions: Thank you for joining our search for refined, versatile, and honest goods. Please review your order below:
+        order_summary: Order Summary
+        subject: Order Confirmation
+        subtotal: ! 'Subtotal: %{subtotal}'
+        # thanks: As soon as your order is shipped, we’ll send you an e-mail with tracking information.
+        total: ! 'Order Total: %{total}'
+        ship_to: Ship To
+    # order_not_found: We couldn't find your order. Please try that action again.
+    order_number: "Order"
+    # order_populator:
+    #   out_of_stock: ! '%{item} is out of stock.'
+      # selected_quantity_not_available: ! "Sorry, we don’t have enough stock available."
+    #   please_enter_reasonable_quantity: Please enter a reasonable quantity.
+    # order_processed_successfully: Your order has been processed successfully
+    order_state:
+    #   address: address
+    #   awaiting_return: awaiting return
+    #   canceled: canceled
+      cart: "My Bag"
+    #   complete: complete
+    #   confirm: confirm
+    #   delivery: delivery
+    #   payment: payment
+    #   resumed: resumed
+    #   returned: returned
+    # order_summary: Order Summary
+    # order_sure_want_to: Are you sure you want to %{event} this order?
+    # order_total: Order Total
+    # order_updated: Order Updated
+    # orders: Orders
+    out_of_stock: "Out of Stock"
+    # overview: Overview
+    # package_from: package from
+    # pagination:
+    #   next_page: next page &raquo;
+    #   previous_page: ! '&laquo; previous page'
+    #   truncate: ! '&hellip;'
+    # password: Password
+    # paste: Paste
+    # path: Path
+    # pay: pay
+    # payment: Payment
+    # payment_information: Payment Information
+    # payment_method: Payment Method
+    # payment_methods: Payment Methods
+    # payment_processing_failed: Payment could not be processed, please check the details you entered
+    # payment_processor_choose_banner_text: If you need help choosing a payment processor, please visit
+    # payment_processor_choose_link: our payments page
+    payment_state: "Payment State"
+    # payment_states:
+    #   balance_due: balance due
+    #   checkout: checkout
+    #   completed: completed
+    #   credit_owed: credit owed
+    #   failed: failed
+    #   paid: paid
+    #   pending: pending
+    #   processing: processing
+    #   void: void
+    # payment_updated: Payment Updated
+    # payments: Payments
+    # percent: Percent
+    # percent_per_item: Percent Per Item
+    # permalink: Permalink
+    # phone: Phone
+    place_order: "Place Order"
+    # please_define_payment_methods: Please define some payment methods first.
+    # populate_get_error: Something went wrong. Please try adding the item again.
+    # powered_by: Powered by
+    # presentation: Presentation
+    # previous: Previous
+    # price: Price
+    # price_range: Price Range
+    # price_sack: Price Sack
+    # process: Process
+    # product: Product
+    # product_details: Product Details
+    # product_has_no_description: This product has no description
+    # product_not_available_in_this_currency: This product is not available in the selected currency.
+    # product_properties: Product Properties
+    # product_rule:
+    #   choose_products: Choose products
+    #   label: Order must contain %{select} of these products
+    #   match_all: all
+    #   match_any: at least one
+    #   product_source:
+    #     group: From product group
+    #     manual: Manually choose
+    # products: Products
+    # promotion: Promotion
+    # promotion_action: Promotion Action
+    # promotion_action_types:
+    #   create_adjustment:
+    #     description: Creates a promotion credit adjustment on the order
+    #     name: Create adjustment
+    #   create_line_items:
+    #     description: Populates the cart with the specified quantity of variant
+    #     name: Create line items
+    #   give_store_credit:
+    #     description: Gives the user store credit of the amount specified
+    #     name: Give store credit
+    # promotion_actions: Actions
+    # promotion_form:
+    #   match_policies:
+    #     all: Match all of these rules
+    #     any: Match any of these rules
+    # promotion_rule: Promotion Rule
+    # promotion_rule_types:
+    #   first_order:
+    #     description: Must be the customer's first order
+    #     name: First order
+    #   item_total:
+    #     description: Order total meets these criteria
+    #     name: Item total
+    #   landing_page:
+    #     description: Customer must have visited the specified page
+    #     name: Landing Page
+    #   product:
+    #     description: Order includes specified product(s)
+    #     name: Product(s)
+    #   user:
+    #     description: Available only to the specified users
+    #     name: User
+    #   user_logged_in:
+    #     description: Available only to logged in users
+    #     name: User Logged In
+    # promotions: Promotions
+    # properties: Properties
+    # property: Property
+    # prototype: Prototype
+    # prototypes: Prototypes
+    # provider: Provider
+    # provider_settings_warning: If you are changing the provider type, you must save first before you can edit the provider settings
+    # qty: Qty
+    # quantity: Quantity
+    # quantity_returned: Quantity Returned
+    # quantity_shipped: Quantity Shipped
+    # rate: Rate
+    # reason: Reason
+    # receive: receive
+    # receive_stock: Receive Stock
+    # received: Received
+    # reference: Reference
+    # refund: Refund
+    register: "Register"
+    # registration: Registration
+    remember_me: "Remember me"
+    # remove: Remove
+    # rename: Rename
+    # reports: Reports
+    # resend: Resend
+    reset_password: "Reset my password"
+    # response_code: Response Code
+    # resume: resume
+    # resumed: Resumed
+    # return: return
+    # return_authorization: Return Authorization
+    # return_authorization_updated: Return authorization updated
+    # return_authorizations: Return Authorizations
+    # return_quantity: Return Quantity
+    # returned: Returned
+    # review: Review
+    # rma_credit: RMA Credit
+    # rma_number: RMA Number
+    # rma_value: RMA Value
+    # roles: Roles
+    # rules: Rules
+    # s3_access_key: Access Key
+    # s3_bucket: Bucket
+    # s3_headers: S3 Headers
+    # s3_protocol: S3 Protocol
+    # s3_secret: Secret Key
+    # sales_total: Sales Total
+    # sales_total_description: Sales Total For All Orders
+    # sales_totals: Sales Totals
+    save_and_continue: "Continue to Next Step"
+    # say_no: 'No'
+    # say_yes: 'Yes'
+    # scope: Scope
+    # search: Search
+    # search_results: Search results for '%{keywords}'
+    # searching: Searching
+    # secure_connection_type: Secure Connection Type
+    # security_settings: Security Settings
+    # select: Select
+    # select_from_prototype: Select From Prototype
+    # select_stock: Select stock
+    # send_copy_of_all_mails_to: Send Copy of All Mails To
+    # send_mails_as: Send Mails As
+    # server: Server
+    # server_error: The server returned an error
+    # settings: Settings
+    # ship: ship
+    # ship_address: Ship Address
+    # ship_to: Ship to:
+    # ship_total: Ship Total
+    # shipment: Shipment
+    # shipment_inc_vat: Shipment including VAT
+    # shipment_mailer:
+    #   shipped_email:
+    #     dear_customer: Dear Customer,
+    #     instructions: Your order has been shipped
+    #     shipment_summary: Shipment Summary
+    #     subject: Shipment Notification
+    #     thanks: Thank you for your business.
+    #     track_information: ! 'Tracking Information: %{tracking}'
+    #     track_link: ! 'Tracking Link: %{url}'
+    shipment_state: "Shipment State"
+    # shipment_states:
+    #   backorder: backorder
+    #   partial: partial
+    #   pending: pending
+    #   ready: ready
+    #   shipped: shipped
+    # shipments: Shipments
+    # shipped: Shipped
+    # shipping: Shipping
+    # shipping_address: Shipping Address
+    # shipping_categories: Shipping Categories
+    # shipping_category: Shipping Category
+    # shipping_flat_rate_per_item: Flat rate per package item
+    # shipping_flat_rate_per_order: Flat rate
+    # shipping_flexible_rate: Flexible Rate per package item
+    # shipping_instructions: Shipping Instructions
+    # shipping_method: Shipping Method
+    # shipping_methods: Shipping Methods
+    # shipping_price_sack: Price sack
+    # shop_by_taxonomy: Shop by %{taxonomy}
+    shopping_cart: "My Bag"
+    # show: Show
+    # show_active: Show Active
+    # show_deleted: Show Deleted
+    # show_only_complete_orders: Only show complete orders
+    # show_rate_in_label: Show rate in label
+    # site_name: Site Name
+    # site_url: Site URL
+    # sku: SKU
+    # smtp: SMTP
+    # smtp_authentication_type: SMTP Authentication Type
+    # smtp_domain: SMTP Domain
+    # smtp_mail_host: SMTP Mail Host
+    # smtp_password: SMTP Password
+    # smtp_port: SMTP Port
+    # smtp_send_all_emails_as_from_following_address: Send all mails as from the following address.
+    # smtp_send_copy_to_this_addresses: Sends a copy of all outgoing mails to this address. For multiple addresses, separate with commas.
+    # smtp_username: SMTP Username
+    # source: Source
+    # special_instructions: Special Instructions
+    # split: Split
+    # spree/order:
+    #   coupon_code: Coupon Code
+    spree_gateway_error_flash_for_checkout: "We’re having trouble processing your payment information."
+    # start: Start
+    # start_date: Valid from
+    # state: State
+    # state_based: State Based
+    # states: States
+    # states_required: States Required
+    status: "Status"
+    # stock_location: Stock Location
+    # stock_location_info: Stock location info
+    # stock_locations: Stock Locations
+    # stock_management: Stock Management
+    # stock_management_requires_a_stock_location: Please create a stock location in order to manage stock.
+    # stock_movements: Stock Movements
+    # stock_movements_for_stock_location: Stock Movements for %{stock_location_name}
+    # stock_successfully_transferred: Stock was successfully transferred between locations.
+    # stock_transfer: Stock Transfer
+    # stock_transfers: Stock Transfers
+    # stop: Stop
+    # store: Store
+    # street_address: Street Address
+    # street_address_2: Street Address (cont'd)
+    subtotal: "Subtotal"
+    # subtract: Subtract
+    # successfully_created: ! '%{resource} has been successfully created!'
+    # successfully_removed: ! '%{resource} has been successfully removed!'
+    # successfully_signed_up_for_analytics: Successfully signed up for Spree Analytics
+    # successfully_updated: ! '%{resource} has been successfully updated!'
+    # tax: Tax
+    # tax_categories: Tax Categories
+    # tax_category: Tax Category
+    # tax_rate_amount_explanation: Tax rates are a decimal amount to aid in calculations, (i.e. if the tax rate is 5% then enter 0.05)
+    # tax_rates: Tax Rates
+    # tax_settings: Tax Settings
+    # tax_total: Tax Total
+    # taxon: Taxon
+    # taxon_edit: Edit Taxon
+    # taxon_placeholder: Add a Taxon
+    # taxonomies: Taxonomies
+    # taxonomy: Taxonomy
+    # taxonomy_edit: Edit taxonomy
+    # taxonomy_tree_error: The requested change has not been accepted and the tree has been returned to its previous state, please try again.
+    # taxonomy_tree_instruction: ! '* Right click a child in the tree to access the menu for adding, deleting or sorting a child.'
+    # taxons: Taxons
+    # test: Test
+    # test_mailer:
+    #   test_email:
+    #     greeting: Congratulations!
+    #     message: If you have received this email, then your email settings are correct.
+    #     subject: Test Mail
+    # test_mode: Test Mode
+    # thank_you_for_your_order: Thank you for your business.  Please print out a copy of this confirmation page for your records.
+    # there_are_no_items_for_this_order: There are no items for this order. Please add an item to the order to continue.
+    # there_were_problems_with_the_following_fields: There were problems with the following fields
+    # thumbnail: Thumbnail
+    # time: Time
+    # to_add_variants_you_must_first_define: To add variants, you must first define
+    total: "Total"
+    # tracking: Tracking
+    # tracking_number: Tracking Number
+    # tracking_url: Tracking URL
+    # tracking_url_placeholder: e.g. http://quickship.com/package?num=:tracking
+    # transfer_from_location: Transfer From
+    # transfer_stock: Transfer Stock
+    # transfer_to_location: Transfer To
+    # tree: Tree
+    # type: Type
+    # type_to_search: Type to search
+    # unable_to_connect_to_gateway: Unable to connect to gateway.
+    # under_price: Under %{price}
+    # unlock: Unlock
+    # unrecognized_card_type: Unrecognized card type
+    # unshippable_items: Unshippable Items
+    update: "Update"
+    # updating: Updating
+    # usage_limit: Usage Limit
+    # use_billing_address: Use Billing Address
+    # use_new_cc: Use a new card
+    # use_s3: Use Amazon S3 For Images
+    # user: User
+    # user_rule:
+    #   choose_users: Choose users
+    # users: Users
+    # validation:
+    #   cannot_be_less_than_shipped_units: cannot be less than the number of shipped units.
+    #   cannot_destory_line_item_as_inventory_units_have_shipped: Cannot destory line item as some inventory units have shipped.
+    #   exceeds_available_stock: exceeds available stock. Please ensure line items have a valid quantity.
+    #   is_too_large: is too large -- stock on hand cannot cover requested quantity!
+    #   must_be_int: must be an integer
+    #   must_be_non_negative: must be a non-negative value
+    # value: Value
+    # variant: Variant
+    # variant_placeholder: Choose a variant
+    # variants: Variants
+    # version: Version
+    # void: Void
+    # weight: Weight
+    # what_is_a_cvv: What is a (CVV) Credit Card Code?
+    # what_is_this: What's This?
+    # width: Width
+    # year: Year
+    you_have_no_orders_yet: "You have no orders yet."
+    your_cart_is_empty: "Your bag is empty."
+    # your_order_is_empty_add_product: Your order is empty, please search for and add a product above
+    # zip: Zip
+    # zipcode: Zip Code
+    # zone: Zone
+    # zones: Zones
+    ##
+    change_my_password: "Change Password"
+    american_express: "American Express"
+    visa: "Visa"
+    master: "MasterCard"
+    master_card: "MasterCard"
+    jcb: "JCB"
+    discover: "Discover"
+
+

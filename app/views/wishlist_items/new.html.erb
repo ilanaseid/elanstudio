@@ -1,0 +1,37 @@
+<% content_for :title, t('site.nav.add_to_wishlist') %>
+<% content_for :lb_wrap_size, "8" %>
+
+<!-- 12 column grid system -->
+<div class="row-fluid">
+  <div class="span8">
+    <h2 class="gamma"><%= t('headings.addtowishlist') %></h2>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span3 offset1 item">
+    <div class="item-image">
+      <%= image_tag @product.default_image_url(:grid), :width => '100%' %>
+    </div>
+    <div class="item-header">
+      <span class="brand"><%= @product.brand.title %></span><br>
+      <span class="fn"><%= @product.title %></span>
+    </div>
+  </div>
+  <div class="span3">
+
+
+  <%# TBD: begin non-success response %>
+  <%= render 'form' %>
+  <%# TBD: end non-success response %>
+  <%# TBD: being success response %>
+  <!--
+    <p class="note">
+      <%= t('msg.addtowishlist_success_html') %> <a href="mailto:<%=Settings.contact_info.service_email%>"><%=Settings.contact_info.service_email%></a>
+    </p>
+  -->
+  <%# TBD: end success response %>
+
+
+  </div>
+</div>

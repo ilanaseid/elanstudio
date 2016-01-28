@@ -1,0 +1,47 @@
+<h3><%= Spree.t(:order_summary) %></h3>
+
+<table data-hook="order_summary" class="cart_order_summary">
+  <tbody>
+    <tr data-hook="item_total">
+      <th><%= Spree.t(:item_total) %>:</th>
+      <td><%= order.display_item_total.to_html %></td>
+    </tr>
+    <tbody id="summary-order-charges" data-hook>
+
+       <% order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments| %>
+        <tr>
+          <th><%= label %>:</th>
+          <td><%= Spree::Money.new(adjustments.sum(&:amount), currency: order.currency).to_html %></td>
+        </tr>
+      <% end %>
+
+      <% order.adjustments.eligible.each do |adjustment| %>
+      <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+        <tr>
+          <th><%= adjustment.label %>:</th>
+          <td><%= adjustment.display_amount.to_html %></td>
+        </tr>
+      <% end %>
+
+
+
+    <% if order.checkout_steps.include?("delivery") && order.shipments.any? %>
+      <% order.shipments.each do |shipment| %>
+        <% if !shipment.shipping_method.nil? %>
+          <tr>
+            <th><%= shipment.shipping_method.name %>:</th>
+            <td><%= Spree::Money.new(shipment.cost, currency: order.currency).to_html %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    </tbody>
+
+    <tr data-hook="order_total">
+      <th><%= Spree.t(:order_total) %>:</th>
+      <td><span id='summary-order-total'><%= order.display_total.to_html %></span></td>
+    </tr>
+
+  </tbody>
+</table>

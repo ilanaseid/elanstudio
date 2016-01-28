@@ -1,0 +1,2 @@
+heroku pg:reset DATABASE -a theline-staging
+heroku pg:backups restore `heroku pg:backups public-url -a theline-production` DATABASE -a theline-staging --confirm theline-staging

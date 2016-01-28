@@ -1,0 +1,66 @@
+<table class="body" width="80%" align="center" style="width: 80%; margin: 0 auto;">
+  <tr>
+    <td align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+      <p>Dear <%= defined?(@order.user.firstname) ? @order.user.firstname : @order.bill_address.firstname %>,</p>
+      <p><%= Spree.t('order_mailer.cancel_email.instructions') %></p>
+      <br>
+    </td>
+  </tr>
+</table>
+
+<table class="body" width="80%" align="center" style="width: 80%; margin: 0 auto;">
+  <tr>
+    <td align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+      <h3><%= Spree.t('order_mailer.cancel_email.order_summary_canceled') %></h3>
+    </td>
+  </tr>
+</table>
+
+<table class="body" width="80%" align="center" style="width: 80%; margin: 0 auto;">
+  <thead>
+    <tr>
+      <th align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Product</th>
+      <th align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Size</th>
+      <th align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Qty</th>
+      <th align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @order.line_items.each do |item| %>
+    <% @cms_product=Product.where(:spree_product_id=>item.variant.product_id).first %>
+    <tr>
+      <td align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+        <b><%= link_to @cms_product.brand.title, main_app.brand_url(@cms_product.brand.basename), :class=>'brand' %></b><br>
+        <%= link_to item.variant.product.name, main_app.shop_product_url(@cms_product.basename) %><br>
+        <i><%= item.variant.sku %></i></td>
+        <td align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;"><%= (item.variant.options_text.length > 0) ? item.variant.options_text : t('shop.size_not_applicable') %></td>
+        <td align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">(<%=item.quantity%>)</td>
+        <td align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">@ <%= item.single_money %> = <%= item.display_amount %></td>
+      </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="1" align="left" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;"><%= Spree.t('order_mailer.cancel_email.subtotal', :subtotal => @order.display_item_total) %></td>
+      </tr>
+      <tr>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="1" align="left" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;"><%= Spree.t('order_mailer.cancel_email.total', :total => @order.display_total) %></td>
+      </tr>
+
+    </tfoot>
+  </table>
+
+  <table class="body" width="80%" align="center" style="width: 80%; margin: 0 auto;">
+    <tr>
+      <td align="left" valign="top" style="background: #fff; color: #404041; font-size: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+
+        <p>Faithfully Yours,<br>
+          The Line</p>
+
+          <p>P.S. Have a question or comment? Drop us a line at <a href="mailto:<%=Settings.contact_info.service_email%>"><%=Settings.contact_info.service_email%></a></p>
+        </td>
+      </tr>
+    </table>

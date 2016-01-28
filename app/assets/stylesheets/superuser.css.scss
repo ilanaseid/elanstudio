@@ -1,0 +1,80 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ */
+
+@import "compass";
+@import "tools";
+
+
+/* for staff with superuser view */
+@include fallbackFontStackSansSerif('.has_superuser_ui .pos-inventory td');
+@include fallbackFontStackDefault('.has_superuser_ui .pos-inventory td.location');
+
+.has_superuser_ui {
+
+  .pos-price {
+    color: $grey-dark !important;
+  }
+
+  .pos-sold-out {
+    border-top: 4px solid #ff3300;
+  }
+
+  .pos-available {
+    border-top: 4px solid #22ff00;
+  }
+
+  .pos-avail-other {
+    border-top: 4px solid #ff9a00;
+  }
+
+  .pos-inventory {
+    margin-top: 25px;
+    margin-bottom: 20px;
+    table-layout: fixed;
+
+    col {
+      width: 20px;
+    }
+
+    .sizes {
+      border-top: none;
+    }
+
+    tr {
+      border-bottom: $border-default;
+
+      &.active-location {
+        font-weight: bold;
+      }
+    }
+
+    td {
+      width: 5px;
+      overflow: hidden;
+      text-align: center;
+
+      &.location {
+        text-align: left;
+      }
+    }
+  }
+
+  /* Modifications to top nav bar for POS */
+  .mainnav-2,
+  #mainnav-2-target {
+    select,
+    input {
+      min-width: 0;
+      max-width: 8em;
+    }
+  }
+}

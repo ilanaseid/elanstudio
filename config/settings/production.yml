@@ -1,0 +1,29 @@
+google_analytics_ua: <%= ENV['GOOGLE_ANALYTICS_UA'] || 'UA-39620740-1' %>
+google_analytics_affiliation: <%= ENV['GOOGLE_ANALYTICS_AFFILIATION'] || 'The Line' %>
+google_analytics_domain: <%= ENV['GOOGLE_ANALYTICS_DOMAIN'] || 'theline.com' %>
+heap_analytics_display: <%= ENV['HEAP_ANALYTICS_DISPLAY'] || true %>
+heap_analytics_id: <%= ENV['HEAP_ANALYTICS_ID'] || '1447320876' %>
+shareasale_affiliate_display: <%= ENV['SHAREASALE_AFFILIATE_DISPLAY'] || true %>
+brickwork_pixel_display: <%= ENV['BRICKWORK_PIXEL_ENABLED'] || false %>
+hivewyre_analytics_display: <%= ENV['HIVEWYRE_ANALYTICS_DISPLAY'] || true %>
+canonical_url_root: https://www.theline.com
+mailassets_url_root: https://www.theline.com
+optimizely_enabled: <%= ENV['OPTIMIZELY_ENABLED'] || false %>
+optimizely_project_id: <%= ENV['OPTIMIZELY_PROJECT_ID'] || '1295930299' %>
+webfonts_enabled: <%= ENV['WEBFONTS_ENABLED'] || true %>
+usersnap_api_key: <%= ENV['USERSNAP_API_KEY'] || 'b2c5f822-ff74-4f90-9922-ce30a05d1fd5' %>
+chartbeat_enabled: <%= ENV['CHARTBEAT_ENABLED'] || false %>
+steelhouse_enabled: <%= ENV['STEELHOUSE_ENABLED'] || true %>
+
+brightpearl:
+  readonly: <%= ENV['BRIGHTPEARL_READONLY'] || false %>
+
+mailchimp:
+  readonly: <%= ENV['MAILCHIMP_READONLY'] || false %>
+
+effective_spend_analytics_display: <%= ENV['EFFECTIVE_SPEND_ANALYTICS_DISPLAY'] || true %>
+effective_spend_ftp:
+  host: <%= ENV['EFFECTIVE_SPEND_HOST'] || 'uploads.google.com' %>
+  username: <%= ENV['EFFECTIVE_SPEND_USERNAME'] || 'mc-ftp-9568557' %>
+  password: <%= ENV['EFFECTIVE_SPEND_PASSWORD'] %>
+

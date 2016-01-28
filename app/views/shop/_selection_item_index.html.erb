@@ -1,0 +1,12 @@
+<div class="span8 selection-index-item">
+  <span class="selection-cover-image">
+    <% if selection.assets_for_placement(:primary).any? %>
+      <%= link_to(simple_picture_tag(selection.assets_for_placement(:primary)[0]), selection_path(selection.basename)) %>
+   <% end %>
+  </span>
+
+  <span class="description">
+    <h2><%= link_to selection.title, selection_path(selection.basename) %></h2>
+    <p><span class="selection-label"><%=t('selections.selection')%></span>  <span class="selection-objects-count"><%= selection.linked_contents.length %> <%= t('selections.objects')%></span></p>
+  </span>
+</div>

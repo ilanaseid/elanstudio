@@ -1,0 +1,124 @@
+<%# subject: 'Your order from The Line (No. [#ORDER NUMBER#])' %>
+<%
+  order_has_special_delivery = false;
+  @order.line_items.each do |item|
+    @cms_product=Product.where(:spree_product_id=>item.variant.product_id).first
+    if (@cms_product.spree_product.shipping_category_id == 10)
+      order_has_special_delivery = true
+      break
+    end
+  end
+%>
+<%# note: we don't have a user on the order if guest checkout %>
+Dear <%= defined?(@order.user.firstname) ? @order.user.firstname : @order.bill_address.firstname %>,
+
+Thank you for joining our search for refined, versatile, and honest goods. Please review your order below:
+
+<% if order_has_special_delivery %>
+  <%= t('cart.order_shipping_exception') %>
+<% end %>
+
+
+Shipping Address
+------------------------------------------------------------
+  <%= @order.ship_address.full_name %>
+<% unless @order.ship_address.company.blank? %>
+  <%= @order.ship_address.company %>
+<% end %>
+  <%= @order.ship_address.address1 %>
+<% unless @order.ship_address.address2.blank? %>
+  <%= @order.ship_address.address2 %>
+<% end %>
+  <%= @order.ship_address.city %>
+  <%= @order.ship_address.state_text %>
+  <%= @order.ship_address.zipcode %>
+  <%= @order.ship_address.country.try(:name) %>
+<% unless @order.ship_address.phone.blank? %>
+  Phone:
+  <%= @order.ship_address.phone %>
+<% end %>
+<% unless @order.ship_address.alternative_phone.blank? %>
+  Alternate Phone
+  <%= @order.ship_address.alternative_phone %>
+<% end %>
+
+
+Billing Address
+------------------------------------------------------------
+  <%= @order.bill_address.full_name %>
+<% unless @order.bill_address.company.blank? %>
+  <%= @order.bill_address.company %>
+<% end %>
+  <%= @order.bill_address.address1 %>
+<% unless @order.bill_address.address2.blank? %>
+  <%= @order.bill_address.address2 %>
+<% end %>
+  <%= @order.bill_address.city %>
+  <%= @order.bill_address.state_text %>
+  <%= @order.bill_address.zipcode %>
+  <%= @order.bill_address.country.try(:name) %>
+<% unless @order.bill_address.phone.blank? %>
+  Phone:
+  <%= @order.bill_address.phone %>
+<% end %>
+<% unless @order.bill_address.alternative_phone.blank? %>
+  Alternate Phone
+  <%= @order.bill_address.alternative_phone %>
+<% end %>
+
+
+Shipments
+------------------------------------------------------------
+<% @order.shipments.each do |shipment| %>
+  <%= shipment.shipping_method.name %>
+<% end %>
+
+
+Payment Information
+------------------------------------------------------------
+<% @order.payments.valid.each do |payment| %>
+<% source = payment.source %>
+<% if source.is_a?(Spree::CreditCard) %>
+<% unless (cc_type = source.cc_type).blank? %>
+  <%= Spree.t(cc_type) %>
+<% end %>
+  <%= Spree.t(:ending_in) %> <%= source.last_digits %>
+  <%= source.first_name %> <%= source.last_name %>
+<% else %>
+  <%= payment.payment_method.name %>
+<% end %>
+<% end %>
+
+
+============================================================
+<%= Spree.t('order_mailer.confirm_email.order_summary') %>
+============================================================
+<% @order.line_items.each do |item| %>
+  <% @cms_product=Product.where(:spree_product_id=>item.variant.product_id).first %>
+  <%= @cms_product.brand.title %>
+  <%= item.variant.product.name %>
+  <%= item.variant.sku %> <%= raw(item.variant.options_text) -%> (<%=item.quantity%>) @ <%= item.single_money %> = <%= item.display_amount %>
+
+<% end %>
+============================================================
+<%= Spree.t('order_mailer.confirm_email.subtotal', :subtotal => @order.display_item_total) %>
+<% @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments| %>
+<%= label %>: <%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency).to_html %>
+<% end %>
+<% @order.adjustments.eligible.each do |adjustment| %>
+<% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+<%= adjustment.label %>: <%= adjustment.display_amount.to_html %>
+<% end %>
+<% if @order.checkout_steps.include?("delivery") && @order.shipments.any? %>
+<% @order.shipments.each do |shipment| %>
+<%= shipment.shipping_method.name %>: <%= Spree::Money.new(shipment.cost, currency: @order.currency).to_html %>
+<% end %>
+<% end %>
+<%= Spree.t('order_mailer.confirm_email.total', :total => @order.display_total) %>
+
+As soon as your order is shipped, we’ll send you an e-mail with tracking information.
+
+Faithfully Yours,
+The Line
+
+P.S. Have a question or comment? Drop us a line at <%=Settings.contact_info.service_email%>

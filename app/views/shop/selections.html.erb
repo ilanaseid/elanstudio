@@ -1,0 +1,55 @@
+<% content_for :title, "#{t('site.nav.shop')} — Selections" %>
+<% content_for :nav_title, "Index of Selections" %>
+<% content_for :canonical_url, @shop_selections_path %>
+
+
+<% cache cache_buster do %>
+<div class="bridge2">
+  <main>
+    <div class="row-fluid page-description">
+      <div class="offset5 span6">
+        <h1 class="gamma text-center"><%= t('selections.selections')%><sup><%= (@selections.length) %></sup></h1>
+        <p class="text-center"><%= t('selections.header_text')%></p>
+      </div>
+      <hr>
+    </div><!--/.row-fluid-->
+
+    <div class="row-fluid">
+      <%= render :partial=>"email_subscribers/newsletter_banner_selections" %>
+    </div>
+
+    <% if @featured_selections.any? %>
+      <div class="row-fluid selections-index-header">
+        <div class="span16">
+           <h2 class="sectionhd"><%= t('selections.featured')%></h2>
+           <hr>
+        </div>
+      </div>
+
+      <% @featured_selections.each_slice(2) do |featured| %>
+        <div class="row-fluid">
+          <% featured.each do |selection| %>
+            <%= render :partial=>'selection_item_hero', locals: {selection: selection} %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end #featured selections %>
+
+    <% if @selections.any? %>
+      <div class="row-fluid selections-index-header">
+        <div class="span16">
+          <h2 class="sectionhd"><%= t('selections.recent')%></h2>
+        </div>
+      </div>
+      <% @selections.each_slice(2) do |selections| %>
+        <div class="row-fluid selection-list">
+          <% selections.each do |selection| %>
+            <%= render :partial=>'selection_item_index', locals: {selection: selection} %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end #current selections %>
+
+  </main>
+</div> <!--/.bridge2-->
+<% end %>

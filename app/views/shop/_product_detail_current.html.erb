@@ -1,0 +1,188 @@
+<div class="span9 span-stepped">
+    <div class="top-header">
+      <div class="item-meta">
+        <%= product_status_span(product) %>
+      </div> <!-- /.item-meta -->
+
+      <div class="item-header">
+
+        <b><%= link_to product.brand.title, brand_path(product.brand.basename), :class=>'brand' %></b>
+        <h1 class="gamma fn"><%= product.title %></h1>
+        <% if product.related_selections.any? %>
+
+          <h1 class="gamma"> <span class="related-selection icon_mobileNavRight"></span> <%= t('product.part_of') %>  <%= link_to product.related_selections.first.title, selection_path(product.related_selections.first.basename) %></h1>
+        <% end %>
+
+        <% if product.current? %>
+          <% if product.on_sale? %>
+            <span><span class="price_original"><%=formatted_price(product.original_price)%></span> | <span class="price price_markdown"><%=formatted_price(product.price)%></span></span>
+          <% else %>
+            <span>&mdash; <span class="price"><%=formatted_price(product.price)%></span></span>
+          <% end %>
+        <% elsif product.external? %>
+          <%#TBD: bring in the external price here %>
+          <span>&mdash; <span class="price"><%=formatted_price(product.price)%></span></span>
+        <% elsif product.coming_soon? %>
+          <% if product.available_date %>
+            <i>Est. <%= time_ago_in_words product.available_date %></i>
+          <% end %>
+        <% end %>
+      </div> <!-- /.item-header -->
+    </div>
+    <% if product.default_content_block.content_assets.any? %>
+      <% product.default_content_block.content_assets.each_with_index do |asset,index| %>
+
+        <%
+          half_width = false
+
+          case index
+          when 1
+            if ['A','B','C'].include? product.photo_template
+              half_width = true
+            end
+          when 2
+            if ['A','B','C'].include? product.photo_template
+              half_width = true
+            end
+          when 3
+            if ['A','B'].include? product.photo_template
+              half_width = true
+            end
+          when 4
+            if ['A'].include? product.photo_template
+              half_width = true
+            end
+          end
+        %>
+
+        <% if half_width %>
+          <%= picture_tag(
+            [
+              {:media => "(min-width: 521px)", :srcset => asset.mounted_file.medium.url},
+              {:srcset => "#{asset.mounted_file.grid.url} 1x, #{asset.mounted_file.medium.url} 2x"}
+            ], asset.mounted_file.grid.url, {:class=>"half", :alt=>""}
+          ) %>
+        <% else %>
+          <%= picture_tag(
+            [
+              {:media => "(min-width: 521px)", :srcset => asset.mounted_file.medium.url},
+              {:srcset => "#{asset.mounted_file.grid.url} 1x, #{asset.mounted_file.medium.url} 2x"}
+            ], asset.mounted_file.grid.url, {:class=>"full", :alt=>""}
+          ) %>
+        <% end %>
+
+      <% end %>
+    <% else %>
+      <%= image_tag 'data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%14%00%00%00%14%01%00%00%00%00%A5%F2%20%A0%00%00%00%0EIDATx%01c%FC%CF%F0%91%9A%18%00%13%0A%26%D5u%94o%E1%00%00%00%00IEND%AEB%60%82', :width=>"100%" %>
+    <% end %>
+
+  </div> <!-- /.span9 -->
+  <div class="span7 span-stepped">
+    <div class="middle-header">
+      <%# don't need to repeat microformat / metadata tagging, just visual display %>
+      <div class="item-meta">
+        <%= product_status_span(product) %>
+      </div> <!-- /.item-meta -->
+
+      <div class="item-header">
+
+        <b><%= link_to product.brand.title, brand_path(product.brand.basename), :class=>'brand' %></b>
+        <h1 class="gamma"><%= product.title %></h1>
+
+        <% if product.related_selections.any? %>
+          <h1 class="gamma"> <span class="related-selection icon_mobileNavRight"></span> <%= t('product.part_of') %>  <%= link_to product.related_selections.first.title, selection_path(product.related_selections.first.basename) %></h1>
+        <% end %>
+
+        <% if product.current? %>
+          <% if product.on_sale? %>
+            <span><span class="price_original"><%=formatted_price(product.original_price)%></span> | <span class="price price_markdown"><%=formatted_price(product.price)%></span></span>
+          <% else %>
+            <span>&mdash; <span class="price"><%=formatted_price(product.price)%></span></span>
+          <% end %>
+        <% elsif product.external? %>
+          <%#TBD: bring in the external price here %>
+          <span>&mdash; <span class="price"><%=formatted_price(product.price)%></span></span>
+        <% elsif product.coming_soon? %>
+          <% if product.available_date %>
+            <i>Est. <%= time_ago_in_words product.available_date %></i>
+          <% end %>
+        <% end %>
+      </div> <!-- /.item-header -->
+    </div>
+
+
+    <dl class="pl accordion">
+      <dt><%= t('shop.description_heading')%></dt>
+      <dd>
+        <div class="description">
+          <%# begin content block %>
+          <%= product.content_block('description').try(:body) %>
+          <%# end content block %>
+        </div>
+      </dd>
+
+
+      <%# TBD: Joel: code review %>
+      <% if product.content_block('details').try(:body) %>
+      <dt><%= t('shop.details_heading')%></dt>
+      <dd>
+        <div class="section-content">
+        <%# begin content block %>
+        <%= product.content_block('details').try(:body) %>
+        <%# end content block %>
+        </div><!-- /.section-content -->
+      </dd>
+      <!-- /.details -->
+      <% end %>
+
+      <%# tbd: this is a little wonky - better way to test category regularly, or that there's a size chart for this product? %>
+      <% if (!product.content_block('sizing').try(:body).nil? || product.in_category?('fashion'))  %>
+        <dt><%= size_heading %></dt>
+        <dd>
+          <div class="section-content">
+          <%# begin content block %>
+          <% if !(product.content_block('sizing').try(:body).nil?) %>
+            <div class="custom-content">
+              <%= product.content_block('sizing').try(:body) %>
+            </div>
+          <% end %>
+          <%# end content block %>
+
+            <% if product.in_category?('fashion') %>
+              <% if product.in_category?('shoes') %>
+                <p><%= t('product.more_size_info_html',:url=>content_sizechart_shoes_path) %></p>
+              <% else %>
+                <p><%= t('product.more_size_info_html',:url=>content_sizechart_rtw_path) %></p>
+              <% end %>
+            <% end %>
+          </div><!-- /.section-content -->
+        </dd>
+        <!-- /.size and fit -->
+      <% end %>
+
+      <% unless product.external? %>
+      <dt><%= t('shop.shipping_heading')%></dt>
+      <dd>
+        <div class="section-content">
+        <%# begin content block %>
+        <% if !(product.content_block('shipping').try(:body).nil?) %>
+          <div class="custom-content">
+            <%= product.content_block('shipping').try(:body) %>
+          </div>
+        <% end %>
+        <%# end content block %>
+
+          <p><%= t("shipping_category.id_#{product.spree_product.shipping_category_id}.product_details_html",:url=>(product.spree_product.shipping_category_id == 10) ? '/s/contact' : content_returns_policy_path) %> </p>
+        </div><!-- /.section-content -->
+      </dd>
+      <% end %>
+      <!-- /.free shipping -->
+    </dl> <!-- /.accordion -->
+
+
+    <%= render :partial=>'shop/product_form', :locals=>{product: product} %>
+    <%= render :partial=>'shop/product_share_save', :locals=>{product: product} %>
+
+
+  </div> <!-- /.span7 -->
+  <a href="#navWrap" class="anchor backToProductTop"><span class="icon_up"></span></a>

@@ -1,0 +1,22 @@
+<% content_for :title, "#{@product.brand.title} — #{@product.title.titleize}" %>
+<% content_for :nav_title, "#{@product.title.titleize}" %>
+<% content_for :canonical_url, shop_product_path(@product.basename) %>
+<% content_for :meta_description, truncate(strip_tags(@product.content_block('description').try(:body)), length: 200) %>
+<% content_for :additional_metas, (render :partial => 'meta_product', :locals => { :product => @product }) %>
+<% content_for :additional_analytics_config do %>
+    <% analytics_content_group_1 = @product.primary_category.downcase %>
+    <% analytics_product_status  = product_status(@product).present? ? product_status(@product).downcase : "none" %>
+    ga('set', 'contentGroup1', '<%= analytics_content_group_1 %>');
+    ga('set', 'dimension1', '<%= analytics_product_status %>');
+    Line.Track.heapEvent('Additional Analytics Info', { 'contentGroup1' : '<%= analytics_content_group_1 %>', 'Product Status' : '<%= analytics_product_status %>' });
+<% end %>
+<% content_for :additional_body_classes, @product.published? ? "published" : "unpublished" %>
+
+<% cache cache_buster do %>
+  <%= render :partial=>'product_detail', locals: {product: @product} %>
+<% end %>
+
+<%# OPEN GRAPH META TAG FOR BRICKWORK && BRICKWORK TRACKING PIXEL %>
+<% if Settings.brickwork_pixel_display %>
+  <img src="//theapartments.theline.com/tracking/track.gif"></img>
+<% end %>

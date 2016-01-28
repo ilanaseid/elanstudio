@@ -1,0 +1,78 @@
+<%# Volume Landing Page %>
+<% content_for :title, "#{t('site.nav.editorial')} — #{t('site.volume_label')} #{@volume.volume_number} #{@volume.title}" %>
+<% content_for :nav_title, "#{t('site.volume_abbr')} #{@volume.volume_number} #{@volume.title}" %>
+<% content_for :canonical_url, @volume.friendly_path %>
+<% content_for :meta_description, truncate(strip_tags(@volume.content_block('raw').try(:body)), length: 200) %>
+<% content_for :additional_metas, (render :partial => 'shared/meta_article', :locals => { :article => @volume, :section => t('site.nav.editorial') }) %>
+<% content_for :additional_body_classes, @volume.published? ? "published" : "unpublished" %>
+
+<% if @volume.assets_for_placement(:feature).any? %>
+  <% feature_image = @volume.assets_for_placement(:feature)[0] %>
+  <% content_for :additional_css do %>
+    .volumeHeader-item {
+      background-image: url(<%= feature_image.mounted_file.large.url %>);
+    }
+    @media only screen and (max-width:800px) {
+      .volumeHeader-item {
+        background-image: url(<%= feature_image.mounted_file.medium.url %>);
+      }
+    }
+    @media only screen and (min-width:801px) {
+      .volumeHeader-item {
+        background-image: url(<%= feature_image.mounted_file.large.url %>);
+      }
+    }
+    @media only screen and (min-width:1281px) {
+      .volumeHeader-item {
+        background-image: url(<%= feature_image.mounted_file.full.url %>);
+      }
+    }
+  <% end %>
+<% end %>
+
+<% cache cache_buster do %>
+  <%
+    share_url = "#{j Settings.canonical_url_root}#{@volume.friendly_path}"
+    share_target = "@volume.friendly_path"
+    share_email_subject = t('social_media.share_volume.email_subject', :url=> share_url, :title=>@volume.title, :num=>@volume.volume_number)
+    share_email_body = t('social_media.share_volume.email_body', :url=> share_url, :title=>@volume.title, :num=>@volume.volume_number)
+    share_tweet_text = t('social_media.share_volume.tweet_text', :url=> share_url, :title=>@volume.title, :num=>@volume.volume_number)
+  %>
+
+<div class="bridge2">
+  <main>
+    <div class="volumeHeader">
+      <div class="volumeHeader-item">
+        <div class="volumeHeader-content">
+          <div class="volumeHeader-title">
+            <span class="issue"><%= t('site.volume_abbr_mixedcase') %> <%= @volume.volume_number %></span>
+            <h1 class="title"><%= @volume.title %></h1>
+          </div> <!-- /.volumeHeader-title -->
+          <div class="volumeHeader-body">
+            <span class="label marker"><%= pluralize(@volume.chapters.published.not.lt(end_time: Time.now).count, 'Chapter') %></span>
+            <h2 class="sectionhd">About</h2>
+            <% if @volume.chapters.published.any? %>
+              <span class="date"><%= @volume.first_chapter_pub_date.strftime('%B %e, %Y') %> &mdash; <%= (@volume.current_volume?) ? 'Present' : @volume.last_chapter_pub_date.strftime('%B %e, %Y') %></span>
+            <% end %>
+            <p><%= @volume.default_content_block.body %></p>
+          </div> <!-- /.volumeHeader-body -->
+        </div> <!-- /.volumeHeader-content -->
+      </div> <!-- /.volumeHeader-item -->
+    </div> <!-- /.volumeHeader -->
+
+
+    <ul class="chapterList indexList">
+    <% @chapters.each do |chapter| %>
+      <%= render :partial=>'chapter_item_index', :locals=> {:chapter=>chapter} %>
+    <% end %>
+    </ul>
+
+    <div class="row-fluid">
+      <div class="span8 offset4">
+        <%= paginate @chapters, theme: 'theline' %>
+      </div>
+    </div>
+  </main>
+</div> <!-- /.bridge2 -->
+
+<% end %>

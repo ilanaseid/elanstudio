@@ -1,0 +1,554 @@
+/* _type.scss
+	global typography specs
+
+	* Headings
+	* Text
+	* Lists and Tables
+	* Links
+  * Misc
+  * Data
+*/
+
+
+
+/* Headings
+------------------------------------------- */
+@include fallbackFontStackDisplay('.zed');
+@include fallbackFontStackDisplay('h1');
+@include fallbackFontStackDisplay('.alpha');
+@include fallbackFontStackDisplay('h2');
+@include fallbackFontStackDisplay('.beta');
+
+.zed {
+  font-size: 50px;
+  font-weight: normal;
+  line-height: 50px; // TODO: review this (with/without subhead)
+  margin-bottom: 24px;
+}
+
+h1, .alpha,
+h2, .beta,
+h3, .gamma,
+h4, .delta,
+h5, .epsilon,
+h6, .zeta {
+  margin-top: 0;
+  font-weight: normal;
+}
+
+h1, .alpha {
+	font-size: 36px;
+	line-height: 42px;
+  margin: 24px 0;
+}
+
+h2, .beta {
+	font-size: 24px;
+	line-height: 42px;
+  margin: 20px 0;
+}
+
+h3, .gamma, .gamma2 {
+	font-size: 14px;
+	// text-decoration: underline;
+	line-height: 21px;
+  margin: 12px 0;
+}
+
+// total hack so we can see what is h3/gamma or  gamma2
+.gamma2 {
+  font-size: 12px;
+  margin: 15px 0 7px;
+  line-height: 15px;
+  text-transform: uppercase;
+}
+
+
+h4, .delta {
+	font-size: 14px;
+	line-height: 21px;
+  margin: 12px 0;
+}
+
+h5, .epsilon {
+	font-size: 12px;
+	line-height: 21px;
+  margin: 12px 0;
+}
+
+h6, .zeta {
+	font-size: 12px;
+	line-height: 21px;
+  margin: 12px 0;
+}
+
+// header with line above - coded in a pinch for just h3
+.withTopBorder {
+  border-top: $border-default;
+
+  &.gamma2 {
+    padding-top: 8px;
+    margin-bottom: -7px; // TODO: expects element underneath has line to match
+  }
+}
+
+@include fallbackFontStackDefault('.subhd');
+.subhd {
+	display: block;
+	font-size: 10px;
+  color: $grey-light;
+}
+
+// line-height + margin bottom
+@media #{$query-notsmall} {
+  .down-zed { margin-top: 74px; } // 50 + 24
+  .down-alpha { margin-top: 66px; } // 42 + 24
+  .down-beta { margin-top: 62px; } // 42 + 20
+  .down-gamma { margin-top: 33px; } // 21 + 12
+  .down-gamma2 { margin-top: 22px; }
+  .down-delta { margin-top: 33px; } // 21 + 12
+  .down-epsilon { margin-top: 33px; } // 21 + 12
+  .down-zeta { margin-top: 33px; } // 21 + 12
+  .down-dt { margin-top: 19px; }
+}
+
+/* Text
+------------------------------------------- */
+
+p {
+  margin-top: 0;
+  margin-bottom: 21px;
+}
+
+.deem {
+  color: $grey-light;
+}
+
+.accent {
+  color: $gold;
+}
+
+// component: Quote
+blockquote {
+  margin-top: 0;
+  font-size: 21px;
+  line-height: 27px;
+  margin-left: 0;
+  margin-right: 0;
+
+  p {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  p:first-child {
+    text-indent: -0.4em;
+  }
+
+  > a {
+    display: block;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  p+a,
+  p+cite {
+    margin-top: -17px; // 4px total
+  }
+}
+
+// component: Quote .excerpt modifier
+blockquote.excerpt {
+  p:first-child {
+    text-indent: 0;
+  }
+}
+
+// component: Display Quote
+@include fallbackFontStackDisplay('blockquote.display');
+blockquote.display {
+  font-size: 35px;
+  line-height: 42px;
+}
+
+// component: Feature Quote
+@include fallbackFontStackDisplay('blockquote.feature');
+blockquote.feature {
+  font-size: 35px;
+  line-height: 42px;
+
+  @media #{$query-largetype} {
+    font-size: 52px;
+    line-height: 64px;
+  }
+}
+
+
+figure {
+  margin: 0 0 21px;
+}
+
+.caption,
+.caption p,
+figcaption,
+figcaption p {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+figcaption {
+  margin-top: 9px;
+}
+
+.caption.primary,
+.caption.primary p,
+figcaption.primary,
+figcaption.primary p {
+  font-size: 16px;
+  line-height: 23px;
+  margin-bottom: 10px;
+}
+
+.reference-link,
+.reference-link p,
+figcaption p.reference-link {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+// element: Citation
+cite {
+  display: block;
+  // font-size: 16px;
+  // line-height: 23px;
+  text-indent: 0;
+  font-style: italic;
+  color: $grey-light;
+}
+
+.numbered-reference {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+// type layout options
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+
+// element: Marker
+.marker {
+  display: block;
+  margin-bottom: 6px;
+
+  font-size: 11px;
+  line-height: 15px;
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+/* Lists and Tables
+------------------------------------------- */
+
+.pl {
+	margin-left: 0;
+	padding-left: 0;
+
+	>li {
+		list-style: none;
+	}
+
+	>dd {
+		margin-left: 0;
+		padding-left: 0;
+	}
+}
+
+dl {
+  margin-top: 0;
+  margin-bottom: 21px;
+}
+
+dt,
+.dt {
+  color: $grey-dark;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+dd,
+.dd {
+  color: $grey-med;
+  margin-bottom: 21px;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+table {
+  width: 100%;
+}
+
+tr {
+  border-top: $border-default;
+}
+
+thead tr {
+  border-top: 0
+}
+
+th {
+  padding: 2px 0;
+  text-align: left;
+  font-weight: normal;
+  color: $grey-dark;
+}
+
+td {
+  padding: 2px 0;
+  color: $grey-med;
+
+}
+
+table.striped {
+  border-bottom: $border-default;
+
+  tr:nth-child(even) {
+    background-color: #f4f4f4;
+  }
+
+  th,
+  td {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  td {
+    text-align: center;
+  }
+}
+
+.numbered-indent {
+  text-indent: -35px;
+  padding-left: 36px;
+  font-size: 14px;
+}
+
+/* Links
+------------------------------------------- */
+
+a {
+	color: $grey-med;
+	text-decoration: underline;
+
+	&:hover,
+	&:active {
+		color: $grey-dark;
+	}
+}
+
+// .itemGrid .item a {
+//   text-decoration: none;
+
+//   &:hover,
+//   &:active {
+//     text-decoration: underline;
+//   }
+// }
+
+footer a {
+	color: $grey-light;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+	&:active {
+
+	}
+}
+
+// a.meta -- social and other bold, meta links that go with products
+@include fallbackFontStackSansSerif('a.meta');
+a.meta {
+  color: $grey-med;
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: $grey-dark;
+    text-decoration: underline;
+  }
+
+}
+
+@include fallbackFontStackSansSerif('a.readmore');
+a.readmore {
+  color: $grey-light;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+}
+
+
+a.accent {
+  color: $gold;
+
+  &:hover,
+  &:active {
+    color: $gold;
+  }
+}
+
+@include fallbackFontStackDisplay('.anchor-link-row h3');
+.anchor-link-row {
+  // line of anchor links, like on search landing page
+
+  h3 {
+    color: $grey-dark;
+  }
+
+  a {
+    font-weight: normal;
+    text-decoration: none;
+    margin-right: 1em;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+  a:last-of-type{
+    margin-right: 0px;
+  }
+}
+
+
+
+/* Misc
+------------------------------------------- */
+
+hr {
+  height: 1px;
+  margin: 0 0 21px 0;
+  border: 0;
+  background: $fog;
+  clear: both;
+}
+
+
+.note {
+	font-style: italic;
+}
+
+// opening / intro paragraphs
+.opening {
+  font-size: 36px;
+  line-height: 1.25;
+}
+
+.opening+.opening {
+  margin-top: 42px;
+}
+
+@media #{$query-small} {
+  .opening {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .opening+.opening {
+    margin-top: 21px;
+  }
+}
+
+// arrows everywhere
+.arr:before {
+  display: inline;
+  content: '»';
+}
+
+// arrows starting blocks, similar to blockquote mechanics
+p,
+figcaption,
+.caption {
+  &.arr {
+    padding-left: 0.5em;
+    text-indent: -0.5em
+  }
+}
+
+// arrows on links - DEPRECATED
+a.arr:before {
+  display: inline-block;
+  padding-right: 0.25em;
+}
+
+// DEPRECATED
+// TBD: do we care about this scenario (arr not starting a block)
+@include fallbackFontStackDisplay('.deck'); //TODO: too small for display face
+a.arr:nth-child(n+2) {
+  margin-left: 0.5em;
+}
+
+// faq lists
+.faq {
+  dt {
+    font-size: 20px;
+    color: $grey-dark;
+    text-transform: none;
+    font-weight: bold;
+  }
+  dd {
+    margin-bottom: 42px;
+    font-size: 14px;
+    color: $grey-dark;
+  }
+}
+
+// Magazine-style deck text
+@include fallbackFontStackDisplay('.deck'); //TODO: too small for display face
+.deck {
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 28px;
+
+  @media #{$query-notsmall} {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
+
+.note.no-results {
+  margin-bottom: 47px;
+}
+
+
+/* Data
+------------------------------------------- */
+// .price {
+// }
+
+.price_original {
+  text-decoration: line-through;
+  color: $grey-light;
+}
+
+.price_markdown {
+  color: $gold;
+}

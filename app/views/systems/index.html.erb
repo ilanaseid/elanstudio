@@ -1,0 +1,19 @@
+<div class="row-fluid">
+  <div class="provocation span12 offset2">
+    <%= render :partial => 'shared/error_messages' %>
+
+    <p><%= @unfulfilled_orders %></p>
+
+    <h1>Systems Utilities</h1>
+    <%= form_tag({:action=>'sync_stock'}, :method=>'post', :class=>'submitonce') do %>
+    <input type='submit' value='Sync Stock'/>
+    <% end %>
+
+    <br/>
+
+    <%= form_tag({:action=>'sync_products'}, :method=>'post', :class=>'submitonce') do %>
+    <input type='submit' value='Sync Products'/>
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<% cache cache_buster do %>
+  <% current_selection_subnav.each do |selection| %>
+    <li><%= active_link_to selection.short_title, selection.friendly_path %></li>
+  <% end %>
+<% end %>

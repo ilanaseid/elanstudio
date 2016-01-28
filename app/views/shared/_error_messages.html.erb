@@ -1,0 +1,63 @@
+<%
+  popup = defined?(popup) ? popup : false
+  has_notifications = flash[:error] || flash[:alert] || flash[:notice] || (defined?(target.errors) && target.errors.any?)
+%>
+
+<% if has_notifications && popup %>
+<div class="nb-staged" style="display: none" data-autohide="true">
+  <% if flash[:error] %>
+    <h3 class="gamma2">Error</h3>
+  <% elsif flash[:alert] %>
+    <h3 class="gamma2">Warning</h3>
+  <% else %>
+    <h3 class="gamma2">Notice</h3>
+  <% end %>
+<% end %>
+
+<% if flash[:error] || flash[:alert] || flash[:notice] %>
+  <div class="form-messages">
+    <% if flash[:error] %>
+      <div class="form-messages">
+        <% if (params[:state]=='payment') %>
+          <% if (flash[:error]==t('msg.payment_error')) %>
+            <p class="alert alert-error alert-track"><%= t('msg.payment_error') %><br> <%= target.errors.collect{|k,v| v }.join('<br>').html_safe  %></p>
+          <% else %>
+            <p class="alert alert-error alert-track"><%= t('msg.payment_error') %><br> <%= flash[:error] %><br> <%= target.errors.collect{|k,v| v }.join('<br>').html_safe  %></p>
+          <% end %>
+        <% else %>
+          <p class="alert alert-error alert-track"><%= flash[:error] %></p>
+        <% end %>
+      </div>
+      <% flash[:error] = nil # clear for the render cases %>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="form-messages">
+        <p class="alert alert-warning alert-track"><%= flash[:alert] %></p>
+      </div>
+      <% flash[:alert] = nil # clear for the render cases %>
+    <% end %>
+
+    <% if flash[:notice] %>
+      <div class="form-messages">
+        <p class="alert alert-track"><%= flash[:notice] %></p>
+      </div>
+      <% flash[:notice] = nil # clear for the render cases %>
+    <% end %>
+  </div>
+<% else %>
+  <%# params[:state] line is used below because spree doesn't use a real object on the payment step in checkout and we end up with duplicate lines of errors %>
+  <% if defined?(target.errors) && target.errors.any? %>
+    <div class="form-messages">
+      <% if (params[:state]=='payment') %>
+        <p class="alert alert-error alert-track"><%= t('msg.payment_error') %><br> <%= target.errors.collect{|k,v| v }.join('<br>').html_safe %></p>
+      <% else %>
+        <p class="alert alert-error alert-track"><%= Spree.t(:errors_prohibited_this_record_from_being_saved, :count => target.errors.count) %></p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if has_notifications && popup %>
+</div> <!-- /.nb-staged -->
+<% end %>

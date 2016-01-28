@@ -1,0 +1,73 @@
+  <% if Settings.chartbeat_enabled %>
+    <!-- Chartbeat -->
+    <script>
+      var _sf_async_config = { uid: 46738, domain: 'www.theline.com' };
+      (function() {
+        function loadChartbeat() {
+          window._sf_endpt = (new Date()).getTime();
+          var e = document.createElement('script');
+          e.setAttribute('language', 'javascript');
+          e.setAttribute('type', 'text/javascript');
+          e.setAttribute('src','//static.chartbeat.com/js/chartbeat.js');
+          document.body.appendChild(e);
+        };
+        var oldonload = window.onload;
+        window.onload = (typeof window.onload != 'function') ?
+          loadChartbeat : function() { oldonload(); loadChartbeat(); };
+      })();
+    </script>
+    <!-- /Chartbeat -->
+  <% end %>
+
+  <!-- Google and Heap -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '<%= j Settings.google_analytics_ua %>' , '<%= j Settings.google_analytics_domain %>', {'siteSpeedSampleRate': 5});
+    ga('require', 'displayfeatures');
+    ga('require', 'linkid', 'linkid.js');
+
+  <% if Settings.optimizely_enabled %>
+    window.optimizely = window.optimizely || [];
+    window.optimizely.push("activateUniversalAnalytics");
+  <% end %>
+
+  <% #dafdasdf %>
+  <% if @ga_user_class = user_class %>
+    ga('set', 'dimension2', '<%= @ga_user_class %>');
+    ga('set', 'dimension5', 'true');
+    Line.Track.identify({"email" : '<%= current_spree_user.email %>', "user_class" : '<%= @ga_user_class %>'});
+  <% else %>
+    ga('set', 'dimension5', 'false');
+  <% end %>
+
+  <%= yield :additional_analytics_config %>
+
+  <% if content_for?(:ga_custom_page_view) %>
+    ga('send', 'pageview', '<%= yield :ga_custom_page_view %>');
+    Line.Track.heapEvent('Custom Page View', {'data' : '<%= yield :ga_custom_page_view %>'});
+  <% else %>
+    ga('send', 'pageview');
+  <% end %>
+    ga('require', 'ecommerce', 'ecommerce.js');
+  </script>
+
+  <!-- /Google and Heap -->
+
+  <%= yield :additional_analytics %>
+
+  <% if Settings.steelhouse_enabled %>
+    <script>
+      (function(){"use strict";var e=null,b="4.0.0",
+      n="11029",
+      additional="",
+      t,r,i;try{t=top.document.referer!==""?encodeURIComponent(top.document.referrer.substring(0,2048)):""}catch(o){t=document.referrer!==null?document.referrer.toString().substring(0,2048):""}try{r=window&&window.top&&document.location&&window.top.location===document.location?document.location:window&&window.top&&window.top.location&&""!==window.top.location?window.top.location:document.location}catch(u){r=document.location}try{i=parent.location.href!==""?encodeURIComponent(parent.location.href.toString().substring(0,2048)):""}catch(a){try{i=r!==null?encodeURIComponent(r.toString().substring(0,2048)):""}catch(f){i=""}}var l,c=document.createElement("script"),h=null,p=document.getElementsByTagName("script"),d=Number(p.length)-1,v=document.getElementsByTagName("script")[d];if(typeof l==="undefined"){l=Math.floor(Math.random()*1e17)}h="dx.steelhousemedia.com/spx?"+"dxver="+b+"&shaid="+n+"&tdr="+t+"&plh="+i+"&cb="+l+additional;c.type="text/javascript";c.src=("https:"===document.location.protocol?"https://":"http://")+h;v.parentNode.insertBefore(c,v)})()
+    </script>
+  <% end %>
+
+  <% if Settings.hivewyre_analytics_display %>
+    <script src="https://js.b1js.com/tagcontainer.js?id=d0c779b048604fe58bbd50911b7ca241&type=1"></script>
+  <% end %>
