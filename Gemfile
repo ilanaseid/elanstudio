@@ -11,7 +11,7 @@ gem 'braintree'
 gem 'browser_details', git: 'git://github.com/niedfelj/browser_details.git', branch:'master'
 gem 'byebug', group: :development
 gem 'capybara', group: [:development, :test]
-gem 'clear_cms', git: 'git://github.com/assembledbrands/clear_cms.git', branch:'rails4_bootstrap3'
+gem 'clear_cms', git: 'git://github.com/ilanaseid/clear_cms.git', branch:'rails4_bootstrap3'
 gem 'clockwork'
 gem 'codeclimate-test-reporter', group: :test
 gem 'coffee-rails'

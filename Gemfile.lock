@@ -1,42 +1,4 @@
 GIT
-  remote: git://github.com/assembledbrands/clear_cms.git
-  revision: 77b36774198c8d9d47fca0d6fd7bcf58f8aa24cb
-  branch: rails4_bootstrap3
-  specs:
-    clear_cms (0.0.2)
-      cancan
-      carrierwave
-      carrierwave-mongoid
-      coffee-rails
-      compass-rails
-      devise
-      fog
-      formtastic (~> 2.3.1)
-      formtastic-bootstrap
-      highline
-      htmlentities
-      jquery-fileupload-rails
-      jquery-ui-rails
-      kaminari
-      kaminari-bootstrap
-      less-rails
-      markitup-rails
-      mini_magick
-      mongoid
-      mongoid-history
-      mongoid_userstamp
-      nested_form
-      net-scp
-      rails (~> 4.2.0)
-      redis-rails
-      sass-rails
-      sidekiq
-      sunspot_rails (= 2.1.1)
-      tagmanager-rails (= 3.0.0.1)
-      therubyracer
-      twitter-bootstrap-rails
-
-GIT
   remote: git://github.com/assembledbrands/spree.git
   revision: 7109f37571037b4bd94ea6ec888adaab73a17510
   branch: 3-0-stable
@@ -109,6 +71,44 @@ GIT
       json
       multi_json
       spree_core (~> 3.0.0)
+
+GIT
+  remote: git://github.com/ilanaseid/clear_cms.git
+  revision: d866318f2336377a116bf88e8d85b416f2660865
+  branch: rails4_bootstrap3
+  specs:
+    clear_cms (0.0.2)
+      cancan
+      carrierwave
+      carrierwave-mongoid
+      coffee-rails
+      compass-rails
+      devise
+      fog
+      formtastic (~> 2.3.1)
+      formtastic-bootstrap
+      highline
+      htmlentities
+      jquery-fileupload-rails
+      jquery-ui-rails
+      kaminari
+      kaminari-bootstrap
+      less-rails
+      markitup-rails
+      mini_magick
+      mongoid
+      mongoid-history
+      mongoid_userstamp
+      nested_form
+      net-scp
+      rails (~> 4.2.0)
+      redis-rails
+      sass-rails
+      sidekiq
+      sunspot_rails (= 2.1.1)
+      tagmanager-rails (= 3.0.0.1)
+      therubyracer
+      twitter-bootstrap-rails
 
 GIT
   remote: git://github.com/justinfrench/formtastic.git
@@ -545,7 +545,7 @@ GEM
       addressable (~> 2.3)
     less (2.6.0)
       commonjs (~> 0.2.7)
-    less-rails (2.7.0)
+    less-rails (2.7.1)
       actionpack (>= 4.0)
       less (~> 2.6.0)
       sprockets (> 2, < 4)
@@ -919,4 +919,4 @@ DEPENDENCIES
   uglifier
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
