@@ -2,7 +2,7 @@ module Reporting
   class CmsChapters
     include Sidekiq::Worker
 
-    def perform(email='systems@theline.com')
+    def perform(email='ilana@elanstudio.com')
       CSV.open("cms_chapter.csv","wb") do |csv|
         csv << ["Title", "Basename", "Tags", "Categories"]
         Chapter.published.each {|c| csv << [c.title, c.basename, (c.tags.join(",")), (c.categories.join(","))] }

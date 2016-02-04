@@ -101,9 +101,9 @@ module Utility
 
     def self.cms_user
      return @user if @user
-     @user = ClearCMS::User.where(:email=>'systems@theline.com').first
+     @user = ClearCMS::User.where(:email=>'ilana@elanstudio.com').first
      unless @user
-      @user = ClearCMS::User.create(:email=>'systems@theline.com', :base_name=>'systems', :full_name=>'Systems', :short_name=>'systems', :password=>'0p3ns3s4m3')
+      @user = ClearCMS::User.create(:email=>'ilana@elanstudio.com', :base_name=>'systems', :full_name=>'Systems', :short_name=>'systems', :password=>'0p3ns3s4m3')
      end
      @user
     end

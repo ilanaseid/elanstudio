@@ -2,7 +2,7 @@ require 'base64'
 
 class SystemMailer < ActionMailer::Base
   layout 'mailer'
-  default from: "systems@theline.com"
+  default from: "ilana@elanstudio.com"
 
   def general(to, subject, body, attach=[])
     @body = body

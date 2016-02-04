@@ -21,7 +21,7 @@ class MakeNewSpreeStaffRoles < ActiveRecord::Migration
     end
 
     current_employees = [
-      'systems@theline.com',
+      'ilana@elanstudio.com',
       'adam@theline.com',
       'sarah@theline.com',
       'melanie@theline.com',
