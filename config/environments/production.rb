@@ -75,7 +75,7 @@ Theline::Application.configure do
 
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = 'https://dvic4s0y3qk6b.cloudfront.net'
+  config.action_controller.asset_host = 'https://d3azan0dcmrv2z.cloudfront.net'
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( application_head.js superuser.js superuser.css icons.data.png.css icons.data.svg.css icons.fallback.css )
