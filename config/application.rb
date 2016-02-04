@@ -156,7 +156,7 @@ module Theline
         config.fog_directory='theline-clearcms'
         config.fog_region='us-east-1'
         config.fog_attributes={'Cache-Control'=>'public, max-age=1209600'}
-        config.asset_host='https://dvic4s0y3qk6b.cloudfront.net'
+        config.asset_host='https://d3azan0dcmrv2z.cloudfront.net'
         #config.asset_host='http://assets.theline.com'
         #config.asset_host='http://theline-clearcms.s3.amazonaws.com'
         config.aws_access_key=ENV['AWS_ACCESS_KEY'] || 'na'
