@@ -2,7 +2,7 @@ module Reporting
   class CompletedOrdersWithoutBrightpearlId
     include Sidekiq::Worker
 
-    def perform(email='operations@theline.com')
+    def perform(email='ilana@elanstudio.com')
       orders_without_bp_id = Spree::Order.where.not(completed_at: nil, state: 'canceled').where(brightpearl_order_id: nil)
       if orders_without_bp_id.length > 0
         CSV.open("completed_orders_without_brightpearl_id.csv","wb") do |csv|

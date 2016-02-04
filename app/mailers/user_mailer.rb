@@ -1,8 +1,8 @@
 class UserMailer < ActionMailer::Base
   add_template_helper(ProductNotificationsHelper)
 
-  default from: "The Line <hello@theline.com>"
-  default bcc: "product_notifications@theline.com"
+  default from: "Elan Studio <ilana@elanstudio.com>"
+  default bcc: "ilana@elanstudio.com"
 
   def product_notification(email, notifications)
     @notifications = notifications

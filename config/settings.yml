@@ -1,15 +1,15 @@
 # Testing UA for GA, see production for actual
 google_analytics_ua: UA-39620740-4
 facebook_app_id: some_id
-canonical_url_root: https://www.theline.com
-mailassets_url_root: https://www.theline.com
+canonical_url_root: https://www.elanstudio.com
+mailassets_url_root: https://www.elanstudio.com
 
 social_media:
-  twitter_url: https://twitter.com/theline
-  twitter_username: theline
+  twitter_url: https://twitter.com/elanstudio
+  twitter_username: elanstudio
   facebook_url: https://www.facebook.com/pages/The-Line/247864752023107
   tumblr_url: http://thelinecom.tumblr.com
-  instagram_url: https://instagram.com/thelinenyc
+  instagram_url: https://instagram.com/elanstudio
   instagram_username: thelinenyc
   pinterest_url: https://www.pinterest.com/thelinenyc/
 

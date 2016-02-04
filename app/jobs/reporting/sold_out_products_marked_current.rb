@@ -2,7 +2,7 @@ module Reporting
   class SoldOutProductsMarkedCurrent
     include Sidekiq::Worker
 
-    def perform(email='merchandising@theline.com')
+    def perform(email='ilana@elanstudio.com')
 
       titles = ['title','brightpearl_sku','publish_at', 'updated_at', 'URL', 'categories', 'published?']
       # add each stock location to title array

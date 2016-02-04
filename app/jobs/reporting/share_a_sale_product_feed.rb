@@ -46,7 +46,7 @@ module Reporting
       }
     }
 
-    def perform(email='bailey@theline.com')
+    def perform(email='ilana@elanstudio.com')
       CSV.open("share_a_sale_product_feed.csv","wb") do |csv|
         Product.published.each do |p|
           next if p.external?

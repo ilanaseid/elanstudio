@@ -4,7 +4,7 @@ module Spree
 
     sidekiq_options throttle: { threshold: 1, period: 2.minutes }, :retry => true
 
-    def perform(email='operations@theline.com')
+    def perform(email='ilana@elanstudio.com')
       failed_payment_orders = Spree::Order.failed_payment
       credit_owed_orders = Spree::Order.where(:payment_state => 'credit_owed')
 

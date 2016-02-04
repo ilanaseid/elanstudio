@@ -2,7 +2,7 @@ module Reporting
   class ArchivedProductsWithStock
     include Sidekiq::Worker
 
-    def perform(email='merchandising@theline.com')
+    def perform(email='ilana@elanstudio.com')
 
       titles = ['title','brightpearl_sku','publish_at','URL','categories']
       # add each stock location to title array

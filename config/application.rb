@@ -152,17 +152,15 @@ module Theline
 
     config.before_initialize do |app|
       ClearCMS.configure do |config|
-        config.s3_upload_bucket='theline-clearcms-tmp'
-        config.fog_directory='theline-clearcms'
+        config.s3_upload_bucket='elanstudio'
+        config.fog_directory='elanstudio-cms'
         config.fog_region='us-east-1'
         config.fog_attributes={'Cache-Control'=>'public, max-age=1209600'}
         config.asset_host='https://d3azan0dcmrv2z.cloudfront.net'
-        #config.asset_host='http://assets.theline.com'
-        #config.asset_host='http://theline-clearcms.s3.amazonaws.com'
         config.aws_access_key=ENV['AWS_ACCESS_KEY'] || 'na'
         config.aws_secret_access_key=ENV['AWS_SECRET_ACCESS_KEY'] || 'na'
         config.default_host=ENV['DEFAULT_HOST'] || 'localhost'
-        config.mailer_sender='no-reply@theline.com'
+        config.mailer_sender='ilana@elanstudio.com'
         config.sidekiq_redis_url=ENV['SIDEKIQ_REDIS_URL'] || 'redis://localhost:6379'
       end
     end
