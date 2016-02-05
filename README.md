@@ -185,7 +185,7 @@ If first time deploying, need to run:
 `heroku keys:add ~/.ssh/id_rsa.pub`
 
 Add remote for staging
-`git remote add staging git@heroku.com:theline-staging.git`
+`git remote add staging git@heroku.com:elanstudio-staging.git`
 Force a push to staging
 `git push -f staging`
 Force a push of a branch to staging
@@ -195,7 +195,7 @@ Force a push of a branch to staging
 For demo or preview we use
 
 Add remote for preview
-`git remote add preview git@heroku.com:theline-preview.git`
+`git remote add preview git@heroku.com:elanstudio-preview.git`
 Force a push to preview
 `git push -f preview`
 Force a push of a branch to preview

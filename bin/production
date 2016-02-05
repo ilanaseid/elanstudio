@@ -1,2 +1,2 @@
 #!/bin/sh
-HEROKU_APP=theline-production HKAPP=theline-production exec "${HEROKU_COMMAND:-heroku}" "$@"
+HEROKU_APP=elanstudio-production HKAPP=elanstudio-production exec "${HEROKU_COMMAND:-heroku}" "$@"

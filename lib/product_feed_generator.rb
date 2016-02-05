@@ -80,7 +80,7 @@ class ProductFeedGenerator
         description: description,
         google_taxonomy: google_taxonomy,
         product_type: categories,
-        item_link: "https://www.theline.com#{product.friendly_path}",
+        item_link: "https://www.elanstudio.com#{product.friendly_path}",
         image_link: product.default_image.mounted_file.medium.url,
         condition: 'new',
         availability: 'in stock',

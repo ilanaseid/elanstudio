@@ -90,7 +90,7 @@ class FraudNotifier < SimpleDelegator
     #{bill_address.zipcode}
     #{bill_address.country.try(:name)}
 
-    Link: https://www.theline.com/admin/orders/#{number}/edit
+    Link: https://www.elanstudio.com/admin/orders/#{number}/edit
 
     EOT
   end

@@ -96,7 +96,7 @@ module Utility
     end
 
     def self.site
-      @site ||= ClearCMS::Site.find_or_create_by(:name=>'The Line', :slug=>'theline', :domain=>'theline.com')
+      @site ||= ClearCMS::Site.find_or_create_by(:name=>'Elan Studio', :slug=>'elanstudio', :domain=>'elanstudio.com')
     end
 
     def self.cms_user
@@ -1059,7 +1059,7 @@ module Utility
     def self.reload_webhooks
       webhooks=::Brightpearl::IntegrationService::Webhook.all
       webhooks && webhooks.each do |webhook|
-        if webhook.uriTemplate =~ /www.theline.com/
+        if webhook.uriTemplate =~ /www.elanstudio.com/
           webhook.destroy
         end
       end

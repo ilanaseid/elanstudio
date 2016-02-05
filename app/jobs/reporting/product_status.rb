@@ -14,7 +14,7 @@ module Reporting
 
     def perform(email='ilana@elanstudio.com')
       CSV.open("product_status.csv","wb") {|csv|
-        Product.published.each {|p| csv << ["https://www.theline.com"+ p.friendly_path, p.brightpearl_sku, product_status(p), product_status_label_text(p)] }}
+        Product.published.each {|p| csv << ["https://www.elanstudio.com"+ p.friendly_path, p.brightpearl_sku, product_status(p), product_status_label_text(p)] }}
       attachments=[{:name=>'product_status.csv', :content=>File.read('product_status.csv')}]
       SystemMailer.general("#{email}",'Product Status Report', 'Please find attached the CSV of products with current status.', attachments).deliver
     end

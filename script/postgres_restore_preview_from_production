@@ -1,2 +1,2 @@
-heroku pg:reset DATABASE -a theline-preview
-heroku pg:backups restore `heroku pg:backups public-url -a theline-production` DATABASE -a theline-preview --confirm theline-preview
+heroku pg:reset DATABASE -a elanstudio-preview
+heroku pg:backups restore `heroku pg:backups public-url -a elanstudio-production` DATABASE -a elanstudio-preview --confirm elanstudio-preview

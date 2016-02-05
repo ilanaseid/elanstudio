@@ -8,7 +8,7 @@ spree_admin_user.save
 cms_admin_user=ClearCMS::User.create(:email=>'ilana@elanstudio.com', :base_name=>'systems', :full_name=>'Systems', :short_name=>'systems', :password=>'0p3ns3s4m3', :system_permission=>'administrator')
 
 #Setup default cms site
-default_site=ClearCMS::Site.create(:domain=>'theline.com', :slug=>'theline', :name=>'The Line')
+default_site=ClearCMS::Site.create(:domain=>'elanstudio.com', :slug=>'elanstudio', :name=>'Elan Studio')
 
 #####Setup a bunch of Spree required defaults
 stock_location=Spree::StockLocation.create(:name=>'76 Greene Street - 3rd Floor')

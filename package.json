@@ -1,6 +1,6 @@
 {
-  "name": "theline",
-  "title": "The Line",
+  "name": "elanstudio",
+  "title": "Elan Studio",
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-cli": "~0.1.7",

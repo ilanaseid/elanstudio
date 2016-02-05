@@ -1,6 +1,6 @@
 ENV['LOG_LEVEL']='debug'
 
-Theline::Application.configure do
+Elanstudio::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on

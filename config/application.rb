@@ -17,7 +17,7 @@ end
 Bundler.require(:default, Rails.env)
 
 
-module Theline
+module Elanstudio
   class Application < Rails::Application
 
 

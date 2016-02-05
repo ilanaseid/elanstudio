@@ -1,4 +1,4 @@
-Theline::Application.configure do
+Elanstudio::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -94,14 +94,14 @@ Theline::Application.configure do
   config.active_support.deprecation = :notify
 
   if ENV['HTTP_AUTH']
-    config.middleware.insert_before("Warden::Manager","::Rack::Auth::Basic", "The Line: Protected") do |u, p|
+    config.middleware.insert_before("Warden::Manager","::Rack::Auth::Basic", "Elan Studio: Protected") do |u, p|
       (u == ENV['HTTP_AUTH'].split(':')[0] && p == ENV['HTTP_AUTH'].split(':')[1])
     end
   end
 
 
   config.middleware.insert_after('ActionDispatch::Static', 'Rack::Rewrite') do
-    r301 /.*/,  Proc.new {|path, rack_env| "https://www.#{rack_env['SERVER_NAME']}#{path}" }, :if => Proc.new {|rack_env| !!(rack_env['SERVER_NAME'] =~ /^theline\.com$/i)}
+    r301 /.*/,  Proc.new {|path, rack_env| "https://www.#{rack_env['SERVER_NAME']}#{path}" }, :if => Proc.new {|rack_env| !!(rack_env['SERVER_NAME'] =~ /^elanstudio\.com$/i)}
     #   r301 '/pages/about-us', '/about-us'
     #   r301 '/pages/forms/contact-us', '/contact'
     #   r301 '/hello', '/welcome/hi'

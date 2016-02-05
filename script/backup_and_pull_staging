@@ -1,4 +1,4 @@
-heroku pg:backups capture -a theline-staging
+heroku pg:backups capture -a elanstudio-staging
 script/postgres_pull_staging
 #cp db/development.sqlite3 db/development-backup-staging-`date +%Y%m%d-%H%M`.sqlite3
 script/mongo_script pull staging

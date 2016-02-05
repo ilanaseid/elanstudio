@@ -1,7 +1,7 @@
-#heroku db:pull --confirm theline-production -a theline-production
+#heroku db:pull --confirm elanstudio-production -a elanstudio-production
 pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop
 
 pg_ctl -w -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
 dropdb theline_development
-heroku pg:pull DATABASE theline_development -a theline-preview
+heroku pg:pull DATABASE theline_development -a elanstudio-preview
 pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop

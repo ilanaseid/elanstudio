@@ -1,4 +1,4 @@
-Theline::Application.routes.draw do
+Elanstudio::Application.routes.draw do
 
   require 'sidekiq/web'
   admin = lambda { |r| r.env["warden"].authenticate? && Ability.new(r.env['warden'].user).can?(:manage, Sidekiq) }

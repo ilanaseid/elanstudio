@@ -65,7 +65,7 @@ end
 
 
  #Can't use the configure method for these because they are tied to db records using the Preferable class extensions
- TheLinePreferences::Store.instance.tap do |config|
+ ElanStudioPreferences::Store.instance.tap do |config|
 
   #BraintreeGateway with ID=1 is set to 'production' environment (and should be configured using heroku config vars)
 #   config.set('spree/gateway/braintree_gateway/merchant_id/1', ENV['BRAINTREE_MERCHANT_ID'] || 'kc3y3vv5kdmz8nrh',:string)
@@ -143,10 +143,10 @@ end
 #  spree/app_configuration/enable_mail_delivery                 | t
 #  spree/app_configuration/hide_cents                           | f
 #  spree/app_configuration/mail_bcc                             | retailops@elanstudio.com
-#  spree/app_configuration/mails_from                           | The Line <hello@elanstudio.com>
+#  spree/app_configuration/mails_from                           | Elan Studio <hello@elanstudio.com>
 #  spree/app_configuration/override_actionmailer_config         | f
-#  spree/app_configuration/site_name                            | The Line
-#  spree/app_configuration/site_url                             | www.theline.com
+#  spree/app_configuration/site_name                            | Elan Studio
+#  spree/app_configuration/site_url                             | www.elanstudio.com
 #  spree/auth_configuration/registration_step                   | t
 #  spree/calculator/shipping/flat_rate/amount/1                 | 0.0
 #  spree/calculator/shipping/flat_rate/amount/2                 | 25.0

@@ -1,6 +1,6 @@
-heroku pg:backups capture -a theline-production
-heroku pg:reset DATABASE --confirm theline-staging -a theline-staging
-heroku pg:backups restore `heroku pg:backups public-url -a theline-production` DATABASE -a theline-staging --confirm theline-staging
+heroku pg:backups capture -a elanstudio-production
+heroku pg:reset DATABASE --confirm elanstudio-staging -a elanstudio-staging
+heroku pg:backups restore `heroku pg:backups public-url -a elanstudio-production` DATABASE -a elanstudio-staging --confirm elanstudio-staging
 
 script/mongo_script pull production
 script/mongo_script push staging

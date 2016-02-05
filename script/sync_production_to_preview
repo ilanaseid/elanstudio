@@ -1,6 +1,6 @@
-heroku pg:backups capture -a theline-production
-heroku pg:reset DATABASE --confirm theline-preview -a theline-preview
-heroku pg:backups restore `heroku pg:backups public-url -a theline-production` DATABASE -a theline-preview --confirm theline-preview
+heroku pg:backups capture -a elanstudio-production
+heroku pg:reset DATABASE --confirm elanstudio-preview -a elanstudio-preview
+heroku pg:backups restore `heroku pg:backups public-url -a elanstudio-production` DATABASE -a elanstudio-preview --confirm elanstudio-preview
 
 script/mongo_script pull production
 script/mongo_script push preview

@@ -6,7 +6,7 @@
 
 require 'singleton'
 
-module TheLinePreferences
+module ElanStudioPreferences
 
   class StoreInstance
     attr_accessor :persistence

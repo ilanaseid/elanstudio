@@ -2,7 +2,7 @@ common: &defaults
   httpMethod: GET
   contentType: application/json
   bodyTemplate: ''   
-  uriTemplate: http://www.theline.com/brightpearl/webhooks/${resource-type}/${resource-id}?account=${account-code}&event=${lifecycle-event}
+  uriTemplate: http://www.elanstudio.com/brightpearl/webhooks/${resource-type}/${resource-id}?account=${account-code}&event=${lifecycle-event}
 
 product_modified:
   <<: *defaults
