@@ -5,6 +5,6 @@ require 'line_preferable'
 Spree::Preferences::ScopedStore.class_eval do 
 
   def store
-    TheLinePreferences::Store.instance
+    ElanStudioPreferences::Store.instance
   end
 end
