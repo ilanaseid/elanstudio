@@ -19,17 +19,17 @@ describe "ProductNotification" do
 
       @variant_1 = product.variants.first
       expect(@variant_1.in_stock?).to eq(false)
-      @notification_1 = ProductNotification.create(name: "Bob Test", email: "notiFicatiOn_tEst@theLinE.coM ", spree_variant_id: @variant_1.id)
+      @notification_1 = ProductNotification.create(name: "Bob Test", email: "notiFicatiOn_tEst@elanstudio.com ", spree_variant_id: @variant_1.id)
 
       @variant_2 = product.variants.last
       expect(@variant2).to_not eq(@variant_1)
       expect(@variant_2.in_stock?).to eq(false)
-      @notification_2 = ProductNotification.create(name: "Bob Test", email: "notiFicatiOn_tEst@theLinE.coM ", spree_variant_id: @variant_2.id)
+      @notification_2 = ProductNotification.create(name: "Bob Test", email: "notiFicatiOn_tEst@elanstudio.com ", spree_variant_id: @variant_2.id)
     end
 
     it "Normalizes the email before save" do
-      @notification_3 = ProductNotification.create(name: "Bob Test", email: "notiFicatiOn_tEst@theLinE.coM ", spree_variant_id: @variant_1.id)
-      expect(@notification_3.email).to eq("notification_test@theline.com")
+      @notification_3 = ProductNotification.create(name: "Bob Test", email: "notiFicatiOn_tEst@elanstudio.com ", spree_variant_id: @variant_1.id)
+      expect(@notification_3.email).to eq("notification_test@elanstudio.com")
     end
 
     it "Only groups Variants that are in Stock at Default Location" do
@@ -75,8 +75,8 @@ describe "ProductNotification" do
       expect(@notification_2.spree_variant.default_location_count_on_hand).to eq(0)
 
       # make sure we only sent a notification for the in-stock item at default (ecomm) location
-      expect(notifications["notification_test@theline.com"].include?(@notification_2)).to eq(false)
-      expect(notifications["notification_test@theline.com"].include?(@notification_1)).to eq(true)
+      expect(notifications["notification_test@elanstudio.com"].include?(@notification_2)).to eq(false)
+      expect(notifications["notification_test@elanstudio.com"].include?(@notification_1)).to eq(true)
     end
 
     it "Correctly groups Product Notifications by Email" do
@@ -90,9 +90,9 @@ describe "ProductNotification" do
 
       notifications = TriggerEmails::ProductNotificationMailer.collect_sendable
 
-      expect(notifications["notification_test@theline.com"].length).to eq(2)
-      expect(notifications["notification_test@theline.com"].include?(@notification_1)).to eq(true)
-      expect(notifications["notification_test@theline.com"].include?(@notification_2)).to eq(true)
+      expect(notifications["notification_test@elanstudio.com"].length).to eq(2)
+      expect(notifications["notification_test@elanstudio.com"].include?(@notification_1)).to eq(true)
+      expect(notifications["notification_test@elanstudio.com"].include?(@notification_2)).to eq(true)
     end
 
     it "Makes sure notifications are saved as 'sent' when sent" do

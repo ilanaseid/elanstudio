@@ -10,7 +10,7 @@ class ProductFeedGenerator
     password: Settings.effective_spend_ftp.password
   }
 
-  def initialize(email='rebecca@theline.com')
+  def initialize(email='rebecca@elanstudio.com')
     @email = email
   end
 

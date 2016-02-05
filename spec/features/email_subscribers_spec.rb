@@ -16,7 +16,7 @@ describe "EmailSubscribers", :type => :feature do
       within('#footer1') do
         expect(page).to have_content(I18n.t('headings.newsletter_receive_info').upcase)
 
-        fill_in 'email_subscriber[email]', :with=>'test@theline.com'
+        fill_in 'email_subscriber[email]', :with=>'test@elanstudio.com'
         click_button I18n.t('actions.newsletter_add')
         expect(page).to have_content('Thank You')
       end
@@ -31,7 +31,7 @@ describe "EmailSubscribers", :type => :feature do
       visit '/'
       within('#footer1') do
         expect(page).to have_content(I18n.t('headings.newsletter_receive_info').upcase)
-        fill_in 'email_subscriber[email]', :with=>'test@theline.com'
+        fill_in 'email_subscriber[email]', :with=>'test@elanstudio.com'
         click_button I18n.t('actions.newsletter_add')
         expect(page).to have_content('Thank You')
       end

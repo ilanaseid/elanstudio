@@ -19,7 +19,7 @@ class SystemsController < ApplicationController
       flash[:error]="Couldn't reset stock because of #{unfulfilled_orders.length} unfulfilled order(s) in BP."
       @unfulfilled_orders = unfulfilled_orders.inspect
       render :action=>:index
-      #SystemMailer.general('retailalerts@theline.com', "Stock Levels Can't Sync Due to Open Orders", "The following orders are preventing stock syncing: #{unfulfilled_orders.inspect}").deliver
+      #SystemMailer.general('retailalerts@elanstudio.com', "Stock Levels Can't Sync Due to Open Orders", "The following orders are preventing stock syncing: #{unfulfilled_orders.inspect}").deliver
       #pp r
     end
 

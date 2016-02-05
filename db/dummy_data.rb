@@ -6,17 +6,17 @@ require 'pp'
 
 ClearCMS::User.delete_all
 
-spree_admin_user=FactoryGirl.create(:spree_admin_user, :email=>'test+admin@theline.com', :password=>'sesame')
-spree_user=FactoryGirl.create(:spree_user, :email=>'test+user@theline.com', :password=>'sesame')
+spree_admin_user=FactoryGirl.create(:spree_admin_user, :email=>'test+admin@elanstudio.com', :password=>'sesame')
+spree_user=FactoryGirl.create(:spree_user, :email=>'test+user@elanstudio.com', :password=>'sesame')
 
 #TODO: doesn't work because of firstname/lastname validations that were added to user
 #Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
 
-site = ClearCMS::Site.find_or_create_by(:name=>'The Line', :slug=>'theline', :domain=>'theline.com')
+site = ClearCMS::Site.find_or_create_by(:name=>'Elan Studio', :slug=>'elanstudio', :domain=>'elanstudio.com')
 
 pp site
 
-user = ClearCMS::User.find_or_create_by(:email=>'joel@theline.com')
+user = ClearCMS::User.find_or_create_by(:email=>'ilana@elanstudio.com')
 
 pp user
 

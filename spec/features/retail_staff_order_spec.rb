@@ -73,7 +73,7 @@ def apartment_order_form_not_present?
     expect(page).not_to have_content(I18n.t('retail_order.messenger_service'))
     expect(page).not_to have_content(I18n.t('retail_order.pack_out'))
     expect(page).not_to have_content(I18n.t('retail_order.internal_comments'))
-    expect(page).not_to have_content('apartment_customer@theline.com')
+    expect(page).not_to have_content('apartment_customer@elanstudio.com')
     expect(page).not_to have_content('internal comments for a customer ordering from the apartment')
   end
 end
@@ -167,7 +167,7 @@ def fill_in_apartment_order_form
 
   #fill in apartment order form details
   #customer id, no trade discount, carry out packout, and internal comments filled in
-  page.fill_in "order[retail_staff_order_detail_attributes][customer_id]", with: 'apartment_customer@theline.com'
+  page.fill_in "order[retail_staff_order_detail_attributes][customer_id]", with: 'apartment_customer@elanstudio.com'
   choose 'order_retail_staff_order_detail_attributes_trade_discount_no'
   choose 'order_retail_staff_order_detail_attributes_shipping_method_carry_out'
   page.fill_in "order[retail_staff_order_detail_attributes][internal_comments]", with: 'internal comments for a customer ordering from the apartment'
@@ -191,7 +191,7 @@ end
 def check_apartment_order_form_contents
   apartment_order_form_titles_present?
   # need to check that apartment order form same as entries
-  expect(page).to have_content('apartment_customer@theline.com')
+  expect(page).to have_content('apartment_customer@elanstudio.com')
   expect(page).to have_content(I18n.t('retail_order.carry_out'))
   expect(page).to have_content('internal comments for a customer ordering from the apartment')
 end

@@ -6,7 +6,7 @@ def registration_macro
     expect(page).to have_content(I18n.t('headings.register'))
     fill_in 'First Name', :with=>'Test'
     fill_in 'Last Name', :with=>'User'
-    fill_in 'Email', :with=>'test+user@theline.com'
+    fill_in 'Email', :with=>'test+user@elanstudio.com'
     fill_in 'Password', :with=>'password'
 
     click_button I18n.t('actions.create_account')

@@ -26,7 +26,7 @@ require 'spree/preferable_decorator'
    #config.default_meta_keywords='the line'
    #config.default_seo_title=''
    #config.enable_mail_delivery=true
-   #config.mail_bcc='retailops@theline.com'
+   #config.mail_bcc='retailops@elanstudio.com'
    # config.override_actionmailer_config=false
    #config.site_name=(ENV['SPREE_SITE_NAME'] || 'The Line')
    #config.site_url='www.theline.com'
@@ -142,8 +142,8 @@ end
 #  spree/app_configuration/display_currency                     | f
 #  spree/app_configuration/enable_mail_delivery                 | t
 #  spree/app_configuration/hide_cents                           | f
-#  spree/app_configuration/mail_bcc                             | retailops@theline.com
-#  spree/app_configuration/mails_from                           | The Line <hello@theline.com>
+#  spree/app_configuration/mail_bcc                             | retailops@elanstudio.com
+#  spree/app_configuration/mails_from                           | The Line <hello@elanstudio.com>
 #  spree/app_configuration/override_actionmailer_config         | f
 #  spree/app_configuration/site_name                            | The Line
 #  spree/app_configuration/site_url                             | www.theline.com
@@ -172,7 +172,7 @@ end
 Spree.user_class = "Spree::User"
 
 #puts 'in spree initializer'
-#Spree::Config[:mails_from]='The Line <hello@theline.com>' #why the fuck do these sometimes load the db and sometimes don't...
+#Spree::Config[:mails_from]='The Line <hello@elanstudio.com>' #why the fuck do these sometimes load the db and sometimes don't...
 
 ###MOVED THIS TO SEEDS BECAUSE IT LOADS THE DB EACH TIME AND IS STORED IN THE DB, SO ISN'T NEEDED HERE (unless someone changes in the admin, but those should stick anyway???)
 #Spree::Auth::Config[:registration_step]=true
@@ -205,9 +205,9 @@ Spree.user_class = "Spree::User"
  #<Spree::Preference id: 11, value: "USD", key: "spree/calculator/shipping/flat_rate/currency/1", value_type: "string", created_at: "2013-09-17 22:05:20", updated_at: "2013-09-17 22:05:20">,
  #<Spree::Preference id: 12, value: "25.0", key: "spree/calculator/shipping/flat_rate/amount/2", value_type: "decimal", created_at: "2013-09-17 22:05:29", updated_at: "2013-09-17 22:05:29">,
  #<Spree::Preference id: 13, value: "USD", key: "spree/calculator/shipping/flat_rate/currency/2", value_type: "string", created_at: "2013-09-17 22:05:29", updated_at: "2013-09-17 22:05:29">,
- #<Spree::Preference id: 33, value: "The Line <hello@theline.com>", key: "spree/app_configuration/mails_from", value_type: "string", created_at: "2013-09-24 14:58:10", updated_at: "2013-09-24 18:21:27">,
+ #<Spree::Preference id: 33, value: "The Line <hello@elanstudio.com>", key: "spree/app_configuration/mails_from", value_type: "string", created_at: "2013-09-24 14:58:10", updated_at: "2013-09-24 18:21:27">,
  #<Spree::Preference id: 3, value: "t", key: "spree/app_configuration/enable_mail_delivery", value_type: "boolean", created_at: "2013-09-12 22:03:51", updated_at: "2013-09-27 15:15:00">,
- #<Spree::Preference id: 34, value: "retailops@theline.com", key: "spree/app_configuration/mail_bcc", value_type: "string", created_at: "2013-09-27 15:24:26", updated_at: "2013-09-27 15:24:26">,
+ #<Spree::Preference id: 34, value: "retailops@elanstudio.com", key: "spree/app_configuration/mail_bcc", value_type: "string", created_at: "2013-09-27 15:24:26", updated_at: "2013-09-27 15:24:26">,
  #<Spree::Preference id: 4, value: "f", key: "spree/app_configuration/override_actionmailer_confi...", value_type: "boolean", created_at: "2013-09-12 22:03:51", updated_at: "2013-09-27 15:25:08">,
  #<Spree::Preference id: 14, value: "t", key: "spree/auth_configuration/registration_step", value_type: "boolean", created_at: "2013-09-18 20:00:56", updated_at: "2013-09-18 20:00:56">,
  #<Spree::Preference id: 15, value: "The Line", key: "spree/app_configuration/site_name", value_type: "string", created_at: "2013-09-19 13:41:33", updated_at: "2013-09-19 13:41:33">,
