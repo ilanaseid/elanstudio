@@ -5,11 +5,11 @@ en:
   hello: "Hello world"
 
   site:
-    the_line: "THE LINE"
+    elan_studio: "Elan Studio"
     base_meta_description: "Discover refined, versatile, and honest goods. Free two-day shipping and returns."
     stories_meta_description: "Contemplate a future of objects that inspire and refine you with The Line. Our stories reveal the origins, creators, meanings, and uses of items that are carefully chosen to enrich a life well-lived."
     footnotes_page_description: "Creative stimulation in the form of conversations, ideas, insights, and reviews."
-    footer_copyright_html: "&copy;2015 The Line"
+    footer_copyright_html: "&copy;2015 Elan Studio"
     free_shipping_notice: "*Free two-day shipping and returns"
     volume_label: "Volume"
     volume_abbr: "VOL."

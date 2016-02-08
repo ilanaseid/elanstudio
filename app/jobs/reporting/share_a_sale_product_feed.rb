@@ -67,7 +67,7 @@ module Reporting
     def csv_fields(p, sku: 'SKU', size: '')
       [ sku, # SKU
         p.spree_product.name.gsub('|', '-'), # Name
-        "https://www.theline.com#{p.friendly_path}", # Direct URL to product
+        "https://www.elanstudio.com#{p.friendly_path}", # Direct URL to product
         sprintf('%.2f',p.spree_product.price.to_i), # Price
         '', # Original price
         p.default_image.mounted_file.medium.url, # URL to product image

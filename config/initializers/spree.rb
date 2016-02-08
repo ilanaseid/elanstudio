@@ -21,7 +21,7 @@ require 'spree/preferable_decorator'
    config.check_for_spree_alerts=false
    # config.currency='USD' # this is default now.
    config.default_country_id=49
-   config.admin_interface_logo='logo_theline.svg'
+   config.admin_interface_logo='logo_elanstudio.svg'
    #config.default_meta_description='the line'
    #config.default_meta_keywords='the line'
    #config.default_seo_title=''
@@ -42,7 +42,7 @@ unless ENV['BRAINTREE_PRIVATE_KEY'] && Settings.braintree.use_production_gateway
   Spree::PaymentMethod.class_eval do
     def preferences
       {
-        :environment=>"sandbox", :merchant_id=>"kc3y3vv5kdmz8nrh", :merchant_account_id=>nil, :public_key=>"974bgnc83wt92skx", :private_key=>"27804117813c13ee16dd1fc3839259b5", :client_side_encryption_key=>"MIIBCgKCAQEAu0ESbIaGmaa9jn3J1Xc7JPdvZBa1TuCi9AmOCZwoOczlNNe6JqYfbFfEtLjUh36vM6Hizn/zvGMK8RTC6GB7zCpjTLdSHgFc3ki8QyPhx655+1kGOxwAhi76y9xT2KaPrKNiFLzvfYH8lA/v+8GVCiq15PgyNhtgDytHPnPHcdLVg4Ej4x1MGzgXOStapV/64q1X5a2Xl0c8+kH+kx8XfkBc7iVZBgugbMfpDx9EVbAk/vx+A/vFRkw7swZYBYOUQvZKl0DfmpmtOxhgTx6sZBehrz0MmahalbR2Ud8KXAbdvNluQhL8X2DBd6Z5bYyFbFMRgmzDy9YLara1PIs9sQIDAQAB", :server=>"test", :test_mode=>false
+        :environment=>"sandbox", :merchant_id=>"x8qs3hnwp2gvqcs7", :merchant_account_id=>nil, :public_key=>"4cwkj9bjrgf9crw8", :private_key=>"9577074424f696d7bf38b0347c183eb9", :client_side_encryption_key=>"MIIBCgKCAQEA60/whTi2sweWAAnjKnMAf7BlrdqqDAq2GcdpNr02YiFV3GvR6DpN4XuwDJ5MvDlGO3zszhwE/F0eitsPE7wfFAKQ0hHjx4/RUGYGSgoBnd3JLYuJ8yBAARNcxErlrisxLDewEGjm3s+oo6ofgIYeBZa1JWt+COhT4FlXaXvJ6sccOI0Bauqkit8dKbPXVyTHpjBpvgL8lSyLF4pV6qwowRK4Bo3w1JDFY6RwMl29j1sXKDJoLMRneBMAFkhlnm+kl6zSx6/cZ0B52EBlXtT++lwlNsZio9emXGzDPC0QfSJp1DND/FwePzwTGp0js963ZcnMfKz+7JHceyrXNz75cwIDAQAB", :server=>"test", :test_mode=>false
       }
     end
 

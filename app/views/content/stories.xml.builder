@@ -6,7 +6,7 @@ xml.rss version: "2.0",
   'xmlns:atom'=>"http://www.w3.org/2005/Atom",
   'xmlns:georss'=>"http://www.georss.org/georss" do
   xml.channel do
-    xml.title "#{t('site.the_line')} - #{t('site.nav.editorial')}"
+    xml.title "#{t('site.elan_studio')} - #{t('site.nav.editorial')}"
     xml.link "#{Settings.canonical_url_root}#{stories_path}"
     xml.description t('site.stories_meta_description')
     xml.language 'en-us'

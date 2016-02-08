@@ -5,37 +5,37 @@ canonical_url_root: https://www.elanstudio.com
 mailassets_url_root: https://www.elanstudio.com
 
 social_media:
-  twitter_url: https://twitter.com/elanstudio
-  twitter_username: elanstudio
-  facebook_url: https://www.facebook.com/pages/The-Line/247864752023107
-  tumblr_url: http://thelinecom.tumblr.com
+  twitter_url: https://twitter.com/elanstudiony
+  twitter_username: elanstudiony
+  facebook_url: https://www.facebook.com/elanstudionyc
+  tumblr_url: http://elanstudionyc.tumblr.com
   instagram_url: https://instagram.com/elan_studio
   instagram_username: elan_studio
   pinterest_url: https://www.pinterest.com/elan_studio/
 
 contact_info:
-  service_email: hello@elanstudio.com
-  service_phone: + 1 646 678 4908
+  service_email: help@elanstudio.com
+  service_phone: + 1 212 472 1096
   orderinq_email: orders@elanstudio.com
-  jobs_email: employment@elanstudio.com
-  press_email: press@elanstudio.com
+  jobs_email: careers@elanstudio.com
+  press_email: media@elanstudio.com
   merchandising_email: merchandising@elanstudio.com
   operations_email: operations@elanstudio.com
-  apartment_visits_email: appointmentsNYC@elanstudio.com
+  apartment_visits_email: appointments_tribeca@elanstudio.com
 
 # Sandbox, see production settings for ENV...this is now set directly in the spree.rb initializer
 braintree:
   use_production_gateway: <%= ENV['BRAINTREE_USE_PRODUCTION_GATEWAY'] || false %>
   name: Braintree Sandbox
   environment: sandbox
-  merchant_id: kc3y3vv5kdmz8nrh
-  public_key: 974bgnc83wt92skx
-  private_key: 27804117813c13ee16dd1fc3839259b5
-  client_side_encryption_key: MIIBCgKCAQEAu0ESbIaGmaa9jn3J1Xc7JPdvZBa1TuCi9AmOCZwoOczlNNe6JqYfbFfEtLjUh36vM6Hizn/zvGMK8RTC6GB7zCpjTLdSHgFc3ki8QyPhx655+1kGOxwAhi76y9xT2KaPrKNiFLzvfYH8lA/v+8GVCiq15PgyNhtgDytHPnPHcdLVg4Ej4x1MGzgXOStapV/64q1X5a2Xl0c8+kH+kx8XfkBc7iVZBgugbMfpDx9EVbAk/vx+A/vFRkw7swZYBYOUQvZKl0DfmpmtOxhgTx6sZBehrz0MmahalbR2Ud8KXAbdvNluQhL8X2DBd6Z5bYyFbFMRgmzDy9YLara1PIs9sQIDAQAB
+  merchant_id: x8qs3hnwp2gvqcs7
+  public_key: 4cwkj9bjrgf9crw8
+  private_key: 9577074424f696d7bf38b0347c183eb9
+  client_side_encryption_key: MIIBCgKCAQEA60/whTi2sweWAAnjKnMAf7BlrdqqDAq2GcdpNr02YiFV3GvR6DpN4XuwDJ5MvDlGO3zszhwE/F0eitsPE7wfFAKQ0hHjx4/RUGYGSgoBnd3JLYuJ8yBAARNcxErlrisxLDewEGjm3s+oo6ofgIYeBZa1JWt+COhT4FlXaXvJ6sccOI0Bauqkit8dKbPXVyTHpjBpvgL8lSyLF4pV6qwowRK4Bo3w1JDFY6RwMl29j1sXKDJoLMRneBMAFkhlnm+kl6zSx6/cZ0B52EBlXtT++lwlNsZio9emXGzDPC0QfSJp1DND/FwePzwTGp0js963ZcnMfKz+7JHceyrXNz75cwIDAQAB
 
 order_mailer_bcc: retailops@elanstudio.com
 order_mailer_cc: order_cc@elanstudio.com
-order_mailer_from: The Line <orders@elanstudio.com>
+order_mailer_from: Elan Studio <orders@elanstudio.com>
 
 brightpearl:
   readonly: <%= ENV['BRIGHTPEARL_READONLY'] || true %>

@@ -1,6 +1,7 @@
 <% content_for :nav_title, "Home" %>
 <% content_for :additional_metas do %>
-<meta name="google-site-verification" content="BuNeELvFozDMpRPX9b3OzbI8M7vMEhE-JsBESVKqO7s">
+<meta name="google-site-verification" content="pX_5YCj8rHywOO59LCPl4ifF8EA6z31tDqiscvmwlBQ" />
+
 <% end %>
 <% content_for :additional_body_classes, @content.published? ? "published" : "unpublished" %>
 
@@ -12,59 +13,5 @@
       <%= @content.content_block('hero').try(:body) %>
     </div>
   </div>
-
   <hr>
-
-  <%= render 'shared/apartment_section' %>
-
-  <hr>
-
-  <ul class="featureList row-fluid">
-    <li class="span8 feature">
-
-      <%= @content.content_block('stories_feature').try(:body) %>
-    </li>
-    <li class="span8 feature">
-      <%= @content.content_block('objects_feature').try(:body) %>
-    </li>
-  </ul> <!-- / .featureList -->
-
-<hr>
-
-  <div class="row-fluid">
-    <div class="span16">
-      <div class="categoryLists">
-        <div class="itemListBlock">
-          <h2 class="gamma home-block"><%= link_to t('shop.category.fashion'), shop_category_path(:fashion) %></h2>
-          <ul class="itemList">
-            <% cache @fashion_products do %>
-              <% @fashion_products.each do |product| %>
-                <%= render :partial=>'shop/homepage_product_item', :locals=>{:product=>product} %>
-              <% end %>
-            <% end %>
-          </ul>
-        </div> <!-- /.itemListBlock -->
-        <div class="itemListBlock">
-          <h2 class="gamma home-block"><%= link_to t('shop.category.home'), shop_category_path(:home) %></h2>
-          <ul class="itemList">
-            <% cache @home_products do %>
-              <% @home_products.each do |product| %>
-                <%= render :partial=>'shop/homepage_product_item', :locals=>{:product=>product} %>
-              <% end %>
-            <% end %>
-          </ul>
-        </div> <!-- /.itemListBlock -->
-        <div class="itemListBlock">
-          <h2 class="gamma home-block"><%= link_to t('shop.category.beauty'), shop_category_path(:beauty) %></h2>
-          <ul class="itemList">
-            <% cache @beauty_products do %>
-              <% @beauty_products.each do |product| %>
-                <%= render :partial=>'shop/homepage_product_item', :locals=>{:product=>product} %>
-              <% end %>
-            <% end %>
-          </ul>
-        </div> <!-- /.itemListBlock -->
-      </div>
-    </div>
-  </div>
 <% end %>

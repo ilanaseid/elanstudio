@@ -10,10 +10,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title><%= yield :title %><%= content_for?(:title) ? ' — ' : '' %><%= t('site.the_line') %></title>
-  <meta property="og:title" content="<%= yield :title %><%= content_for?(:title) ? ' — ' : '' %><%= t('site.the_line') %>" />
-
-  <meta name="google-site-verification" content="pX_5YCj8rHywOO59LCPl4ifF8EA6z31tDqiscvmwlBQ" />
+  <title><%= yield :title %><%= content_for?(:title) ? ' — ' : '' %><%= t('site.elan_studio') %></title>
+  <meta property="og:title" content="<%= yield :title %><%= content_for?(:title) ? ' — ' : '' %><%= t('site.elan_studio') %>" />
 
   <%= render :partial=>"shared/metas" %>
   <%= yield :additional_metas %>
@@ -40,7 +38,7 @@
 
   <%= render :partial=>"shared/analytics_top" %>
 
-  <%= auto_discovery_link_tag(:rss, main_app.stories_path(:format=>:xml), :title=>"#{t('site.nav.editorial')} — #{t('site.the_line')}") %>
+  <%= auto_discovery_link_tag(:rss, main_app.stories_path(:format=>:xml), :title=>"#{t('site.nav.editorial')} — #{t('site.elan_studio')}") %>
 
 <script>
 /* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */

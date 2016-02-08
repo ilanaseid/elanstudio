@@ -13,7 +13,7 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: theline_development
+  database: elanstudio_development
 #   username: theline
 #   password: 
 
@@ -24,7 +24,7 @@ test:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: theline_test
+  database: elanstudio_test
 
 # production:
 #   adapter: postgresql

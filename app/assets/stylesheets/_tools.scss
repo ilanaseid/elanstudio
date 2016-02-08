@@ -18,7 +18,7 @@ $fontStack-Default: 'Sabon Next W01', 'Times New Roman', Times, serif;
 $fontStack-DefaultFallback: 'Times New Roman', Times, serif;
 $fontStack-Display: 'Sabon Next W01 Display','Sabon Next W01', 'Times New Roman', Times, serif;
 $fontStack-DisplayFallback: 'Times New Roman', Times, serif;
-$fontStack-SansSerif: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$fontStack-SansSerif: 'Lato', sans-serif;
 
 @mixin fallbackFontStackDefault($selectors) {
   #{$selectors} {
