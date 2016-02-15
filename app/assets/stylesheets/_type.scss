@@ -63,7 +63,6 @@ h3, .gamma, .gamma2 {
   text-transform: uppercase;
 }
 
-
 h4, .delta {
 	font-size: 14px;
 	line-height: 21px;
@@ -125,7 +124,7 @@ p {
 }
 
 .accent {
-  color: $gold;
+  color: $emerald;
 }
 
 // component: Quote
@@ -409,11 +408,11 @@ a.readmore {
 
 
 a.accent {
-  color: $gold;
+  color: $emerald;
 
   &:hover,
   &:active {
-    color: $gold;
+    color: $emerald;
   }
 }
 
@@ -550,5 +549,5 @@ a.arr:nth-child(n+2) {
 }
 
 .price_markdown {
-  color: $gold;
+  color: $emerald;
 }

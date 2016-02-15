@@ -578,8 +578,10 @@ body,
 ------------------------------------------- */
 
 footer {
+  background: $black;
   clear: both;
   padding-top: 14px;
+  padding-bottom: 30px;
   color: $grey-med;
   border-top: $border-default;
   font-size: 10px;
@@ -592,19 +594,12 @@ footer {
   }
 
   .nav li a {
-    color: $grey-med;
+    color: $white;
   }
 }
 
-.footer-meta {
-  ul:first-child {
-    font-weight: bold;
-    @include smallSansSerif;
-  }
-}
-
-.footer-social {
-  text-align: center;
+.footer-block {
+  text-align: left;
   @include smallSansSerif;
 
   .delta {
@@ -685,11 +680,8 @@ footer {
       line-height: 21px;
     }
   }
-  .footer-meta {
-    width: 50%;
-    float: left;
-  }
-  .footer-social {
+
+  .footer-block {
     width: 50%;
     padding-left: 12px;
     float: right;

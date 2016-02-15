@@ -11,7 +11,7 @@ cms_admin_user=ClearCMS::User.create(:email=>'ilana@elanstudio.com', :base_name=
 default_site=ClearCMS::Site.create(:domain=>'elanstudio.com', :slug=>'elanstudio', :name=>'Elan Studio')
 
 #####Setup a bunch of Spree required defaults
-stock_location=Spree::StockLocation.create(:name=>'81 Walker Street - 2nd Floor')
+stock_location=Spree::StockLocation.create(:name=>'81 Walker Street - 2nd Floor', :default=>true)
 
 shipping_category=Spree::ShippingCategory.create(:name=>'Default Shipping Category')
 

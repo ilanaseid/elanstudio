@@ -111,15 +111,15 @@ button,
 
 .btn-accent {
   color: $white;
-  background: $gold;
-  border-color: $gold;
+  background: $emerald;
+  border-color: $emerald;
 
   &:focus,
   &:hover,
   &:active {
     color: $white;
-    background: $gold-dark;
-    border-color: $gold-dark;
+    background: $emerald-dark;
+    border-color: $emerald-dark;
   }
 }
 
@@ -169,12 +169,12 @@ button,
   }
 
   &.accent {
-    color: $gold;
+    color: $emerald;
 
     &:focus,
     &:hover,
     &:active {
-      color: $gold-dark;
+      color: $emerald-dark;
     }
   }
 }
@@ -233,7 +233,6 @@ button,
 /* Button States
 ------------------------------------------- */
 
-
 [type=submit],
 button,
 .btn {
@@ -275,16 +274,16 @@ button,
     &[disabled],
     &.disabled {
       color: $white;
-      background: $gold-light;
-      border-color: $gold-light;
+      background: $emerald-light;
+      border-color: $emerald-light;
       cursor: default;
 
       &:focus,
       &:hover,
       &:active {
         color: $white;
-        background: $gold-light;
-        border-color: $gold-light;
+        background: $emerald-light;
+        border-color: $emerald-light;
       }
     }
   }

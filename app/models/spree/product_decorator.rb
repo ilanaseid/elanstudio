@@ -2,7 +2,7 @@ Spree::Product.class_eval do
 
   validates_uniqueness_of :name #added because Brightpearl forces product name uniqueness to correlate variations, so we should do it here too as a safety check
 
-  delegate_belongs_to :master, :brightpearl_brand_id, :brightpearl_product_group_id, :brightpearl_product_id
+  delegate_belongs_to :master
 
   after_commit :link_cms_content
 
@@ -49,11 +49,6 @@ Spree::Product.class_eval do
     cms_content=::Product.find_or_initialize_by(spree_product_id: self.id)
     cms_content.title=self.name
     cms_content.subtitle=self.name
-    cms_content.brand_id=::Brand.find_by(brightpearl_brand_id: self.brightpearl_brand_id).id
-    cms_content.brightpearl_sku=self.sku
-    cms_content.brightpearl_brand_id=self.brightpearl_brand_id
-    cms_content.brightpearl_product_group_id=self.brightpearl_product_group_id
-
     cms_product_attributes.each do |k,v|
       cms_content.send("#{k}=",v)
     end

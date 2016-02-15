@@ -52,16 +52,15 @@ grunticon(["<%= stylesheet_path 'icons.data.svg.css' %>", "<%= stylesheet_path '
 </head>
 <body class="c_<%= params[:controller].sub('/', '_') %> a_<%= params[:action] %> <%= yield :additional_body_classes %> <%= 'has_superuser_ui' if display_superuser_ui? %> u_<%= user_class %>" id="body1">
   <div id="bodyWrap">
-    <%= render 'shared/banners/gifts' %>
+    <%#= render 'shared/banners/gifts' %>
     <div id="contextualNav" class="hide"></div><!-- /#contextualNav -->
     <div id="viewWrap">
       <div id="navPanelWrap" class="hide"></div> <!-- /#navPanelWrap -->
 
-
       <div id="pageWrap">
 
         <!-- <div id="navWrap"> -->
-        <%= render :partial=>"shared/nav" %>
+        <%= render :partial=>"shared/homepage_nav" %>
         <!-- </div> -->
 
         <div class="main"> <!-- TODO: migrate this to 'main' element? -->

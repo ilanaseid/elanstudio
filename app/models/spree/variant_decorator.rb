@@ -2,9 +2,7 @@ Spree::Variant.class_eval do
   has_many :product_notifications, foreign_key: "spree_variant_id"
 
   validates_uniqueness_of :sku
-  validates_uniqueness_of :brightpearl_product_id, :scope=>:is_master
-  validates_presence_of :brightpearl_product_group_id
-  validates_presence_of :brightpearl_brand_id
+
   belongs_to :shipping_category
 
   delegate :cms_product, to: :product

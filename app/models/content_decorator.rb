@@ -85,7 +85,6 @@ ClearCMS::Content.class_eval do
   end
 
   searchable do
-    text :brightpearl_sku
     integer :sort_weight
     boolean :searchable
   end

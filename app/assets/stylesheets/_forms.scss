@@ -41,7 +41,7 @@ label,
   margin-right: 6em; // leave room for error
 
   &.accent {
-    color: $gold;
+    color: $emerald;
   }
 }
 
@@ -100,14 +100,14 @@ label [type=radio] {
 }
 .alert-warning,
 .alert-success {
-  color: $gold;
+  color: $emerald;
 
   a {
-    color: $gold;
+    color: $emerald;
 
     &:hover,
     &:active {
-      color: $gold-dark;
+      color: $emerald-dark;
     }
   }
 }

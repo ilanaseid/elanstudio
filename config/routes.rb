@@ -32,12 +32,6 @@ Elanstudio::Application.routes.draw do
   get 'newsletter/edit' => 'email_preferences#edit', as: :edit_email_preference
   post 'newsletter/edit' => 'email_preferences#update', as: :update_email_preference
 
-  scope 'brightpearl/webhooks' do
-    get 'product/:brightpearl_product_id' => 'brightpearl_webhooks#product', as: :brightpearl_product_webhook
-    get 'order/:brightpearl_order_id' => 'brightpearl_webhooks#order', as: :brightpearl_order_webhook
-    get 'goods-out-note/:brightpearl_goods_out_note_id' => 'brightpearl_webhooks#goods_out_note', as: :brightpearl_goods_out_note_webhook
-  end
-
   #CMS Types with Permalink Paths
   get 'volume/:basename' => 'content#volume', as: :volume
   get 'brand/:basename' => 'content#brand', as: :brand

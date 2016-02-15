@@ -1,0 +1,71 @@
+<%
+  # title =
+  nav_levels_open = 0;
+
+  # TODO: find more performant way to calculate this, or set in controllers
+  if (
+        is_active_link?(main_app.shop_index_path, /^\/shop(?!\/search).*|^\/selection\//) || is_active_link?(spree.account_path, /^(\/wishlist_items.*)|(\/orders.*)|(\/account.*)/) || is_active_link?(spree.account_path, /^(\/wishlist_items.*)|(\/orders.*)|(\/account.*)/) || is_active_link?(main_app.stories_path, /^\/vol|^\/stories|^\/footnote\//)
+      )
+    nav_levels_open = 1
+  end
+
+  if (
+        (@enable_nav_highlighting_for_product && @product && @product.primary_category != 'art') || is_active_link?(main_app.shop_category_path(:fashion)) || is_active_link?(main_app.shop_category_path(:home)) || is_active_link?(main_app.shop_category_path(:beauty)) || is_active_link?(main_app.stories_path, /^\/vol|^\/stories\/|^\/footnote\//)
+      )
+    nav_levels_open = 2
+  end
+%>
+
+<div id="navWrap" class="nav_levels_open-<%= nav_levels_open %> hovernav hovernav-nojs">
+  <%#= render :partial=>"shared/branding" %>
+  <%= render :partial=>"shared/search_panel" %>
+
+  <nav>
+    <div class="mainnav mainnav-1">
+      <ul class="nav-header nav-header-1" data-panel-title="Top Menu">
+        <li class="navPanelTriggerWrap"><button class="btn btn-link a nav-panel-trigger">Menu</button></li>
+        <li class="sepWrap"><span class="sep a">/</span></li>
+
+
+        <li class="nav-sub-trigger <%= is_active_link?(main_app.shop_index_path, /^\/shop(?!\/search).*|^\/selection\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.shop'), main_app.shop_index_path, :class=>"nav-header",:active=>/^\/shop(?!\/search).*|^\/selection\//%></li>
+
+        <li class="nav-sub-trigger <%= is_active_link?(main_app.stories_path, /^\/vol|^\/stories|^\/footnote\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.editorial'), main_app.stories_path, :active=>/^\/vol|^\/stories|^\/footnote\// %>
+        </li>
+        
+        <li class="nav-sub-trigger <%= is_active_link?(main_app.stories_path, /^\/the_apartments\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.the_loft'), main_app.the_apartments_path, :active=>/^\/the_loft\// %>
+        </li>
+
+         <li class="nav-sub-trigger <%= is_active_link?('/s/about', /^\/about\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.about'), '/s/about', :active=>/^\/about\// %>
+        </li>
+
+        
+
+      </ul>
+    </div> <!-- /.mainnav-1 -->
+
+    <%# NOTE: WARNING: Some of the below items are repeated in shared/_pos_nav.html.erb %>
+    <div class="mainnav mainnav-2">
+      <ul class="nav-header nav-header-1" data-panel-title="Top Menu">
+        <li><%= active_link_to "#{t('actions.search')}".html_safe, main_app.shop_search_path, :title=>t('actions.search'), :class => 'header-search-trigger' %></li>
+         <li class="desktopNavItem"><%= active_link_to "#{t('site.nav.cart')} <span class=\"bag-count\">#{current_order_count}</span>".html_safe, spree.cart_path, :class =>"cart-panel-trigger" %></li>
+      </ul>
+    </div> <!-- /.mainnav-2 -->
+    <%# NOTE: WARNING: Some of the above items are repeated in shared/_pos_nav.html.erb %>
+  </nav>
+
+<script id="template-contextualNav" type="text/x-handlebars-template">
+  <div class="mainnav mainnav-1">
+    <ul class="nav-header nav-header-1" id="mainnav-1-target">
+      <li class="sepWrap"><span class="sep a">/</span></li>
+      <li class="titleWrap"><span class="title a"><%= content_for?(:nav_title) ? (yield :nav_title) : (yield :title) %></span></li>
+    </ul>
+  </div>
+  <div class="mainnav mainnav-2">
+    <ul class="nav-header nav-header-1" id="mainnav-2-target">
+    </ul>
+  </div>
+  <div class="panel-mask"></div>
+</script>
+</div> <!-- /#navWrap -->
+
+

@@ -1,29 +1,39 @@
-<footer class="row-fluid" id="footer1">
-  <div class="span6 footer-meta">
+<footer class="row-fluid">
+  <div class="span4 footer-block">
+    <h2 class="delta"><%= t('headings.shop') %></h2>
     <ul class="nav">
-      <li><%= link_to t('site.nav.about'), '/s/about' %></li>
-      <li><%= link_to t('site.nav.our_stores'), '/the_apartments' %></li>
-      <li><%= link_to t('site.nav.contact_us'), '/s/contact' %></li>
-      <li><%= link_to t('site.nav.faq'), '/s/faq' %></li>
-      <li><%= link_to t('site.nav.feedback'), '/content/feedback', :class=>'lb' %></li>
-    </ul>
-    <ul class="nav">
-      <li><%= t('site.footer_copyright_html') %></li>
-      <li><%= link_to t('site.nav.terms_of_use'), '/s/terms_of_use' %></li>
-      <li><%= link_to t('site.nav.privacy_policy'), '/s/privacy_policy' %></li>
+      <li style="display: block;"><%= link_to t('site.nav.about'), '/s/about', :rel=>'external', :class=>'popup'%></li>
+      <li style="display: block;"><%= link_to t('site.nav.the_loft'), '/the_apartments'%></li>
+      <li style="display: block;"><%= link_to 'Shipping & Returns', '/the_apartments', :rel=>'external', :class=>'popup'%></li>
+      <li style="display: block;"><%= link_to t('site.nav.faq'), '/s/faq', :rel=>'external', :class=>'popup'%></li>
     </ul>
   </div>
-  <div class="span4 footer-social">
-    <h2 class="delta"><%= t('headings.find_us_on') %></h2>
+  <div class="span4 footer-block">
+
+    <h2 class="delta"><%= t('headings.social') %></h2>
     <ul class="nav">
-      <li><%= link_to 'Twitter', Settings.social_media.twitter_url, :rel=>'external', :class=>'popup' %></li>
-      <li><%= link_to 'Instagram', Settings.social_media.instagram_url, :rel=>'external', :class=>'popup' %></li>
-      <li><%= link_to 'Pinterest', Settings.social_media.pinterest_url, :rel=>'external', :class=>'popup' %></li>
-      <li><%= link_to 'Facebook', Settings.social_media.facebook_url, :rel=>'external', :class=>'popup' %></li>
+      <li style="display: block;"><%= link_to 'Instagram', Settings.social_media.instagram_url, :rel=>'external', :class=>'popup'%></li>
+      <li style="display: block;"><%= link_to 'Pinterest', Settings.social_media.pinterest_url, :rel=>'external', :class=>'popup'%></li>
+      <li style="display: block;"><%= link_to 'Tumblr', Settings.social_media.tumblr_url, :rel=>'external', :class=>'popup'%></li>
+      <li style="display: block;"><%= link_to 'Facebook', Settings.social_media.facebook_url, :rel=>'external', :class=>'popup'%></li>
+      <li style="display: block;"><%= link_to 'Twitter', Settings.social_media.twitter_url, :rel=>'external', :class=>'popup'%></li>
     </ul>
   </div>
-  <div class="span5 offset1 footer-newsletter">
-    <h2 class="delta"><%= t('headings.newsletter_receive_info') %>:</h2>
-    <%= render :partial=>'email_subscribers/form', :locals=>{:context=>'footer'}  %>
+  
+  <div class="span4 footer-block">
+    <h2 class="delta"><%= t('headings.site') %></h2>
+    <ul class="nav">
+      <li style="display: block;"><%= link_to t('site.nav.contact_us'), '/s/contact'%></li>
+      <li style="display: block;"><%= link_to t('site.nav.feedback'), '/content/feedback', :class=>'lb'%></li>
+      <li style="display: block;"><%= link_to 'Privacy Policy', '/s/privacy_policy', :rel=>'external', :class=>'popup'%></li>
+      <li style="display: block;"><%= link_to 'Terms of Use', '/s/terms_of_use', :rel=>'external', :class=>'popup'%></li>
+    </ul>
   </div>
+  <div class="span4 footer-newsletter">
+    <h2 class="delta"><%= t('headings.newsletter_prompt') %>:</h2>
+    <%= render :partial=>'email_subscribers/form', :locals=>{:context=>'footer'}%>
+  </div>
+  <ul class="nav" style="float: right;">
+    <li><%= t('site.footer_copyright_html') %></li>
+  </ul>
 </footer>

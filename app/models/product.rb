@@ -7,12 +7,9 @@ class Product < ClearCMS::Content
 
   NEW_PRODUCT_TIMEFRAME=2.weeks
 
-  form_field :spree_product_id, :type=>Integer, :formtastic_options=>{:as=>:select, :collection=>Spree::Product.all,  :input_html=>{:disabled=>'true'}}
+  form_field :spree_product_id, :type=>Integer, :formtastic_options=>{:as=>:select, :collection=>Spree::Product.all}
   form_field :brand_id, :formtastic_options=>{:collection=>Brand.all }
-  form_field :brightpearl_product_group_id, :type=>Integer, :formtastic_options=>{:input_html=>{:disabled=>'true'}}
-  form_field :brightpearl_sku, :formtastic_options=>{:input_html=>{:disabled=>'true'}}
-  form_field :brightpearl_brand_id, :type=>Integer, :formtastic_options=>{:input_html=>{:disabled=>'true'}}
-
+  
   # keep these two just for legacy access
   field :flag
 

@@ -150,14 +150,14 @@
     }
 
     .active {
-      color: $grey-dark;
+      color: $black;
       text-decoration: underline;
     }
 
     .accent {
       &:hover,
       &.active {
-        color: $gold-dark;
+        color: $emerald-dark;
       }
     }
 

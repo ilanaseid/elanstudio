@@ -52,8 +52,6 @@ Line.e = (function() {
       $(this).trigger(Line.e.CONTAINER_SCROLL_THROTTLE);
     }));
 
-
-
     $(window).resize($.throttle(200, function() {
       // console.log('window resize throttle');
       $(window).trigger(Line.e.WINDOW_RESIZE_THROTTLE);
