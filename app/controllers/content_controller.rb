@@ -27,12 +27,12 @@ class ContentController < ApplicationController
     @archived_products = @content.products.published.visible.weighted.where(:product_state=>'Discontinued')
   end
 
-  def stories
-    respond_to do |format|
-      format.html { @stories=current_site.contents.published.where(:_type.in=>['Chapter','Footnote']).not.lt(end_time: Time.now).without_options.desc(:publish_at).page(params[:page]).per(params[:per_page]||12) }
-      format.xml { @stories=current_site.contents.published.where(:_type.in=>['Chapter','Footnote']).not.lt(end_time: Time.now).without_options.desc(:publish_at).limit(30) }
-    end
-  end
+  # def stories
+  #   respond_to do |format|
+  #     format.html { @stories=current_site.contents.published.where(:_type.in=>['Chapter','Footnote']).not.lt(end_time: Time.now).without_options.desc(:publish_at).page(params[:page]).per(params[:per_page]||12) }
+  #     format.xml { @stories=current_site.contents.published.where(:_type.in=>['Chapter','Footnote']).not.lt(end_time: Time.now).without_options.desc(:publish_at).limit(30) }
+  #   end
+  # end
 
   def page
     if params[:basename]
@@ -54,38 +54,38 @@ class ContentController < ApplicationController
     @selections = current_site.contents.published.where(:_type=>'Selection').not.lte(end_time: Time.now).skip(1).limit(4)
   end
 
-  def anthology
-    @volumes = current_site.contents.published.where(:_type=>'Volume').page(params[:page]).per(params[:per_page]||16)
-    @footnote_count = current_site.contents.published.where(:_type=>'Footnote').not.lt(end_time: Time.now).count
-    @footnote_creation_date = (@footnote_count < 1) ? nil : current_site.contents.published.where(:_type=>'Footnote').last.publish_at
-  end
+  # def anthology
+  #   @volumes = current_site.contents.published.where(:_type=>'Volume').page(params[:page]).per(params[:per_page]||16)
+  #   @footnote_count = current_site.contents.published.where(:_type=>'Footnote').not.lt(end_time: Time.now).count
+  #   @footnote_creation_date = (@footnote_count < 1) ? nil : current_site.contents.published.where(:_type=>'Footnote').last.publish_at
+  # end
 
-  def volume
-    #@content=current_site.contents.published.and({:_type=>'Volume'},{:basename=>params[:basename]}).first
-    @volume=current_site.contents.where(:_type=>'Volume').find_by(:basename=>params[:basename])
-    @chapters=@volume.chapters.published.not.lt(end_time: Time.now).without_options.desc(:chapter_number).page(params[:page]).per(params[:per_page]||16)
-  end
+  # def volume
+  #   #@content=current_site.contents.published.and({:_type=>'Volume'},{:basename=>params[:basename]}).first
+  #   @volume=current_site.contents.where(:_type=>'Volume').find_by(:basename=>params[:basename])
+  #   @chapters=@volume.chapters.published.not.lt(end_time: Time.now).without_options.desc(:chapter_number).page(params[:page]).per(params[:per_page]||16)
+  # end
 
-  def chapter
-    #@content=current_site.contents.published.and({:_type=>'Chapter'},{:basename=>params[:basename]}).first
-    @content=current_site.contents.where(:_type=>'Chapter').find_by(:basename=>params[:basename])
-  end
+  # def chapter
+  #   #@content=current_site.contents.published.and({:_type=>'Chapter'},{:basename=>params[:basename]}).first
+  #   @content=current_site.contents.where(:_type=>'Chapter').find_by(:basename=>params[:basename])
+  # end
 
-  def footnotes
-    @footnotes=current_site.contents.published.where(:_type=>'Footnote').not.lt(end_time: Time.now).without_options.desc(:footnote_number).page(params[:page]).per(params[:per_page]||10)
-  end
+  # def footnotes
+  #   @footnotes=current_site.contents.published.where(:_type=>'Footnote').not.lt(end_time: Time.now).without_options.desc(:footnote_number).page(params[:page]).per(params[:per_page]||10)
+  # end
 
-  def footnote
-    @footnote=current_site.contents.where(:_type=>'Footnote').find_by(:basename=>params[:basename])
-  end
+  # def footnote
+  #   @footnote=current_site.contents.where(:_type=>'Footnote').find_by(:basename=>params[:basename])
+  # end
 
-  def apartments
+  def showrooms
     @apartments = current_site.contents.published.where(:_type => 'Apartment').to_a.reverse
     @future_events = current_site.contents.published.and({:_type => 'Event', :end_time.gte => Time.now}).without_options.desc('start_time').limit(10)
     @past_events = current_site.contents.published.and({:_type => 'Event', :end_time.lt => Time.now}).without_options.desc('start_time').limit(10)
   end
 
-  def apartment
+  def showroom
     location = params[:basename].gsub('_', ' ').titleize
     @content = current_site.contents.published.where(:_type=>'Apartment').find_by(:basename=>params[:basename])
     @future_events = current_site.contents.published.and({:_type=>'Event', :end_time.gte=>Time.now}).without_options.desc('start_time').limit(2).select { |fevent| fevent.apartment.title == location }

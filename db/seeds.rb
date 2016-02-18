@@ -18,7 +18,7 @@ Spree.config do |config|
   # Example:
   # Uncomment to override the default site name.
   # config.site_name = "Spree Demo Site"
-  config.check_for_spree_alerts = false
+  #config.check_for_spree_alerts = false
   #config.enable_mail_delivery = true
   #config.override_actionmailer_config = false
 end
@@ -26,9 +26,11 @@ end
 
 Spree::Auth::Config.preferred_registration_step=true
 
-
 #Setup Spree core/samples first
 Spree::Core::Engine.load_seed if defined?(Spree::Core)
 
 
 require Rails.root.join('db/spree_data')
+
+Spree::Core::Engine.load_seed if defined?(Spree::Core)
+Spree::Auth::Engine.load_seed if defined?(Spree::Auth)

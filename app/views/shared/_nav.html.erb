@@ -102,9 +102,9 @@
           </li>
           </ul></li>
 
-        <li class="nav-sub-trigger <%= is_active_link?(main_app.stories_path, /^\/the_apartments\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.apartments'), main_app.the_apartments_path, :class=>'icon_downCaret-ia', :active=>/^\/the_apartments\// %>
-          <ul class="nav-header nav-header-2 <%= is_active_link?(main_app.the_apartments_path, /^\/the_apartments\//) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="<%= t('site.nav.apartment') %>">
-            <li><%= active_link_to 'View All Apartments', main_app.the_apartments_path, :active => :exclusive %></li>
+        <li class="nav-sub-trigger <%= is_active_link?(main_app.stories_path, /^\/the_apartments\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.apartments'), main_app.showrooms_path, :class=>'icon_downCaret-ia', :active=>/^\/the_apartments\// %>
+          <ul class="nav-header nav-header-2 <%= is_active_link?(main_app.showrooms_path, /^\/the_apartments\//) ? 'nav-header-current'.html_safe : '' %>" data-panel-title="<%= t('site.nav.apartment') %>">
+            <li><%= active_link_to 'View All Apartments', main_app.showrooms_path, :active => :exclusive %></li>
             <li><%= active_link_to 'New York', '/the_apartments/quintessential_apartment', :active => :exclusive %></li>
             <li><%= active_link_to 'Los Angeles', '/the_apartments/los_angeles', :active => :exclusive %></li>
             <li><a href="#" data-brickwork-reveal-modal="appointment-widget-6">Book an Appointment</a></li>

@@ -5,25 +5,20 @@ Elanstudio::Application.routes.draw do
   constraints admin do
     mount Sidekiq::Web => '/sidekiq'
   end
-
-  get "systems" => 'systems#index'
-  post 'systems/sync_stock' => 'systems#sync_stock'
-  post 'systems/sync_products' => 'systems#sync_products'
-
+  
   root :to => 'content#page'
 
-  ### APARTMENT ROUTES
-  get 'apartment/quintessential_apartment' => 'content#apartments'
-  get 'the_apartments' => 'content#apartments', as: :the_apartments
-  get 'the_apartments/:basename' => 'content#apartment', as: :apartment
+  ### Loft routes
+  get 'showrooms' => 'content#showrooms', as: :showrooms
+  get 'showrooms/:basename' => 'content#showroom', as: :showroom
   get 'event/:basename' => 'content#event', as: :event
 
   get '/404' => 'static#status_404', as: :status_404
   get '/500' => 'static#status_500', as: :status_500
   get '/503' => 'static#status_500', as: :status_503
 
-  resources :apartment_requests
-  resources :apartment_visits
+  resources :showroom_requests
+  resources :showroom_visits
   resources :email_subscribers, :only => [:new, :create, :update]
   resources :product_notifications, only: [:show, :new, :create]
   resources :support_requests
@@ -33,29 +28,18 @@ Elanstudio::Application.routes.draw do
   post 'newsletter/edit' => 'email_preferences#update', as: :update_email_preference
 
   #CMS Types with Permalink Paths
-  get 'volume/:basename' => 'content#volume', as: :volume
   get 'brand/:basename' => 'content#brand', as: :brand
   get 'shop/product/:basename' => 'shop#product', :as => :product
-  get 'shop/feature/:basename' => 'shop#feature', :as => :product_feature
   get 'product_tag/:basename' => 'content#product_tag', :as => :product_tag
   get 'product_category/:basename' => 'content#product_category', as: :product_category
-  get 'vol/chapter/:basename' => 'content#chapter', as: :chapter
   get 'editorial/:basename' => 'content#editorial', as: :editorial
   get 'page/:basename' => 'content#page', as: :page
   get 'stories' => 'content#stories', as: :stories
-  get 'site_messaging/:basename' => 'content#site_messaging', as: :site_messaging
-  get 'stories/anthology' => 'content#anthology', as: :anthology
-  get 'stories/footnotes' => 'content#footnotes', as: :footnotes
-  get 'footnote/:basename' => 'content#footnote', as: :footnote
-  get 'shop/selections' => 'shop#selections', as: :selections
-  get 'selection/:basename' => 'shop#selection', as: :selection
-  get 'personal_selection/:basename' => 'shop#personal_selection', as: :personal_selection
-
+  #get 'site_messaging/:basename' => 'content#site_messaging', as: :site_messaging
+  
   #CMS Generic Routes
   get 'content/packaging_exceptions' => 'content#packaging_exceptions'
   get 'content/returns_policy' => 'content#returns_policy'
-  get 'content/sizechart_shoes' => 'content#sizechart_shoes'
-  get 'content/sizechart_rtw' => 'content#sizechart_rtw'
   get 'content/feedback' => 'content#feedback'
   get 'content/contact' => 'content#contact'
   get 'content/:category' => 'content#category', as: :content_category
@@ -84,7 +68,6 @@ Elanstudio::Application.routes.draw do
   #Static Content Catch-all
   get '/s/:action(:format)', :controller=>'static', :as=>:static_content
 
-  #mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   mount ClearCMS::Engine, at: '/clear_cms'
 
   mount Spree::Core::Engine, :at => '/'

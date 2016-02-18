@@ -16,3 +16,11 @@ Disallow: /user_registrations
 Disallow: /users
 Disallow: /account
 Disallow: /personal_selection
+User-agent: *
+Disallow: /checkout
+Disallow: /cart
+Disallow: /orders
+Disallow: /user
+Disallow: /account
+Disallow: /api
+Disallow: /password

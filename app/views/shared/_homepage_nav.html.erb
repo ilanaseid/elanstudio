@@ -32,7 +32,7 @@
         <li class="nav-sub-trigger <%= is_active_link?(main_app.stories_path, /^\/vol|^\/stories|^\/footnote\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.editorial'), main_app.stories_path, :active=>/^\/vol|^\/stories|^\/footnote\// %>
         </li>
         
-        <li class="nav-sub-trigger <%= is_active_link?(main_app.stories_path, /^\/the_apartments\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.the_loft'), main_app.the_apartments_path, :active=>/^\/the_loft\// %>
+        <li class="nav-sub-trigger <%= is_active_link?(main_app.stories_path, /^\/the_apartments\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.the_loft'), main_app.showrooms_path, :active=>/^\/the_loft\// %>
         </li>
 
          <li class="nav-sub-trigger <%= is_active_link?('/s/about', /^\/about\//) ? 'nav-sub-current'.html_safe : '' %>"><%= active_link_to t('site.nav.about'), '/s/about', :active=>/^\/about\// %>

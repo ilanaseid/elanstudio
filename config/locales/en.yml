@@ -247,7 +247,7 @@ en:
       past_events: "Recent Events"
     newsletter_prompt: "Join The Apartment newsletter and be among the first to learn about upcoming events, community activities, and private sales."
     no_upcoming_events: "More events are in the making."
-    apartments_desc: "What new meanings and functions do quintessential objects take on in an intimate domestic setting? How do storied objects relate to one another? What do they say about their owner? The answers are revealed in The Apartments by The Line."
+    loft_desc: "The Loft is our showroom in TriBeCa in downtown Manhattan. It is a place to explore Elan Studio's merchandise and touch and feel various objects."
 
   appointments:
     heading:
@@ -422,13 +422,13 @@ en:
 
 
   mailer:
-    address: "76 GREENE ST, 3rd FL, NEW YORK, NY 10012"
-    address_two_line_html: "76 Greene Street, 3rd Floor<br>New York, NY 10012"
-    footer_copyright_html: "Copyright &copy; 2014 The Line"
+    address: "81 Walker Street, 2nd Floor, NEW YORK, NY 10013"
+    address_two_line_html: "81 Walker Street, 2nd Floor<br> New York, NY 10013"
+    footer_copyright_html: "Copyright &copy; 2016 Elan Studio"
     footer_rights_reserved_html: "All rights reserved."
 
   static:
-    address_html: "The Line LLC<br> 76 GREENE ST, 3rd FL<br> NEW YORK, NY 10012"
+    address_html: "Elan Studio LLC<br> 81 Walker Street, 2nd Floor<br> New York, NY 10013"
 
 
   social_media:
