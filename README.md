@@ -26,7 +26,7 @@ _updated 6/2/2015_
 
 The following instructions assume a fresh OS X Yosemite install, if you have previously installed any of the tools listed below, be aware that you may have to upgrade rather than install tools, or at least swap paths or other configuration options from the default configuration options used below:
 
-These instructions will get you a running copy of our application in the folder ~/Sites/theline, with data, and tools for backend and front end development.
+These instructions will get you a running copy of our application in the folder ~/Sites/elanstudio, with data, and tools for backend and front end development.
 
 Some steps Adapted from installation guides for [RVM on Yosemite](http://foffer.dk/install-ruby-on-os-x-10-10-yosemite-using-rvm/) and [Rails on Yosemite](http://railsapps.github.io/installrubyonrails-mac.html)
 
@@ -85,11 +85,11 @@ Some steps Adapted from installation guides for [RVM on Yosemite](http://foffer.
 
 16. Configure and Authenticate GitHub Account. See [Help Docs](https://help.github.com/articles/set-up-git/)
 
-17. Clone theline and clear_cms engine repos onto your local machine (type or use Github GUI to clone)
+17. Clone elanstudio and clear_cms engine repos onto your local machine (type or use Github GUI to clone)
   type: `git clone git@github.com:ilanaseid/elanstudio.git`
   type `git clone git@github.com:captain-lucas/clear_cms.git`
 
-18. Move into the folder for theline
+18. Move into the folder for elanstudio
   type `cd elanstudio`
 
 19. Build all Ruby dependencies
@@ -135,7 +135,7 @@ _TODO: document specific sublime packages_
 * Install [Sublime Text 3](http://www.sublimetext.com/3) purchase a license, and install package control [ https://sublime.wbond.net/installation ]
 * Install the [GitHub Mac Client](https://mac.github.com)
 * Set sublime alias in .bash_profile `alias subl='open -a "Sublime Text 2"'` to use subl to open files in terminal
-* Show theline rake tasks with `rake -T theline`
+* Show elanstudio rake tasks with `rake -T elanstudio`
 
 
 
@@ -152,13 +152,13 @@ When we've moved the project to a new ruby version you will have to update your 
 _TODO: reclassify this section - is it needed? put it with testing?_
 
 This is DESTRUCTIVE, use for dev only to seed Spree products and link them to CMS content (this wipes all SQL data but only CMS content data for Mongo)
-`PRODUCT_COUNT=100 EDITORIAL_COUNT=20 rake theline:dummy_data:load`
+`PRODUCT_COUNT=100 EDITORIAL_COUNT=20 rake elanstudio:dummy_data:load`
 
 * To recreate image versions (you'll need to have your .env exported so it can access the S3 bucket). It recreates the versions from the originals stored on S3, and right now the image count is hard coded based on how many images there are for product or editorial:
-`rake theline:recreate_test_images:all`
+`rake elanstudio:recreate_test_images:all`
 or
-`rake theline:recreate_test_images:product`
-`rake theline:recreate_test_images:editorial`
+`rake elanstudio:recreate_test_images:product`
+`rake elanstudio:recreate_test_images:editorial`
 
 
 
@@ -178,7 +178,7 @@ or
 * Run all default Grunt with `grunt`.
 * Recreate icon set from /src/assets/images/icons with `grunt svg`
 
-### App Deployment (TheLine.com)
+### App Deployment (elanstudio.com)
 To list current remote repositories
 `git remote`
 If first time deploying, need to run:
