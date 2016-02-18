@@ -1,12 +1,12 @@
-# theline
+# elanstudio
 
-Repo for TheLine.com.
+Repo for elanstudio.com.
 
-Production: http://www.theline.com/
+Production: http://www.elanstudio.com/
 
-Staging: http://staging.theline.com/
+Staging: http://staging.elanstudio.com/
 
-Preview: http://preview.theline.com/
+Preview: http://preview.elanstudio.com/
 
 Local Development: http://0.0.0.0:5000/
 
@@ -86,11 +86,11 @@ Some steps Adapted from installation guides for [RVM on Yosemite](http://foffer.
 16. Configure and Authenticate GitHub Account. See [Help Docs](https://help.github.com/articles/set-up-git/)
 
 17. Clone theline and clear_cms engine repos onto your local machine (type or use Github GUI to clone)
-  type: `git clone git@github.com:assembledbrands/theline.git`
+  type: `git clone git@github.com:ilanaseid/elanstudio.git`
   type `git clone git@github.com:captain-lucas/clear_cms.git`
 
 18. Move into the folder for theline
-  type `cd theline`
+  type `cd elanstudio`
 
 19. Build all Ruby dependencies
   type `bundle`
@@ -148,7 +148,7 @@ When we've moved the project to a new ruby version you will have to update your 
 3. You may have to open a new terminal window for it to be aware of the new versions/environment
 4. Type `bundle` to rebuild all your dependencies (may take some time)
 
-### OLD -- App Installation (TheLine.com) -- OLD
+### OLD -- App Installation (elanstudio.com) -- OLD
 _TODO: reclassify this section - is it needed? put it with testing?_
 
 This is DESTRUCTIVE, use for dev only to seed Spree products and link them to CMS content (this wipes all SQL data but only CMS content data for Mongo)
@@ -207,7 +207,7 @@ Force a push of a branch to preview
 
 ## Additional Documentation
 
-* [The Line Pattern Library](http://assembledbrands.github.io/docs/styleguide/)
+
 * TODO: List of Google Doc Names/Dropbox locations
 
 
