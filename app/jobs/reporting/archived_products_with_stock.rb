@@ -4,7 +4,7 @@ module Reporting
 
     def perform(email='ilana@elanstudio.com')
 
-      titles = ['title','brightpearl_sku','publish_at','URL','categories']
+      titles = ['title','publish_at','URL','categories']
       # add each stock location to title array
       Spree::StockLocation.all.each {|l| titles << l.name.to_s + ' Count' }
 
@@ -14,7 +14,6 @@ module Reporting
         Product.published.where(:product_state.in=>['Discontinued','Hidden']).each do |p|
           if p.available_any_location?
             line_items = [p.title,
-                          p.brightpearl_sku,
                           p.publish_at,
                           Settings.canonical_url_root + p.friendly_path,
                           p.categories]

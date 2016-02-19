@@ -3,8 +3,7 @@ module Mailchimp
     include Sidekiq::Worker
 
     def perform(email,options={})
-      #logger.debug "Subscribing #{email} with options: #{options.inspect} to Mailchimp Newsletter list."
-
+      
       if Settings.mailchimp.readonly
         logger.info "Mailchimp is readonly"
         return
@@ -15,7 +14,7 @@ module Mailchimp
       utm_source = options['utm_source']
       utm_medium = options['utm_medium']
 
-      newsletter_list_id="2269eed362" #The Line Newsletter
+      newsletter_list_id="d7796b84c3" #Elan Studio Newsletter
 
       logger.debug "Subscribing #{email} with options: #{options.inspect} to Mailchimp Newsletter list."
       begin

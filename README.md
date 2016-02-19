@@ -111,11 +111,13 @@ Some steps Adapted from installation guides for [RVM on Yosemite](http://foffer.
 
   NOTE: at this point I had some processes still running and couldn’t start with foreman - need proper workflow for temporarily starting and then cleanly shutting down.
 
-24. Log into Heroku (note: needs Heroku account access/temporary production access)
+24. [SKIP THIS] Log into Heroku (note: needs Heroku account access/temporary production access)
   type `heroku login`
 
-25. Grab a copy of our data
-  type `script/backup_and_pull_production`
+25. [SKIP THIS]  Grab a copy of our data 
+   TODO: FIX THIS TO GET DATA
+
+   I just go into rails console and copy paste the lines from spree_data.rb
 
 26. Attempt to start your local server
   type `foreman start -f Procfile.dev`

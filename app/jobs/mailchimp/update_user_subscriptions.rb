@@ -10,7 +10,7 @@ module Mailchimp
 
       user=Spree::User.find(user_id)
       if user.newsletter?
-        logger.debug "Subscribing #{user.id} #{user.email} to Line and Apartment Newsletters via SubscribeNewsletter job."
+        logger.debug "Subscribing #{user.id} #{user.email} to Elan Studio Newsletters via SubscribeNewsletter job."
         SubscribeNewsletter.perform_async(user.email, {'first_name'=>user.firstname, 'last_name'=>user.lastname, 'utm_source'=>user.utm_source, 'utm_medium'=>user.utm_medium})
         ApartmentRequest.create(email: user.email, first_name: user.firstname, last_name: user.lastname, utm_medium: user.utm_medium, utm_source: user.utm_source)
       else

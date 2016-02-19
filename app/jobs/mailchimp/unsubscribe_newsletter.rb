@@ -9,7 +9,7 @@ module Mailchimp
       end
 
 
-      newsletter_list_id="2269eed362" #The Line Newsletter
+      newsletter_list_id="d7796b84c3" #Elan Studio Newsletter
       
       logger.debug "Unsubscribing #{email} from Mailchimp Newsletter list."
       begin 

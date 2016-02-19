@@ -8,7 +8,7 @@ killall mongod
 mongod --config /usr/local/etc/mongod.conf &
 
 DB_DIR="tmp/mongolab_dump_"$2"_`date +%Y%m%d-%H%M`"
-APP_NAME="theline-"$2
+APP_NAME="elanstudio-"$2
 
 if [ "$1" == "push" ]
   then
@@ -16,7 +16,7 @@ if [ "$1" == "push" ]
     echo "waiting for Mongo to start in background... (5 seconds)"
     sleep 5
 
-    mongodump -h localhost -d theline_development -o $DB_DIR
+    mongodump -h localhost -d elanstudio_development -o $DB_DIR
     bundle exec ruby script/mongo_with_uri.rb $DB_DIR $APP_NAME $1
   else
     # pull

@@ -30,31 +30,6 @@ class ShopController < ApplicationController
     @products = products.published.not_archived.where(tags: /sale/i).and(:categories => category_regex, :categories => sub_category_regex, :id.nin => removed_ids).page(params[:page]).per(per_page_preference)
   end
 
-  def feature
-    @content = current_site.contents.where(:_type.in=>['Selection','Footnote']).where(:basename=>/^#{params[:basename]}$/i).first
-    if @content
-      redirect_to @content.friendly_path
-    else
-      redirect_to selections_path
-    end
-  end
-
-  def selections
-    all_selections = current_site.contents.published.where(:_type=>'Selection').not.lte(end_time: Time.now)
-    @featured_selections = all_selections.shift(2)
-    @selections = all_selections.skip(2)
-  end
-
-  def selection
-    @selection = current_site.contents.where(:_type=>'Selection').find_by(:basename=>/^#{params[:basename]}$/i)
-    @related_selections = @selection.related_selections(4)
-  end
-
-  def personal_selection
-    @personal_selection = current_site.contents.where(:_type=>'PersonalSelection').find_by(:basename=>/^#{params[:basename]}$/i)
-    @recent_selections = current_site.contents.published.where(:_type=>'Selection').not.lte(end_time: Time.now).limit(4)
-  end
-
   def product
     @enable_nav_highlighting_for_product = true
     @product=current_site.contents.where(:_type=>'Product').find_by(:basename=>/^#{params[:basename]}$/i)
