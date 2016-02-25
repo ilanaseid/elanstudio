@@ -108,7 +108,7 @@ Spree.config do |config|
   # Without this preferences are loaded and persisted to the database. This
   # changes them to be stored in memory.
   # This will be the default in a future version.
-  config.use_static_preferences!
+  #config.use_static_preferences!
 
   # Core:
   config.default_country_id=49

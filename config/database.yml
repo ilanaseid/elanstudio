@@ -14,7 +14,7 @@ development:
   encoding: unicode
   host: localhost
   database: elanstudio_development
-#   username: theline
+  username: ilanaseid
 #   password: 
 
 # Warning: The database defined as "test" will be erased and

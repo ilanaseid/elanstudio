@@ -64,7 +64,7 @@ gem 'sidekiq', '< 4.0'
 gem 'sidekiq-failures'
 gem 'sidekiq-throttler'
 gem 'sinatra', require: nil
-gem 'solidus'
+gem 'solidus', github: 'ilanaseid/solidus', branch: 'v1.1'
 gem 'solidus_auth_devise'
 #gem 'spree', github: 'assembledbrands/spree', branch: '3-0-stable'
 #gem 'spree_auth_devise', github: 'assembledbrands/spree_auth_devise', branch: '3-0-stable', ref: 'f652a0d796a36c8ff2e5240f1f01bf4c9bd43b8b'
